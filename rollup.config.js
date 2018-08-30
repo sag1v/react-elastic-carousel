@@ -22,7 +22,7 @@ export default {
     }
   ],
   plugins: [
-    external(),
+    external(['styled-components']),
     postcss({
       modules: false
     }),
