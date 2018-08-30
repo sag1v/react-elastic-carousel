@@ -29,3 +29,4 @@ class Example extends Component {
 ## License
 
 MIT © [sag1v](https://github.com/sag1v)
+
