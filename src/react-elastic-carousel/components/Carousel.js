@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import ResizeObserver from "resize-observer-polyfill";
 import Only from "react-only-when";
 import Track from "./Track";
-import Arrow from "./Button";
+import Arrow from "./Arrow";
 import { firstItemReducer } from "../reducers/items";
 import { nextItemAction, prevItemAction } from "../actions/itemsActions";
 import { flex, row, overflowHidden } from "./styleRules";
