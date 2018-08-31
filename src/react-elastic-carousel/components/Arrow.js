@@ -13,7 +13,7 @@ const directionIcons = {
 const Arrow = ({ direction, onClick, icons, ...rest }) => {
   const arrows = { ...directionIcons, ...icons };
   return (
-    <Button onClick={onClick} className={cx("r-e-c-arrow", `r-e-c-arrow-${direction}`)} {...rest}>
+    <Button onClick={onClick} className={cx("rec-arrow", `rec-arrow-${direction}`)} {...rest}>
       {arrows[direction]}
     </Button>
   );
