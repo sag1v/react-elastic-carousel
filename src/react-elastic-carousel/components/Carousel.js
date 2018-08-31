@@ -447,6 +447,7 @@ class Carousel extends React.Component {
                   enableMouseSwipe={enableMouseSwipe}
                   onSwipedLeft={onSwipedLeft}
                   onSwipedRight={onSwipedRight}
+                  onItemClick={this.goTo}
                 />
               </div>
             </div>

@@ -8,18 +8,21 @@ const Track = ({
   childWidth,
   enableSwipe,
   enableMouseSwipe,
+  itemPadding,
   onSwipedLeft,
   onSwipedRight,
-  itemPadding
+  onItemClick,
 }) => {
   const width = `${childWidth}px`;
   const paddingStyle = `${itemPadding.join("px ")}px`;
-  let originalChildren = React.Children.map(children, child => {
+  let originalChildren = React.Children.map(children, (child, idx) => {
     const item = (
       <ItemWrapper
+        id={idx}
         child={child}
         style={{ width, padding: paddingStyle }}
-        key={`${child.key}`}
+        key={`${child.key}${idx}`}
+        onClick={onItemClick}
       />
     );
     if (enableSwipe) {
