@@ -104,7 +104,7 @@ class Carousel extends React.Component {
     if (breakPoints && breakPoints.length > 0) {
       currentBreakPoint = breakPoints
         .slice() // no mutations
-        .reverse() // so we can find last match sagiv
+        .reverse() // so we can find last match
         .find(bp => bp.width <= sliderContainerWidth);
       if (!currentBreakPoint) {
         /* in case we don't have a lower width than sliderContainerWidth

@@ -153,7 +153,6 @@ export default class ExampleComponent extends Component {
     return (
       <div className={`app flex column`}>
         <div className="flex row props">
-          <div className="flex prop-box">{`Clicked index - ${clickedItem}`}</div>
           <div className="flex prop-box pointer">
             <input
               className="pointer"
@@ -169,7 +168,7 @@ export default class ExampleComponent extends Component {
           <div className="flex prop-box">
             <label>{`Number of items `}</label>
             <input
-              type="number"
+              type="number "
               value={numberOfItems}
               onChange={this.setNumberOfItems}
             />
@@ -215,7 +214,7 @@ export default class ExampleComponent extends Component {
                 onChange={this.toggleShowArrows}
               />
               <label className="pointer" htmlFor="showArrows">
-                custom arrows
+              show Arrows
               </label>
             </div>
             <div className="flex row">
@@ -232,6 +231,7 @@ export default class ExampleComponent extends Component {
             </div>
           </div>
           <div className="flex prop-box">{`Current Index - ${currentItem}`}</div>
+          <div className="flex prop-box">{`Clicked index - ${clickedItem}`}</div>
         </div>
         <ResizableBox
           width={viewPort.width - 50}
