@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Swipeable from "react-swipeable";
-import ItemWrapper from "./ItemWrapper";
+import ItemWrapperContainer from "./ItemWrapperContainer";
 
 const Track = ({
   children,
@@ -17,7 +17,7 @@ const Track = ({
   const paddingStyle = `${itemPadding.join("px ")}px`;
   let originalChildren = React.Children.map(children, (child, idx) => {
     const item = (
-      <ItemWrapper
+      <ItemWrapperContainer
         id={idx}
         child={child}
         style={{ width, padding: paddingStyle }}

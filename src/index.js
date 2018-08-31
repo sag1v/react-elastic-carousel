@@ -260,7 +260,6 @@ export default class ExampleComponent extends Component {
             <Carousel
               isRTL={isRtl}
               focusOnSelect={focusOnSelect}
-              itemPadding={[5]}
               enableAutoPlay={shouldAutoPlay}
               breakPoints={this.breakpoints}
               pagination={pagination}
