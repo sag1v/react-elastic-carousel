@@ -17,6 +17,7 @@ class Carousel extends React.Component {
     sliderPosition: 0,
     swipedSliderPosition: 0,
     isSwiping: false,
+    transitioning: false,
     firstItem: this.props.initialFirstItem,
     activePage: 0,
     sliderContainerWidth: 0
@@ -74,7 +75,10 @@ class Carousel extends React.Component {
   setAutoPlay = () => {
     const { autoPlaySpeed } = this.props;
     this.autoPlayIntervalId = setInterval(() => {
-      this.slideNext();
+      const { transitioning } = this.state;
+      if (!transitioning) {
+        this.slideNext();
+      }
     }, autoPlaySpeed);
   };
 
@@ -308,6 +312,7 @@ class Carousel extends React.Component {
     const nextItemObj = this.convertChildToCbObj(firstItem);
     onNext(nextItemObj);
     this.removeSliderTransitionHook(this.onNextCb);
+    this.setState({ transitioning: false });
   };
 
   onPrevCb = () => {
@@ -316,9 +321,10 @@ class Carousel extends React.Component {
     const nextItemObj = this.convertChildToCbObj(firstItem);
     onPrev(nextItemObj);
     this.removeSliderTransitionHook(this.onPrevCb);
+    this.setState({ transitioning: false });
   };
 
-  generatePositionUpdater = (direction, nextItemId) => state => {
+  generatePositionUpdater = (direction, nextItemId, rest) => state => {
     const { sliderPosition, childWidth, firstItem } = state;
     let newSliderPosition = 0;
     if (direction === "next") {
@@ -333,7 +339,8 @@ class Carousel extends React.Component {
       sliderPosition: newSliderPosition,
       firstItem: nextItemId,
       swipedSliderPosition: 0,
-      isSwiping: false
+      isSwiping: false,
+      ...rest
     };
   };
 
@@ -353,7 +360,8 @@ class Carousel extends React.Component {
     }
     const stateUpdater = this.generatePositionUpdater(
       direction,
-      nextAvailbaleItem
+      nextAvailbaleItem,
+      { transitioning: true }
     );
     this.setState(stateUpdater, () => {
       // callback
@@ -418,8 +426,8 @@ class Carousel extends React.Component {
               {renderArrow ? (
                 renderArrow({ type: "prev", onClick: this.onUserPrev })
               ) : (
-                <Arrow onClick={this.onUserPrev} direction="left" />
-              )}
+                  <Arrow onClick={this.onUserPrev} direction="left" />
+                )}
             </Only>
             <div
               className="c-slider-container"
@@ -446,8 +454,8 @@ class Carousel extends React.Component {
               {renderArrow ? (
                 renderArrow({ type: "next", onClick: this.onUserNext })
               ) : (
-                <Arrow onClick={this.onUserNext} direction="right" />
-              )}
+                  <Arrow onClick={this.onUserNext} direction="right" />
+                )}
             </Only>
           </div>
           <Only when={pagination}>
