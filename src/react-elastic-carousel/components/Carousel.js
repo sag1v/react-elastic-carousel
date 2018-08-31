@@ -397,12 +397,13 @@ class Carousel extends React.Component {
   render() {
     const { childWidth, activePage } = this.state;
     const {
+      isRTL,
       children,
+      focusOnSelect,
       itemPadding,
       enableSwipe,
       enableMouseSwipe,
       pagination,
-      isRTL,
       showArrows,
       renderArrow
     } = this.props;
@@ -447,7 +448,7 @@ class Carousel extends React.Component {
                   enableMouseSwipe={enableMouseSwipe}
                   onSwipedLeft={onSwipedLeft}
                   onSwipedRight={onSwipedRight}
-                  onItemClick={this.goTo}
+                  onItemClick={focusOnSelect ? this.goTo : undefined}
                 />
               </div>
             </div>
@@ -482,6 +483,7 @@ Carousel.defaultProps = {
   enableTilt: true,
   enableSwipe: true,
   enableMouseSwipe: true,
+  focusOnSelect: false,
   itemsToShow: 1,
   itemsToScroll: 1,
   itemPadding: [0, 0, 0, 0],
@@ -507,6 +509,7 @@ Carousel.propTypes = {
   breakPoints: PropTypes.array,
   initialFirstItem: PropTypes.number,
   showArrows: PropTypes.bool,
+  focusOnSelect: PropTypes.bool,
   renderArrow: PropTypes.func,
   // TODO: item position ["start","center","end"]
   itemPadding: PropTypes.array,

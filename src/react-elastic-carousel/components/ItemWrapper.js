@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { borderBox, flex, overflowHidden, noSelection } from "./styleRules";
+import { noop } from "../utils/helpers";
 
 const wrapperStyle = {
   ...borderBox,
@@ -26,12 +27,14 @@ class ItemWrapper extends React.Component {
 }
 
 ItemWrapper.defaultProps = {
-  style: {}
+  style: {},
+  onClick: noop,
 };
 
 ItemWrapper.propTypes = {
   child: PropTypes.element.isRequired,
-  style: PropTypes.object
+  style: PropTypes.object,
+  onClick: PropTypes.func
 };
 
 export default ItemWrapper;

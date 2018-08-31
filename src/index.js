@@ -38,11 +38,12 @@ class Item extends Component {
 
 export default class ExampleComponent extends Component {
   state = {
-    numberOfItems: 12,
+    isRtl: false,
+    focusOnSelect: false,
     items: [],
     currentItem: 0,
+    numberOfItems: 12,
     clickedItem: null,
-    isRtl: false,
     shouldAutoPlay: false,
     pagination: true,
     showArrows: true,
@@ -104,7 +105,7 @@ export default class ExampleComponent extends Component {
       else {
         toRender = "👈";
       }
-    } else{
+    } else {
       if (type === "prev") {
         toRender = "👈";
       }
@@ -128,6 +129,8 @@ export default class ExampleComponent extends Component {
 
   toggleRtl = () => this.toggleState("isRtl");
 
+  toggleFocusOnSelect = () => this.toggleState("focusOnSelect");
+
   togglePagination = () => this.toggleState("pagination");
 
   toggleShowArrows = () => this.toggleState("showArrows");
@@ -136,12 +139,13 @@ export default class ExampleComponent extends Component {
 
   render() {
     const {
+      isRtl,
       items,
+      focusOnSelect,
       numberOfItems,
       currentItem,
       activeItem,
       pagination,
-      isRtl,
       shouldAutoPlay,
       showArrows,
       customArrows,
@@ -172,6 +176,18 @@ export default class ExampleComponent extends Component {
               value={numberOfItems}
               onChange={this.setNumberOfItems}
             />
+          </div>
+          <div className="flex prop-box pointer">
+            <input
+              className="pointer"
+              id="focusOnSelect"
+              type="checkbox"
+              checked={focusOnSelect}
+              onChange={this.toggleFocusOnSelect}
+            />
+            <label className="pointer" htmlFor="focusOnSelect">
+              focusOnSelect
+            </label>
           </div>
           <div className="flex prop-box pointer">
             <input
@@ -214,7 +230,7 @@ export default class ExampleComponent extends Component {
                 onChange={this.toggleShowArrows}
               />
               <label className="pointer" htmlFor="showArrows">
-              show Arrows
+                show Arrows
               </label>
             </div>
             <div className="flex row">
@@ -243,6 +259,7 @@ export default class ExampleComponent extends Component {
           <div className={`flex demo-container ${isRtl && "rtl"}`}>
             <Carousel
               isRTL={isRtl}
+              focusOnSelect={focusOnSelect}
               itemPadding={[5]}
               enableAutoPlay={shouldAutoPlay}
               breakPoints={this.breakpoints}
