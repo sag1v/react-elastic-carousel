@@ -1,3 +1,3 @@
 - infinite ****
-- center mode
-- readme
+- readme **
+- better examples

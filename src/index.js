@@ -6,8 +6,9 @@ import createItems from "./items";
 
 import "./styles.css";
 
-const Poster = styled.div`
-  background-image: url(${props => props.src});
+const Poster = styled.div.attrs({
+  style: ({ src }) => ({ backgroundImage: `url(${src})` })
+})`
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
