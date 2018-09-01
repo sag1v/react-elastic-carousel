@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Swipeable from "react-swipeable";
+import { cssPrefix } from '../utils/helpers';
 import ItemWrapperContainer from "./ItemWrapperContainer";
 
 const Track = ({
@@ -31,7 +32,7 @@ const Track = ({
           trackMouse={enableMouseSwipe}
           onSwipedLeft={onSwipedLeft}
           onSwipedRight={onSwipedRight}
-          className={`swipable-${child.key}`}
+          className={cssPrefix(`swipable-${child.key}`)}
         >
           {item}
         </Swipeable>

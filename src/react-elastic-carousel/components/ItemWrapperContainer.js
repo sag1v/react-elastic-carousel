@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { ItemWrapper } from './styled';
-import { noop } from "../utils/helpers";
+import { noop, cssPrefix } from "../utils/helpers";
 
 class ItemWrapperContainer extends React.Component {
   onClick = () => {
@@ -11,7 +11,7 @@ class ItemWrapperContainer extends React.Component {
   render() {
     const { child, style } = this.props;
     return (
-      <ItemWrapper onClick={this.onClick} className="rec-child-wrapper" style={style}>
+      <ItemWrapper onClick={this.onClick} className={cssPrefix("child-wrapper")} style={style}>
         {child}
       </ItemWrapper>
     );

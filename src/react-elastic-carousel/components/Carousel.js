@@ -7,7 +7,7 @@ import Arrow from "./Arrow";
 import { firstItemReducer } from "../reducers/items";
 import { nextItemAction, prevItemAction } from "../actions/itemsActions";
 import { flex, row, overflowHidden } from "./styleRules";
-import { noop } from "../utils/helpers";
+import { noop, cssPrefix } from "../utils/helpers";
 import { Pagination } from "./Pagination";
 
 class Carousel extends React.Component {
@@ -414,7 +414,7 @@ class Carousel extends React.Component {
     return (
       <React.Fragment>
         <div
-          className="c-carousel-wrapper"
+          className={cssPrefix("carousel-wrapper")}
           style={{
             display: "flex",
             flexDirection: "column",
@@ -422,7 +422,7 @@ class Carousel extends React.Component {
             width: "100%"
           }}
         >
-          <div className="c-carousel" style={this.carouselStyle()}>
+          <div className={cssPrefix("carousel")} style={this.carouselStyle()}>
             <Only when={showArrows}>
               {renderArrow ? (
                 renderArrow({ type: "prev", onClick: this.onUserPrev })
@@ -431,13 +431,13 @@ class Carousel extends React.Component {
                 )}
             </Only>
             <div
-              className="c-slider-container"
+              className={cssPrefix("slider-container")}
               style={this.sliderContainerStyle()}
               ref={this.setRef("sliderContainer")}
             >
               <div
                 ref={this.setRef("slider")}
-                className="c-slider"
+                className={cssPrefix("slider")}
                 style={this.sliderStyle()}
               >
                 <Track
