@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { cssPrefix } from '../../utils/helpers';
+import { cssPrefix } from "../../utils/helpers";
 
 const Dot = styled.div`
   transition: all 250ms ease;
@@ -26,8 +26,21 @@ class DotContainer extends React.Component {
   };
   render() {
     const { id, active } = this.props;
-    return <Dot sizeEnhancer={id} onClick={this.onClick} active={active} className={cssPrefix("dot")} />;
+    return (
+      <Dot
+        sizeEnhancer={id}
+        onClick={this.onClick}
+        active={active}
+        className={cssPrefix("dot")}
+      />
+    );
   }
 }
+
+DotContainer.propTypes = {
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  active: PropTypes.bool,
+  onClick: PropTypes.onClick
+};
 
 export default DotContainer;

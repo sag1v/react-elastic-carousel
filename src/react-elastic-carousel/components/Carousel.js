@@ -427,8 +427,8 @@ class Carousel extends React.Component {
               {renderArrow ? (
                 renderArrow({ type: "prev", onClick: this.onUserPrev })
               ) : (
-                  <Arrow onClick={this.onUserPrev} direction="left" />
-                )}
+                <Arrow onClick={this.onUserPrev} direction="left" />
+              )}
             </Only>
             <div
               className={cssPrefix("slider-container")}
@@ -456,8 +456,8 @@ class Carousel extends React.Component {
               {renderArrow ? (
                 renderArrow({ type: "next", onClick: this.onUserNext })
               ) : (
-                  <Arrow onClick={this.onUserNext} direction="right" />
-                )}
+                <Arrow onClick={this.onUserNext} direction="right" />
+              )}
             </Only>
           </div>
           <Only when={pagination}>
@@ -490,7 +490,7 @@ Carousel.defaultProps = {
   enableAutoPlay: false,
   autoPlaySpeed: 2000,
 
-  //callbacks
+  // callbacks
   onNext: noop,
   onPrev: noop,
   onUserNext: noop,
@@ -499,7 +499,9 @@ Carousel.defaultProps = {
 };
 
 Carousel.propTypes = {
+  children: PropTypes.node.isRequired,
   isRTL: PropTypes.bool,
+  pagination: PropTypes.bool,
   easing: PropTypes.string,
   tiltEasing: PropTypes.string,
   transitionMs: PropTypes.number,
@@ -522,7 +524,7 @@ Carousel.propTypes = {
   enableAutoPlay: PropTypes.bool,
   autoPlaySpeed: PropTypes.number,
 
-  //callbacks
+  // callbacks
   onNext: PropTypes.func,
   onPrev: PropTypes.func,
   onUserNext: PropTypes.func,

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Swipeable from "react-swipeable";
-import { cssPrefix } from '../utils/helpers';
+import { cssPrefix } from "../utils/helpers";
 import ItemWrapperContainer from "./ItemWrapperContainer";
 
 const Track = ({
@@ -12,7 +12,7 @@ const Track = ({
   itemPadding,
   onSwipedLeft,
   onSwipedRight,
-  onItemClick,
+  onItemClick
 }) => {
   const width = `${childWidth}px`;
   const paddingStyle = `${itemPadding.join("px ")}px`;
@@ -45,12 +45,14 @@ const Track = ({
 };
 
 Track.propTypes = {
-  children: PropTypes.array,
+  children: PropTypes.array.isRequired,
+  itemPadding: PropTypes.array,
   childWidth: PropTypes.number,
   enableSwipe: PropTypes.bool,
   enableMouseSwipe: PropTypes.bool,
   onSwipedLeft: PropTypes.func,
-  onSwipedRight: PropTypes.func
+  onSwipedRight: PropTypes.func,
+  onItemClick: PropTypes.func
 };
 
 export default Track;

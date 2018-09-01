@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { ResizableBox } from "react-resizable";
 import styled from "styled-components";
 import Carousel from "./react-elastic-carousel";
@@ -16,6 +17,15 @@ const Poster = styled.div.attrs({
 `;
 
 class Item extends Component {
+  static propTypes = {
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    title: PropTypes.string,
+    description: PropTypes.string,
+    img: PropTypes.string,
+    active: PropTypes.bool,
+    onClick: PropTypes.func
+  };
+
   onClick = () => {
     const { onClick, id } = this.props;
     onClick(id);
@@ -102,15 +112,13 @@ export default class ExampleComponent extends Component {
     if (isRtl) {
       if (type === "prev") {
         toRender = "👉";
-      }
-      else {
+      } else {
         toRender = "👈";
       }
     } else {
       if (type === "prev") {
         toRender = "👈";
-      }
-      else {
+      } else {
         toRender = "👉";
       }
     }

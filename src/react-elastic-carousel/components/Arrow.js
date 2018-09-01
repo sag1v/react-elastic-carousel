@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import cx from 'classnames';
-import {cssPrefix} from '../utils/helpers';
+import cx from "classnames";
+import { cssPrefix } from "../utils/helpers";
 import { Button } from "./styled";
 
 const directionIcons = {
@@ -16,7 +16,11 @@ const arrowClassname = cssPrefix("arrow");
 const Arrow = ({ direction, onClick, icons, ...rest }) => {
   const arrows = { ...directionIcons, ...icons };
   return (
-    <Button onClick={onClick} className={cx(arrowClassname, `${arrowClassname}-${direction}`)} {...rest}>
+    <Button
+      onClick={onClick}
+      className={cx(arrowClassname, `${arrowClassname}-${direction}`)}
+      {...rest}
+    >
       {arrows[direction]}
     </Button>
   );
