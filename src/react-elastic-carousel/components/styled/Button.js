@@ -10,6 +10,8 @@ export default styled.button`
   border: none;
   width: 50px;
   height: 50px;
+  min-width: 50px;
+  line-height: 50px;
   align-self: center;
   cursor: pointer;
   outline: none;
