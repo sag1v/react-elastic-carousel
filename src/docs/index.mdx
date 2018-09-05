@@ -1,0 +1,24 @@
+---
+name: Getting started
+route: /
+order: 1
+---
+
+import {Playground, PropsTable } from 'docz';
+import Carousel from '../react-elastic-carousel';
+import Item from './components/ItemContainer';
+import items from './components/itemsCollection';
+
+
+# Import
+```import Carousel from 'react-elastic-carousel';```
+
+<Playground >
+  <Carousel>
+    {items(12).map(item => <Item key={item.id} {...item}/>)}
+  </Carousel>
+</Playground>
+
+### Props
+
+<PropsTable of={Carousel} />

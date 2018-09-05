@@ -477,6 +477,7 @@ Carousel.defaultProps = {
   isRTL: false,
   initialFirstItem: 0,
   showArrows: true,
+  pagination: true,
   easing: "cubic-bezier(.76,.57,.73,1)",
   tiltEasing: "cubic-bezier(.58,0,.81,1.32)",
   transitionMs: 500,

@@ -8,27 +8,60 @@
     "repository": "https://github.com/sag1v/react-elastic-carousel"
   },
   "entries": {
-    "src/docs/doc.mdx": {
-      "name": "Button",
-      "id": "d833493703c0d5bbdb027c6c3f07c2ad",
-      "filepath": "src/docs/doc.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src/docs/doc.mdx",
-      "slug": "src-docs-doc",
-      "route": "/src-docs-doc",
-      "order": 0,
+    "src/docs/index.mdx": {
+      "name": "Getting started",
+      "route": "/",
+      "order": 1,
+      "id": "13a8a147f67d34248cdc424d524520a5",
+      "filepath": "src/docs/index.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src/docs/index.mdx",
+      "slug": "src-docs-index",
       "menu": null,
       "headings": [
         {
           "depth": 1,
-          "slug": "button",
-          "value": "Button"
+          "slug": "import",
+          "value": "Import"
         },
         {
-          "depth": 2,
-          "slug": "basic-usage",
-          "value": "Basic usage"
+          "depth": 3,
+          "slug": "props",
+          "value": "Props"
         }
       ]
+    },
+    "src/docs/components/mdx/Basic.mdx": {
+      "name": "Basic",
+      "id": "d051d7573b0fdc2a07a7a41bd0b35662",
+      "filepath": "src/docs/components/mdx/Basic.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src/docs/components/mdx/Basic.mdx",
+      "slug": "src-docs-components-mdx-basic",
+      "route": "/src-docs-components-mdx-basic",
+      "order": 0,
+      "menu": null,
+      "headings": []
+    },
+    "src/docs/components/mdx/Breakpoints.mdx": {
+      "name": "Breakpoints",
+      "id": "f72a51ab608baebb2b35b459438393f1",
+      "filepath": "src/docs/components/mdx/Breakpoints.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src/docs/components/mdx/Breakpoints.mdx",
+      "slug": "src-docs-components-mdx-breakpoints",
+      "route": "/src-docs-components-mdx-breakpoints",
+      "order": 0,
+      "menu": null,
+      "headings": []
+    },
+    "src/docs/components/mdx/Pagination.mdx": {
+      "name": "Pagination",
+      "id": "0c3d3c177688069fde06f34d76789a18",
+      "filepath": "src/docs/components/mdx/Pagination.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src/docs/components/mdx/Pagination.mdx",
+      "slug": "src-docs-components-mdx-pagination",
+      "route": "/src-docs-components-mdx-pagination",
+      "order": 0,
+      "menu": null,
+      "headings": []
     }
   }
 }

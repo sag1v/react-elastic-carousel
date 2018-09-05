@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Dot from "./Dot";
-import { numberToArray, cssPrefix } from "../../utils/helpers";
+import { numberToArray, cssPrefix, noop } from "../../utils/helpers";
 
 const Indicators = styled.div`
   display: flex;
@@ -22,6 +22,10 @@ class Pagination extends React.Component {
       </Indicators>
     );
   }
+}
+
+Pagination.defaultProps = {
+  onClick: noop
 }
 
 Pagination.propTypes = {
