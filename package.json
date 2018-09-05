@@ -13,18 +13,22 @@
     "npm": ">=5"
   },
   "scripts": {
+    "lint:fix": "eslint src/**/*.js --fix",
     "test": "cross-env CI=1 react-scripts test --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom",
-    "build": "rollup -c",
+    "prestart": "esw src/**/*.js --watch --fix",
     "start": "rollup -c -w",
+    "prebuild": "npm run lint:fix",
+    "build": "rollup -c",
     "prepare": "npm run build",
-    "predeploy": "cd example && npm install && npm run build",
+    "predeploy": "npm run lint:fix && cd example && npm install && npm run build",
     "deploy": "gh-pages -d example/build"
   },
   "peerDependencies": {
     "prop-types": "^15.5.4",
     "react": "^15.0.0 || ^16.0.0",
-    "react-dom": "^15.0.0 || ^16.0.0"
+    "react-dom": "^15.0.0 || ^16.0.0",
+    "styled-components": "^3.4.5"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
@@ -39,13 +43,14 @@
     "eslint": "^5.0.1",
     "eslint-config-prettier": "^3.0.1",
     "eslint-config-standard": "^11.0.0",
-    "eslint-config-standard-react": "^6.0.0",
+    "eslint-config-standard-react": "^7.0.0",
     "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-node": "^7.0.1",
     "eslint-plugin-prettier": "^2.6.2",
     "eslint-plugin-promise": "^4.0.0",
     "eslint-plugin-react": "^7.10.0",
     "eslint-plugin-standard": "^3.1.0",
+    "eslint-watch": "^4.0.2",
     "gh-pages": "^1.2.0",
     "prettier": "1.14.2",
     "prettier-eslint": "^8.8.2",

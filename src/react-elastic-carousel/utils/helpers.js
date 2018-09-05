@@ -2,6 +2,8 @@ export const noop = () => {};
 
 export const numberToArray = n => [...Array(n).keys()];
 
+export const cssPrefix = className => `rec-${className}`;
+
 export const throttle = (func, limit) => {
   let lastFunc;
   let lastRan;

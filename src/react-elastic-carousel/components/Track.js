@@ -1,25 +1,29 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Swipeable from "react-swipeable";
-import ItemWrapper from "./ItemWrapper";
+import { cssPrefix } from "../utils/helpers";
+import ItemWrapperContainer from "./ItemWrapperContainer";
 
 const Track = ({
   children,
   childWidth,
   enableSwipe,
   enableMouseSwipe,
+  itemPadding,
   onSwipedLeft,
   onSwipedRight,
-  itemPadding
+  onItemClick
 }) => {
   const width = `${childWidth}px`;
   const paddingStyle = `${itemPadding.join("px ")}px`;
-  let originalChildren = React.Children.map(children, child => {
+  let originalChildren = React.Children.map(children, (child, idx) => {
     const item = (
-      <ItemWrapper
+      <ItemWrapperContainer
+        id={idx}
         child={child}
         style={{ width, padding: paddingStyle }}
-        key={`${child.key}`}
+        key={`${child.key}${idx}`}
+        onClick={onItemClick}
       />
     );
     if (enableSwipe) {
@@ -28,7 +32,7 @@ const Track = ({
           trackMouse={enableMouseSwipe}
           onSwipedLeft={onSwipedLeft}
           onSwipedRight={onSwipedRight}
-          className={`swipable-${child.key}`}
+          className={cssPrefix(`swipable-${child.key}`)}
         >
           {item}
         </Swipeable>
@@ -41,12 +45,14 @@ const Track = ({
 };
 
 Track.propTypes = {
-  children: PropTypes.array,
+  children: PropTypes.array.isRequired,
+  itemPadding: PropTypes.array,
   childWidth: PropTypes.number,
   enableSwipe: PropTypes.bool,
   enableMouseSwipe: PropTypes.bool,
   onSwipedLeft: PropTypes.func,
-  onSwipedRight: PropTypes.func
+  onSwipedRight: PropTypes.func,
+  onItemClick: PropTypes.func
 };
 
 export default Track;

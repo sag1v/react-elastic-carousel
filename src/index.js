@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { ResizableBox } from "react-resizable";
 import styled from "styled-components";
 import Carousel from "./react-elastic-carousel";
@@ -6,8 +7,9 @@ import createItems from "./items";
 
 import "./styles.css";
 
-const Poster = styled.div`
-  background-image: url(${props => props.src});
+const Poster = styled.div.attrs({
+  style: ({ src }) => ({ backgroundImage: `url(${src})` })
+})`
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -15,6 +17,15 @@ const Poster = styled.div`
 `;
 
 class Item extends Component {
+  static propTypes = {
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    title: PropTypes.string,
+    description: PropTypes.string,
+    img: PropTypes.string,
+    active: PropTypes.bool,
+    onClick: PropTypes.func
+  };
+
   onClick = () => {
     const { onClick, id } = this.props;
     onClick(id);
@@ -38,11 +49,12 @@ class Item extends Component {
 
 export default class ExampleComponent extends Component {
   state = {
-    numberOfItems: 12,
+    isRtl: false,
+    focusOnSelect: false,
     items: [],
     currentItem: 0,
+    numberOfItems: 12,
     clickedItem: null,
-    isRtl: false,
     shouldAutoPlay: false,
     pagination: true,
     showArrows: true,
@@ -100,15 +112,13 @@ export default class ExampleComponent extends Component {
     if (isRtl) {
       if (type === "prev") {
         toRender = "👉";
-      }
-      else {
+      } else {
         toRender = "👈";
       }
-    } else{
+    } else {
       if (type === "prev") {
         toRender = "👈";
-      }
-      else {
+      } else {
         toRender = "👉";
       }
     }
@@ -128,6 +138,8 @@ export default class ExampleComponent extends Component {
 
   toggleRtl = () => this.toggleState("isRtl");
 
+  toggleFocusOnSelect = () => this.toggleState("focusOnSelect");
+
   togglePagination = () => this.toggleState("pagination");
 
   toggleShowArrows = () => this.toggleState("showArrows");
@@ -136,12 +148,13 @@ export default class ExampleComponent extends Component {
 
   render() {
     const {
+      isRtl,
       items,
+      focusOnSelect,
       numberOfItems,
       currentItem,
       activeItem,
       pagination,
-      isRtl,
       shouldAutoPlay,
       showArrows,
       customArrows,
@@ -153,7 +166,6 @@ export default class ExampleComponent extends Component {
     return (
       <div className={`app flex column`}>
         <div className="flex row props">
-          <div className="flex prop-box">{`Clicked index - ${clickedItem}`}</div>
           <div className="flex prop-box pointer">
             <input
               className="pointer"
@@ -169,10 +181,22 @@ export default class ExampleComponent extends Component {
           <div className="flex prop-box">
             <label>{`Number of items `}</label>
             <input
-              type="number"
+              type="number "
               value={numberOfItems}
               onChange={this.setNumberOfItems}
             />
+          </div>
+          <div className="flex prop-box pointer">
+            <input
+              className="pointer"
+              id="focusOnSelect"
+              type="checkbox"
+              checked={focusOnSelect}
+              onChange={this.toggleFocusOnSelect}
+            />
+            <label className="pointer" htmlFor="focusOnSelect">
+              focusOnSelect
+            </label>
           </div>
           <div className="flex prop-box pointer">
             <input
@@ -215,7 +239,7 @@ export default class ExampleComponent extends Component {
                 onChange={this.toggleShowArrows}
               />
               <label className="pointer" htmlFor="showArrows">
-                custom arrows
+                show Arrows
               </label>
             </div>
             <div className="flex row">
@@ -232,6 +256,7 @@ export default class ExampleComponent extends Component {
             </div>
           </div>
           <div className="flex prop-box">{`Current Index - ${currentItem}`}</div>
+          <div className="flex prop-box">{`Clicked index - ${clickedItem}`}</div>
         </div>
         <ResizableBox
           width={viewPort.width - 50}
@@ -243,7 +268,7 @@ export default class ExampleComponent extends Component {
           <div className={`flex demo-container ${isRtl && "rtl"}`}>
             <Carousel
               isRTL={isRtl}
-              itemPadding={[5]}
+              focusOnSelect={focusOnSelect}
               enableAutoPlay={shouldAutoPlay}
               breakPoints={this.breakpoints}
               pagination={pagination}

@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 import ResizeObserver from "resize-observer-polyfill";
 import Only from "react-only-when";
 import Track from "./Track";
-import Arrow from "./Button";
+import Arrow from "./Arrow";
 import { firstItemReducer } from "../reducers/items";
 import { nextItemAction, prevItemAction } from "../actions/itemsActions";
 import { flex, row, overflowHidden } from "./styleRules";
-import { noop } from "../utils/helpers";
+import { noop, cssPrefix } from "../utils/helpers";
 import { Pagination } from "./Pagination";
 
 class Carousel extends React.Component {
@@ -17,6 +17,7 @@ class Carousel extends React.Component {
     sliderPosition: 0,
     swipedSliderPosition: 0,
     isSwiping: false,
+    transitioning: false,
     firstItem: this.props.initialFirstItem,
     activePage: 0,
     sliderContainerWidth: 0
@@ -74,7 +75,10 @@ class Carousel extends React.Component {
   setAutoPlay = () => {
     const { autoPlaySpeed } = this.props;
     this.autoPlayIntervalId = setInterval(() => {
-      this.slideNext();
+      const { transitioning } = this.state;
+      if (!transitioning) {
+        this.slideNext();
+      }
     }, autoPlaySpeed);
   };
 
@@ -104,7 +108,7 @@ class Carousel extends React.Component {
     if (breakPoints && breakPoints.length > 0) {
       currentBreakPoint = breakPoints
         .slice() // no mutations
-        .reverse() // so we can find last match sagiv
+        .reverse() // so we can find last match
         .find(bp => bp.width <= sliderContainerWidth);
       if (!currentBreakPoint) {
         /* in case we don't have a lower width than sliderContainerWidth
@@ -308,6 +312,7 @@ class Carousel extends React.Component {
     const nextItemObj = this.convertChildToCbObj(firstItem);
     onNext(nextItemObj);
     this.removeSliderTransitionHook(this.onNextCb);
+    this.setState({ transitioning: false });
   };
 
   onPrevCb = () => {
@@ -316,9 +321,10 @@ class Carousel extends React.Component {
     const nextItemObj = this.convertChildToCbObj(firstItem);
     onPrev(nextItemObj);
     this.removeSliderTransitionHook(this.onPrevCb);
+    this.setState({ transitioning: false });
   };
 
-  generatePositionUpdater = (direction, nextItemId) => state => {
+  generatePositionUpdater = (direction, nextItemId, rest) => state => {
     const { sliderPosition, childWidth, firstItem } = state;
     let newSliderPosition = 0;
     if (direction === "next") {
@@ -333,7 +339,8 @@ class Carousel extends React.Component {
       sliderPosition: newSliderPosition,
       firstItem: nextItemId,
       swipedSliderPosition: 0,
-      isSwiping: false
+      isSwiping: false,
+      ...rest
     };
   };
 
@@ -353,7 +360,8 @@ class Carousel extends React.Component {
     }
     const stateUpdater = this.generatePositionUpdater(
       direction,
-      nextAvailbaleItem
+      nextAvailbaleItem,
+      { transitioning: true }
     );
     this.setState(stateUpdater, () => {
       // callback
@@ -389,12 +397,13 @@ class Carousel extends React.Component {
   render() {
     const { childWidth, activePage } = this.state;
     const {
+      isRTL,
       children,
+      focusOnSelect,
       itemPadding,
       enableSwipe,
       enableMouseSwipe,
       pagination,
-      isRTL,
       showArrows,
       renderArrow
     } = this.props;
@@ -405,7 +414,7 @@ class Carousel extends React.Component {
     return (
       <React.Fragment>
         <div
-          className="c-carousel-wrapper"
+          className={cssPrefix("carousel-wrapper")}
           style={{
             display: "flex",
             flexDirection: "column",
@@ -413,7 +422,7 @@ class Carousel extends React.Component {
             width: "100%"
           }}
         >
-          <div className="c-carousel" style={this.carouselStyle()}>
+          <div className={cssPrefix("carousel")} style={this.carouselStyle()}>
             <Only when={showArrows}>
               {renderArrow ? (
                 renderArrow({ type: "prev", onClick: this.onUserPrev })
@@ -422,13 +431,13 @@ class Carousel extends React.Component {
               )}
             </Only>
             <div
-              className="c-slider-container"
+              className={cssPrefix("slider-container")}
               style={this.sliderContainerStyle()}
               ref={this.setRef("sliderContainer")}
             >
               <div
                 ref={this.setRef("slider")}
-                className="c-slider"
+                className={cssPrefix("slider")}
                 style={this.sliderStyle()}
               >
                 <Track
@@ -439,6 +448,7 @@ class Carousel extends React.Component {
                   enableMouseSwipe={enableMouseSwipe}
                   onSwipedLeft={onSwipedLeft}
                   onSwipedRight={onSwipedRight}
+                  onItemClick={focusOnSelect ? this.goTo : undefined}
                 />
               </div>
             </div>
@@ -473,13 +483,14 @@ Carousel.defaultProps = {
   enableTilt: true,
   enableSwipe: true,
   enableMouseSwipe: true,
+  focusOnSelect: false,
   itemsToShow: 1,
   itemsToScroll: 1,
   itemPadding: [0, 0, 0, 0],
   enableAutoPlay: false,
   autoPlaySpeed: 2000,
 
-  //callbacks
+  // callbacks
   onNext: noop,
   onPrev: noop,
   onUserNext: noop,
@@ -488,7 +499,9 @@ Carousel.defaultProps = {
 };
 
 Carousel.propTypes = {
+  children: PropTypes.node.isRequired,
   isRTL: PropTypes.bool,
+  pagination: PropTypes.bool,
   easing: PropTypes.string,
   tiltEasing: PropTypes.string,
   transitionMs: PropTypes.number,
@@ -498,6 +511,7 @@ Carousel.propTypes = {
   breakPoints: PropTypes.array,
   initialFirstItem: PropTypes.number,
   showArrows: PropTypes.bool,
+  focusOnSelect: PropTypes.bool,
   renderArrow: PropTypes.func,
   // TODO: item position ["start","center","end"]
   itemPadding: PropTypes.array,
@@ -510,7 +524,7 @@ Carousel.propTypes = {
   enableAutoPlay: PropTypes.bool,
   autoPlaySpeed: PropTypes.number,
 
-  //callbacks
+  // callbacks
   onNext: PropTypes.func,
   onPrev: PropTypes.func,
   onUserNext: PropTypes.func,
