@@ -419,7 +419,8 @@ class Carousel extends React.Component {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            width: "100%"
+            width: "100%",
+            direction: isRTL ? 'rtl' : 'ltr'
           }}
         >
           <div className={cssPrefix("carousel")} style={this.carouselStyle()}>
