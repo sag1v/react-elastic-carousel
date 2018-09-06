@@ -2,10 +2,41 @@
   "config": {
     "title": "React Elastic Carousel",
     "description": "A flexible and responsive carousel component for react",
-    "themeConfig": {},
+    "themeConfig": {
+      "mode": "light",
+      "codemirrorTheme": "dracula",
+      "styles": {
+        "body": {
+          "fontFamily": "'Source Sans Pro', Helvetica, sans-serif",
+          "fontSize": 16,
+          "lineHeight": 1.6
+        },
+        "container": {
+          "width": "100%",
+          "padding": [
+            "20px 40px",
+            "20px 40px"
+          ]
+        }
+      }
+    },
     "ordering": "descending",
     "version": "1.0.0",
-    "repository": "https://github.com/sag1v/react-elastic-carousel"
+    "repository": "https://github.com/sag1v/react-elastic-carousel",
+    "logo": {
+      "src": "https://cdn.iconscout.com/icon/premium/png-512-thumb/elastic-band-2-670638.png",
+      "width": 250
+    },
+    "htmlContext": {
+      "head": {
+        "links": [
+          {
+            "rel": "stylesheet",
+            "href": "https://codemirror.net/theme/dracula.css"
+          }
+        ]
+      }
+    }
   },
   "entries": {
     "src/docs/index.mdx": {
@@ -19,9 +50,19 @@
       "menu": null,
       "headings": [
         {
-          "depth": 1,
+          "depth": 2,
+          "slug": "install",
+          "value": "Install"
+        },
+        {
+          "depth": 2,
           "slug": "import",
           "value": "Import"
+        },
+        {
+          "depth": 2,
+          "slug": "play",
+          "value": "Play"
         },
         {
           "depth": 3,

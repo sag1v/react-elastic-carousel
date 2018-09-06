@@ -6,7 +6,7 @@ const Item = styled.div`
     width: 100%;
     max-width: 100%;
     padding: 15px;
-    border: 1px solid ${({active}) => active ? '#444' : '#aaa'};
+    border: 1px solid ${({active}) => active ? 'rgba(0,0,0,.2)' : 'rgba(0,0,0,.02)'};
     color: #333;
     background-color: #fff;
     &:hover{

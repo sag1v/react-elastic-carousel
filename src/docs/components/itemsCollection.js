@@ -4,5 +4,5 @@ export default (numOfItems = 12) =>
     id,
     title: `This is item #${id + 1}`,
     description: `this is the description for item ${id + 1}`,
-    img: `https://picsum.photos/350/250?${id}`
+    img: `https://picsum.photos/450/250?${id}`
   }));
