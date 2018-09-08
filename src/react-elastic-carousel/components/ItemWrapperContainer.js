@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { ItemWrapper } from "./styled";
-import consts from '../consts';
+import consts from "../consts";
 import { noop, cssPrefix } from "../utils/helpers";
 
 class ItemWrapperContainer extends React.Component {

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import Flex from "./Flex";
 import Item from "./Item";
 import Title from "./Title";
@@ -11,7 +12,7 @@ class ItemContainer extends Component {
     onClick && onClick(id);
   };
   render() {
-    const { title, img, description, active } = this.props;
+    const { title, img, description } = this.props;
     return (
       <Item onClick={this.onClick}>
         <Flex direction="column">
@@ -25,5 +26,13 @@ class ItemContainer extends Component {
     );
   }
 }
+
+ItemContainer.propTypes = {
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  title: PropTypes.string,
+  img: PropTypes.string,
+  description: PropTypes.string,
+  onClick: PropTypes.func
+};
 
 export default ItemContainer;

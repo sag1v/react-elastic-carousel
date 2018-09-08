@@ -11,7 +11,7 @@ import pkg from './package.json'
 import libName from './libName';
 
 export default {
-  input: 'src/index.js',
+  input: `src/${libName}/index.js`,
   output: [
     {
       file: pkg.main,

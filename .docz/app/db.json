@@ -142,17 +142,6 @@
       "slug": "mdx-initial-first-item",
       "headings": []
     },
-    "mdx/isRTL.mdx": {
-      "name": "isRTL",
-      "order": 6,
-      "route": "/isRTL",
-      "menu": "Examples",
-      "id": "c4f7997e95e43791f89e3a691bfbfb47",
-      "filepath": "mdx/isRTL.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/isRTL.mdx",
-      "slug": "mdx-is-rtl",
-      "headings": []
-    },
     "mdx/itemPadding.mdx": {
       "name": "itemPadding",
       "order": 8,
@@ -162,6 +151,17 @@
       "filepath": "mdx/itemPadding.mdx",
       "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/itemPadding.mdx",
       "slug": "mdx-item-padding",
+      "headings": []
+    },
+    "mdx/isRTL.mdx": {
+      "name": "isRTL",
+      "order": 6,
+      "route": "/isRTL",
+      "menu": "Examples",
+      "id": "c4f7997e95e43791f89e3a691bfbfb47",
+      "filepath": "mdx/isRTL.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/isRTL.mdx",
+      "slug": "mdx-is-rtl",
       "headings": []
     },
     "mdx/itemPosition.mdx": {
@@ -184,17 +184,6 @@
       "filepath": "mdx/itemsToScroll.mdx",
       "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/itemsToScroll.mdx",
       "slug": "mdx-items-to-scroll",
-      "headings": []
-    },
-    "mdx/itemsToShow.mdx": {
-      "name": "itemsToShow",
-      "order": 1,
-      "route": "/itemsToShow",
-      "menu": "Examples",
-      "id": "a9606fa08754b34ebfd1b8afdb09a627",
-      "filepath": "mdx/itemsToShow.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/itemsToShow.mdx",
-      "slug": "mdx-items-to-show",
       "headings": []
     },
     "mdx/onNextEnd.mdx": {
@@ -250,6 +239,17 @@
       "filepath": "mdx/slideNext.mdx",
       "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/slideNext.mdx",
       "slug": "mdx-slide-next",
+      "headings": []
+    },
+    "mdx/itemsToShow.mdx": {
+      "name": "itemsToShow",
+      "order": 1,
+      "route": "/itemsToShow",
+      "menu": "Examples",
+      "id": "a9606fa08754b34ebfd1b8afdb09a627",
+      "filepath": "mdx/itemsToShow.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/itemsToShow.mdx",
+      "slug": "mdx-items-to-show",
       "headings": []
     }
   }

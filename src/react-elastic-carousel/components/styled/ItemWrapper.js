@@ -7,5 +7,5 @@ export default styled.div.attrs({
   display: flex;
   overflow: hidden;
   user-select: none;
-  justify-content: ${({itemPosition}) => itemPosition};
+  justify-content: ${({ itemPosition }) => itemPosition};
 `;

@@ -361,11 +361,9 @@ class Carousel extends React.Component {
       direction = consts.PREV;
       cb = this.onPrevEnd;
     }
-    const stateUpdater = this.generatePositionUpdater(
-      direction,
-      nextItemId,
-      { transitioning: true }
-    );
+    const stateUpdater = this.generatePositionUpdater(direction, nextItemId, {
+      transitioning: true
+    });
     this.setState(stateUpdater, () => {
       // callback
       this.onSliderTransitionEnd(cb);
@@ -435,8 +433,8 @@ class Carousel extends React.Component {
             {renderArrow ? (
               renderArrow({ type: consts.PREV, onClick: this.onPrevStart })
             ) : (
-                <Arrow onClick={this.onPrevStart} direction="left" />
-              )}
+              <Arrow onClick={this.onPrevStart} direction="left" />
+            )}
           </Only>
           <div
             className={cssPrefix("slider-container")}
@@ -465,8 +463,8 @@ class Carousel extends React.Component {
             {renderArrow ? (
               renderArrow({ type: consts.NEXT, onClick: this.onNextStart })
             ) : (
-                <Arrow onClick={this.onNextStart} direction="right" />
-              )}
+              <Arrow onClick={this.onNextStart} direction="right" />
+            )}
           </Only>
         </div>
         <Only when={pagination}>
@@ -482,7 +480,7 @@ class Carousel extends React.Component {
 }
 
 Carousel.defaultProps = {
-  className: '',
+  className: "",
   style: {},
   isRTL: false,
   initialFirstItem: 0,
@@ -586,24 +584,24 @@ Carousel.propTypes = {
   autoPlaySpeed: PropTypes.number,
 
   // callbacks
-  /** A callback for the begining of the next transition  
-  * - onNextStart(prevItemObj, nextItemObj) => {}*/
+  /** A callback for the begining of the next transition
+   * - onNextStart(prevItemObj, nextItemObj) => {} */
   onNextStart: PropTypes.func,
 
-  /** A callback for the begining of the prev transition  
-  * - onPrevStart(prevItemObj, nextItemObj) => {} */
+  /** A callback for the begining of the prev transition
+   * - onPrevStart(prevItemObj, nextItemObj) => {} */
   onPrevStart: PropTypes.func,
 
-  /** A callback for the end of the next transition  
-  * - onNextEnd(nextItemObj) => {} */
+  /** A callback for the end of the next transition
+   * - onNextEnd(nextItemObj) => {} */
   onNextEnd: PropTypes.func,
 
-  /** A callback for the end of the prev transition  
-  * - onPrevEnd(nextItemObj) => {} */
+  /** A callback for the end of the prev transition
+   * - onPrevEnd(nextItemObj) => {} */
   onPrevEnd: PropTypes.func,
 
-  /** A callback for the "slider-container" resize 
-  * - onResize(currentBreakPoint) => {} */
+  /** A callback for the "slider-container" resize
+   * - onResize(currentBreakPoint) => {} */
   onResize: PropTypes.func
 };
 
