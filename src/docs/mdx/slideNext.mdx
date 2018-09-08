@@ -1,0 +1,31 @@
+---
+name: slideNext / slidePrev
+order: 994
+route: /slideNext
+menu: Examples
+---
+
+import {Playground, PropsTable } from 'docz';
+import Carousel from 'react-elastic-carousel';
+import Item from '../components/SimpleItem';
+
+- You can trigger the `slideNext` or `slidePrev` methods via a `ref` to the `Carousel`: 
+
+```
+this.carousel.slideNext()
+this.carousel.slidePrev()
+```
+
+<Playground >
+    <button onClick={() => this.carousel.slidePrev()}>Prev</button>
+    <button onClick={() => this.carousel.slideNext()}>Next</button>
+    <hr/>
+    <Carousel ref={ref => this.carousel = ref}>
+    <Item>1</Item>
+    <Item>2</Item>
+    <Item>3</Item>
+    <Item>4</Item>
+    <Item>5</Item>
+    <Item>6</Item>
+    </Carousel>
+</Playground>

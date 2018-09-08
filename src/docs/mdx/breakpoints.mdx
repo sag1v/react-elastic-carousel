@@ -7,8 +7,7 @@ menu: Examples
 
 import {Playground, PropsTable } from 'docz';
 import Carousel from 'react-elastic-carousel';
-import Item from '../../components/ItemContainer';
-import items from '../../components/itemsCollection';
+import Item from '../components/SimpleItem';
 
 <Playground >
   {
@@ -24,7 +23,12 @@ import items from '../../components/itemsCollection';
 
       return (
         <Carousel breakPoints={breakpoints}>
-          {items(12).map(item => <Item key={item.id} {...item}/>)}
+          <Item>1</Item>
+          <Item>2</Item>
+          <Item>3</Item>
+          <Item>4</Item>
+          <Item>5</Item>
+          <Item>6</Item>
         </Carousel>
       )
 

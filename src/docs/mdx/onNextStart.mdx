@@ -1,0 +1,37 @@
+---
+name: onNextStart
+order: 990
+route: /onNextStart
+menu: Examples
+---
+
+import {Playground, PropsTable } from 'docz';
+import Carousel from 'react-elastic-carousel';
+import Item from '../components/SimpleItem';
+
+- `onNextStart` will pass both the __current__ and __next__ `item-object`:  
+```
+(currentItem, nextItem) => {/*...*/}
+```
+- The `item-object` has the shape of:
+```
+{
+    item: {/* your item */},
+    index: // the item's index number 
+}
+```
+
+
+<Playground >
+    <Carousel 
+        itemsToShow={2}
+        onNextStart={(currentItem,nextItem) => alert(JSON.stringify(currentItem) + `\n` + JSON.stringify(nextItem))}
+    >
+    <Item someProp="cool1">1</Item>
+    <Item someProp="cool2">2</Item>
+    <Item someProp="cool3">3</Item>
+    <Item someProp="cool4">4</Item>
+    <Item someProp="cool5">5</Item>
+    <Item someProp="cool6">6</Item>
+    </Carousel>
+</Playground>

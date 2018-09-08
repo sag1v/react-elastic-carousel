@@ -1,0 +1,38 @@
+---
+name: onNextEnd
+order: 991
+route: /onNextEnd
+menu: Examples
+---
+
+import {Playground, PropsTable } from 'docz';
+import Carousel from 'react-elastic-carousel';
+import Item from '../components/SimpleItem';
+
+
+- `onNextEnd` will pass the new __current__ `item-object`:  
+```
+(currentItem) => {/*...*/}
+```
+- The `item-object` has the shape of:
+```
+{
+    item: {/* your item */},
+    index: // the item's index number 
+}
+```
+
+
+<Playground >
+    <Carousel 
+        itemsToShow={2}
+        onNextEnd={(currentItem) => alert(JSON.stringify(currentItem))}
+    >
+    <Item someProp="cool1">1</Item>
+    <Item someProp="cool2">2</Item>
+    <Item someProp="cool3">3</Item>
+    <Item someProp="cool4">4</Item>
+    <Item someProp="cool5">5</Item>
+    <Item someProp="cool6">6</Item>
+    </Carousel>
+</Playground>

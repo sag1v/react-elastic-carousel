@@ -1,26 +1,36 @@
 export const imports = {
-  'index.mdx': () =>
-    import(/* webpackPrefetch: true, webpackChunkName: "index" */ 'index.mdx'),
-  'components/mdx/breakpoints.mdx': () =>
-    import(/* webpackPrefetch: true, webpackChunkName: "components-mdx-breakpoints" */ 'components/mdx/breakpoints.mdx'),
-  'components/mdx/easing.mdx': () =>
-    import(/* webpackPrefetch: true, webpackChunkName: "components-mdx-easing" */ 'components/mdx/easing.mdx'),
-  'components/mdx/enableAutoPlay.mdx': () =>
-    import(/* webpackPrefetch: true, webpackChunkName: "components-mdx-enable-auto-play" */ 'components/mdx/enableAutoPlay.mdx'),
-  'components/mdx/focusOnSelect.mdx': () =>
-    import(/* webpackPrefetch: true, webpackChunkName: "components-mdx-focus-on-select" */ 'components/mdx/focusOnSelect.mdx'),
-  'components/mdx/initialFirstItem.mdx': () =>
-    import(/* webpackPrefetch: true, webpackChunkName: "components-mdx-initial-first-item" */ 'components/mdx/initialFirstItem.mdx'),
-  'components/mdx/isRTL.mdx': () =>
-    import(/* webpackPrefetch: true, webpackChunkName: "components-mdx-is-rtl" */ 'components/mdx/isRTL.mdx'),
-  'components/mdx/itemPadding.mdx': () =>
-    import(/* webpackPrefetch: true, webpackChunkName: "components-mdx-item-padding" */ 'components/mdx/itemPadding.mdx'),
-  'components/mdx/itemPosition.mdx': () =>
-    import(/* webpackPrefetch: true, webpackChunkName: "components-mdx-item-position" */ 'components/mdx/itemPosition.mdx'),
-  'components/mdx/itemsToScroll.mdx': () =>
-    import(/* webpackPrefetch: true, webpackChunkName: "components-mdx-items-to-scroll" */ 'components/mdx/itemsToScroll.mdx'),
-  'components/mdx/itemsToShow.mdx': () =>
-    import(/* webpackPrefetch: true, webpackChunkName: "components-mdx-items-to-show" */ 'components/mdx/itemsToShow.mdx'),
-  'components/mdx/onUserNext.mdx': () =>
-    import(/* webpackPrefetch: true, webpackChunkName: "components-mdx-on-user-next" */ 'components/mdx/onUserNext.mdx'),
+  'mdx/breakpoints.mdx': () =>
+    import(/* webpackPrefetch: true, webpackChunkName: "mdx-breakpoints" */ 'mdx/breakpoints.mdx'),
+  'mdx/easing.mdx': () =>
+    import(/* webpackPrefetch: true, webpackChunkName: "mdx-easing" */ 'mdx/easing.mdx'),
+  'mdx/enableAutoPlay.mdx': () =>
+    import(/* webpackPrefetch: true, webpackChunkName: "mdx-enable-auto-play" */ 'mdx/enableAutoPlay.mdx'),
+  'mdx/focusOnSelect.mdx': () =>
+    import(/* webpackPrefetch: true, webpackChunkName: "mdx-focus-on-select" */ 'mdx/focusOnSelect.mdx'),
+  'mdx/goTo.mdx': () =>
+    import(/* webpackPrefetch: true, webpackChunkName: "mdx-go-to" */ 'mdx/goTo.mdx'),
+  'mdx/index.mdx': () =>
+    import(/* webpackPrefetch: true, webpackChunkName: "mdx-index" */ 'mdx/index.mdx'),
+  'mdx/initialFirstItem.mdx': () =>
+    import(/* webpackPrefetch: true, webpackChunkName: "mdx-initial-first-item" */ 'mdx/initialFirstItem.mdx'),
+  'mdx/isRTL.mdx': () =>
+    import(/* webpackPrefetch: true, webpackChunkName: "mdx-is-rtl" */ 'mdx/isRTL.mdx'),
+  'mdx/itemPadding.mdx': () =>
+    import(/* webpackPrefetch: true, webpackChunkName: "mdx-item-padding" */ 'mdx/itemPadding.mdx'),
+  'mdx/itemPosition.mdx': () =>
+    import(/* webpackPrefetch: true, webpackChunkName: "mdx-item-position" */ 'mdx/itemPosition.mdx'),
+  'mdx/itemsToScroll.mdx': () =>
+    import(/* webpackPrefetch: true, webpackChunkName: "mdx-items-to-scroll" */ 'mdx/itemsToScroll.mdx'),
+  'mdx/itemsToShow.mdx': () =>
+    import(/* webpackPrefetch: true, webpackChunkName: "mdx-items-to-show" */ 'mdx/itemsToShow.mdx'),
+  'mdx/onNextEnd.mdx': () =>
+    import(/* webpackPrefetch: true, webpackChunkName: "mdx-on-next-end" */ 'mdx/onNextEnd.mdx'),
+  'mdx/onNextStart.mdx': () =>
+    import(/* webpackPrefetch: true, webpackChunkName: "mdx-on-next-start" */ 'mdx/onNextStart.mdx'),
+  'mdx/onPrevEnd.mdx': () =>
+    import(/* webpackPrefetch: true, webpackChunkName: "mdx-on-prev-end" */ 'mdx/onPrevEnd.mdx'),
+  'mdx/onPrevStart.mdx': () =>
+    import(/* webpackPrefetch: true, webpackChunkName: "mdx-on-prev-start" */ 'mdx/onPrevStart.mdx'),
+  'mdx/slideNext.mdx': () =>
+    import(/* webpackPrefetch: true, webpackChunkName: "mdx-slide-next" */ 'mdx/slideNext.mdx'),
 }

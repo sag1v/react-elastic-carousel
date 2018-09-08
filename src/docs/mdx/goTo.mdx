@@ -1,0 +1,29 @@
+---
+name: goTo
+order: 994
+route: /goTo
+menu: Examples
+---
+
+import {Playground, PropsTable } from 'docz';
+import Carousel from 'react-elastic-carousel';
+import Item from '../components/SimpleItem';
+
+- You can trigger the `goTo` method via a `ref` to the `Carousel`:  
+```
+this.carousel.goTo(someIndex)
+```
+
+<Playground >
+    <label>Go to </label>
+    <input type="number" defaultValue={0} onChange={({target}) => this.carousel.goTo(Number(target.value))} />
+    <hr/>
+    <Carousel ref={ref => this.carousel = ref}>
+    <Item>1</Item>
+    <Item>2</Item>
+    <Item>3</Item>
+    <Item>4</Item>
+    <Item>5</Item>
+    <Item>6</Item>
+    </Carousel>
+</Playground>

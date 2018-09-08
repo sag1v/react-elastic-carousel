@@ -346,10 +346,13 @@ class Carousel extends React.Component {
   };
 
   goTo = nextItemId => {
+    const { children } = this.props;
     const { firstItem } = this.state;
     const isPrev = firstItem > nextItemId;
     const nextAvailbaleItem = this.getNextItemIndex(firstItem, isPrev);
-    if (nextAvailbaleItem === firstItem) {
+    const noChange = nextAvailbaleItem === firstItem;
+    const outOfBoundry = nextItemId >= children.length;
+    if (noChange || outOfBoundry) {
       return;
     }
     let direction = consts.NEXT;
@@ -360,7 +363,7 @@ class Carousel extends React.Component {
     }
     const stateUpdater = this.generatePositionUpdater(
       direction,
-      nextAvailbaleItem,
+      nextItemId,
       { transitioning: true }
     );
     this.setState(stateUpdater, () => {
@@ -423,57 +426,57 @@ class Carousel extends React.Component {
       ...style
     };
     return (
-        <div
-          className={`${cssPrefix("carousel-wrapper")} ${className}`}
-          style={rootStyle}
-        >
-          <div className={cssPrefix("carousel")} style={this.carouselStyle()}>
-            <Only when={showArrows}>
-              {renderArrow ? (
-                renderArrow({ type: consts.PREV, onClick: this.onPrevStart })
-              ) : (
-                  <Arrow onClick={this.onPrevStart} direction="left" />
-                )}
-            </Only>
+      <div
+        className={`${cssPrefix("carousel-wrapper")} ${className}`}
+        style={rootStyle}
+      >
+        <div className={cssPrefix("carousel")} style={this.carouselStyle()}>
+          <Only when={showArrows}>
+            {renderArrow ? (
+              renderArrow({ type: consts.PREV, onClick: this.onPrevStart })
+            ) : (
+                <Arrow onClick={this.onPrevStart} direction="left" />
+              )}
+          </Only>
+          <div
+            className={cssPrefix("slider-container")}
+            style={this.sliderContainerStyle()}
+            ref={this.setRef("sliderContainer")}
+          >
             <div
-              className={cssPrefix("slider-container")}
-              style={this.sliderContainerStyle()}
-              ref={this.setRef("sliderContainer")}
+              ref={this.setRef("slider")}
+              className={cssPrefix("slider")}
+              style={this.sliderStyle()}
             >
-              <div
-                ref={this.setRef("slider")}
-                className={cssPrefix("slider")}
-                style={this.sliderStyle()}
-              >
-                <Track
-                  children={children}
-                  childWidth={childWidth}
-                  itemPosition={itemPosition}
-                  itemPadding={itemPadding}
-                  enableSwipe={enableSwipe}
-                  enableMouseSwipe={enableMouseSwipe}
-                  onSwipedLeft={onSwipedLeft}
-                  onSwipedRight={onSwipedRight}
-                  onItemClick={focusOnSelect ? this.goTo : undefined}
-                />
-              </div>
+              <Track
+                children={children}
+                childWidth={childWidth}
+                itemPosition={itemPosition}
+                itemPadding={itemPadding}
+                enableSwipe={enableSwipe}
+                enableMouseSwipe={enableMouseSwipe}
+                onSwipedLeft={onSwipedLeft}
+                onSwipedRight={onSwipedRight}
+                onItemClick={focusOnSelect ? this.goTo : undefined}
+              />
             </div>
-            <Only when={showArrows}>
-              {renderArrow ? (
-                renderArrow({ type: consts.NEXT, onClick: this.onNextStart })
-              ) : (
-                  <Arrow onClick={this.onNextStart} direction="right" />
-                )}
-            </Only>
           </div>
-          <Only when={pagination}>
-            <Pagination
-              numOfPages={numOfPages}
-              activePage={activePage}
-              onClick={this.onIndicatorClick}
-            />
+          <Only when={showArrows}>
+            {renderArrow ? (
+              renderArrow({ type: consts.NEXT, onClick: this.onNextStart })
+            ) : (
+                <Arrow onClick={this.onNextStart} direction="right" />
+              )}
           </Only>
         </div>
+        <Only when={pagination}>
+          <Pagination
+            numOfPages={numOfPages}
+            activePage={activePage}
+            onClick={this.onIndicatorClick}
+          />
+        </Only>
+      </div>
     );
   }
 }
@@ -563,9 +566,9 @@ Carousel.propTypes = {
    * - ({type, onClick}) => <div onClick={onClick}>{type === 'prev' ? '<-' : '->'}</div>
    */
   renderArrow: PropTypes.func,
-  
+
   /** Position the element relative to it's wrapper (use the consts object) - consts.START | consts.CENTER | consts.END */
-  itemPosition: PropTypes.oneOf([consts.START,consts.CENTER,consts.END]),
+  itemPosition: PropTypes.oneOf([consts.START, consts.CENTER, consts.END]),
 
   /** A padding for each element  */
   itemPadding: PropTypes.array,
