@@ -21,8 +21,7 @@
     "prebuild": "npm run lint:fix",
     "build": "rollup -c",
     "prepare": "npm run build",
-    "predeploy": "npm run lint:fix && cd example && npm install && npm run build",
-    "deploy": "gh-pages -d example/build",
+    "deploy": "gh-pages -d .docz/dist",
     "docz:dev": "docz dev && npm run lint:watch",
     "docz:build": "docz build"
   },
@@ -56,7 +55,7 @@
     "babel-eslint": "^9.0.0",
     "classnames": "^2.2.6",
     "cross-env": "^5.1.4",
-    "docz": "^0.11.0",
+    "docz": "^0.11.1",
     "eslint": "^5.0.1",
     "eslint-config-prettier": "^3.0.1",
     "eslint-config-standard": "^12.0.0",

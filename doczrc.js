@@ -1,11 +1,15 @@
 import path from 'path'
 
+import libName from './libName';
+
 export default {
+  hashRouter: true,
+  base: `/${libName}/`,
   ordering: "ascending",
   modifyBundlerConfig: config => {
     config.resolve.alias = {
       ...config.resolve.alias,
-      "react-elastic-carousel":path.join(__dirname, "/src/react-elastic-carousel/index.js")
+      [libName]:path.join(__dirname, `/src/${libName}/index.js`)
     }
     return config;
   },
@@ -13,13 +17,13 @@ export default {
     head: {
       links: [{
         rel: 'stylesheet',
-        href: 'https://codemirror.net/theme/dracula.css'
+        href: '//codemirror.net/theme/dracula.css'
       }]
     }
   },
   themeConfig: {
     logo: {
-      src: "http://cdn.onlinewebfonts.com/svg/img_569227.png",
+      src: "//cdn.onlinewebfonts.com/svg/img_569227.png",
       width: 50
     },
     mode: 'light',

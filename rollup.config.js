@@ -8,6 +8,8 @@ import alias from 'rollup-plugin-alias';
 
 import pkg from './package.json'
 
+import libName from './libName';
+
 export default {
   input: 'src/index.js',
   output: [
@@ -24,7 +26,7 @@ export default {
   ],
   plugins: [
     alias({
-      "react-elastic-carousel": './src/react-elastic-carousel/index.js'
+      [libName]: `./src/${libName}/index.js`
     }),
     external(),
     postcss({

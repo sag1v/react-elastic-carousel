@@ -4,7 +4,7 @@
     "description": "A flexible and responsive carousel component for react",
     "themeConfig": {
       "logo": {
-        "src": "http://cdn.onlinewebfonts.com/svg/img_569227.png",
+        "src": "//cdn.onlinewebfonts.com/svg/img_569227.png",
         "width": 50
       },
       "mode": "light",
@@ -24,15 +24,17 @@
         }
       }
     },
-    "ordering": "descending",
+    "ordering": "ascending",
     "version": "1.0.0",
     "repository": "https://github.com/sag1v/react-elastic-carousel",
+    "hashRouter": true,
+    "base": "/react-elastic-carousel/",
     "htmlContext": {
       "head": {
         "links": [
           {
             "rel": "stylesheet",
-            "href": "https://codemirror.net/theme/dracula.css"
+            "href": "//codemirror.net/theme/dracula.css"
           }
         ]
       }
@@ -52,7 +54,7 @@
         {
           "depth": 2,
           "slug": "install",
-          "value": "Install"
+          "value": "install"
         },
         {
           "depth": 2,
@@ -62,7 +64,7 @@
         {
           "depth": 2,
           "slug": "play",
-          "value": "Play"
+          "value": "play"
         },
         {
           "depth": 2,
@@ -70,6 +72,17 @@
           "value": "Props"
         }
       ]
+    },
+    "src/docs/components/mdx/easing.mdx": {
+      "name": "easing",
+      "order": 7,
+      "route": "/easing",
+      "menu": "Examples",
+      "id": "78888c6e0beacced3b7b973b66223dce",
+      "filepath": "src/docs/components/mdx/easing.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src/docs/components/mdx/easing.mdx",
+      "slug": "src-docs-components-mdx-easing",
+      "headings": []
     },
     "src/docs/components/mdx/breakpoints.mdx": {
       "name": "breakPoints",
@@ -82,15 +95,15 @@
       "slug": "src-docs-components-mdx-breakpoints",
       "headings": []
     },
-    "src/docs/components/mdx/easing.mdx": {
-      "name": "easing",
+    "src/docs/components/mdx/enableAutoPlay.mdx": {
+      "name": "enableAutoPlay",
       "order": 7,
-      "route": "/easing",
+      "route": "/enableAutoPlay",
       "menu": "Examples",
-      "id": "78888c6e0beacced3b7b973b66223dce",
-      "filepath": "src/docs/components/mdx/easing.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src/docs/components/mdx/easing.mdx",
-      "slug": "src-docs-components-mdx-easing",
+      "id": "e5ed8a42173892b88aa17a4b5b18ed5e",
+      "filepath": "src/docs/components/mdx/enableAutoPlay.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src/docs/components/mdx/enableAutoPlay.mdx",
+      "slug": "src-docs-components-mdx-enable-auto-play",
       "headings": []
     },
     "src/docs/components/mdx/initialFirstItem.mdx": {
@@ -115,15 +128,15 @@
       "slug": "src-docs-components-mdx-focus-on-select",
       "headings": []
     },
-    "src/docs/components/mdx/isRTL.mdx": {
-      "name": "isRTL",
-      "order": 6,
-      "route": "/isRTL",
+    "src/docs/components/mdx/itemPadding.mdx": {
+      "name": "itemPadding",
+      "order": 8,
+      "route": "/itemPadding",
       "menu": "Examples",
-      "id": "9bc60693fd682815630e5e523056aeb2",
-      "filepath": "src/docs/components/mdx/isRTL.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src/docs/components/mdx/isRTL.mdx",
-      "slug": "src-docs-components-mdx-is-rtl",
+      "id": "e7b229c12d81372bc77c79253aff52b9",
+      "filepath": "src/docs/components/mdx/itemPadding.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src/docs/components/mdx/itemPadding.mdx",
+      "slug": "src-docs-components-mdx-item-padding",
       "headings": []
     },
     "src/docs/components/mdx/itemsToScroll.mdx": {
@@ -137,22 +150,33 @@
       "slug": "src-docs-components-mdx-items-to-scroll",
       "headings": []
     },
-    "src/docs/components/mdx/itemPadding.mdx": {
-      "name": "itemPadding",
-      "order": 2,
-      "route": "/itemPadding",
+    "src/docs/components/mdx/isRTL.mdx": {
+      "name": "isRTL",
+      "order": 6,
+      "route": "/isRTL",
       "menu": "Examples",
-      "id": "e7b229c12d81372bc77c79253aff52b9",
-      "filepath": "src/docs/components/mdx/itemPadding.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src/docs/components/mdx/itemPadding.mdx",
-      "slug": "src-docs-components-mdx-item-padding",
+      "id": "9bc60693fd682815630e5e523056aeb2",
+      "filepath": "src/docs/components/mdx/isRTL.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src/docs/components/mdx/isRTL.mdx",
+      "slug": "src-docs-components-mdx-is-rtl",
+      "headings": []
+    },
+    "src/docs/components/mdx/onUserNext.mdx": {
+      "name": "onUserNext",
+      "order": 9,
+      "route": "/onUserNext",
+      "menu": "Examples",
+      "id": "60dbc989aa6f0edfc7d189f0815b4484",
+      "filepath": "src/docs/components/mdx/onUserNext.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src/docs/components/mdx/onUserNext.mdx",
+      "slug": "src-docs-components-mdx-on-user-next",
       "headings": []
     },
     "src/docs/components/mdx/itemsToShow.mdx": {
       "name": "itemsToShow",
+      "order": 1,
       "route": "/itemsToShow",
       "menu": "Examples",
-      "order": 1,
       "id": "98c52d751af6a05ed757dec7408e238f",
       "filepath": "src/docs/components/mdx/itemsToShow.mdx",
       "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src/docs/components/mdx/itemsToShow.mdx",
