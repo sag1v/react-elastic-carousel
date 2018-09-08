@@ -1,0 +1,20 @@
+---
+name: focusOnSelect
+order: 5
+route: /focusOnSelect
+menu: Examples
+---
+
+import {Playground, PropsTable } from 'docz';
+import Carousel from 'react-elastic-carousel';
+import Item from '../../components/ItemContainer';
+import items from '../../components/itemsCollection';
+
+<Playground >
+    <Carousel 
+        focusOnSelect={true}
+        itemsToShow={3}
+    >
+        {items(12).map(item => <Item key={item.id} {...item}/>)}
+    </Carousel>
+</Playground>

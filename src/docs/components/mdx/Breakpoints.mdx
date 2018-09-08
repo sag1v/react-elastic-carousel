@@ -1,15 +1,33 @@
 ---
-name: Breakpoints
+name: breakPoints
+order: 3
+route: /breakPoints
+menu: Examples
 ---
 
-import { Playground } from 'docz';
-import Carousel from '../../../react-elastic-carousel';
+import {Playground, PropsTable } from 'docz';
+import Carousel from 'react-elastic-carousel';
+import Item from '../../components/ItemContainer';
+import items from '../../components/itemsCollection';
 
 <Playground >
-  <Carousel itemsToShow={3}>
-    <div>1</div>
-    <div>2</div>
-    <div>3</div>
-    <div>4</div>
-  </Carousel>
+  {
+    () => {
+      const breakpoints = [
+        { width: 1, itemsToShow: 1, itemsToScroll: 1 },
+        { width: 550, itemsToShow: 2, itemsToScroll: 1 },
+        { width: 850, itemsToShow: 3, itemsToScroll: 1 },
+        { width: 1150, itemsToShow: 4, itemsToScroll: 1 },
+        { width: 1450, itemsToShow: 5, itemsToScroll: 1 },
+        { width: 1750, itemsToShow: 6, itemsToScroll: 1 }
+      ];
+
+      return (
+        <Carousel breakPoints={breakpoints}>
+          {items(12).map(item => <Item key={item.id} {...item}/>)}
+        </Carousel>
+      )
+
+    }
+  }
 </Playground>

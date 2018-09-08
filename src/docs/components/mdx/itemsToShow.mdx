@@ -1,0 +1,17 @@
+---
+name: itemsToShow
+order: 1
+route: /itemsToShow
+menu: Examples
+---
+
+import {Playground, PropsTable } from 'docz';
+import Carousel from 'react-elastic-carousel';
+import Item from '../../components/ItemContainer';
+import items from '../../components/itemsCollection';
+
+<Playground >
+    <Carousel itemsToShow={2}>
+        {items(12).map(item => <Item key={item.id} {...item}/>)}
+    </Carousel>
+</Playground>

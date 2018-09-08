@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { ResizableBox } from "react-resizable";
 import styled from "styled-components";
-import Carousel from "./react-elastic-carousel";
+import Carousel, { consts } from "./react-elastic-carousel";
 import createItems from "./items";
 
 import "./styles.css";
@@ -110,13 +110,13 @@ export default class ExampleComponent extends Component {
     const { isRtl } = this.state;
     let toRender = "";
     if (isRtl) {
-      if (type === "prev") {
+      if (type === consts.PREV) {
         toRender = "👉";
       } else {
         toRender = "👈";
       }
     } else {
-      if (type === "prev") {
+      if (type === consts.PREV) {
         toRender = "👈";
       } else {
         toRender = "👉";

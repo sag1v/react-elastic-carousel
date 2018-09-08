@@ -3,6 +3,10 @@
     "title": "React Elastic Carousel",
     "description": "A flexible and responsive carousel component for react",
     "themeConfig": {
+      "logo": {
+        "src": "http://cdn.onlinewebfonts.com/svg/img_569227.png",
+        "width": 50
+      },
       "mode": "light",
       "codemirrorTheme": "dracula",
       "styles": {
@@ -23,10 +27,6 @@
     "ordering": "descending",
     "version": "1.0.0",
     "repository": "https://github.com/sag1v/react-elastic-carousel",
-    "logo": {
-      "src": "https://cdn.iconscout.com/icon/premium/png-512-thumb/elastic-band-2-670638.png",
-      "width": 250
-    },
     "htmlContext": {
       "head": {
         "links": [
@@ -42,11 +42,11 @@
     "src/docs/index.mdx": {
       "name": "Getting started",
       "route": "/",
-      "order": 1,
       "id": "13a8a147f67d34248cdc424d524520a5",
       "filepath": "src/docs/index.mdx",
       "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src/docs/index.mdx",
       "slug": "src-docs-index",
+      "order": 0,
       "menu": null,
       "headings": [
         {
@@ -71,37 +71,92 @@
         }
       ]
     },
-    "src/docs/components/mdx/Basic.mdx": {
-      "name": "Basic",
-      "id": "d051d7573b0fdc2a07a7a41bd0b35662",
-      "filepath": "src/docs/components/mdx/Basic.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src/docs/components/mdx/Basic.mdx",
-      "slug": "src-docs-components-mdx-basic",
-      "route": "/src-docs-components-mdx-basic",
-      "order": 0,
-      "menu": null,
-      "headings": []
-    },
-    "src/docs/components/mdx/Pagination.mdx": {
-      "name": "Pagination",
-      "id": "0c3d3c177688069fde06f34d76789a18",
-      "filepath": "src/docs/components/mdx/Pagination.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src/docs/components/mdx/Pagination.mdx",
-      "slug": "src-docs-components-mdx-pagination",
-      "route": "/src-docs-components-mdx-pagination",
-      "order": 0,
-      "menu": null,
-      "headings": []
-    },
-    "src/docs/components/mdx/Breakpoints.mdx": {
-      "name": "Breakpoints",
-      "id": "f72a51ab608baebb2b35b459438393f1",
-      "filepath": "src/docs/components/mdx/Breakpoints.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src/docs/components/mdx/Breakpoints.mdx",
+    "src/docs/components/mdx/breakpoints.mdx": {
+      "name": "breakPoints",
+      "order": 3,
+      "route": "/breakPoints",
+      "menu": "Examples",
+      "id": "51fb3533c41d53dfaf22ee420eceff3a",
+      "filepath": "src/docs/components/mdx/breakpoints.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src/docs/components/mdx/breakpoints.mdx",
       "slug": "src-docs-components-mdx-breakpoints",
-      "route": "/src-docs-components-mdx-breakpoints",
-      "order": 0,
-      "menu": null,
+      "headings": []
+    },
+    "src/docs/components/mdx/easing.mdx": {
+      "name": "easing",
+      "order": 7,
+      "route": "/easing",
+      "menu": "Examples",
+      "id": "78888c6e0beacced3b7b973b66223dce",
+      "filepath": "src/docs/components/mdx/easing.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src/docs/components/mdx/easing.mdx",
+      "slug": "src-docs-components-mdx-easing",
+      "headings": []
+    },
+    "src/docs/components/mdx/initialFirstItem.mdx": {
+      "name": "initialFirstItem",
+      "order": 4,
+      "route": "/initialFirstItem",
+      "menu": "Examples",
+      "id": "874f1d47bac46c765d139c9d18b3d7f2",
+      "filepath": "src/docs/components/mdx/initialFirstItem.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src/docs/components/mdx/initialFirstItem.mdx",
+      "slug": "src-docs-components-mdx-initial-first-item",
+      "headings": []
+    },
+    "src/docs/components/mdx/focusOnSelect.mdx": {
+      "name": "focusOnSelect",
+      "order": 5,
+      "route": "/focusOnSelect",
+      "menu": "Examples",
+      "id": "f24587a0e3c1d9d725af308f6392dbf0",
+      "filepath": "src/docs/components/mdx/focusOnSelect.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src/docs/components/mdx/focusOnSelect.mdx",
+      "slug": "src-docs-components-mdx-focus-on-select",
+      "headings": []
+    },
+    "src/docs/components/mdx/isRTL.mdx": {
+      "name": "isRTL",
+      "order": 6,
+      "route": "/isRTL",
+      "menu": "Examples",
+      "id": "9bc60693fd682815630e5e523056aeb2",
+      "filepath": "src/docs/components/mdx/isRTL.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src/docs/components/mdx/isRTL.mdx",
+      "slug": "src-docs-components-mdx-is-rtl",
+      "headings": []
+    },
+    "src/docs/components/mdx/itemsToScroll.mdx": {
+      "name": "itemsToScroll",
+      "order": 2,
+      "route": "/itemsToScroll",
+      "menu": "Examples",
+      "id": "7ca03173b34d525c5b8bd86e61e30848",
+      "filepath": "src/docs/components/mdx/itemsToScroll.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src/docs/components/mdx/itemsToScroll.mdx",
+      "slug": "src-docs-components-mdx-items-to-scroll",
+      "headings": []
+    },
+    "src/docs/components/mdx/itemPadding.mdx": {
+      "name": "itemPadding",
+      "order": 2,
+      "route": "/itemPadding",
+      "menu": "Examples",
+      "id": "e7b229c12d81372bc77c79253aff52b9",
+      "filepath": "src/docs/components/mdx/itemPadding.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src/docs/components/mdx/itemPadding.mdx",
+      "slug": "src-docs-components-mdx-item-padding",
+      "headings": []
+    },
+    "src/docs/components/mdx/itemsToShow.mdx": {
+      "name": "itemsToShow",
+      "route": "/itemsToShow",
+      "menu": "Examples",
+      "order": 1,
+      "id": "98c52d751af6a05ed757dec7408e238f",
+      "filepath": "src/docs/components/mdx/itemsToShow.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src/docs/components/mdx/itemsToShow.mdx",
+      "slug": "src-docs-components-mdx-items-to-show",
       "headings": []
     }
   }

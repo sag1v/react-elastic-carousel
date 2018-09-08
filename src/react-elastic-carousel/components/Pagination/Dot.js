@@ -10,17 +10,18 @@ const hoveredBoxShadow = "0 0 1px 3px rgba(103,58,183,.5)";
 const Dot = styled.div`
   transition: all 250ms ease;
   margin: 5px;
-  background-color: ${({active}) => (active ? "rgba(103,58,183,.5)" : "transparent")};
+  background-color: ${({ active }) =>
+    active ? "rgba(103,58,183,.5)" : "transparent"};
   font-size: 1.3em;
   content: "";
   height: 10px;
   width: 10px;
-  box-shadow: ${({active}) =>
-    active ? activeBoxShadow : boxShadow};
+  box-shadow: ${({ active }) => (active ? activeBoxShadow : boxShadow)};
   border-radius: 50%;
   &:hover {
     cursor: pointer;
-    box-shadow: ${({active}) => active ? activeBoxShadow : hoveredBoxShadow} ;
+    box-shadow: ${({ active }) =>
+      active ? activeBoxShadow : hoveredBoxShadow};
   }
 `;
 

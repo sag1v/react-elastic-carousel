@@ -1,0 +1,22 @@
+---
+name: easing
+order: 7
+route: /easing
+menu: Examples
+---
+
+import {Playground, PropsTable } from 'docz';
+import Carousel from 'react-elastic-carousel';
+import Item from '../../components/ItemContainer';
+import items from '../../components/itemsCollection';
+
+<Playground >
+    <Carousel 
+        easing="cubic-bezier(1,.15,.55,1.54)"
+        tiltEasing="cubic-bezier(0.110, 1, 1.000, 0.210)"
+        transitionMs={700}
+        itemsToShow={3}
+    >
+        {items(12).map(item => <Item key={item.id} {...item}/>)}
+    </Carousel>
+</Playground>

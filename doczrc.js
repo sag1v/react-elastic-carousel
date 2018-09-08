@@ -1,7 +1,13 @@
+import path from 'path'
+
 export default {
-  logo:{ 
-   src: "https://cdn.iconscout.com/icon/premium/png-512-thumb/elastic-band-2-670638.png",
-   width: 250
+  ordering: "ascending",
+  modifyBundlerConfig: config => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      "react-elastic-carousel":path.join(__dirname, "/src/react-elastic-carousel/index.js")
+    }
+    return config;
   },
   htmlContext: {
     head: {
@@ -12,6 +18,10 @@ export default {
     }
   },
   themeConfig: {
+    logo: {
+      src: "http://cdn.onlinewebfonts.com/svg/img_569227.png",
+      width: 50
+    },
     mode: 'light',
     codemirrorTheme: 'dracula',
     styles: {
@@ -22,7 +32,7 @@ export default {
       },
       container: {
         width: '100%',
-       padding: ['20px 40px'],
+        padding: ['20px 40px'],
       },
     }
   },

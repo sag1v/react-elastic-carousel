@@ -26,7 +26,7 @@ class Pagination extends React.Component {
 
 Pagination.defaultProps = {
   onClick: noop
-}
+};
 
 Pagination.propTypes = {
   numOfPages: PropTypes.number.isRequired,
