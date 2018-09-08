@@ -15,10 +15,12 @@ export const imports = {
     import(/* webpackPrefetch: true, webpackChunkName: "components-mdx-is-rtl" */ 'components/mdx/isRTL.mdx'),
   'components/mdx/itemPadding.mdx': () =>
     import(/* webpackPrefetch: true, webpackChunkName: "components-mdx-item-padding" */ 'components/mdx/itemPadding.mdx'),
+  'components/mdx/itemPosition.mdx': () =>
+    import(/* webpackPrefetch: true, webpackChunkName: "components-mdx-item-position" */ 'components/mdx/itemPosition.mdx'),
+  'components/mdx/itemsToScroll.mdx': () =>
+    import(/* webpackPrefetch: true, webpackChunkName: "components-mdx-items-to-scroll" */ 'components/mdx/itemsToScroll.mdx'),
   'components/mdx/itemsToShow.mdx': () =>
     import(/* webpackPrefetch: true, webpackChunkName: "components-mdx-items-to-show" */ 'components/mdx/itemsToShow.mdx'),
   'components/mdx/onUserNext.mdx': () =>
     import(/* webpackPrefetch: true, webpackChunkName: "components-mdx-on-user-next" */ 'components/mdx/onUserNext.mdx'),
-  'components/mdx/itemsToScroll.mdx': () =>
-    import(/* webpackPrefetch: true, webpackChunkName: "components-mdx-items-to-scroll" */ 'components/mdx/itemsToScroll.mdx'),
 }

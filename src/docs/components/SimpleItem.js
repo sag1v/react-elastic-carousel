@@ -7,6 +7,7 @@ const SimpleItem = styled(Item)`
     justify-content: center;
     align-items: center;
     font-size: 2.5em;
+    max-width: ${({maxWidth}) => maxWidth};
 `;
 
 export default SimpleItem;

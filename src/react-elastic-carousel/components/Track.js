@@ -9,6 +9,7 @@ const Track = ({
   childWidth,
   enableSwipe,
   enableMouseSwipe,
+  itemPosition,
   itemPadding,
   onSwipedLeft,
   onSwipedRight,
@@ -20,6 +21,7 @@ const Track = ({
     const item = (
       <ItemWrapperContainer
         id={idx}
+        itemPosition={itemPosition}
         child={child}
         style={{ width, padding: paddingStyle }}
         key={`${child.key}${idx}`}
@@ -46,6 +48,7 @@ const Track = ({
 
 Track.propTypes = {
   children: PropTypes.array.isRequired,
+  itemPosition: PropTypes.string,
   itemPadding: PropTypes.array,
   childWidth: PropTypes.number,
   enableSwipe: PropTypes.bool,

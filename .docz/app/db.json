@@ -89,7 +89,7 @@
     },
     "components/mdx/easing.mdx": {
       "name": "easing",
-      "order": 7,
+      "order": 10,
       "route": "/easing",
       "menu": "Examples",
       "id": "78888c6e0beacced3b7b973b66223dce",
@@ -153,6 +153,28 @@
       "slug": "components-mdx-item-padding",
       "headings": []
     },
+    "components/mdx/itemPosition.mdx": {
+      "name": "itemPosition",
+      "order": 9,
+      "route": "/itemPosition",
+      "menu": "Examples",
+      "id": "674345998b5c7da4fdc411a472b7444c",
+      "filepath": "components/mdx/itemPosition.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\components/mdx/itemPosition.mdx",
+      "slug": "components-mdx-item-position",
+      "headings": []
+    },
+    "components/mdx/itemsToScroll.mdx": {
+      "name": "itemsToScroll",
+      "order": 2,
+      "route": "/itemsToScroll",
+      "menu": "Examples",
+      "id": "7ca03173b34d525c5b8bd86e61e30848",
+      "filepath": "components/mdx/itemsToScroll.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\components/mdx/itemsToScroll.mdx",
+      "slug": "components-mdx-items-to-scroll",
+      "headings": []
+    },
     "components/mdx/itemsToShow.mdx": {
       "name": "itemsToShow",
       "order": 1,
@@ -166,24 +188,13 @@
     },
     "components/mdx/onUserNext.mdx": {
       "name": "onUserNext",
-      "order": 9,
+      "order": 999,
       "route": "/onUserNext",
       "menu": "Examples",
       "id": "60dbc989aa6f0edfc7d189f0815b4484",
       "filepath": "components/mdx/onUserNext.mdx",
       "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\components/mdx/onUserNext.mdx",
       "slug": "components-mdx-on-user-next",
-      "headings": []
-    },
-    "components/mdx/itemsToScroll.mdx": {
-      "name": "itemsToScroll",
-      "order": 2,
-      "route": "/itemsToScroll",
-      "menu": "Examples",
-      "id": "7ca03173b34d525c5b8bd86e61e30848",
-      "filepath": "components/mdx/itemsToScroll.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\components/mdx/itemsToScroll.mdx",
-      "slug": "components-mdx-items-to-scroll",
       "headings": []
     }
   }

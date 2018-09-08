@@ -348,8 +348,7 @@ class Carousel extends React.Component {
   goTo = nextItemId => {
     const { firstItem } = this.state;
     const isPrev = firstItem > nextItemId;
-    const indexToPass = isPrev ? nextItemId + 1 : nextItemId - 1;
-    const nextAvailbaleItem = this.getNextItemIndex(indexToPass, isPrev);
+    const nextAvailbaleItem = this.getNextItemIndex(firstItem, isPrev);
     if (nextAvailbaleItem === firstItem) {
       return;
     }
@@ -403,6 +402,7 @@ class Carousel extends React.Component {
       isRTL,
       children,
       focusOnSelect,
+      itemPosition,
       itemPadding,
       enableSwipe,
       enableMouseSwipe,
@@ -448,6 +448,7 @@ class Carousel extends React.Component {
                 <Track
                   children={children}
                   childWidth={childWidth}
+                  itemPosition={itemPosition}
                   itemPadding={itemPadding}
                   enableSwipe={enableSwipe}
                   enableMouseSwipe={enableMouseSwipe}
@@ -493,6 +494,7 @@ Carousel.defaultProps = {
   focusOnSelect: false,
   itemsToShow: 1,
   itemsToScroll: 1,
+  itemPosition: consts.CENTER,
   itemPadding: [0, 0, 0, 0],
   enableAutoPlay: false,
   autoPlaySpeed: 2000,
@@ -562,7 +564,8 @@ Carousel.propTypes = {
    */
   renderArrow: PropTypes.func,
   
-  // TODO: item position ["start","center","end"]
+  /** Position the element relative to it's wrapper (use the consts object) - consts.START | consts.CENTER | consts.END */
+  itemPosition: PropTypes.oneOf([consts.START,consts.CENTER,consts.END]),
 
   /** A padding for each element  */
   itemPadding: PropTypes.array,
