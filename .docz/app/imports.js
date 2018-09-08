@@ -1,24 +1,24 @@
 export const imports = {
-  'src/docs/index.mdx': () =>
-    import(/* webpackPrefetch: true, webpackChunkName: "src-docs-index" */ 'src/docs/index.mdx'),
-  'src/docs/components/mdx/easing.mdx': () =>
-    import(/* webpackPrefetch: true, webpackChunkName: "src-docs-components-mdx-easing" */ 'src/docs/components/mdx/easing.mdx'),
-  'src/docs/components/mdx/breakpoints.mdx': () =>
-    import(/* webpackPrefetch: true, webpackChunkName: "src-docs-components-mdx-breakpoints" */ 'src/docs/components/mdx/breakpoints.mdx'),
-  'src/docs/components/mdx/enableAutoPlay.mdx': () =>
-    import(/* webpackPrefetch: true, webpackChunkName: "src-docs-components-mdx-enable-auto-play" */ 'src/docs/components/mdx/enableAutoPlay.mdx'),
-  'src/docs/components/mdx/initialFirstItem.mdx': () =>
-    import(/* webpackPrefetch: true, webpackChunkName: "src-docs-components-mdx-initial-first-item" */ 'src/docs/components/mdx/initialFirstItem.mdx'),
-  'src/docs/components/mdx/focusOnSelect.mdx': () =>
-    import(/* webpackPrefetch: true, webpackChunkName: "src-docs-components-mdx-focus-on-select" */ 'src/docs/components/mdx/focusOnSelect.mdx'),
-  'src/docs/components/mdx/itemPadding.mdx': () =>
-    import(/* webpackPrefetch: true, webpackChunkName: "src-docs-components-mdx-item-padding" */ 'src/docs/components/mdx/itemPadding.mdx'),
-  'src/docs/components/mdx/itemsToScroll.mdx': () =>
-    import(/* webpackPrefetch: true, webpackChunkName: "src-docs-components-mdx-items-to-scroll" */ 'src/docs/components/mdx/itemsToScroll.mdx'),
-  'src/docs/components/mdx/isRTL.mdx': () =>
-    import(/* webpackPrefetch: true, webpackChunkName: "src-docs-components-mdx-is-rtl" */ 'src/docs/components/mdx/isRTL.mdx'),
-  'src/docs/components/mdx/onUserNext.mdx': () =>
-    import(/* webpackPrefetch: true, webpackChunkName: "src-docs-components-mdx-on-user-next" */ 'src/docs/components/mdx/onUserNext.mdx'),
-  'src/docs/components/mdx/itemsToShow.mdx': () =>
-    import(/* webpackPrefetch: true, webpackChunkName: "src-docs-components-mdx-items-to-show" */ 'src/docs/components/mdx/itemsToShow.mdx'),
+  'index.mdx': () =>
+    import(/* webpackPrefetch: true, webpackChunkName: "index" */ 'index.mdx'),
+  'components/mdx/breakpoints.mdx': () =>
+    import(/* webpackPrefetch: true, webpackChunkName: "components-mdx-breakpoints" */ 'components/mdx/breakpoints.mdx'),
+  'components/mdx/easing.mdx': () =>
+    import(/* webpackPrefetch: true, webpackChunkName: "components-mdx-easing" */ 'components/mdx/easing.mdx'),
+  'components/mdx/enableAutoPlay.mdx': () =>
+    import(/* webpackPrefetch: true, webpackChunkName: "components-mdx-enable-auto-play" */ 'components/mdx/enableAutoPlay.mdx'),
+  'components/mdx/focusOnSelect.mdx': () =>
+    import(/* webpackPrefetch: true, webpackChunkName: "components-mdx-focus-on-select" */ 'components/mdx/focusOnSelect.mdx'),
+  'components/mdx/initialFirstItem.mdx': () =>
+    import(/* webpackPrefetch: true, webpackChunkName: "components-mdx-initial-first-item" */ 'components/mdx/initialFirstItem.mdx'),
+  'components/mdx/isRTL.mdx': () =>
+    import(/* webpackPrefetch: true, webpackChunkName: "components-mdx-is-rtl" */ 'components/mdx/isRTL.mdx'),
+  'components/mdx/itemPadding.mdx': () =>
+    import(/* webpackPrefetch: true, webpackChunkName: "components-mdx-item-padding" */ 'components/mdx/itemPadding.mdx'),
+  'components/mdx/itemsToShow.mdx': () =>
+    import(/* webpackPrefetch: true, webpackChunkName: "components-mdx-items-to-show" */ 'components/mdx/itemsToShow.mdx'),
+  'components/mdx/onUserNext.mdx': () =>
+    import(/* webpackPrefetch: true, webpackChunkName: "components-mdx-on-user-next" */ 'components/mdx/onUserNext.mdx'),
+  'components/mdx/itemsToScroll.mdx': () =>
+    import(/* webpackPrefetch: true, webpackChunkName: "components-mdx-items-to-scroll" */ 'components/mdx/itemsToScroll.mdx'),
 }

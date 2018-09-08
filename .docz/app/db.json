@@ -1,6 +1,6 @@
 {
   "config": {
-    "title": "React Elastic Carousel",
+    "title": "react-elastic-carousel",
     "description": "A flexible and responsive carousel component for react",
     "themeConfig": {
       "logo": {
@@ -27,6 +27,9 @@
     "ordering": "ascending",
     "version": "1.0.0",
     "repository": "https://github.com/sag1v/react-elastic-carousel",
+    "src": "./src/docs",
+    "dest": "./demo",
+    "port": 8888,
     "hashRouter": true,
     "base": "/react-elastic-carousel/",
     "htmlContext": {
@@ -41,13 +44,13 @@
     }
   },
   "entries": {
-    "src/docs/index.mdx": {
+    "index.mdx": {
       "name": "Getting started",
       "route": "/",
       "id": "13a8a147f67d34248cdc424d524520a5",
-      "filepath": "src/docs/index.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src/docs/index.mdx",
-      "slug": "src-docs-index",
+      "filepath": "index.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\index.mdx",
+      "slug": "index",
       "order": 0,
       "menu": null,
       "headings": [
@@ -73,114 +76,114 @@
         }
       ]
     },
-    "src/docs/components/mdx/easing.mdx": {
-      "name": "easing",
-      "order": 7,
-      "route": "/easing",
-      "menu": "Examples",
-      "id": "78888c6e0beacced3b7b973b66223dce",
-      "filepath": "src/docs/components/mdx/easing.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src/docs/components/mdx/easing.mdx",
-      "slug": "src-docs-components-mdx-easing",
-      "headings": []
-    },
-    "src/docs/components/mdx/breakpoints.mdx": {
+    "components/mdx/breakpoints.mdx": {
       "name": "breakPoints",
       "order": 3,
       "route": "/breakPoints",
       "menu": "Examples",
       "id": "51fb3533c41d53dfaf22ee420eceff3a",
-      "filepath": "src/docs/components/mdx/breakpoints.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src/docs/components/mdx/breakpoints.mdx",
-      "slug": "src-docs-components-mdx-breakpoints",
+      "filepath": "components/mdx/breakpoints.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\components/mdx/breakpoints.mdx",
+      "slug": "components-mdx-breakpoints",
       "headings": []
     },
-    "src/docs/components/mdx/enableAutoPlay.mdx": {
+    "components/mdx/easing.mdx": {
+      "name": "easing",
+      "order": 7,
+      "route": "/easing",
+      "menu": "Examples",
+      "id": "78888c6e0beacced3b7b973b66223dce",
+      "filepath": "components/mdx/easing.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\components/mdx/easing.mdx",
+      "slug": "components-mdx-easing",
+      "headings": []
+    },
+    "components/mdx/enableAutoPlay.mdx": {
       "name": "enableAutoPlay",
       "order": 7,
       "route": "/enableAutoPlay",
       "menu": "Examples",
       "id": "e5ed8a42173892b88aa17a4b5b18ed5e",
-      "filepath": "src/docs/components/mdx/enableAutoPlay.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src/docs/components/mdx/enableAutoPlay.mdx",
-      "slug": "src-docs-components-mdx-enable-auto-play",
+      "filepath": "components/mdx/enableAutoPlay.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\components/mdx/enableAutoPlay.mdx",
+      "slug": "components-mdx-enable-auto-play",
       "headings": []
     },
-    "src/docs/components/mdx/initialFirstItem.mdx": {
-      "name": "initialFirstItem",
-      "order": 4,
-      "route": "/initialFirstItem",
-      "menu": "Examples",
-      "id": "874f1d47bac46c765d139c9d18b3d7f2",
-      "filepath": "src/docs/components/mdx/initialFirstItem.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src/docs/components/mdx/initialFirstItem.mdx",
-      "slug": "src-docs-components-mdx-initial-first-item",
-      "headings": []
-    },
-    "src/docs/components/mdx/focusOnSelect.mdx": {
+    "components/mdx/focusOnSelect.mdx": {
       "name": "focusOnSelect",
       "order": 5,
       "route": "/focusOnSelect",
       "menu": "Examples",
       "id": "f24587a0e3c1d9d725af308f6392dbf0",
-      "filepath": "src/docs/components/mdx/focusOnSelect.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src/docs/components/mdx/focusOnSelect.mdx",
-      "slug": "src-docs-components-mdx-focus-on-select",
+      "filepath": "components/mdx/focusOnSelect.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\components/mdx/focusOnSelect.mdx",
+      "slug": "components-mdx-focus-on-select",
       "headings": []
     },
-    "src/docs/components/mdx/itemPadding.mdx": {
-      "name": "itemPadding",
-      "order": 8,
-      "route": "/itemPadding",
+    "components/mdx/initialFirstItem.mdx": {
+      "name": "initialFirstItem",
+      "order": 4,
+      "route": "/initialFirstItem",
       "menu": "Examples",
-      "id": "e7b229c12d81372bc77c79253aff52b9",
-      "filepath": "src/docs/components/mdx/itemPadding.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src/docs/components/mdx/itemPadding.mdx",
-      "slug": "src-docs-components-mdx-item-padding",
+      "id": "874f1d47bac46c765d139c9d18b3d7f2",
+      "filepath": "components/mdx/initialFirstItem.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\components/mdx/initialFirstItem.mdx",
+      "slug": "components-mdx-initial-first-item",
       "headings": []
     },
-    "src/docs/components/mdx/itemsToScroll.mdx": {
-      "name": "itemsToScroll",
-      "order": 2,
-      "route": "/itemsToScroll",
-      "menu": "Examples",
-      "id": "7ca03173b34d525c5b8bd86e61e30848",
-      "filepath": "src/docs/components/mdx/itemsToScroll.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src/docs/components/mdx/itemsToScroll.mdx",
-      "slug": "src-docs-components-mdx-items-to-scroll",
-      "headings": []
-    },
-    "src/docs/components/mdx/isRTL.mdx": {
+    "components/mdx/isRTL.mdx": {
       "name": "isRTL",
       "order": 6,
       "route": "/isRTL",
       "menu": "Examples",
       "id": "9bc60693fd682815630e5e523056aeb2",
-      "filepath": "src/docs/components/mdx/isRTL.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src/docs/components/mdx/isRTL.mdx",
-      "slug": "src-docs-components-mdx-is-rtl",
+      "filepath": "components/mdx/isRTL.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\components/mdx/isRTL.mdx",
+      "slug": "components-mdx-is-rtl",
       "headings": []
     },
-    "src/docs/components/mdx/onUserNext.mdx": {
-      "name": "onUserNext",
-      "order": 9,
-      "route": "/onUserNext",
+    "components/mdx/itemPadding.mdx": {
+      "name": "itemPadding",
+      "order": 8,
+      "route": "/itemPadding",
       "menu": "Examples",
-      "id": "60dbc989aa6f0edfc7d189f0815b4484",
-      "filepath": "src/docs/components/mdx/onUserNext.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src/docs/components/mdx/onUserNext.mdx",
-      "slug": "src-docs-components-mdx-on-user-next",
+      "id": "e7b229c12d81372bc77c79253aff52b9",
+      "filepath": "components/mdx/itemPadding.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\components/mdx/itemPadding.mdx",
+      "slug": "components-mdx-item-padding",
       "headings": []
     },
-    "src/docs/components/mdx/itemsToShow.mdx": {
+    "components/mdx/itemsToShow.mdx": {
       "name": "itemsToShow",
       "order": 1,
       "route": "/itemsToShow",
       "menu": "Examples",
       "id": "98c52d751af6a05ed757dec7408e238f",
-      "filepath": "src/docs/components/mdx/itemsToShow.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src/docs/components/mdx/itemsToShow.mdx",
-      "slug": "src-docs-components-mdx-items-to-show",
+      "filepath": "components/mdx/itemsToShow.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\components/mdx/itemsToShow.mdx",
+      "slug": "components-mdx-items-to-show",
+      "headings": []
+    },
+    "components/mdx/onUserNext.mdx": {
+      "name": "onUserNext",
+      "order": 9,
+      "route": "/onUserNext",
+      "menu": "Examples",
+      "id": "60dbc989aa6f0edfc7d189f0815b4484",
+      "filepath": "components/mdx/onUserNext.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\components/mdx/onUserNext.mdx",
+      "slug": "components-mdx-on-user-next",
+      "headings": []
+    },
+    "components/mdx/itemsToScroll.mdx": {
+      "name": "itemsToScroll",
+      "order": 2,
+      "route": "/itemsToScroll",
+      "menu": "Examples",
+      "id": "7ca03173b34d525c5b8bd86e61e30848",
+      "filepath": "components/mdx/itemsToScroll.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\components/mdx/itemsToScroll.mdx",
+      "slug": "components-mdx-items-to-scroll",
       "headings": []
     }
   }

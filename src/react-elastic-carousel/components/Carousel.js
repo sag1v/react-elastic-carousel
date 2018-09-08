@@ -561,7 +561,10 @@ Carousel.propTypes = {
    * - ({type, onClick}) => <div onClick={onClick}>{type === 'prev' ? '<-' : '->'}</div>
    */
   renderArrow: PropTypes.func,
+  
   // TODO: item position ["start","center","end"]
+
+  /** A padding for each element  */
   itemPadding: PropTypes.array,
 
   // swipe

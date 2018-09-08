@@ -1,11 +1,17 @@
 import path from 'path'
+import pkg from './package.json';
 
-import libName from './libName';
+const libName = pkg.name;
 
 export default {
+  src: './src/docs',
+  dest: './demo',
+  title: libName,
+  port: 8888,
   hashRouter: true,
   base: `/${libName}/`,
   ordering: "ascending",
+  description: pkg.description,
   modifyBundlerConfig: config => {
     config.resolve.alias = {
       ...config.resolve.alias,

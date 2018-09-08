@@ -21,7 +21,7 @@
     "prebuild": "npm run lint:fix",
     "build": "rollup -c",
     "prepare": "npm run build",
-    "deploy": "gh-pages -d .docz/dist",
+    "deploy": "gh-pages -d demo",
     "docz:dev": "docz dev && npm run lint:watch",
     "docz:build": "docz build"
   },

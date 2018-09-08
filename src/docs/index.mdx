@@ -6,7 +6,7 @@ route: /
 
 import {Playground, PropsTable } from 'docz';
 import Carousel from 'react-elastic-carousel';
-import Item from './components/ItemContainer';
+import Item from './components/SimpleITem';
 import items from './components/itemsCollection';
 
 ## install
@@ -22,8 +22,13 @@ import Carousel from 'react-elastic-carousel'
 ## play 
 
 <Playground >
-  <Carousel itemsToShow={3}>
-    {items(12).map(item => <Item key={item.id} {...item}/>)}
+  <Carousel itemsToShow={1}>
+    <Item>1</Item>
+    <Item>2</Item>
+    <Item>3</Item>
+    <Item>4</Item>
+    <Item>5</Item>
+    <Item>6</Item>
   </Carousel>
 </Playground>
 
