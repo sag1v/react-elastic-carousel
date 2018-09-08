@@ -8,30 +8,32 @@ menu: Examples
 import {Playground, PropsTable } from 'docz';
 import Carousel from 'react-elastic-carousel';
 import Item from '../components/SimpleItem';
+import breakPoints from '../components/breakPoints';
+
+- This is the coolest feature because `react-elastic-carousel` is listening to the element's `resize` event instead of the window.
+- You can pass an array of objects that will signal `react-elastic-carousel` to change props like `itemsToShow` and `itemsToScroll` on different `width` values.
+
+For example:
+
+```
+const breakPoints = [
+  { width: 1, itemsToShow: 1 },
+  { width: 550, itemsToShow: 2, itemsToScroll: 2 },
+  { width: 850, itemsToShow: 3 },
+  { width: 1150, itemsToShow: 4, itemsToScroll: 2 },
+  { width: 1450, itemsToShow: 5 },
+  { width: 1750, itemsToShow: 6 }
+];
+```
+- Drag or use the resize buttons to see the changes... 
 
 <Playground >
-  {
-    () => {
-      const breakpoints = [
-        { width: 1, itemsToShow: 1, itemsToScroll: 1 },
-        { width: 550, itemsToShow: 2, itemsToScroll: 1 },
-        { width: 850, itemsToShow: 3, itemsToScroll: 1 },
-        { width: 1150, itemsToShow: 4, itemsToScroll: 1 },
-        { width: 1450, itemsToShow: 5, itemsToScroll: 1 },
-        { width: 1750, itemsToShow: 6, itemsToScroll: 1 }
-      ];
-
-      return (
-        <Carousel breakPoints={breakpoints}>
-          <Item>1</Item>
-          <Item>2</Item>
-          <Item>3</Item>
-          <Item>4</Item>
-          <Item>5</Item>
-          <Item>6</Item>
-        </Carousel>
-      )
-
-    }
-  }
+  <Carousel breakPoints={breakPoints}>
+    <Item>1</Item>
+    <Item>2</Item>
+    <Item>3</Item>
+    <Item>4</Item>
+    <Item>5</Item>
+    <Item>6</Item>
+  </Carousel>
 </Playground>
