@@ -1,8 +1,17 @@
 {
-  "short_name": "react-elastic-carousel",
-  "name": "react-elastic-carousel",
-  "start_url": "./index.html",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "vendors.js": "/static/js/vendors.4b2069ac.js",
+  "app.js": "/static/js/app.854f3e8e.js",
+  "src-docs-index.js": "/static/js/src-docs-index.7517502c.js",
+  "src-docs-components-mdx-breakpoints.js": "/static/js/src-docs-components-mdx-breakpoints.cf657a71.js",
+  "src-docs-components-mdx-easing.js": "/static/js/src-docs-components-mdx-easing.4de8c1bc.js",
+  "src-docs-components-mdx-enable-auto-play.js": "/static/js/src-docs-components-mdx-enable-auto-play.71501bd8.js",
+  "src-docs-components-mdx-initial-first-item.js": "/static/js/src-docs-components-mdx-initial-first-item.b99d64ee.js",
+  "src-docs-components-mdx-is-rtl.js": "/static/js/src-docs-components-mdx-is-rtl.5f13da27.js",
+  "src-docs-components-mdx-item-padding.js": "/static/js/src-docs-components-mdx-item-padding.645a4220.js",
+  "src-docs-components-mdx-focus-on-select.js": "/static/js/src-docs-components-mdx-focus-on-select.cf585bd9.js",
+  "src-docs-components-mdx-items-to-scroll.js": "/static/js/src-docs-components-mdx-items-to-scroll.d63499a0.js",
+  "src-docs-components-mdx-items-to-show.js": "/static/js/src-docs-components-mdx-items-to-show.f0bee337.js",
+  "src-docs-components-mdx-on-user-next.js": "/static/js/src-docs-components-mdx-on-user-next.6d61914c.js",
+  "runtime~app.js": "/static/js/runtime~app.6f29d85408604ff7cbe9.js",
+  "index.html": "/index.html"
 }
