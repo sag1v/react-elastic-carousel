@@ -374,7 +374,7 @@ class Carousel extends React.Component {
     const { children } = this.props;
     const numOfVisibleItems = this.getNumOfVisibleItems();
     const numOfPages = Math.ceil(children.length / numOfVisibleItems);
-    return numOfPages;
+    return numOfPages || 1;
   };
 
   updateActivePage = () => {
