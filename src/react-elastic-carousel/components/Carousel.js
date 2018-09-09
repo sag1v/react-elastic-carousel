@@ -208,7 +208,7 @@ class Carousel extends React.Component {
       ...flex,
       position: "absolute",
       transition: `all ${duration}ms ${effectiveEasing}`,
-      height: "100%"
+      minHeight: "100%"
     };
   };
 

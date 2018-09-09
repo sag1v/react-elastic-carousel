@@ -25,7 +25,7 @@
       }
     },
     "ordering": "ascending",
-    "version": "1.0.0",
+    "version": "0.1.2",
     "repository": "https://github.com/sag1v/react-elastic-carousel",
     "src": "./src/docs",
     "dest": "./demo",
@@ -131,17 +131,6 @@
         }
       ]
     },
-    "mdx/initialFirstItem.mdx": {
-      "name": "initialFirstItem",
-      "order": 4,
-      "route": "/initialFirstItem",
-      "menu": "Examples",
-      "id": "76a5739de06d728534049c3762ad9a66",
-      "filepath": "mdx/initialFirstItem.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/initialFirstItem.mdx",
-      "slug": "mdx-initial-first-item",
-      "headings": []
-    },
     "mdx/itemPadding.mdx": {
       "name": "itemPadding",
       "order": 8,
@@ -151,6 +140,17 @@
       "filepath": "mdx/itemPadding.mdx",
       "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/itemPadding.mdx",
       "slug": "mdx-item-padding",
+      "headings": []
+    },
+    "mdx/initialFirstItem.mdx": {
+      "name": "initialFirstItem",
+      "order": 4,
+      "route": "/initialFirstItem",
+      "menu": "Examples",
+      "id": "76a5739de06d728534049c3762ad9a66",
+      "filepath": "mdx/initialFirstItem.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/initialFirstItem.mdx",
+      "slug": "mdx-initial-first-item",
       "headings": []
     },
     "mdx/isRTL.mdx": {
@@ -164,17 +164,6 @@
       "slug": "mdx-is-rtl",
       "headings": []
     },
-    "mdx/itemPosition.mdx": {
-      "name": "itemPosition",
-      "order": 9,
-      "route": "/itemPosition",
-      "menu": "Examples",
-      "id": "76a6425c8af9dc748f704aee745e416e",
-      "filepath": "mdx/itemPosition.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/itemPosition.mdx",
-      "slug": "mdx-item-position",
-      "headings": []
-    },
     "mdx/itemsToScroll.mdx": {
       "name": "itemsToScroll",
       "order": 2,
@@ -186,6 +175,17 @@
       "slug": "mdx-items-to-scroll",
       "headings": []
     },
+    "mdx/itemPosition.mdx": {
+      "name": "itemPosition",
+      "order": 9,
+      "route": "/itemPosition",
+      "menu": "Examples",
+      "id": "76a6425c8af9dc748f704aee745e416e",
+      "filepath": "mdx/itemPosition.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/itemPosition.mdx",
+      "slug": "mdx-item-position",
+      "headings": []
+    },
     "mdx/onNextEnd.mdx": {
       "name": "onNextEnd",
       "order": 991,
@@ -195,6 +195,17 @@
       "filepath": "mdx/onNextEnd.mdx",
       "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/onNextEnd.mdx",
       "slug": "mdx-on-next-end",
+      "headings": []
+    },
+    "mdx/itemsToShow.mdx": {
+      "name": "itemsToShow",
+      "order": 1,
+      "route": "/itemsToShow",
+      "menu": "Examples",
+      "id": "a9606fa08754b34ebfd1b8afdb09a627",
+      "filepath": "mdx/itemsToShow.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/itemsToShow.mdx",
+      "slug": "mdx-items-to-show",
       "headings": []
     },
     "mdx/onNextStart.mdx": {
@@ -239,17 +250,6 @@
       "filepath": "mdx/slideNext.mdx",
       "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/slideNext.mdx",
       "slug": "mdx-slide-next",
-      "headings": []
-    },
-    "mdx/itemsToShow.mdx": {
-      "name": "itemsToShow",
-      "order": 1,
-      "route": "/itemsToShow",
-      "menu": "Examples",
-      "id": "a9606fa08754b34ebfd1b8afdb09a627",
-      "filepath": "mdx/itemsToShow.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/itemsToShow.mdx",
-      "slug": "mdx-items-to-show",
       "headings": []
     }
   }
