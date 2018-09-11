@@ -88,17 +88,6 @@
       "slug": "mdx-focus-on-select",
       "headings": []
     },
-    "mdx/goTo.mdx": {
-      "name": "goTo",
-      "order": 994,
-      "route": "/goTo",
-      "menu": "Examples",
-      "id": "0d9b9869868b7d346d28d47233378890",
-      "filepath": "mdx/goTo.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/goTo.mdx",
-      "slug": "mdx-go-to",
-      "headings": []
-    },
     "mdx/index.mdx": {
       "name": "Getting started",
       "route": "/",
@@ -131,15 +120,15 @@
         }
       ]
     },
-    "mdx/initialFirstItem.mdx": {
-      "name": "initialFirstItem",
-      "order": 4,
-      "route": "/initialFirstItem",
+    "mdx/goTo.mdx": {
+      "name": "goTo",
+      "order": 994,
+      "route": "/goTo",
       "menu": "Examples",
-      "id": "76a5739de06d728534049c3762ad9a66",
-      "filepath": "mdx/initialFirstItem.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/initialFirstItem.mdx",
-      "slug": "mdx-initial-first-item",
+      "id": "0d9b9869868b7d346d28d47233378890",
+      "filepath": "mdx/goTo.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/goTo.mdx",
+      "slug": "mdx-go-to",
       "headings": []
     },
     "mdx/isRTL.mdx": {
@@ -151,6 +140,17 @@
       "filepath": "mdx/isRTL.mdx",
       "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/isRTL.mdx",
       "slug": "mdx-is-rtl",
+      "headings": []
+    },
+    "mdx/initialFirstItem.mdx": {
+      "name": "initialFirstItem",
+      "order": 4,
+      "route": "/initialFirstItem",
+      "menu": "Examples",
+      "id": "76a5739de06d728534049c3762ad9a66",
+      "filepath": "mdx/initialFirstItem.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/initialFirstItem.mdx",
+      "slug": "mdx-initial-first-item",
       "headings": []
     },
     "mdx/itemPadding.mdx": {

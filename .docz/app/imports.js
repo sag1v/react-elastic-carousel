@@ -7,14 +7,14 @@ export const imports = {
     import(/* webpackPrefetch: true, webpackChunkName: "mdx-enable-auto-play" */ 'mdx/enableAutoPlay.mdx'),
   'mdx/focusOnSelect.mdx': () =>
     import(/* webpackPrefetch: true, webpackChunkName: "mdx-focus-on-select" */ 'mdx/focusOnSelect.mdx'),
-  'mdx/goTo.mdx': () =>
-    import(/* webpackPrefetch: true, webpackChunkName: "mdx-go-to" */ 'mdx/goTo.mdx'),
   'mdx/index.mdx': () =>
     import(/* webpackPrefetch: true, webpackChunkName: "mdx-index" */ 'mdx/index.mdx'),
-  'mdx/initialFirstItem.mdx': () =>
-    import(/* webpackPrefetch: true, webpackChunkName: "mdx-initial-first-item" */ 'mdx/initialFirstItem.mdx'),
+  'mdx/goTo.mdx': () =>
+    import(/* webpackPrefetch: true, webpackChunkName: "mdx-go-to" */ 'mdx/goTo.mdx'),
   'mdx/isRTL.mdx': () =>
     import(/* webpackPrefetch: true, webpackChunkName: "mdx-is-rtl" */ 'mdx/isRTL.mdx'),
+  'mdx/initialFirstItem.mdx': () =>
+    import(/* webpackPrefetch: true, webpackChunkName: "mdx-initial-first-item" */ 'mdx/initialFirstItem.mdx'),
   'mdx/itemPadding.mdx': () =>
     import(/* webpackPrefetch: true, webpackChunkName: "mdx-item-padding" */ 'mdx/itemPadding.mdx'),
   'mdx/itemPosition.mdx': () =>

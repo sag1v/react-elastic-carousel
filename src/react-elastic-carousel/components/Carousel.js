@@ -357,7 +357,7 @@ class Carousel extends React.Component {
     if (noChange) {
       return;
     }
-    if(outOfBoundry){
+    if (outOfBoundry) {
       nextItemId = children.length - itemsToshow;
     }
     let direction = consts.NEXT;
