@@ -7,7 +7,7 @@ import Arrow from "./Arrow";
 import consts from "../consts";
 import { firstItemReducer } from "../reducers/items";
 import { nextItemAction, prevItemAction } from "../actions/itemsActions";
-import { flex, row, overflowHidden } from "./styleRules";
+import { SliderContainer, Slider, StyledCarousel, CarouselWrapper } from './styled';
 import { noop, cssPrefix } from "../utils/helpers";
 import { Pagination } from "./Pagination";
 
@@ -170,55 +170,11 @@ class Carousel extends React.Component {
     let visibleItems = this.getNumOfVisibleItems();
     const childWidth = width / visibleItems;
     this.setState(
-      state => ({ childWidth, sliderContainerWidth: width }),
+      (state) => ({ childWidth, sliderContainerWidth: width }),
       () => this.updateSliderPosition()
     );
 
     onResize(currentBreakPoint);
-  };
-
-  carouselStyle = () => {
-    const { rootHeight } = this.state;
-    return {
-      ...flex,
-      ...row,
-      width: "100%",
-      height: rootHeight
-    };
-  };
-
-  sliderContainerStyle = () => ({
-    ...overflowHidden,
-    position: "relative",
-    width: "100%",
-    margin: "0 10px"
-  });
-
-  baseSliderStyle = () => {
-    const { transitionMs, easing, tiltEasing } = this.props;
-    const { isSwiping } = this.state;
-    const duration = isSwiping ? 250 : transitionMs;
-    const effectiveEasing = isSwiping ? tiltEasing : easing;
-    return {
-      ...flex,
-      position: "absolute",
-      transition: `all ${duration}ms ${effectiveEasing}`,
-      minHeight: "100%"
-    };
-  };
-
-  sliderStyle = () => {
-    const { isRTL } = this.props;
-    const { sliderPosition, swipedSliderPosition, isSwiping } = this.state;
-    let style = this.baseSliderStyle();
-    if (isRTL) {
-      style.left = "auto";
-      style.right = isSwiping ? swipedSliderPosition : sliderPosition;
-    } else {
-      style.right = "auto";
-      style.left = isSwiping ? swipedSliderPosition : sliderPosition;
-    }
-    return style;
   };
 
   tiltMoveMent = (position, distance = 20, duration = 150) => {
@@ -307,20 +263,20 @@ class Carousel extends React.Component {
     const { onNextEnd } = this.props;
     const { firstItem } = this.state;
     const nextItemObj = this.convertChildToCbObj(firstItem);
-    this.updateActivePage();
-    onNextEnd(nextItemObj);
     this.removeSliderTransitionHook(this.onNextEnd);
+    this.updateActivePage();
     this.setState({ transitioning: false });
+    onNextEnd(nextItemObj);
   };
 
   onPrevEnd = () => {
     const { onPrevEnd } = this.props;
     const { firstItem } = this.state;
     const nextItemObj = this.convertChildToCbObj(firstItem);
-    this.updateActivePage();
-    onPrevEnd(nextItemObj);
     this.removeSliderTransitionHook(this.onPrevEnd);
+    this.updateActivePage();
     this.setState({ transitioning: false });
+    onPrevEnd(nextItemObj);
   };
 
   generatePositionUpdater = (direction, nextItemId, rest) => state => {
@@ -399,11 +355,14 @@ class Carousel extends React.Component {
   };
 
   render() {
-    const { childWidth, activePage } = this.state;
+    const { childWidth, activePage, isSwiping, sliderPosition, swipedSliderPosition, rootHeight } = this.state;
     const {
       className,
       style,
       isRTL,
+      easing,
+      tiltEasing,
+      transitionMs,
       children,
       focusOnSelect,
       itemPosition,
@@ -418,36 +377,34 @@ class Carousel extends React.Component {
     const onSwipedRight = isRTL ? this.slideNext : this.slidePrev;
     const numOfPages = this.getNumOfPages();
 
-    const rootStyle = {
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      width: "100%",
-      direction: isRTL ? "rtl" : "ltr",
-      ...style
-    };
     return (
-      <div
+      <CarouselWrapper
+        isRTL={isRTL}
         className={`${cssPrefix("carousel-wrapper")} ${className}`}
-        style={rootStyle}
+        style={style}
       >
-        <div className={cssPrefix("carousel")} style={this.carouselStyle()}>
+        <StyledCarousel className={cssPrefix("carousel")} height={rootHeight}>
           <Only when={showArrows}>
             {renderArrow ? (
               renderArrow({ type: consts.PREV, onClick: this.onPrevStart })
             ) : (
-              <Arrow onClick={this.onPrevStart} direction="left" />
-            )}
+                <Arrow onClick={this.onPrevStart} direction="left" />
+              )}
           </Only>
-          <div
+          <SliderContainer
             className={cssPrefix("slider-container")}
-            style={this.sliderContainerStyle()}
-            ref={this.setRef("sliderContainer")}
+            innerRef={this.setRef("sliderContainer")}
           >
-            <div
-              ref={this.setRef("slider")}
+            <Slider
+              isRTL={isRTL}
+              easing={easing}
+              sliderPosition={sliderPosition}
+              swipedSliderPosition={swipedSliderPosition}
+              isSwiping={isSwiping}
+              transitionMs={transitionMs}
+              tiltEasing={tiltEasing}
               className={cssPrefix("slider")}
-              style={this.sliderStyle()}
+              innerRef={this.setRef("slider")}
             >
               <Track
                 children={children}
@@ -460,16 +417,16 @@ class Carousel extends React.Component {
                 onSwipedRight={onSwipedRight}
                 onItemClick={focusOnSelect ? this.goTo : undefined}
               />
-            </div>
-          </div>
+            </Slider>
+          </SliderContainer>
           <Only when={showArrows}>
             {renderArrow ? (
               renderArrow({ type: consts.NEXT, onClick: this.onNextStart })
             ) : (
-              <Arrow onClick={this.onNextStart} direction="right" />
-            )}
+                <Arrow onClick={this.onNextStart} direction="right" />
+              )}
           </Only>
-        </div>
+        </StyledCarousel>
         <Only when={pagination}>
           <Pagination
             numOfPages={numOfPages}
@@ -477,7 +434,7 @@ class Carousel extends React.Component {
             onClick={this.onIndicatorClick}
           />
         </Only>
-      </div>
+      </CarouselWrapper>
     );
   }
 }
