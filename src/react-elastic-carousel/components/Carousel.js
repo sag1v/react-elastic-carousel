@@ -7,7 +7,12 @@ import Arrow from "./Arrow";
 import consts from "../consts";
 import { firstItemReducer } from "../reducers/items";
 import { nextItemAction, prevItemAction } from "../actions/itemsActions";
-import { SliderContainer, Slider, StyledCarousel, CarouselWrapper } from './styled';
+import {
+  SliderContainer,
+  Slider,
+  StyledCarousel,
+  CarouselWrapper
+} from "./styled";
 import { noop, cssPrefix } from "../utils/helpers";
 import { Pagination } from "./Pagination";
 
@@ -170,7 +175,7 @@ class Carousel extends React.Component {
     let visibleItems = this.getNumOfVisibleItems();
     const childWidth = width / visibleItems;
     this.setState(
-      (state) => ({ childWidth, sliderContainerWidth: width }),
+      state => ({ childWidth, sliderContainerWidth: width }),
       () => this.updateSliderPosition()
     );
 
@@ -355,7 +360,14 @@ class Carousel extends React.Component {
   };
 
   render() {
-    const { childWidth, activePage, isSwiping, sliderPosition, swipedSliderPosition, rootHeight } = this.state;
+    const {
+      childWidth,
+      activePage,
+      isSwiping,
+      sliderPosition,
+      swipedSliderPosition,
+      rootHeight
+    } = this.state;
     const {
       className,
       style,
@@ -373,8 +385,8 @@ class Carousel extends React.Component {
       showArrows,
       renderArrow
     } = this.props;
-    const onSwipedLeft = isRTL ? this.slidePrev : this.slideNext;
-    const onSwipedRight = isRTL ? this.slideNext : this.slidePrev;
+    const onSwipedLeft = isRTL ? this.onPrevStart : this.onNextStart;
+    const onSwipedRight = isRTL ? this.onNextStart : this.onPrevStart;
     const numOfPages = this.getNumOfPages();
 
     return (
@@ -388,8 +400,8 @@ class Carousel extends React.Component {
             {renderArrow ? (
               renderArrow({ type: consts.PREV, onClick: this.onPrevStart })
             ) : (
-                <Arrow onClick={this.onPrevStart} direction="left" />
-              )}
+              <Arrow onClick={this.onPrevStart} direction="left" />
+            )}
           </Only>
           <SliderContainer
             className={cssPrefix("slider-container")}
@@ -423,8 +435,8 @@ class Carousel extends React.Component {
             {renderArrow ? (
               renderArrow({ type: consts.NEXT, onClick: this.onNextStart })
             ) : (
-                <Arrow onClick={this.onNextStart} direction="right" />
-              )}
+              <Arrow onClick={this.onNextStart} direction="right" />
+            )}
           </Only>
         </StyledCarousel>
         <Only when={pagination}>

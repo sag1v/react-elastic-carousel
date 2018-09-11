@@ -131,17 +131,6 @@
         }
       ]
     },
-    "mdx/initialFirstItem.mdx": {
-      "name": "initialFirstItem",
-      "order": 4,
-      "route": "/initialFirstItem",
-      "menu": "Examples",
-      "id": "76a5739de06d728534049c3762ad9a66",
-      "filepath": "mdx/initialFirstItem.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/initialFirstItem.mdx",
-      "slug": "mdx-initial-first-item",
-      "headings": []
-    },
     "mdx/isRTL.mdx": {
       "name": "isRTL",
       "order": 6,
@@ -151,6 +140,17 @@
       "filepath": "mdx/isRTL.mdx",
       "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/isRTL.mdx",
       "slug": "mdx-is-rtl",
+      "headings": []
+    },
+    "mdx/initialFirstItem.mdx": {
+      "name": "initialFirstItem",
+      "order": 4,
+      "route": "/initialFirstItem",
+      "menu": "Examples",
+      "id": "76a5739de06d728534049c3762ad9a66",
+      "filepath": "mdx/initialFirstItem.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/initialFirstItem.mdx",
+      "slug": "mdx-initial-first-item",
       "headings": []
     },
     "mdx/itemPadding.mdx": {
@@ -197,17 +197,6 @@
       "slug": "mdx-items-to-show",
       "headings": []
     },
-    "mdx/onNextEnd.mdx": {
-      "name": "onNextEnd",
-      "order": 991,
-      "route": "/onNextEnd",
-      "menu": "Examples",
-      "id": "252226ec0e74a4c6191f7c27e27ab109",
-      "filepath": "mdx/onNextEnd.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/onNextEnd.mdx",
-      "slug": "mdx-on-next-end",
-      "headings": []
-    },
     "mdx/onNextStart.mdx": {
       "name": "onNextStart",
       "order": 990,
@@ -217,6 +206,17 @@
       "filepath": "mdx/onNextStart.mdx",
       "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/onNextStart.mdx",
       "slug": "mdx-on-next-start",
+      "headings": []
+    },
+    "mdx/onNextEnd.mdx": {
+      "name": "onNextEnd",
+      "order": 991,
+      "route": "/onNextEnd",
+      "menu": "Examples",
+      "id": "252226ec0e74a4c6191f7c27e27ab109",
+      "filepath": "mdx/onNextEnd.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/onNextEnd.mdx",
+      "slug": "mdx-on-next-end",
       "headings": []
     },
     "mdx/onPrevEnd.mdx": {
