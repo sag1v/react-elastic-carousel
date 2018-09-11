@@ -25,7 +25,7 @@
       }
     },
     "ordering": "ascending",
-    "version": "0.1.3",
+    "version": "0.1.4",
     "repository": "https://github.com/sag1v/react-elastic-carousel",
     "src": "./src/docs",
     "dest": "./demo",
@@ -44,6 +44,17 @@
     }
   },
   "entries": {
+    "mdx/breakpoints.mdx": {
+      "name": "breakPoints",
+      "order": 3,
+      "route": "/breakPoints",
+      "menu": "Examples",
+      "id": "f6a48a27e5054ccbc3c8fe4e89b91d6b",
+      "filepath": "mdx/breakpoints.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/breakpoints.mdx",
+      "slug": "mdx-breakpoints",
+      "headings": []
+    },
     "mdx/easing.mdx": {
       "name": "easing",
       "order": 10,
@@ -77,15 +88,15 @@
       "slug": "mdx-focus-on-select",
       "headings": []
     },
-    "mdx/initialFirstItem.mdx": {
-      "name": "initialFirstItem",
-      "order": 4,
-      "route": "/initialFirstItem",
+    "mdx/goTo.mdx": {
+      "name": "goTo",
+      "order": 994,
+      "route": "/goTo",
       "menu": "Examples",
-      "id": "76a5739de06d728534049c3762ad9a66",
-      "filepath": "mdx/initialFirstItem.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/initialFirstItem.mdx",
-      "slug": "mdx-initial-first-item",
+      "id": "0d9b9869868b7d346d28d47233378890",
+      "filepath": "mdx/goTo.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/goTo.mdx",
+      "slug": "mdx-go-to",
       "headings": []
     },
     "mdx/index.mdx": {
@@ -120,15 +131,15 @@
         }
       ]
     },
-    "mdx/goTo.mdx": {
-      "name": "goTo",
-      "order": 994,
-      "route": "/goTo",
+    "mdx/initialFirstItem.mdx": {
+      "name": "initialFirstItem",
+      "order": 4,
+      "route": "/initialFirstItem",
       "menu": "Examples",
-      "id": "0d9b9869868b7d346d28d47233378890",
-      "filepath": "mdx/goTo.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/goTo.mdx",
-      "slug": "mdx-go-to",
+      "id": "76a5739de06d728534049c3762ad9a66",
+      "filepath": "mdx/initialFirstItem.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/initialFirstItem.mdx",
+      "slug": "mdx-initial-first-item",
       "headings": []
     },
     "mdx/isRTL.mdx": {
@@ -228,17 +239,6 @@
       "filepath": "mdx/onPrevStart.mdx",
       "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/onPrevStart.mdx",
       "slug": "mdx-on-prev-start",
-      "headings": []
-    },
-    "mdx/breakpoints.mdx": {
-      "name": "breakPoints",
-      "order": 3,
-      "route": "/breakPoints",
-      "menu": "Examples",
-      "id": "f6a48a27e5054ccbc3c8fe4e89b91d6b",
-      "filepath": "mdx/breakpoints.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/breakpoints.mdx",
-      "slug": "mdx-breakpoints",
       "headings": []
     },
     "mdx/slideNext.mdx": {
