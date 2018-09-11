@@ -89,5 +89,17 @@
   },
   "files": [
     "dist"
+  ],
+  "keywords": [
+    "react",
+    "carousel",
+    "responsive",
+    "reactjs",
+    "carrousel",
+    "slides",
+    "flexibale",
+    "rtl",
+    "right-to-left",
+    "resize"
   ]
 }
