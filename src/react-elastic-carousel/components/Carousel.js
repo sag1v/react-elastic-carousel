@@ -34,11 +34,6 @@ class Carousel extends React.Component {
     const { firstItem } = this.state;
     const nextItem = this.getNextItemIndex(firstItem, false);
 
-    // pagination update
-    if (prevState.firstItem !== firstItem) {
-      this.updateActivePage();
-    }
-
     // autoplay update
     if (firstItem === nextItem) {
       this.removeAutoPlay();
@@ -312,6 +307,7 @@ class Carousel extends React.Component {
     const { onNextEnd } = this.props;
     const { firstItem } = this.state;
     const nextItemObj = this.convertChildToCbObj(firstItem);
+    this.updateActivePage();
     onNextEnd(nextItemObj);
     this.removeSliderTransitionHook(this.onNextEnd);
     this.setState({ transitioning: false });
@@ -321,6 +317,7 @@ class Carousel extends React.Component {
     const { onPrevEnd } = this.props;
     const { firstItem } = this.state;
     const nextItemObj = this.convertChildToCbObj(firstItem);
+    this.updateActivePage();
     onPrevEnd(nextItemObj);
     this.removeSliderTransitionHook(this.onPrevEnd);
     this.setState({ transitioning: false });
@@ -361,17 +358,18 @@ class Carousel extends React.Component {
       nextItemId = children.length - itemsToshow;
     }
     let direction = consts.NEXT;
-    let cb = this.onNextEnd;
+    let positionEndCb = this.onNextEnd;
     if (isPrev) {
       direction = consts.PREV;
-      cb = this.onPrevEnd;
+      positionEndCb = this.onPrevEnd;
     }
     const stateUpdater = this.generatePositionUpdater(direction, nextItemId, {
       transitioning: true
     });
+
     this.setState(stateUpdater, () => {
       // callback
-      this.onSliderTransitionEnd(cb);
+      this.onSliderTransitionEnd(positionEndCb);
     });
   };
 

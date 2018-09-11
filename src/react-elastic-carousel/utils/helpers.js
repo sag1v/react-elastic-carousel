@@ -4,6 +4,8 @@ export const numberToArray = n => [...Array(n).keys()];
 
 export const cssPrefix = className => `rec rec-${className}`;
 
+export const pipe = (...fns) => x => fns.reduce((v, f) => f(v), x);
+
 export const throttle = (func, limit) => {
   let lastFunc;
   let lastRan;
