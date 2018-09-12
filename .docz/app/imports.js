@@ -23,12 +23,14 @@ export const imports = {
     import(/* webpackPrefetch: true, webpackChunkName: "mdx-items-to-scroll" */ 'mdx/itemsToScroll.mdx'),
   'mdx/itemsToShow.mdx': () =>
     import(/* webpackPrefetch: true, webpackChunkName: "mdx-items-to-show" */ 'mdx/itemsToShow.mdx'),
-  'mdx/onNextStart.mdx': () =>
-    import(/* webpackPrefetch: true, webpackChunkName: "mdx-on-next-start" */ 'mdx/onNextStart.mdx'),
   'mdx/onNextEnd.mdx': () =>
     import(/* webpackPrefetch: true, webpackChunkName: "mdx-on-next-end" */ 'mdx/onNextEnd.mdx'),
   'mdx/onPrevEnd.mdx': () =>
     import(/* webpackPrefetch: true, webpackChunkName: "mdx-on-prev-end" */ 'mdx/onPrevEnd.mdx'),
+  'mdx/onNextStart.mdx': () =>
+    import(/* webpackPrefetch: true, webpackChunkName: "mdx-on-next-start" */ 'mdx/onNextStart.mdx'),
+  'mdx/onResize.mdx': () =>
+    import(/* webpackPrefetch: true, webpackChunkName: "mdx-on-resize" */ 'mdx/onResize.mdx'),
   'mdx/onPrevStart.mdx': () =>
     import(/* webpackPrefetch: true, webpackChunkName: "mdx-on-prev-start" */ 'mdx/onPrevStart.mdx'),
   'mdx/slideNext.mdx': () =>

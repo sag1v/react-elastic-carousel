@@ -170,16 +170,28 @@ class Carousel extends React.Component {
 
   onContainerResize = sliderContainerNode => {
     const { onResize } = this.props;
-    const currentBreakPoint = this.getCurrentBreakpoint();
     const { width } = sliderContainerNode.contentRect;
-    let visibleItems = this.getNumOfVisibleItems();
-    const childWidth = width / visibleItems;
-    this.setState(
-      state => ({ childWidth, sliderContainerWidth: width }),
-      () => this.updateSliderPosition()
-    );
-
-    onResize(currentBreakPoint);
+    // update slider container width
+    this.setState({ sliderContainerWidth: width }, () => {
+      /* based on slider container's width, get num of items to show
+      * and calculate child's width (and update it in state)
+      */
+      let visibleItems = this.getNumOfVisibleItems();
+      const childWidth = width / visibleItems;
+      this.setState(
+        state => ({ childWidth: childWidth }),
+        () => {
+          /* Based on all of the above new data:
+          * update slider position
+          * get the new current breakpoint
+          * pass the current breakpoint to the consumer's callback
+          */
+          this.updateSliderPosition();
+          const currentBreakPoint = this.getCurrentBreakpoint();
+          onResize(currentBreakPoint);
+        }
+      );
+    });
   };
 
   tiltMoveMent = (position, distance = 20, duration = 150) => {

@@ -1,0 +1,29 @@
+---
+name: onResize
+order: 999
+route: /onResize
+menu: Examples
+---
+
+import {Playground, PropsTable } from 'docz';
+import Carousel from 'react-elastic-carousel';
+import Item from '../components/SimpleItem';
+import breakPoints from '../components/breakPoints';
+
+
+- You can listen to the `onResize` event of the `Carousel`, this will get invoked on each `resize` event of the root element and will return the current `breakPoint` object being used: 
+
+```
+(currentBreakPoint) => {/*...*/}
+```
+
+<Playground >
+    <Carousel breakPoints={breakPoints} onResize={currentBreakPoint => console.log(JSON.stringify(currentBreakPoint))}>
+    <Item>1</Item>
+    <Item>2</Item>
+    <Item>3</Item>
+    <Item>4</Item>
+    <Item>5</Item>
+    <Item>6</Item>
+    </Carousel>
+</Playground>

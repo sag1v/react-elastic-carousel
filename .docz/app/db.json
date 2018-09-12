@@ -25,7 +25,7 @@
       }
     },
     "ordering": "ascending",
-    "version": "0.1.5",
+    "version": "0.1.6",
     "repository": "https://github.com/sag1v/react-elastic-carousel",
     "src": "./src/docs",
     "dest": "./demo",
@@ -197,17 +197,6 @@
       "slug": "mdx-items-to-show",
       "headings": []
     },
-    "mdx/onNextStart.mdx": {
-      "name": "onNextStart",
-      "order": 990,
-      "route": "/onNextStart",
-      "menu": "Examples",
-      "id": "2d0ad71c220798c8ad6754e95f1436cf",
-      "filepath": "mdx/onNextStart.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/onNextStart.mdx",
-      "slug": "mdx-on-next-start",
-      "headings": []
-    },
     "mdx/onNextEnd.mdx": {
       "name": "onNextEnd",
       "order": 991,
@@ -228,6 +217,28 @@
       "filepath": "mdx/onPrevEnd.mdx",
       "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/onPrevEnd.mdx",
       "slug": "mdx-on-prev-end",
+      "headings": []
+    },
+    "mdx/onNextStart.mdx": {
+      "name": "onNextStart",
+      "order": 990,
+      "route": "/onNextStart",
+      "menu": "Examples",
+      "id": "2d0ad71c220798c8ad6754e95f1436cf",
+      "filepath": "mdx/onNextStart.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/onNextStart.mdx",
+      "slug": "mdx-on-next-start",
+      "headings": []
+    },
+    "mdx/onResize.mdx": {
+      "name": "onResize",
+      "order": 999,
+      "route": "/onResize",
+      "menu": "Examples",
+      "id": "eee22fe9ebecb3be389da92d8b9b15d8",
+      "filepath": "mdx/onResize.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/onResize.mdx",
+      "slug": "mdx-on-resize",
       "headings": []
     },
     "mdx/onPrevStart.mdx": {
