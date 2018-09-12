@@ -25,8 +25,9 @@
       }
     },
     "ordering": "ascending",
-    "version": "0.1.6",
+    "version": "0.1.7",
     "repository": "https://github.com/sag1v/react-elastic-carousel",
+    "native": false,
     "src": "./src/docs",
     "dest": "./demo",
     "port": 8888,
@@ -90,13 +91,24 @@
     },
     "mdx/goTo.mdx": {
       "name": "goTo",
-      "order": 994,
+      "order": 989,
       "route": "/goTo",
       "menu": "Examples",
       "id": "0d9b9869868b7d346d28d47233378890",
       "filepath": "mdx/goTo.mdx",
       "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/goTo.mdx",
       "slug": "mdx-go-to",
+      "headings": []
+    },
+    "mdx/isRTL.mdx": {
+      "name": "isRTL",
+      "order": 6,
+      "route": "/isRTL",
+      "menu": "Examples",
+      "id": "c4f7997e95e43791f89e3a691bfbfb47",
+      "filepath": "mdx/isRTL.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/isRTL.mdx",
+      "slug": "mdx-is-rtl",
       "headings": []
     },
     "mdx/index.mdx": {
@@ -131,17 +143,6 @@
         }
       ]
     },
-    "mdx/isRTL.mdx": {
-      "name": "isRTL",
-      "order": 6,
-      "route": "/isRTL",
-      "menu": "Examples",
-      "id": "c4f7997e95e43791f89e3a691bfbfb47",
-      "filepath": "mdx/isRTL.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/isRTL.mdx",
-      "slug": "mdx-is-rtl",
-      "headings": []
-    },
     "mdx/initialFirstItem.mdx": {
       "name": "initialFirstItem",
       "order": 4,
@@ -175,6 +176,17 @@
       "slug": "mdx-item-position",
       "headings": []
     },
+    "mdx/itemsToShow.mdx": {
+      "name": "itemsToShow",
+      "order": 1,
+      "route": "/itemsToShow",
+      "menu": "Examples",
+      "id": "a9606fa08754b34ebfd1b8afdb09a627",
+      "filepath": "mdx/itemsToShow.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/itemsToShow.mdx",
+      "slug": "mdx-items-to-show",
+      "headings": []
+    },
     "mdx/itemsToScroll.mdx": {
       "name": "itemsToScroll",
       "order": 2,
@@ -186,15 +198,15 @@
       "slug": "mdx-items-to-scroll",
       "headings": []
     },
-    "mdx/itemsToShow.mdx": {
-      "name": "itemsToShow",
-      "order": 1,
-      "route": "/itemsToShow",
+    "mdx/onNextStart.mdx": {
+      "name": "onNextStart",
+      "order": 990,
+      "route": "/onNextStart",
       "menu": "Examples",
-      "id": "a9606fa08754b34ebfd1b8afdb09a627",
-      "filepath": "mdx/itemsToShow.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/itemsToShow.mdx",
-      "slug": "mdx-items-to-show",
+      "id": "2d0ad71c220798c8ad6754e95f1436cf",
+      "filepath": "mdx/onNextStart.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/onNextStart.mdx",
+      "slug": "mdx-on-next-start",
       "headings": []
     },
     "mdx/onNextEnd.mdx": {
@@ -219,20 +231,9 @@
       "slug": "mdx-on-prev-end",
       "headings": []
     },
-    "mdx/onNextStart.mdx": {
-      "name": "onNextStart",
-      "order": 990,
-      "route": "/onNextStart",
-      "menu": "Examples",
-      "id": "2d0ad71c220798c8ad6754e95f1436cf",
-      "filepath": "mdx/onNextStart.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/onNextStart.mdx",
-      "slug": "mdx-on-next-start",
-      "headings": []
-    },
     "mdx/onResize.mdx": {
       "name": "onResize",
-      "order": 999,
+      "order": 995,
       "route": "/onResize",
       "menu": "Examples",
       "id": "eee22fe9ebecb3be389da92d8b9b15d8",
@@ -251,6 +252,23 @@
       "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/onPrevStart.mdx",
       "slug": "mdx-on-prev-start",
       "headings": []
+    },
+    "mdx/renderArrow.mdx": {
+      "name": "renderArrow",
+      "order": 11,
+      "route": "/renderArrow",
+      "menu": "Examples",
+      "id": "87a5c20c345f10cdedfb7b49befb6b18",
+      "filepath": "mdx/renderArrow.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/renderArrow.mdx",
+      "slug": "mdx-render-arrow",
+      "headings": [
+        {
+          "depth": 2,
+          "slug": "the-consts-object",
+          "value": "The  consts  object"
+        }
+      ]
     },
     "mdx/slideNext.mdx": {
       "name": "slideNext / slidePrev",

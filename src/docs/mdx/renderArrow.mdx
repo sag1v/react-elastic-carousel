@@ -1,0 +1,47 @@
+---
+name: renderArrow
+order: 11
+route: /renderArrow
+menu: Examples
+---
+
+import {Playground, PropsTable } from 'docz';
+import Carousel, {consts} from 'react-elastic-carousel';
+import Button from '../components/Button';
+import Item from '../components/SimpleItem';
+
+- You can pass a function that returns a react element,   
+  This function is a [render prop](https://reactjs.org/docs/render-props.html) and its signature is:  
+```
+({type, onClick}) => {/* return your element here */}
+```
+
+- `type` = `PropTypes.oneOf([consts.PREV, consts.NEXT])`
+- `onClick` Is the hook to the inner `onClick` of the `Carousel`. You can attach it wherever you want within the returned component.
+
+## The `consts` object 
+` You can import the `consts` object like so:
+```
+import Carousel, { consts } from 'react-elastic-carousel';
+```
+
+<Playground >
+    <Carousel 
+        renderArrow={
+            ({type, onClick}) => {
+                const pointer = type === consts.PREV ? '👈' : '👉';
+                return (<Button onClick={onClick}>
+                    {pointer}
+                </Button>
+                )
+            }
+        }
+    >
+        <Item>1</Item>
+        <Item>2</Item>
+        <Item>3</Item>
+        <Item>4</Item>
+        <Item>5</Item>
+        <Item>6</Item>
+    </Carousel>
+</Playground>
