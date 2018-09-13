@@ -29,8 +29,8 @@ export default {
   },
   themeConfig: {
     logo: {
-      src: "//cdn.onlinewebfonts.com/svg/img_569227.png",
-      width: 50
+      src: "//image.ibb.co/bQVjfU/carousel_logo.png",
+      width: "100%"
     },
     mode: 'light',
     codemirrorTheme: 'dracula',
