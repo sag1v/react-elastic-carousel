@@ -72,28 +72,6 @@
         }
       ]
     },
-    "mdx/enableAutoPlay.mdx": {
-      "name": "enableAutoPlay",
-      "order": 7,
-      "route": "/enableAutoPlay",
-      "menu": "Examples",
-      "id": "29c4ecc66acacd3bf0adba5cf3392524",
-      "filepath": "mdx/enableAutoPlay.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/enableAutoPlay.mdx",
-      "slug": "mdx-enable-auto-play",
-      "headings": [
-        {
-          "depth": 1,
-          "slug": "enableautoplay",
-          "value": "enableAutoPlay"
-        },
-        {
-          "depth": 4,
-          "slug": "toggle-enableautoplay-and-set-autoplayspeed-as-you-wish",
-          "value": "Toggle  enableAutoPlay  and set  autoPlaySpeed  as you wish"
-        }
-      ]
-    },
     "mdx/easing.mdx": {
       "name": "easing",
       "order": 10,
@@ -113,6 +91,28 @@
           "depth": 4,
           "slug": "you-can-pass-an-easing-pattern-for-the-animations",
           "value": "You can pass an easing pattern for the animations"
+        }
+      ]
+    },
+    "mdx/enableAutoPlay.mdx": {
+      "name": "enableAutoPlay",
+      "order": 7,
+      "route": "/enableAutoPlay",
+      "menu": "Examples",
+      "id": "29c4ecc66acacd3bf0adba5cf3392524",
+      "filepath": "mdx/enableAutoPlay.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/enableAutoPlay.mdx",
+      "slug": "mdx-enable-auto-play",
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "enableautoplay",
+          "value": "enableAutoPlay"
+        },
+        {
+          "depth": 4,
+          "slug": "toggle-enableautoplay-and-set-autoplayspeed-as-you-wish",
+          "value": "Toggle  enableAutoPlay  and set  autoPlaySpeed  as you wish"
         }
       ]
     },
@@ -285,28 +285,6 @@
         }
       ]
     },
-    "mdx/itemsToScroll.mdx": {
-      "name": "itemsToScroll",
-      "order": 2,
-      "route": "/itemsToScroll",
-      "menu": "Examples",
-      "id": "7f6f10b354a71a0fe33d0742ef4bd5ba",
-      "filepath": "mdx/itemsToScroll.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/itemsToScroll.mdx",
-      "slug": "mdx-items-to-scroll",
-      "headings": [
-        {
-          "depth": 1,
-          "slug": "itemstoscroll",
-          "value": "itemsToScroll"
-        },
-        {
-          "depth": 4,
-          "slug": "number-of-items-to-scroll",
-          "value": "Number of items to scroll"
-        }
-      ]
-    },
     "mdx/itemsToShow.mdx": {
       "name": "itemsToShow",
       "order": 1,
@@ -326,6 +304,28 @@
           "depth": 4,
           "slug": "number-of-visible-items",
           "value": "Number of visible items"
+        }
+      ]
+    },
+    "mdx/itemsToScroll.mdx": {
+      "name": "itemsToScroll",
+      "order": 2,
+      "route": "/itemsToScroll",
+      "menu": "Examples",
+      "id": "7f6f10b354a71a0fe33d0742ef4bd5ba",
+      "filepath": "mdx/itemsToScroll.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/itemsToScroll.mdx",
+      "slug": "mdx-items-to-scroll",
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "itemstoscroll",
+          "value": "itemsToScroll"
+        },
+        {
+          "depth": 4,
+          "slug": "number-of-items-to-scroll",
+          "value": "Number of items to scroll"
         }
       ]
     },
