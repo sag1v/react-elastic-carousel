@@ -2,7 +2,7 @@
 
 
 
-# <img src="https://image.ibb.co/bQVjfU/carousel_logo.png" width="50px"/> react-elastic-carousel
+# react-elastic-carousel
 
 > A flexible and responsive carousel component for react 
 
