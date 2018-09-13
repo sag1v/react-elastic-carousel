@@ -1,8 +1,13 @@
-# react-elastic-carousel
 
-> A flexible and responsive carousel component for react
+
+
+
+# <img src="https://image.ibb.co/bQVjfU/carousel_logo.png" width="50px"/> react-elastic-carousel
+
+> A flexible and responsive carousel component for react 
 
 [![NPM](https://img.shields.io/npm/v/react-elastic-carousel.svg)](https://www.npmjs.com/package/react-elastic-carousel) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+
 
 ## [Examples & Docs](https://sag1v.github.io/react-elastic-carousel/)
 
