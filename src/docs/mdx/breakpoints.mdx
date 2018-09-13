@@ -10,10 +10,16 @@ import Carousel from 'react-elastic-carousel';
 import Item from '../components/SimpleItem';
 import breakPoints from '../components/breakPoints';
 
-- This is the coolest feature because `react-elastic-carousel` is listening to the element's `resize` event instead of the window.
-- You can pass an array of objects that will signal `react-elastic-carousel` to change props like `itemsToShow` and `itemsToScroll` on different `width` values.
+# breakPoints
+_This is the coolest feature and one of the main reasons that `react-elastic-carousel` was written._
 
-For example:
+The `breakPoints` array, allows you to set different `props` for different sizes of the element, regardless to the window's size.  
+This is due to the fact that `react-elastic-carousel` is listening to the element's `resize` event instead of the window.
+
+#### You can pass an array of objects that will signal `react-elastic-carousel` to change props like `itemsToShow` and `itemsToScroll` on different `width` values.
+
+## Example
+(_Drag or use the resize buttons to see the changes..._)
 
 ```
 const breakPoints = [
@@ -25,7 +31,6 @@ const breakPoints = [
   { width: 1750, itemsToShow: 6 }
 ];
 ```
-- Drag or use the resize buttons to see the changes... 
 
 <Playground >
   <Carousel breakPoints={breakPoints}>
