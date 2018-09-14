@@ -71,7 +71,7 @@
     "prettier": "1.14.2",
     "prettier-eslint": "^8.8.2",
     "react": "^16.5.0",
-    "react-dom": "^16.4.1",
+    "react-dom": "^16.5.0",
     "react-only-when": "^1.0.2",
     "react-resizable": "^1.7.5",
     "react-scripts": "^1.1.4",
