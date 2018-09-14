@@ -25,7 +25,7 @@
       }
     },
     "ordering": "ascending",
-    "version": "0.1.8",
+    "version": "0.1.9",
     "repository": "https://github.com/sag1v/react-elastic-carousel",
     "native": false,
     "src": "./src/docs",
@@ -219,28 +219,6 @@
         }
       ]
     },
-    "mdx/itemPadding.mdx": {
-      "name": "itemPadding",
-      "order": 8,
-      "route": "/itemPadding",
-      "menu": "Examples",
-      "id": "b68514d0135666cc912ddd8403d31d11",
-      "filepath": "mdx/itemPadding.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/itemPadding.mdx",
-      "slug": "mdx-item-padding",
-      "headings": [
-        {
-          "depth": 1,
-          "slug": "itempadding",
-          "value": "itemPadding"
-        },
-        {
-          "depth": 4,
-          "slug": "sets-a-padding-to-the-wrapping-element-of-each-item",
-          "value": "Sets a  padding  to the wrapping element of each item"
-        }
-      ]
-    },
     "mdx/isRTL.mdx": {
       "name": "isRTL",
       "order": 6,
@@ -260,6 +238,28 @@
           "depth": 4,
           "slug": "support-for-right-to-left-layouts",
           "value": "Support for  right-to-left  layouts"
+        }
+      ]
+    },
+    "mdx/itemPadding.mdx": {
+      "name": "itemPadding",
+      "order": 8,
+      "route": "/itemPadding",
+      "menu": "Examples",
+      "id": "b68514d0135666cc912ddd8403d31d11",
+      "filepath": "mdx/itemPadding.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/itemPadding.mdx",
+      "slug": "mdx-item-padding",
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "itempadding",
+          "value": "itemPadding"
+        },
+        {
+          "depth": 4,
+          "slug": "sets-a-padding-to-the-wrapping-element-of-each-item",
+          "value": "Sets a  padding  to the wrapping element of each item"
         }
       ]
     },
@@ -285,28 +285,6 @@
         }
       ]
     },
-    "mdx/itemsToShow.mdx": {
-      "name": "itemsToShow",
-      "order": 1,
-      "route": "/itemsToShow",
-      "menu": "Examples",
-      "id": "a9606fa08754b34ebfd1b8afdb09a627",
-      "filepath": "mdx/itemsToShow.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/itemsToShow.mdx",
-      "slug": "mdx-items-to-show",
-      "headings": [
-        {
-          "depth": 1,
-          "slug": "itemstoshow",
-          "value": "itemsToShow"
-        },
-        {
-          "depth": 4,
-          "slug": "number-of-visible-items",
-          "value": "Number of visible items"
-        }
-      ]
-    },
     "mdx/itemsToScroll.mdx": {
       "name": "itemsToScroll",
       "order": 2,
@@ -326,6 +304,28 @@
           "depth": 4,
           "slug": "number-of-items-to-scroll",
           "value": "Number of items to scroll"
+        }
+      ]
+    },
+    "mdx/itemsToShow.mdx": {
+      "name": "itemsToShow",
+      "order": 1,
+      "route": "/itemsToShow",
+      "menu": "Examples",
+      "id": "a9606fa08754b34ebfd1b8afdb09a627",
+      "filepath": "mdx/itemsToShow.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/itemsToShow.mdx",
+      "slug": "mdx-items-to-show",
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "itemstoshow",
+          "value": "itemsToShow"
+        },
+        {
+          "depth": 4,
+          "slug": "number-of-visible-items",
+          "value": "Number of visible items"
         }
       ]
     },

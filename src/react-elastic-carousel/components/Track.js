@@ -33,6 +33,8 @@ const Track = ({
     if (enableSwipe) {
       return (
         <Swipeable
+          stopPropagation
+          preventDefaultTouchmoveEvent
           trackMouse={enableMouseSwipe}
           onSwipedLeft={onSwipedLeft}
           onSwipedRight={onSwipedRight}

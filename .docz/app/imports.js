@@ -13,16 +13,16 @@ export const imports = {
     import(/* webpackPrefetch: true, webpackChunkName: "mdx-index" */ 'mdx/index.mdx'),
   'mdx/initialFirstItem.mdx': () =>
     import(/* webpackPrefetch: true, webpackChunkName: "mdx-initial-first-item" */ 'mdx/initialFirstItem.mdx'),
-  'mdx/itemPadding.mdx': () =>
-    import(/* webpackPrefetch: true, webpackChunkName: "mdx-item-padding" */ 'mdx/itemPadding.mdx'),
   'mdx/isRTL.mdx': () =>
     import(/* webpackPrefetch: true, webpackChunkName: "mdx-is-rtl" */ 'mdx/isRTL.mdx'),
+  'mdx/itemPadding.mdx': () =>
+    import(/* webpackPrefetch: true, webpackChunkName: "mdx-item-padding" */ 'mdx/itemPadding.mdx'),
   'mdx/itemPosition.mdx': () =>
     import(/* webpackPrefetch: true, webpackChunkName: "mdx-item-position" */ 'mdx/itemPosition.mdx'),
-  'mdx/itemsToShow.mdx': () =>
-    import(/* webpackPrefetch: true, webpackChunkName: "mdx-items-to-show" */ 'mdx/itemsToShow.mdx'),
   'mdx/itemsToScroll.mdx': () =>
     import(/* webpackPrefetch: true, webpackChunkName: "mdx-items-to-scroll" */ 'mdx/itemsToScroll.mdx'),
+  'mdx/itemsToShow.mdx': () =>
+    import(/* webpackPrefetch: true, webpackChunkName: "mdx-items-to-show" */ 'mdx/itemsToShow.mdx'),
   'mdx/onNextEnd.mdx': () =>
     import(/* webpackPrefetch: true, webpackChunkName: "mdx-on-next-end" */ 'mdx/onNextEnd.mdx'),
   'mdx/onNextStart.mdx': () =>
