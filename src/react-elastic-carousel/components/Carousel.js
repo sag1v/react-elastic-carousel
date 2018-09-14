@@ -145,7 +145,6 @@ class Carousel extends React.Component {
   };
 
   updateSliderPosition = () => {
-
     this.setState((state, props) => {
       const { children, verticalMode } = props;
       const { childWidth, childHeight, firstItem } = state;
@@ -308,16 +307,19 @@ class Carousel extends React.Component {
     onPrevEnd(nextItemObj);
   };
 
-  generatePositionUpdater = (direction, nextItemId, verticalMode, rest) => state => {
+  generatePositionUpdater = (
+    direction,
+    nextItemId,
+    verticalMode,
+    rest
+  ) => state => {
     const { sliderPosition, childWidth, childHeight, firstItem } = state;
     let newSliderPosition = 0;
     const childSize = verticalMode ? childHeight : childWidth;
     if (direction === consts.NEXT) {
-      newSliderPosition =
-        sliderPosition - childSize * (nextItemId - firstItem);
+      newSliderPosition = sliderPosition - childSize * (nextItemId - firstItem);
     } else {
-      newSliderPosition =
-        sliderPosition + childSize * (firstItem - nextItemId);
+      newSliderPosition = sliderPosition + childSize * (firstItem - nextItemId);
     }
 
     return {
@@ -349,9 +351,14 @@ class Carousel extends React.Component {
       direction = consts.PREV;
       positionEndCb = this.onPrevEnd;
     }
-    const stateUpdater = this.generatePositionUpdater(direction, nextItemId, verticalMode, {
-      transitioning: true
-    });
+    const stateUpdater = this.generatePositionUpdater(
+      direction,
+      nextItemId,
+      verticalMode,
+      {
+        transitioning: true
+      }
+    );
 
     this.setState(stateUpdater, () => {
       // callback
@@ -428,8 +435,11 @@ class Carousel extends React.Component {
             {renderArrow ? (
               renderArrow({ type: consts.PREV, onClick: this.onPrevStart })
             ) : (
-                <Arrow onClick={this.onPrevStart} direction={verticalMode ? Arrow.up : Arrow.left} />
-              )}
+              <Arrow
+                onClick={this.onPrevStart}
+                direction={verticalMode ? Arrow.up : Arrow.left}
+              />
+            )}
           </Only>
           <SliderContainer
             className={cssPrefix("slider-container")}
@@ -466,8 +476,11 @@ class Carousel extends React.Component {
             {renderArrow ? (
               renderArrow({ type: consts.NEXT, onClick: this.onNextStart })
             ) : (
-                <Arrow onClick={this.onNextStart} direction={verticalMode ? Arrow.down : Arrow.right} />
-              )}
+              <Arrow
+                onClick={this.onNextStart}
+                direction={verticalMode ? Arrow.down : Arrow.right}
+              />
+            )}
           </Only>
         </StyledCarousel>
         <Only when={pagination}>

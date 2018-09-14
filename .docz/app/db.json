@@ -219,28 +219,6 @@
         }
       ]
     },
-    "mdx/isRTL.mdx": {
-      "name": "isRTL",
-      "order": 6,
-      "route": "/isRTL",
-      "menu": "Examples",
-      "id": "c4f7997e95e43791f89e3a691bfbfb47",
-      "filepath": "mdx/isRTL.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/isRTL.mdx",
-      "slug": "mdx-is-rtl",
-      "headings": [
-        {
-          "depth": 1,
-          "slug": "isrtl",
-          "value": "isRTL"
-        },
-        {
-          "depth": 4,
-          "slug": "support-for-right-to-left-layouts",
-          "value": "Support for  right-to-left  layouts"
-        }
-      ]
-    },
     "mdx/itemPadding.mdx": {
       "name": "itemPadding",
       "order": 8,
@@ -260,6 +238,28 @@
           "depth": 4,
           "slug": "sets-a-padding-to-the-wrapping-element-of-each-item",
           "value": "Sets a  padding  to the wrapping element of each item"
+        }
+      ]
+    },
+    "mdx/isRTL.mdx": {
+      "name": "isRTL",
+      "order": 6,
+      "route": "/isRTL",
+      "menu": "Examples",
+      "id": "c4f7997e95e43791f89e3a691bfbfb47",
+      "filepath": "mdx/isRTL.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/isRTL.mdx",
+      "slug": "mdx-is-rtl",
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "isrtl",
+          "value": "isRTL"
+        },
+        {
+          "depth": 4,
+          "slug": "support-for-right-to-left-layouts",
+          "value": "Support for  right-to-left  layouts"
         }
       ]
     },
@@ -285,28 +285,6 @@
         }
       ]
     },
-    "mdx/itemsToScroll.mdx": {
-      "name": "itemsToScroll",
-      "order": 2,
-      "route": "/itemsToScroll",
-      "menu": "Examples",
-      "id": "7f6f10b354a71a0fe33d0742ef4bd5ba",
-      "filepath": "mdx/itemsToScroll.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/itemsToScroll.mdx",
-      "slug": "mdx-items-to-scroll",
-      "headings": [
-        {
-          "depth": 1,
-          "slug": "itemstoscroll",
-          "value": "itemsToScroll"
-        },
-        {
-          "depth": 4,
-          "slug": "number-of-items-to-scroll",
-          "value": "Number of items to scroll"
-        }
-      ]
-    },
     "mdx/itemsToShow.mdx": {
       "name": "itemsToShow",
       "order": 1,
@@ -326,6 +304,28 @@
           "depth": 4,
           "slug": "number-of-visible-items",
           "value": "Number of visible items"
+        }
+      ]
+    },
+    "mdx/itemsToScroll.mdx": {
+      "name": "itemsToScroll",
+      "order": 2,
+      "route": "/itemsToScroll",
+      "menu": "Examples",
+      "id": "7f6f10b354a71a0fe33d0742ef4bd5ba",
+      "filepath": "mdx/itemsToScroll.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/itemsToScroll.mdx",
+      "slug": "mdx-items-to-scroll",
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "itemstoscroll",
+          "value": "itemsToScroll"
+        },
+        {
+          "depth": 4,
+          "slug": "number-of-items-to-scroll",
+          "value": "Number of items to scroll"
         }
       ]
     },
@@ -490,7 +490,7 @@
     },
     "mdx/verticalMode.mdx": {
       "name": "verticalMode",
-      "order": 999,
+      "order": 3,
       "route": "/verticalMode",
       "menu": "Examples",
       "id": "476b3baef72cbd65f9331611342d646b",
@@ -505,8 +505,8 @@
         },
         {
           "depth": 4,
-          "slug": "display-the-carousel-in-a-vertical-layout",
-          "value": "Display the Carousel in a vertical layout"
+          "slug": "display-and-animate-the-carousel-in-a-vertical-layout",
+          "value": "Display and animate the Carousel in a vertical layout"
         }
       ]
     }

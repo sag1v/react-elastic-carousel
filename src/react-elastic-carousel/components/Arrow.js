@@ -13,19 +13,19 @@ const directionIcons = {
 
 const arrowClassname = cssPrefix("arrow");
 
-const rotateStyle = (direction) => {
+const rotateStyle = direction => {
   let rotate = {};
   if (direction === Arrow.up || direction === Arrow.down) {
-    rotate.transform = 'rotate(90deg)';
+    rotate.transform = "rotate(90deg)";
   }
   return rotate;
-}
+};
 const Arrow = ({ direction, onClick, icons, style, ...rest }) => {
   const arrows = { ...directionIcons, ...icons };
   const styleObj = {
     ...rotateStyle(direction),
     ...style
-  }
+  };
   return (
     <Button
       onClick={onClick}

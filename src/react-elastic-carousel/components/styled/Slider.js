@@ -32,13 +32,14 @@ const calcTop = ({
   verticalMode,
   isSwiping,
   swipedSliderPosition,
-  sliderPosition }) => {
-    if(!verticalMode){
-      return "auto";
-    } else{
-      return `${isSwiping ? swipedSliderPosition : sliderPosition}px`;
-    }
-}
+  sliderPosition
+}) => {
+  if (!verticalMode) {
+    return "auto";
+  } else {
+    return `${isSwiping ? swipedSliderPosition : sliderPosition}px`;
+  }
+};
 
 const calcTransition = ({ isSwiping, transitionMs, easing, tiltEasing }) => {
   const duration = isSwiping ? 250 : transitionMs;
@@ -49,10 +50,10 @@ const calcTransition = ({ isSwiping, transitionMs, easing, tiltEasing }) => {
 export default styled.div`
   position: absolute;
   display: flex;
-  flex-direction: ${({ verticalMode }) => verticalMode ? 'column' : 'row'};
+  flex-direction: ${({ verticalMode }) => (verticalMode ? "column" : "row")};
   min-height: 100%;
   transition: ${calcTransition};
   left: ${calcLeft};
   right: ${calcRight};
-  top: ${calcTop}
+  top: ${calcTop};
 `;
