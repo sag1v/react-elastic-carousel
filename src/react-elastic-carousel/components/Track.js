@@ -7,15 +7,19 @@ import ItemWrapperContainer from "./ItemWrapperContainer";
 const Track = ({
   children,
   childWidth,
+  childHeight,
   enableSwipe,
   enableMouseSwipe,
   itemPosition,
   itemPadding,
   onSwipedLeft,
   onSwipedRight,
+  onSwipedUp,
+  onSwipedDown,
   onItemClick
 }) => {
   const width = `${childWidth}px`;
+  const height = `${childHeight}px`;
   const paddingStyle = `${itemPadding.join("px ")}px`;
   let originalChildren = React.Children.map(children, (child, idx) => {
     const item = (
@@ -34,6 +38,8 @@ const Track = ({
           trackMouse={enableMouseSwipe}
           onSwipedLeft={onSwipedLeft}
           onSwipedRight={onSwipedRight}
+          onSwipedUp={onSwipedUp}
+          onSwipedDown={onSwipedDown}
           className={cssPrefix(`swipable-${child.key}`)}
         >
           {item}

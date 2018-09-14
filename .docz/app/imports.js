@@ -1,10 +1,10 @@
 export const imports = {
   'mdx/breakpoints.mdx': () =>
     import(/* webpackPrefetch: true, webpackChunkName: "mdx-breakpoints" */ 'mdx/breakpoints.mdx'),
-  'mdx/easing.mdx': () =>
-    import(/* webpackPrefetch: true, webpackChunkName: "mdx-easing" */ 'mdx/easing.mdx'),
   'mdx/enableAutoPlay.mdx': () =>
     import(/* webpackPrefetch: true, webpackChunkName: "mdx-enable-auto-play" */ 'mdx/enableAutoPlay.mdx'),
+  'mdx/easing.mdx': () =>
+    import(/* webpackPrefetch: true, webpackChunkName: "mdx-easing" */ 'mdx/easing.mdx'),
   'mdx/focusOnSelect.mdx': () =>
     import(/* webpackPrefetch: true, webpackChunkName: "mdx-focus-on-select" */ 'mdx/focusOnSelect.mdx'),
   'mdx/goTo.mdx': () =>
@@ -19,10 +19,10 @@ export const imports = {
     import(/* webpackPrefetch: true, webpackChunkName: "mdx-item-padding" */ 'mdx/itemPadding.mdx'),
   'mdx/itemPosition.mdx': () =>
     import(/* webpackPrefetch: true, webpackChunkName: "mdx-item-position" */ 'mdx/itemPosition.mdx'),
-  'mdx/itemsToShow.mdx': () =>
-    import(/* webpackPrefetch: true, webpackChunkName: "mdx-items-to-show" */ 'mdx/itemsToShow.mdx'),
   'mdx/itemsToScroll.mdx': () =>
     import(/* webpackPrefetch: true, webpackChunkName: "mdx-items-to-scroll" */ 'mdx/itemsToScroll.mdx'),
+  'mdx/itemsToShow.mdx': () =>
+    import(/* webpackPrefetch: true, webpackChunkName: "mdx-items-to-show" */ 'mdx/itemsToShow.mdx'),
   'mdx/onNextEnd.mdx': () =>
     import(/* webpackPrefetch: true, webpackChunkName: "mdx-on-next-end" */ 'mdx/onNextEnd.mdx'),
   'mdx/onNextStart.mdx': () =>
@@ -37,4 +37,6 @@ export const imports = {
     import(/* webpackPrefetch: true, webpackChunkName: "mdx-render-arrow" */ 'mdx/renderArrow.mdx'),
   'mdx/slideNext.mdx': () =>
     import(/* webpackPrefetch: true, webpackChunkName: "mdx-slide-next" */ 'mdx/slideNext.mdx'),
+  'mdx/verticalMode.mdx': () =>
+    import(/* webpackPrefetch: true, webpackChunkName: "mdx-vertical-mode" */ 'mdx/verticalMode.mdx'),
 }

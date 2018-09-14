@@ -19,7 +19,9 @@ import { Pagination } from "./Pagination";
 class Carousel extends React.Component {
   state = {
     rootHeight: 0,
+    rootWidth: 0,
     childWidth: 0,
+    childHeight: 0,
     sliderPosition: 0,
     swipedSliderPosition: 0,
     isSwiping: false,
@@ -143,18 +145,18 @@ class Carousel extends React.Component {
   };
 
   updateSliderPosition = () => {
-    const { children } = this.props;
-    const totalItems = children.length;
-    const numOfVisibleItems = this.getNumOfVisibleItems();
 
-    this.setState(state => {
-      const { childWidth, firstItem } = state;
+    this.setState((state, props) => {
+      const { children, verticalMode } = props;
+      const { childWidth, childHeight, firstItem } = state;
+      const totalItems = children.length;
+      const numOfVisibleItems = this.getNumOfVisibleItems();
       let moveBy = firstItem * -1;
       const emptySlots = numOfVisibleItems - (totalItems - firstItem);
       if (emptySlots > 0) {
         moveBy = emptySlots + firstItem * -1;
       }
-      let sliderPosition = childWidth * moveBy;
+      let sliderPosition = (verticalMode ? childHeight : childWidth) * moveBy;
       const newFirstItem = emptySlots > 0 ? firstItem - emptySlots : firstItem;
       return {
         sliderPosition,
@@ -164,22 +166,32 @@ class Carousel extends React.Component {
   };
 
   onSliderResize = sliderNode => {
+    const { verticalMode, children } = this.props;
     const { height } = sliderNode.contentRect;
-    this.setState({ rootHeight: height });
+    const nextState = {};
+    if (verticalMode) {
+      const numOfVisibleItems = this.getNumOfVisibleItems();
+      const childHeight = height / children.length;
+      nextState.rootHeight = childHeight * numOfVisibleItems;
+      nextState.childHeight = childHeight;
+    } else {
+      nextState.rootHeight = height;
+    }
+    this.setState(nextState);
   };
 
   onContainerResize = sliderContainerNode => {
-    const { onResize } = this.props;
+    const { onResize, verticalMode } = this.props;
     const { width } = sliderContainerNode.contentRect;
     // update slider container width
     this.setState({ sliderContainerWidth: width }, () => {
       /* based on slider container's width, get num of items to show
       * and calculate child's width (and update it in state)
       */
-      let visibleItems = this.getNumOfVisibleItems();
-      const childWidth = width / visibleItems;
+      const visibleItems = this.getNumOfVisibleItems();
+      const childWidth = verticalMode ? width : width / visibleItems;
       this.setState(
-        state => ({ childWidth: childWidth }),
+        state => ({ childWidth }),
         () => {
           /* Based on all of the above new data:
           * update slider position
@@ -296,15 +308,16 @@ class Carousel extends React.Component {
     onPrevEnd(nextItemObj);
   };
 
-  generatePositionUpdater = (direction, nextItemId, rest) => state => {
-    const { sliderPosition, childWidth, firstItem } = state;
+  generatePositionUpdater = (direction, nextItemId, verticalMode, rest) => state => {
+    const { sliderPosition, childWidth, childHeight, firstItem } = state;
     let newSliderPosition = 0;
+    const childSize = verticalMode ? childHeight : childWidth;
     if (direction === consts.NEXT) {
       newSliderPosition =
-        sliderPosition - childWidth * (nextItemId - firstItem);
+        sliderPosition - childSize * (nextItemId - firstItem);
     } else {
       newSliderPosition =
-        sliderPosition + childWidth * (firstItem - nextItemId);
+        sliderPosition + childSize * (firstItem - nextItemId);
     }
 
     return {
@@ -317,7 +330,7 @@ class Carousel extends React.Component {
   };
 
   goTo = nextItemId => {
-    const { children } = this.props;
+    const { children, verticalMode } = this.props;
     const { firstItem } = this.state;
     const isPrev = firstItem > nextItemId;
     const nextAvailbaleItem = this.getNextItemIndex(firstItem, isPrev);
@@ -336,7 +349,7 @@ class Carousel extends React.Component {
       direction = consts.PREV;
       positionEndCb = this.onPrevEnd;
     }
-    const stateUpdater = this.generatePositionUpdater(direction, nextItemId, {
+    const stateUpdater = this.generatePositionUpdater(direction, nextItemId, verticalMode, {
       transitioning: true
     });
 
@@ -383,6 +396,7 @@ class Carousel extends React.Component {
     const {
       className,
       style,
+      verticalMode,
       isRTL,
       easing,
       tiltEasing,
@@ -399,6 +413,8 @@ class Carousel extends React.Component {
     } = this.props;
     const onSwipedLeft = isRTL ? this.onPrevStart : this.onNextStart;
     const onSwipedRight = isRTL ? this.onNextStart : this.onPrevStart;
+    const onSwipedUp = this.onNextStart;
+    const onSwipedDown = this.onPrevStart;
     const numOfPages = this.getNumOfPages();
 
     return (
@@ -412,14 +428,15 @@ class Carousel extends React.Component {
             {renderArrow ? (
               renderArrow({ type: consts.PREV, onClick: this.onPrevStart })
             ) : (
-              <Arrow onClick={this.onPrevStart} direction="left" />
-            )}
+                <Arrow onClick={this.onPrevStart} direction={verticalMode ? Arrow.up : Arrow.left} />
+              )}
           </Only>
           <SliderContainer
             className={cssPrefix("slider-container")}
             innerRef={this.setRef("sliderContainer")}
           >
             <Slider
+              verticalMode={verticalMode}
               isRTL={isRTL}
               easing={easing}
               sliderPosition={sliderPosition}
@@ -439,6 +456,8 @@ class Carousel extends React.Component {
                 enableMouseSwipe={enableMouseSwipe}
                 onSwipedLeft={onSwipedLeft}
                 onSwipedRight={onSwipedRight}
+                onSwipedUp={onSwipedUp}
+                onSwipedDown={onSwipedDown}
                 onItemClick={focusOnSelect ? this.goTo : undefined}
               />
             </Slider>
@@ -447,8 +466,8 @@ class Carousel extends React.Component {
             {renderArrow ? (
               renderArrow({ type: consts.NEXT, onClick: this.onNextStart })
             ) : (
-              <Arrow onClick={this.onNextStart} direction="right" />
-            )}
+                <Arrow onClick={this.onNextStart} direction={verticalMode ? Arrow.down : Arrow.right} />
+              )}
           </Only>
         </StyledCarousel>
         <Only when={pagination}>
@@ -466,6 +485,7 @@ class Carousel extends React.Component {
 Carousel.defaultProps = {
   className: "",
   style: {},
+  verticalMode: false,
   isRTL: false,
   initialFirstItem: 0,
   showArrows: true,
@@ -501,6 +521,9 @@ Carousel.propTypes = {
 
   /** Items to render */
   children: PropTypes.node.isRequired,
+
+  /** Display the Carousel in a vertical layout */
+  verticalMode: PropTypes.bool,
 
   /** Flip right to left */
   isRTL: PropTypes.bool,

@@ -487,6 +487,28 @@
           "value": "You can trigger the  slideNext  or  slidePrev  methods via a  ref  to the  Carousel :"
         }
       ]
+    },
+    "mdx/verticalMode.mdx": {
+      "name": "verticalMode",
+      "order": 999,
+      "route": "/verticalMode",
+      "menu": "Examples",
+      "id": "476b3baef72cbd65f9331611342d646b",
+      "filepath": "mdx/verticalMode.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/verticalMode.mdx",
+      "slug": "mdx-vertical-mode",
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "verticalmode",
+          "value": "verticalMode"
+        },
+        {
+          "depth": 4,
+          "slug": "display-the-carousel-in-a-vertical-layout",
+          "value": "Display the Carousel in a vertical layout"
+        }
+      ]
     }
   }
 }

@@ -14,7 +14,7 @@ class ItemWrapperContainer extends React.Component {
     return (
       <ItemWrapper
         onClick={this.onClick}
-        className={cssPrefix("child-wrapper")}
+        className={cssPrefix("item-wrapper")}
         itemPosition={itemPosition}
         style={style}
       >
