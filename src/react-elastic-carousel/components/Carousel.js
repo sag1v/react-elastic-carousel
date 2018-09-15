@@ -608,7 +608,7 @@ Carousel.propTypes = {
   // swipe
   /** Enable or disable swipe */
   enableSwipe: PropTypes.bool,
-  
+
   /** Enable or disable mouse swipe */
   enableMouseSwipe: PropTypes.bool,
 
