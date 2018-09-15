@@ -13,7 +13,7 @@ import {
   StyledCarousel,
   CarouselWrapper
 } from "./styled";
-import { noop, cssPrefix } from "../utils/helpers";
+import { pipe, noop, cssPrefix, numberToArray } from "../utils/helpers";
 import { Pagination } from "./Pagination";
 
 class Carousel extends React.Component {
@@ -292,7 +292,6 @@ class Carousel extends React.Component {
     const { firstItem } = this.state;
     const nextItemObj = this.convertChildToCbObj(firstItem);
     this.removeSliderTransitionHook(this.onNextEnd);
-    this.updateActivePage();
     this.setState({ transitioning: false });
     onNextEnd(nextItemObj);
   };
@@ -302,7 +301,6 @@ class Carousel extends React.Component {
     const { firstItem } = this.state;
     const nextItemObj = this.convertChildToCbObj(firstItem);
     this.removeSliderTransitionHook(this.onPrevEnd);
-    this.updateActivePage();
     this.setState({ transitioning: false });
     onPrevEnd(nextItemObj);
   };
@@ -359,10 +357,12 @@ class Carousel extends React.Component {
         transitioning: true
       }
     );
-
     this.setState(stateUpdater, () => {
       // callback
-      this.onSliderTransitionEnd(positionEndCb);
+      pipe(
+        this.updateActivePage(),
+        this.onSliderTransitionEnd(positionEndCb)
+      );
     });
   };
 
@@ -416,7 +416,8 @@ class Carousel extends React.Component {
       enableMouseSwipe,
       pagination,
       showArrows,
-      renderArrow
+      renderArrow,
+      renderPagination
     } = this.props;
     const onSwipedLeft = isRTL ? this.onPrevStart : this.onNextStart;
     const onSwipedRight = isRTL ? this.onNextStart : this.onPrevStart;
@@ -484,11 +485,19 @@ class Carousel extends React.Component {
           </Only>
         </StyledCarousel>
         <Only when={pagination}>
-          <Pagination
-            numOfPages={numOfPages}
-            activePage={activePage}
-            onClick={this.onIndicatorClick}
-          />
+          {renderPagination ? (
+            renderPagination({
+              pages: numberToArray(numOfPages),
+              activePage,
+              onClick: this.onIndicatorClick
+            })
+          ) : (
+            <Pagination
+              numOfPages={numOfPages}
+              activePage={activePage}
+              onClick={this.onIndicatorClick}
+            />
+          )}
         </Only>
       </CarouselWrapper>
     );
@@ -584,6 +593,11 @@ Carousel.propTypes = {
    * - ({type, onClick}) => <div onClick={onClick}>{type === 'prev' ? '<-' : '->'}</div>
    */
   renderArrow: PropTypes.func,
+
+  /** A render prop for the pagination component
+   * - ({ pages, activePage, onClick }) =>  <YourComponent/>
+   */
+  renderPagination: PropTypes.func,
 
   /** Position the element relative to it's wrapper (use the consts object) - consts.START | consts.CENTER | consts.END */
   itemPosition: PropTypes.oneOf([consts.START, consts.CENTER, consts.END]),

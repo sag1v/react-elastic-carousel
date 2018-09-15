@@ -1,0 +1,61 @@
+---
+name: renderPagination
+order: 11
+route: /renderPagination
+menu: Examples
+---
+
+import {Playground, PropsTable } from 'docz';
+import Carousel, {consts} from 'react-elastic-carousel';
+import Square from '../components/Square';
+import Flex from '../components/Flex';
+import Item from '../components/SimpleItem';
+
+# renderPagination
+
+### You can provide custom pagination buttons.
+
+## Signature 
+
+- You can pass a function that returns a react element,   
+  This function is a [render prop](https://reactjs.org/docs/render-props.html) and its signature is:  
+```
+({ numOfPages, activePage, onClick }) =>  {/* return your element here */}
+```
+
+- `numOfPages` The calculation of the total number of pages.
+- `activePage` The current active page id.
+- `onClick` Is the hook to the inner `onClick` of the `Carousel`. You can attach it wherever you want within the returned component.
+
+## Demo
+
+<Playground >
+    <Carousel 
+        itemsToShow={3}
+        renderPagination={
+            ({pages, activePage, onClick}) => {
+                return (
+                    <Flex direction="row">
+                        {
+                        pages.map((page) => {
+                            const isActivePage = activePage === page;
+                            return (
+                                <Square key={page} onClick={() => onClick(page)} active={isActivePage}/>
+                            )
+                        })}
+                    </Flex>
+                )
+        }}
+    >
+        <Item>1</Item>
+        <Item>2</Item>
+        <Item>3</Item>
+        <Item>4</Item>
+        <Item>5</Item>
+        <Item>6</Item>
+        <Item>7</Item>
+        <Item>8</Item>
+        <Item>9</Item>
+        <Item>10</Item>
+    </Carousel>
+</Playground>
