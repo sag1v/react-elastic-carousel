@@ -20,10 +20,10 @@ import Item from '../components/SimpleItem';
 - You can pass a function that returns a react element,   
   This function is a [render prop](https://reactjs.org/docs/render-props.html) and its signature is:  
 ```
-({ numOfPages, activePage, onClick }) =>  {/* return your element here */}
+({ pages, activePage, onClick }) =>  {/* return your element here */}
 ```
 
-- `numOfPages` The calculation of the total number of pages.
+- `pages` Array of page index.
 - `activePage` The current active page id.
 - `onClick` Is the hook to the inner `onClick` of the `Carousel`. You can attach it wherever you want within the returned component.
 

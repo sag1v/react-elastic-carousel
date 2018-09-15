@@ -608,12 +608,14 @@ Carousel.propTypes = {
   // swipe
   /** Enable or disable swipe */
   enableSwipe: PropTypes.bool,
+  
   /** Enable or disable mouse swipe */
   enableMouseSwipe: PropTypes.bool,
 
   // auto play
   /** Enable or disable auto play */
   enableAutoPlay: PropTypes.bool,
+
   /** Set auto play speed (ms) */
   autoPlaySpeed: PropTypes.number,
 
