@@ -28,10 +28,10 @@ export default {
     }
   },
   themeConfig: {
-    logo: {
-      src: "//image.ibb.co/bQVjfU/carousel_logo.png",
-      width: "100%"
-    },
+    // logo: {
+    //   src: "//image.ibb.co/iACdcK/carousel_logo.png",
+    //   width: "50%"
+    // },
     mode: 'light',
     codemirrorTheme: 'dracula',
     styles: {

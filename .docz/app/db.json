@@ -3,10 +3,6 @@
     "title": "react-elastic-carousel",
     "description": "A flexible and responsive carousel component for react",
     "themeConfig": {
-      "logo": {
-        "src": "//image.ibb.co/bQVjfU/carousel_logo.png",
-        "width": "100%"
-      },
       "mode": "light",
       "codemirrorTheme": "dracula",
       "styles": {
@@ -25,7 +21,7 @@
       }
     },
     "ordering": "ascending",
-    "version": "0.1.11",
+    "version": "0.1.12",
     "repository": "https://github.com/sag1v/react-elastic-carousel",
     "native": false,
     "src": "./src/docs",
@@ -116,28 +112,6 @@
         }
       ]
     },
-    "mdx/focusOnSelect.mdx": {
-      "name": "focusOnSelect",
-      "order": 5,
-      "route": "/focusOnSelect",
-      "menu": "Examples",
-      "id": "6ed5d03c60339f008d3a8a9765237026",
-      "filepath": "mdx/focusOnSelect.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/focusOnSelect.mdx",
-      "slug": "mdx-focus-on-select",
-      "headings": [
-        {
-          "depth": 1,
-          "slug": "focusonselect",
-          "value": "focusOnSelect"
-        },
-        {
-          "depth": 4,
-          "slug": "sliding-to-an-item-on-click",
-          "value": "Sliding to an item on click"
-        }
-      ]
-    },
     "mdx/goTo.mdx": {
       "name": "goTo",
       "order": 989,
@@ -157,6 +131,28 @@
           "depth": 4,
           "slug": "you-can-trigger-the-goto-method-via-a-ref-to-the-carousel",
           "value": "You can trigger the  goTo  method via a  ref  to the  Carousel :"
+        }
+      ]
+    },
+    "mdx/focusOnSelect.mdx": {
+      "name": "focusOnSelect",
+      "order": 5,
+      "route": "/focusOnSelect",
+      "menu": "Examples",
+      "id": "6ed5d03c60339f008d3a8a9765237026",
+      "filepath": "mdx/focusOnSelect.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/focusOnSelect.mdx",
+      "slug": "mdx-focus-on-select",
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "focusonselect",
+          "value": "focusOnSelect"
+        },
+        {
+          "depth": 4,
+          "slug": "sliding-to-an-item-on-click",
+          "value": "Sliding to an item on click"
         }
       ]
     },

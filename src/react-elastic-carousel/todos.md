@@ -1,3 +1,0 @@
-- infinite ****
-- readme **
-- better examples

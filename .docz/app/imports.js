@@ -5,10 +5,10 @@ export const imports = {
     import(/* webpackPrefetch: true, webpackChunkName: "mdx-easing" */ 'mdx/easing.mdx'),
   'mdx/enableAutoPlay.mdx': () =>
     import(/* webpackPrefetch: true, webpackChunkName: "mdx-enable-auto-play" */ 'mdx/enableAutoPlay.mdx'),
-  'mdx/focusOnSelect.mdx': () =>
-    import(/* webpackPrefetch: true, webpackChunkName: "mdx-focus-on-select" */ 'mdx/focusOnSelect.mdx'),
   'mdx/goTo.mdx': () =>
     import(/* webpackPrefetch: true, webpackChunkName: "mdx-go-to" */ 'mdx/goTo.mdx'),
+  'mdx/focusOnSelect.mdx': () =>
+    import(/* webpackPrefetch: true, webpackChunkName: "mdx-focus-on-select" */ 'mdx/focusOnSelect.mdx'),
   'mdx/index.mdx': () =>
     import(/* webpackPrefetch: true, webpackChunkName: "mdx-index" */ 'mdx/index.mdx'),
   'mdx/initialFirstItem.mdx': () =>
