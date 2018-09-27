@@ -17,7 +17,6 @@
     "lint:watch": "esw src/**/*.js --watch --fix",
     "test": "cross-env CI=1 react-scripts test --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom",
-    "start": "rollup -c -w && npm run lint:watch",
     "prebuild": "npm run lint:fix",
     "build": "rollup -c",
     "prepare": "npm run build",
