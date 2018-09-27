@@ -535,14 +535,14 @@ Carousel.defaultProps = {
 };
 
 Carousel.propTypes = {
+  /** Items to render */
+  children: PropTypes.node.isRequired,
+
   /** The css class for the root element */
   className: PropTypes.string,
 
   /** The style object for the root element */
   style: PropTypes.object,
-
-  /** Items to render */
-  children: PropTypes.node.isRequired,
 
   /** Display the Carousel in a vertical layout */
   verticalMode: PropTypes.bool,
