@@ -20,7 +20,7 @@ dist
 .docz/cache/
 
 # test-related files
-/coverage/
+coverage
 
 
 npm-debug.log*
