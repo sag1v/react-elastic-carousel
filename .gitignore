@@ -19,6 +19,10 @@ dist
 # docz
 .docz/cache/
 
+# test-related files
+/coverage/
+
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
