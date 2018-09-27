@@ -1,9 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { mount, shallow } from 'enzyme';
-import Carousel from "../Carousel";
+import Carousel from '../Carousel';
+import Slider from '../styled/Slider';
+import Pagination from '../Pagination/Pagination';
 import { numberToArray } from '../../utils/helpers';
-import { debug } from 'util';
 
 
 describe("Carousel - public API (props)", () => {
@@ -27,15 +27,38 @@ describe("Carousel - public API (props)", () => {
     });
 
     it("renders with style in root", () => {
-        const styleToRender = {position: 'fixed'};
+        const styleToRender = { position: 'fixed' };
         const wrapper = mount(<Carousel style={styleToRender}>{Items}</Carousel>);
         const carousel = wrapper.getDOMNode();
         expect(carousel.style.position).toEqual('fixed');
     });
 
+    it("verticalMode", () => {
+        const wrapper = shallow(<Carousel verticalMode>{Items}</Carousel>);
+        const slider = wrapper.find(Slider);
+        expect(slider.props().verticalMode).toEqual(true);
+    });
+
     it("isRTL", () => {
         const wrapper = shallow(<Carousel isRTL>{Items}</Carousel>);
-        const inner = wrapper.first();
-        expect(inner.props().isRTL).toEqual(true);
+        const slider = wrapper.find(Slider);
+        expect(slider.props().isRTL).toEqual(true);
     });
+
+    it("pagination", () => {
+        const wrapper = shallow(<Carousel pagination>{Items}</Carousel>);
+        const pagination = wrapper.find(Pagination);
+        expect(pagination.exists()).toEqual(true);
+    });
+
+    it("renderPagination (renders custom pagination)", () => {
+        const CustomPagination = () => <div>test</div>;
+        const renderPagination = () => <CustomPagination />;
+        const wrapper = 
+            shallow(<Carousel renderPagination={renderPagination}>{Items}</Carousel>);
+            
+        const customPagination = wrapper.find(CustomPagination);
+        expect(customPagination.exists()).toEqual(true);
+    });
+
 });

@@ -31,10 +31,9 @@ class DotContainer extends React.Component {
     onClick(id);
   };
   render() {
-    const { id, active } = this.props;
+    const { active } = this.props;
     return (
       <Dot
-        sizeEnhancer={id}
         onClick={this.onClick}
         active={active}
         className={cssPrefix("dot")}
