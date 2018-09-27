@@ -45,6 +45,17 @@ class App extends Component {
 ## Playground
 [![Edit react-elastic-carousel](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/21o46mkwnr)
 
+## Development
+
+```console 
+git clone https://github.com/sag1v/react-elastic-carousel.git
+cd react-elastic-carousel
+npm install
+npm run docz:dev
+```
+
+The application is running at http://localhost:8888
+
 ## License
 
 MIT © [sag1v](https://github.com/sag1v)
