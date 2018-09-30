@@ -419,10 +419,18 @@ class Carousel extends React.Component {
       renderArrow,
       renderPagination
     } = this.props;
-    const onSwipedLeft = isRTL ? this.onPrevStart : this.onNextStart;
-    const onSwipedRight = isRTL ? this.onNextStart : this.onPrevStart;
-    const onSwipedUp = this.onNextStart;
-    const onSwipedDown = this.onPrevStart;
+    const onSwipedLeft = verticalMode
+      ? noop
+      : isRTL
+        ? this.onPrevStart
+        : this.onNextStart;
+    const onSwipedRight = verticalMode
+      ? noop
+      : isRTL
+        ? this.onNextStart
+        : this.onPrevStart;
+    const onSwipedUp = verticalMode ? this.onNextStart : noop;
+    const onSwipedDown = verticalMode ? this.onPrevStart : noop;
     const numOfPages = this.getNumOfPages();
 
     return (
