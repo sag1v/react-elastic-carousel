@@ -21,7 +21,7 @@
       }
     },
     "ordering": "ascending",
-    "version": "0.1.13",
+    "version": "0.1.14",
     "repository": "https://github.com/sag1v/react-elastic-carousel",
     "native": false,
     "src": "./src/docs",
@@ -41,6 +41,50 @@
     }
   },
   "entries": {
+    "mdx/easing.mdx": {
+      "name": "easing",
+      "order": 10,
+      "route": "/easing",
+      "menu": "Examples",
+      "id": "74e08dc0e1d1c6685b946008e35df874",
+      "filepath": "mdx/easing.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/easing.mdx",
+      "slug": "mdx-easing",
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "easing",
+          "value": "easing"
+        },
+        {
+          "depth": 4,
+          "slug": "you-can-pass-an-easing-pattern-for-the-animations",
+          "value": "You can pass an easing pattern for the animations"
+        }
+      ]
+    },
+    "mdx/enableAutoPlay.mdx": {
+      "name": "enableAutoPlay",
+      "order": 7,
+      "route": "/enableAutoPlay",
+      "menu": "Examples",
+      "id": "29c4ecc66acacd3bf0adba5cf3392524",
+      "filepath": "mdx/enableAutoPlay.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/enableAutoPlay.mdx",
+      "slug": "mdx-enable-auto-play",
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "enableautoplay",
+          "value": "enableAutoPlay"
+        },
+        {
+          "depth": 4,
+          "slug": "toggle-enableautoplay-and-set-autoplayspeed-as-you-wish",
+          "value": "Toggle  enableAutoPlay  and set  autoPlaySpeed  as you wish"
+        }
+      ]
+    },
     "mdx/breakpoints.mdx": {
       "name": "breakPoints",
       "order": 3,
@@ -68,25 +112,25 @@
         }
       ]
     },
-    "mdx/easing.mdx": {
-      "name": "easing",
-      "order": 10,
-      "route": "/easing",
+    "mdx/focusOnSelect.mdx": {
+      "name": "focusOnSelect",
+      "order": 5,
+      "route": "/focusOnSelect",
       "menu": "Examples",
-      "id": "74e08dc0e1d1c6685b946008e35df874",
-      "filepath": "mdx/easing.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/easing.mdx",
-      "slug": "mdx-easing",
+      "id": "6ed5d03c60339f008d3a8a9765237026",
+      "filepath": "mdx/focusOnSelect.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/focusOnSelect.mdx",
+      "slug": "mdx-focus-on-select",
       "headings": [
         {
           "depth": 1,
-          "slug": "easing",
-          "value": "easing"
+          "slug": "focusonselect",
+          "value": "focusOnSelect"
         },
         {
           "depth": 4,
-          "slug": "you-can-pass-an-easing-pattern-for-the-animations",
-          "value": "You can pass an easing pattern for the animations"
+          "slug": "sliding-to-an-item-on-click",
+          "value": "Sliding to an item on click"
         }
       ]
     },
@@ -109,50 +153,6 @@
           "depth": 4,
           "slug": "you-can-trigger-the-goto-method-via-a-ref-to-the-carousel",
           "value": "You can trigger the  goTo  method via a  ref  to the  Carousel :"
-        }
-      ]
-    },
-    "mdx/enableAutoPlay.mdx": {
-      "name": "enableAutoPlay",
-      "order": 7,
-      "route": "/enableAutoPlay",
-      "menu": "Examples",
-      "id": "29c4ecc66acacd3bf0adba5cf3392524",
-      "filepath": "mdx/enableAutoPlay.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/enableAutoPlay.mdx",
-      "slug": "mdx-enable-auto-play",
-      "headings": [
-        {
-          "depth": 1,
-          "slug": "enableautoplay",
-          "value": "enableAutoPlay"
-        },
-        {
-          "depth": 4,
-          "slug": "toggle-enableautoplay-and-set-autoplayspeed-as-you-wish",
-          "value": "Toggle  enableAutoPlay  and set  autoPlaySpeed  as you wish"
-        }
-      ]
-    },
-    "mdx/focusOnSelect.mdx": {
-      "name": "focusOnSelect",
-      "order": 5,
-      "route": "/focusOnSelect",
-      "menu": "Examples",
-      "id": "6ed5d03c60339f008d3a8a9765237026",
-      "filepath": "mdx/focusOnSelect.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/focusOnSelect.mdx",
-      "slug": "mdx-focus-on-select",
-      "headings": [
-        {
-          "depth": 1,
-          "slug": "focusonselect",
-          "value": "focusOnSelect"
-        },
-        {
-          "depth": 4,
-          "slug": "sliding-to-an-item-on-click",
-          "value": "Sliding to an item on click"
         }
       ]
     },
@@ -193,28 +193,6 @@
         }
       ]
     },
-    "mdx/isRTL.mdx": {
-      "name": "isRTL",
-      "order": 6,
-      "route": "/isRTL",
-      "menu": "Examples",
-      "id": "c4f7997e95e43791f89e3a691bfbfb47",
-      "filepath": "mdx/isRTL.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/isRTL.mdx",
-      "slug": "mdx-is-rtl",
-      "headings": [
-        {
-          "depth": 1,
-          "slug": "isrtl",
-          "value": "isRTL"
-        },
-        {
-          "depth": 4,
-          "slug": "support-for-right-to-left-layouts",
-          "value": "Support for  right-to-left  layouts"
-        }
-      ]
-    },
     "mdx/initialFirstItem.mdx": {
       "name": "initialFirstItem",
       "order": 4,
@@ -234,6 +212,28 @@
           "depth": 4,
           "slug": "the-first-active-item-on-mount",
           "value": "The first active item on mount"
+        }
+      ]
+    },
+    "mdx/isRTL.mdx": {
+      "name": "isRTL",
+      "order": 6,
+      "route": "/isRTL",
+      "menu": "Examples",
+      "id": "c4f7997e95e43791f89e3a691bfbfb47",
+      "filepath": "mdx/isRTL.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/isRTL.mdx",
+      "slug": "mdx-is-rtl",
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "isrtl",
+          "value": "isRTL"
+        },
+        {
+          "depth": 4,
+          "slug": "support-for-right-to-left-layouts",
+          "value": "Support for  right-to-left  layouts"
         }
       ]
     },
@@ -259,25 +259,25 @@
         }
       ]
     },
-    "mdx/itemsToShow.mdx": {
-      "name": "itemsToShow",
-      "order": 1,
-      "route": "/itemsToShow",
+    "mdx/itemPosition.mdx": {
+      "name": "itemPosition",
+      "order": 9,
+      "route": "/itemPosition",
       "menu": "Examples",
-      "id": "a9606fa08754b34ebfd1b8afdb09a627",
-      "filepath": "mdx/itemsToShow.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/itemsToShow.mdx",
-      "slug": "mdx-items-to-show",
+      "id": "76a6425c8af9dc748f704aee745e416e",
+      "filepath": "mdx/itemPosition.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/itemPosition.mdx",
+      "slug": "mdx-item-position",
       "headings": [
         {
           "depth": 1,
-          "slug": "itemstoshow",
-          "value": "itemsToShow"
+          "slug": "itemposition",
+          "value": "itemPosition"
         },
         {
           "depth": 4,
-          "slug": "number-of-visible-items",
-          "value": "Number of visible items"
+          "slug": "sets-the-position-of-the-item-within-the-items-wrapper",
+          "value": "Sets the position of the item within the item's wrapper."
         }
       ]
     },
@@ -303,25 +303,25 @@
         }
       ]
     },
-    "mdx/itemPosition.mdx": {
-      "name": "itemPosition",
-      "order": 9,
-      "route": "/itemPosition",
+    "mdx/itemsToShow.mdx": {
+      "name": "itemsToShow",
+      "order": 1,
+      "route": "/itemsToShow",
       "menu": "Examples",
-      "id": "76a6425c8af9dc748f704aee745e416e",
-      "filepath": "mdx/itemPosition.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/itemPosition.mdx",
-      "slug": "mdx-item-position",
+      "id": "a9606fa08754b34ebfd1b8afdb09a627",
+      "filepath": "mdx/itemsToShow.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/itemsToShow.mdx",
+      "slug": "mdx-items-to-show",
       "headings": [
         {
           "depth": 1,
-          "slug": "itemposition",
-          "value": "itemPosition"
+          "slug": "itemstoshow",
+          "value": "itemsToShow"
         },
         {
           "depth": 4,
-          "slug": "sets-the-position-of-the-item-within-the-items-wrapper",
-          "value": "Sets the position of the item within the item's wrapper."
+          "slug": "number-of-visible-items",
+          "value": "Number of visible items"
         }
       ]
     },
@@ -347,25 +347,25 @@
         }
       ]
     },
-    "mdx/onPrevStart.mdx": {
-      "name": "onPrevStart",
-      "order": 992,
-      "route": "/onPrevStart",
+    "mdx/onNextStart.mdx": {
+      "name": "onNextStart",
+      "order": 990,
+      "route": "/onNextStart",
       "menu": "Examples",
-      "id": "7dc068d4b5d88e53563c61b61cbd99a4",
-      "filepath": "mdx/onPrevStart.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/onPrevStart.mdx",
-      "slug": "mdx-on-prev-start",
+      "id": "2d0ad71c220798c8ad6754e95f1436cf",
+      "filepath": "mdx/onNextStart.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/onNextStart.mdx",
+      "slug": "mdx-on-next-start",
       "headings": [
         {
           "depth": 1,
-          "slug": "onprevstart",
-          "value": "onPrevStart"
+          "slug": "onnextstart",
+          "value": "onNextStart"
         },
         {
           "depth": 4,
-          "slug": "onprevstart-will-pass-both-the-current-and-next-item-object",
-          "value": "onPrevStart  will pass both the   and    item-object :"
+          "slug": "onnextstart-will-pass-both-the-current-and-next-item-object",
+          "value": "onNextStart  will pass both the   and    item-object :"
         }
       ]
     },
@@ -391,25 +391,25 @@
         }
       ]
     },
-    "mdx/onNextStart.mdx": {
-      "name": "onNextStart",
-      "order": 990,
-      "route": "/onNextStart",
+    "mdx/onPrevStart.mdx": {
+      "name": "onPrevStart",
+      "order": 992,
+      "route": "/onPrevStart",
       "menu": "Examples",
-      "id": "2d0ad71c220798c8ad6754e95f1436cf",
-      "filepath": "mdx/onNextStart.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/onNextStart.mdx",
-      "slug": "mdx-on-next-start",
+      "id": "7dc068d4b5d88e53563c61b61cbd99a4",
+      "filepath": "mdx/onPrevStart.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/onPrevStart.mdx",
+      "slug": "mdx-on-prev-start",
       "headings": [
         {
           "depth": 1,
-          "slug": "onnextstart",
-          "value": "onNextStart"
+          "slug": "onprevstart",
+          "value": "onPrevStart"
         },
         {
           "depth": 4,
-          "slug": "onnextstart-will-pass-both-the-current-and-next-item-object",
-          "value": "onNextStart  will pass both the   and    item-object :"
+          "slug": "onprevstart-will-pass-both-the-current-and-next-item-object",
+          "value": "onPrevStart  will pass both the   and    item-object :"
         }
       ]
     },
@@ -467,28 +467,6 @@
         }
       ]
     },
-    "mdx/slideNext.mdx": {
-      "name": "slideNext / slidePrev",
-      "order": 994,
-      "route": "/slideNext",
-      "menu": "Examples",
-      "id": "70cfc8eaa9911ab18a7ac7bc763b34ce",
-      "filepath": "mdx/slideNext.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/slideNext.mdx",
-      "slug": "mdx-slide-next",
-      "headings": [
-        {
-          "depth": 1,
-          "slug": "slidenext--slideprev",
-          "value": "slideNext / slidePrev"
-        },
-        {
-          "depth": 4,
-          "slug": "you-can-trigger-the-slidenext-or-slideprev-methods-via-a-ref-to-the-carousel",
-          "value": "You can trigger the  slideNext  or  slidePrev  methods via a  ref  to the  Carousel :"
-        }
-      ]
-    },
     "mdx/renderPagination.mdx": {
       "name": "renderPagination",
       "order": 11,
@@ -518,6 +496,28 @@
           "depth": 2,
           "slug": "demo",
           "value": "Demo"
+        }
+      ]
+    },
+    "mdx/slideNext.mdx": {
+      "name": "slideNext / slidePrev",
+      "order": 994,
+      "route": "/slideNext",
+      "menu": "Examples",
+      "id": "70cfc8eaa9911ab18a7ac7bc763b34ce",
+      "filepath": "mdx/slideNext.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/slideNext.mdx",
+      "slug": "mdx-slide-next",
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "slidenext--slideprev",
+          "value": "slideNext / slidePrev"
+        },
+        {
+          "depth": 4,
+          "slug": "you-can-trigger-the-slidenext-or-slideprev-methods-via-a-ref-to-the-carousel",
+          "value": "You can trigger the  slideNext  or  slidePrev  methods via a  ref  to the  Carousel :"
         }
       ]
     },
