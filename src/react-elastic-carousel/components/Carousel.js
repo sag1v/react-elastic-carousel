@@ -231,12 +231,11 @@ class Carousel extends React.Component {
     const { children } = this.props;
     const itemsToScroll = this.getItemsToScroll();
     const numOfvisibleItems = this.getNumOfVisibleItems();
-    let limit = getPrev
-      ? 0
-      : Math.max(children.length - 1, children.length - numOfvisibleItems);
+    const notEnoughItemsToshow = numOfvisibleItems > children.length;
+    let limit = getPrev ? 0 : children.length - numOfvisibleItems;
 
-    if (numOfvisibleItems >= children.length) {
-      limit = 0;
+    if (notEnoughItemsToshow) {
+      limit = 0; // basically don't move
     }
     const nextAction = getPrev
       ? prevItemAction(0, itemsToScroll)
@@ -348,7 +347,14 @@ class Carousel extends React.Component {
       return;
     }
     if (outOfBoundry) {
-      nextItemId = Math.max(children.length - 1, children.length - itemsToshow);
+      if (children.length - itemsToshow > 0) {
+        nextItemId = children.length - itemsToshow;
+      } else {
+        nextItemId = Math.max(
+          children.length - 1,
+          children.length - itemsToshow
+        );
+      }
     }
     let direction = consts.NEXT;
     let positionEndCb = this.onNextEnd;
