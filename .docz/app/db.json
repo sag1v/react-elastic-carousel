@@ -41,6 +41,33 @@
     }
   },
   "entries": {
+    "mdx/breakpoints.mdx": {
+      "name": "breakPoints",
+      "order": 3,
+      "route": "/breakPoints",
+      "menu": "Examples",
+      "id": "f6a48a27e5054ccbc3c8fe4e89b91d6b",
+      "filepath": "mdx/breakpoints.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/breakpoints.mdx",
+      "slug": "mdx-breakpoints",
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "breakpoints",
+          "value": "breakPoints"
+        },
+        {
+          "depth": 4,
+          "slug": "you-can-pass-an-array-of-objects-that-will-signal-react-elastic-carousel-to-change-props-like-itemstoshow-and-itemstoscroll-on-different-width-values",
+          "value": "You can pass an array of objects that will signal  react-elastic-carousel  to change props like  itemsToShow  and  itemsToScroll  on different  width  values."
+        },
+        {
+          "depth": 2,
+          "slug": "example",
+          "value": "Example"
+        }
+      ]
+    },
     "mdx/easing.mdx": {
       "name": "easing",
       "order": 10,
@@ -82,33 +109,6 @@
           "depth": 4,
           "slug": "toggle-enableautoplay-and-set-autoplayspeed-as-you-wish",
           "value": "Toggle  enableAutoPlay  and set  autoPlaySpeed  as you wish"
-        }
-      ]
-    },
-    "mdx/breakpoints.mdx": {
-      "name": "breakPoints",
-      "order": 3,
-      "route": "/breakPoints",
-      "menu": "Examples",
-      "id": "f6a48a27e5054ccbc3c8fe4e89b91d6b",
-      "filepath": "mdx/breakpoints.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/breakpoints.mdx",
-      "slug": "mdx-breakpoints",
-      "headings": [
-        {
-          "depth": 1,
-          "slug": "breakpoints",
-          "value": "breakPoints"
-        },
-        {
-          "depth": 4,
-          "slug": "you-can-pass-an-array-of-objects-that-will-signal-react-elastic-carousel-to-change-props-like-itemstoshow-and-itemstoscroll-on-different-width-values",
-          "value": "You can pass an array of objects that will signal  react-elastic-carousel  to change props like  itemsToShow  and  itemsToScroll  on different  width  values."
-        },
-        {
-          "depth": 2,
-          "slug": "example",
-          "value": "Example"
         }
       ]
     },
