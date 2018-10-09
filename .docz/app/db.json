@@ -21,7 +21,7 @@
       }
     },
     "ordering": "ascending",
-    "version": "0.1.14",
+    "version": "0.1.17",
     "repository": "https://github.com/sag1v/react-elastic-carousel",
     "native": false,
     "src": "./src/docs",
@@ -41,6 +41,33 @@
     }
   },
   "entries": {
+    "mdx/breakpoints.mdx": {
+      "name": "breakPoints",
+      "order": 3,
+      "route": "/breakPoints",
+      "menu": "Examples",
+      "id": "f6a48a27e5054ccbc3c8fe4e89b91d6b",
+      "filepath": "mdx/breakpoints.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/breakpoints.mdx",
+      "slug": "mdx-breakpoints",
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "breakpoints",
+          "value": "breakPoints"
+        },
+        {
+          "depth": 4,
+          "slug": "you-can-pass-an-array-of-objects-that-will-signal-react-elastic-carousel-to-change-props-like-itemstoshow-and-itemstoscroll-on-different-width-values",
+          "value": "You can pass an array of objects that will signal  react-elastic-carousel  to change props like  itemsToShow  and  itemsToScroll  on different  width  values."
+        },
+        {
+          "depth": 2,
+          "slug": "example",
+          "value": "Example"
+        }
+      ]
+    },
     "mdx/easing.mdx": {
       "name": "easing",
       "order": 10,
@@ -85,30 +112,25 @@
         }
       ]
     },
-    "mdx/breakpoints.mdx": {
-      "name": "breakPoints",
-      "order": 3,
-      "route": "/breakPoints",
+    "mdx/goTo.mdx": {
+      "name": "goTo",
+      "order": 989,
+      "route": "/goTo",
       "menu": "Examples",
-      "id": "f6a48a27e5054ccbc3c8fe4e89b91d6b",
-      "filepath": "mdx/breakpoints.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/breakpoints.mdx",
-      "slug": "mdx-breakpoints",
+      "id": "0d9b9869868b7d346d28d47233378890",
+      "filepath": "mdx/goTo.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/goTo.mdx",
+      "slug": "mdx-go-to",
       "headings": [
         {
           "depth": 1,
-          "slug": "breakpoints",
-          "value": "breakPoints"
+          "slug": "goto",
+          "value": "goTo"
         },
         {
           "depth": 4,
-          "slug": "you-can-pass-an-array-of-objects-that-will-signal-react-elastic-carousel-to-change-props-like-itemstoshow-and-itemstoscroll-on-different-width-values",
-          "value": "You can pass an array of objects that will signal  react-elastic-carousel  to change props like  itemsToShow  and  itemsToScroll  on different  width  values."
-        },
-        {
-          "depth": 2,
-          "slug": "example",
-          "value": "Example"
+          "slug": "you-can-trigger-the-goto-method-via-a-ref-to-the-carousel",
+          "value": "You can trigger the  goTo  method via a  ref  to the  Carousel :"
         }
       ]
     },
@@ -131,28 +153,6 @@
           "depth": 4,
           "slug": "sliding-to-an-item-on-click",
           "value": "Sliding to an item on click"
-        }
-      ]
-    },
-    "mdx/goTo.mdx": {
-      "name": "goTo",
-      "order": 989,
-      "route": "/goTo",
-      "menu": "Examples",
-      "id": "0d9b9869868b7d346d28d47233378890",
-      "filepath": "mdx/goTo.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/goTo.mdx",
-      "slug": "mdx-go-to",
-      "headings": [
-        {
-          "depth": 1,
-          "slug": "goto",
-          "value": "goTo"
-        },
-        {
-          "depth": 4,
-          "slug": "you-can-trigger-the-goto-method-via-a-ref-to-the-carousel",
-          "value": "You can trigger the  goTo  method via a  ref  to the  Carousel :"
         }
       ]
     },
@@ -369,28 +369,6 @@
         }
       ]
     },
-    "mdx/onPrevEnd.mdx": {
-      "name": "onPrevEnd",
-      "order": 993,
-      "route": "/onPrevEnd",
-      "menu": "Examples",
-      "id": "bdace8475c6734e4203406c1abecff98",
-      "filepath": "mdx/onPrevEnd.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/onPrevEnd.mdx",
-      "slug": "mdx-on-prev-end",
-      "headings": [
-        {
-          "depth": 1,
-          "slug": "onprevend",
-          "value": "onPrevEnd"
-        },
-        {
-          "depth": 4,
-          "slug": "onprevend-will-pass-the-new-current-item-object",
-          "value": "onPrevEnd  will pass the new    item-object :"
-        }
-      ]
-    },
     "mdx/onPrevStart.mdx": {
       "name": "onPrevStart",
       "order": 992,
@@ -410,6 +388,28 @@
           "depth": 4,
           "slug": "onprevstart-will-pass-both-the-current-and-next-item-object",
           "value": "onPrevStart  will pass both the   and    item-object :"
+        }
+      ]
+    },
+    "mdx/onPrevEnd.mdx": {
+      "name": "onPrevEnd",
+      "order": 993,
+      "route": "/onPrevEnd",
+      "menu": "Examples",
+      "id": "bdace8475c6734e4203406c1abecff98",
+      "filepath": "mdx/onPrevEnd.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/onPrevEnd.mdx",
+      "slug": "mdx-on-prev-end",
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "onprevend",
+          "value": "onPrevEnd"
+        },
+        {
+          "depth": 4,
+          "slug": "onprevend-will-pass-the-new-current-item-object",
+          "value": "onPrevEnd  will pass the new    item-object :"
         }
       ]
     },
@@ -467,6 +467,28 @@
         }
       ]
     },
+    "mdx/verticalMode.mdx": {
+      "name": "verticalMode",
+      "order": 3,
+      "route": "/verticalMode",
+      "menu": "Examples",
+      "id": "476b3baef72cbd65f9331611342d646b",
+      "filepath": "mdx/verticalMode.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/verticalMode.mdx",
+      "slug": "mdx-vertical-mode",
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "verticalmode",
+          "value": "verticalMode"
+        },
+        {
+          "depth": 4,
+          "slug": "display-and-animate-the-carousel-in-a-vertical-layout",
+          "value": "Display and animate the Carousel in a vertical layout"
+        }
+      ]
+    },
     "mdx/renderPagination.mdx": {
       "name": "renderPagination",
       "order": 11,
@@ -518,28 +540,6 @@
           "depth": 4,
           "slug": "you-can-trigger-the-slidenext-or-slideprev-methods-via-a-ref-to-the-carousel",
           "value": "You can trigger the  slideNext  or  slidePrev  methods via a  ref  to the  Carousel :"
-        }
-      ]
-    },
-    "mdx/verticalMode.mdx": {
-      "name": "verticalMode",
-      "order": 3,
-      "route": "/verticalMode",
-      "menu": "Examples",
-      "id": "476b3baef72cbd65f9331611342d646b",
-      "filepath": "mdx/verticalMode.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/verticalMode.mdx",
-      "slug": "mdx-vertical-mode",
-      "headings": [
-        {
-          "depth": 1,
-          "slug": "verticalmode",
-          "value": "verticalMode"
-        },
-        {
-          "depth": 4,
-          "slug": "display-and-animate-the-carousel-in-a-vertical-layout",
-          "value": "Display and animate the Carousel in a vertical layout"
         }
       ]
     }

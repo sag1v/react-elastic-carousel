@@ -150,16 +150,17 @@ class Carousel extends React.Component {
       const { childWidth, childHeight, firstItem } = state;
       const totalItems = children.length;
       const numOfVisibleItems = this.getNumOfVisibleItems();
+      const hiddenSlots = totalItems - numOfVisibleItems;
       let moveBy = firstItem * -1;
       const emptySlots = numOfVisibleItems - (totalItems - firstItem);
-      if (emptySlots > 0) {
+      if (emptySlots > 0 && hiddenSlots > 0) {
         moveBy = emptySlots + firstItem * -1;
       }
       let sliderPosition = (verticalMode ? childHeight : childWidth) * moveBy;
       const newFirstItem = emptySlots > 0 ? firstItem - emptySlots : firstItem;
       return {
         sliderPosition,
-        firstItem: newFirstItem
+        firstItem: newFirstItem < 0 ? 0 : newFirstItem
       };
     });
   };
@@ -230,7 +231,12 @@ class Carousel extends React.Component {
     const { children } = this.props;
     const itemsToScroll = this.getItemsToScroll();
     const numOfvisibleItems = this.getNumOfVisibleItems();
-    const limit = getPrev ? 0 : children.length - numOfvisibleItems;
+    const notEnoughItemsToshow = numOfvisibleItems > children.length;
+    let limit = getPrev ? 0 : children.length - numOfvisibleItems;
+
+    if (notEnoughItemsToshow) {
+      limit = 0; // basically don't move
+    }
     const nextAction = getPrev
       ? prevItemAction(0, itemsToScroll)
       : nextItemAction(limit, itemsToScroll);
@@ -341,7 +347,14 @@ class Carousel extends React.Component {
       return;
     }
     if (outOfBoundry) {
-      nextItemId = children.length - itemsToshow;
+      if (children.length - itemsToshow > 0) {
+        nextItemId = children.length - itemsToshow;
+      } else {
+        nextItemId = Math.max(
+          children.length - 1,
+          children.length - itemsToshow
+        );
+      }
     }
     let direction = consts.NEXT;
     let positionEndCb = this.onNextEnd;
