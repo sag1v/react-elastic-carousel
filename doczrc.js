@@ -15,12 +15,24 @@ export default {
   modifyBundlerConfig: config => {
     config.resolve.alias = {
       ...config.resolve.alias,
-      [libName]:path.join(__dirname, `/src/${libName}/index.js`)
+      [libName]: path.join(__dirname, `/src/${libName}/index.js`)
     }
     return config;
   },
   htmlContext: {
     head: {
+      scripts: [
+        {
+          async: 'async',
+          src: 'https://www.googletagmanager.com/gtag/js?id=UA-127217040-1'
+        }
+      ],
+    raw:   `<script>
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'UA-127217040-1');
+            </script>`,
       links: [{
         rel: 'stylesheet',
         href: '//codemirror.net/theme/dracula.css'
