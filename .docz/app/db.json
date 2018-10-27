@@ -21,7 +21,7 @@
       }
     },
     "ordering": "ascending",
-    "version": "0.1.18",
+    "version": "0.2.0",
     "repository": "https://github.com/sag1v/react-elastic-carousel",
     "native": false,
     "src": "./src/docs",
@@ -222,25 +222,25 @@
         }
       ]
     },
-    "mdx/itemPosition.mdx": {
-      "name": "itemPosition",
-      "order": 9,
-      "route": "/itemPosition",
+    "mdx/itemPadding.mdx": {
+      "name": "itemPadding",
+      "order": 8,
+      "route": "/itemPadding",
       "menu": "Examples",
-      "id": "76a6425c8af9dc748f704aee745e416e",
-      "filepath": "mdx/itemPosition.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/itemPosition.mdx",
-      "slug": "mdx-item-position",
+      "id": "b68514d0135666cc912ddd8403d31d11",
+      "filepath": "mdx/itemPadding.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/itemPadding.mdx",
+      "slug": "mdx-item-padding",
       "headings": [
         {
           "depth": 1,
-          "slug": "itemposition",
-          "value": "itemPosition"
+          "slug": "itempadding",
+          "value": "itemPadding"
         },
         {
           "depth": 4,
-          "slug": "sets-the-position-of-the-item-within-the-items-wrapper",
-          "value": "Sets the position of the item within the item's wrapper."
+          "slug": "sets-a-padding-to-the-wrapping-element-of-each-item",
+          "value": "Sets a  padding  to the wrapping element of each item"
         }
       ]
     },
@@ -266,25 +266,25 @@
         }
       ]
     },
-    "mdx/itemPadding.mdx": {
-      "name": "itemPadding",
-      "order": 8,
-      "route": "/itemPadding",
+    "mdx/itemPosition.mdx": {
+      "name": "itemPosition",
+      "order": 9,
+      "route": "/itemPosition",
       "menu": "Examples",
-      "id": "b68514d0135666cc912ddd8403d31d11",
-      "filepath": "mdx/itemPadding.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/itemPadding.mdx",
-      "slug": "mdx-item-padding",
+      "id": "76a6425c8af9dc748f704aee745e416e",
+      "filepath": "mdx/itemPosition.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/itemPosition.mdx",
+      "slug": "mdx-item-position",
       "headings": [
         {
           "depth": 1,
-          "slug": "itempadding",
-          "value": "itemPadding"
+          "slug": "itemposition",
+          "value": "itemPosition"
         },
         {
           "depth": 4,
-          "slug": "sets-a-padding-to-the-wrapping-element-of-each-item",
-          "value": "Sets a  padding  to the wrapping element of each item"
+          "slug": "sets-the-position-of-the-item-within-the-items-wrapper",
+          "value": "Sets the position of the item within the item's wrapper."
         }
       ]
     },
@@ -307,6 +307,28 @@
           "depth": 4,
           "slug": "number-of-items-to-scroll",
           "value": "Number of items to scroll"
+        }
+      ]
+    },
+    "mdx/onNextEnd.mdx": {
+      "name": "onNextEnd",
+      "order": 991,
+      "route": "/onNextEnd",
+      "menu": "Examples",
+      "id": "252226ec0e74a4c6191f7c27e27ab109",
+      "filepath": "mdx/onNextEnd.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/onNextEnd.mdx",
+      "slug": "mdx-on-next-end",
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "onnextend",
+          "value": "onNextEnd"
+        },
+        {
+          "depth": 4,
+          "slug": "onnextend-will-pass-the-new-current-item-object",
+          "value": "onNextEnd  will pass the new    item-object :"
         }
       ]
     },
@@ -376,28 +398,6 @@
         }
       ]
     },
-    "mdx/onNextEnd.mdx": {
-      "name": "onNextEnd",
-      "order": 991,
-      "route": "/onNextEnd",
-      "menu": "Examples",
-      "id": "252226ec0e74a4c6191f7c27e27ab109",
-      "filepath": "mdx/onNextEnd.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/onNextEnd.mdx",
-      "slug": "mdx-on-next-end",
-      "headings": [
-        {
-          "depth": 1,
-          "slug": "onnextend",
-          "value": "onNextEnd"
-        },
-        {
-          "depth": 4,
-          "slug": "onnextend-will-pass-the-new-current-item-object",
-          "value": "onNextEnd  will pass the new    item-object :"
-        }
-      ]
-    },
     "mdx/onPrevStart.mdx": {
       "name": "onPrevStart",
       "order": 992,
@@ -439,28 +439,6 @@
           "depth": 4,
           "slug": "you-can-listen-to-the-onresize-event-of-the-carousel-this-will-get-invoked-on-each-resize-event-of-the-root-element-and-will-return-the-current-breakpoint-object-being-used",
           "value": "You can listen to the  onResize  event of the  Carousel , this will get invoked on each  resize  event of the root element and will return the current  breakPoint  object being used:"
-        }
-      ]
-    },
-    "mdx/slideNext.mdx": {
-      "name": "slideNext / slidePrev",
-      "order": 994,
-      "route": "/slideNext",
-      "menu": "Examples",
-      "id": "70cfc8eaa9911ab18a7ac7bc763b34ce",
-      "filepath": "mdx/slideNext.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/slideNext.mdx",
-      "slug": "mdx-slide-next",
-      "headings": [
-        {
-          "depth": 1,
-          "slug": "slidenext--slideprev",
-          "value": "slideNext / slidePrev"
-        },
-        {
-          "depth": 4,
-          "slug": "you-can-trigger-the-slidenext-or-slideprev-methods-via-a-ref-to-the-carousel",
-          "value": "You can trigger the  slideNext  or  slidePrev  methods via a  ref  to the  Carousel :"
         }
       ]
     },
@@ -525,6 +503,28 @@
           "depth": 2,
           "slug": "demo",
           "value": "Demo"
+        }
+      ]
+    },
+    "mdx/slideNext.mdx": {
+      "name": "slideNext / slidePrev",
+      "order": 994,
+      "route": "/slideNext",
+      "menu": "Examples",
+      "id": "70cfc8eaa9911ab18a7ac7bc763b34ce",
+      "filepath": "mdx/slideNext.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/slideNext.mdx",
+      "slug": "mdx-slide-next",
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "slidenext--slideprev",
+          "value": "slideNext / slidePrev"
+        },
+        {
+          "depth": 4,
+          "slug": "you-can-trigger-the-slidenext-or-slideprev-methods-via-a-ref-to-the-carousel",
+          "value": "You can trigger the  slideNext  or  slidePrev  methods via a  ref  to the  Carousel :"
         }
       ]
     },

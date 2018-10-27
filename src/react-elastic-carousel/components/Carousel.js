@@ -465,7 +465,7 @@ class Carousel extends React.Component {
           </Only>
           <SliderContainer
             className={cssPrefix("slider-container")}
-            innerRef={this.setRef("sliderContainer")}
+            ref={this.setRef("sliderContainer")}
           >
             <Slider
               verticalMode={verticalMode}
@@ -477,7 +477,7 @@ class Carousel extends React.Component {
               transitionMs={transitionMs}
               tiltEasing={tiltEasing}
               className={cssPrefix("slider")}
-              innerRef={this.setRef("slider")}
+              ref={this.setRef("slider")}
             >
               <Track
                 children={children}

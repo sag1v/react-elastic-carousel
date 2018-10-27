@@ -1,6 +1,6 @@
 {
   "name": "react-elastic-carousel",
-  "version": "0.1.22",
+  "version": "0.2.0",
   "description": "A flexible and responsive carousel component for react",
   "author": "sag1v (Sagiv ben giat)",
   "license": "MIT",
@@ -28,7 +28,7 @@
     "prop-types": "^15.5.4",
     "react": "^15.0.0 || ^16.0.0",
     "react-dom": "^15.0.0 || ^16.0.0",
-    "styled-components": "^3.4.5"
+    "styled-components": "^4.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
@@ -89,7 +89,7 @@
     "rollup-plugin-peer-deps-external": "^2.2.0",
     "rollup-plugin-postcss": "^1.6.2",
     "rollup-plugin-url": "^1.4.0",
-    "styled-components": "^3.4.5"
+    "styled-components": "^4.0.2"
   },
   "files": [
     "dist"
