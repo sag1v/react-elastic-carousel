@@ -1,6 +1,5 @@
 ---
 name: renderArrow
-order: 11
 route: /renderArrow
 menu: Examples
 ---
@@ -36,22 +35,31 @@ type === consts.PREV
 ## Demo
 
 <Playground >
-    <Carousel 
-        renderArrow={
-            ({type, onClick}) => {
+    {
+        class App extends React.Component{
+            myArrow({type, onClick}){
                 const pointer = type === consts.PREV ? '👈' : '👉';
-                return (<Button onClick={onClick}>
-                    {pointer}
-                </Button>
-                )
+                return (
+                    <Button onClick={onClick}>
+                        {pointer}
+                    </Button>
+                );
+            }
+
+            render(){
+                return(
+                    <div>
+                        <Carousel renderArrow={this.myArrow}>
+                    <Item>1</Item>
+                    <Item>2</Item>
+                    <Item>3</Item>
+                    <Item>4</Item>
+                    <Item>5</Item>
+                    <Item>6</Item>
+                </Carousel>
+                    </div>
+                );
             }
         }
-    >
-        <Item>1</Item>
-        <Item>2</Item>
-        <Item>3</Item>
-        <Item>4</Item>
-        <Item>5</Item>
-        <Item>6</Item>
-    </Carousel>
+    }
 </Playground>

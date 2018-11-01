@@ -11,6 +11,34 @@ export default {
   hashRouter: true,
   base: `/${libName}/`,
   ordering: "ascending",
+  menu: [
+    "Getting started",
+    {
+      name: 'Examples',
+      menu: [
+        'itemsToScroll',
+        'itemsToShow',
+        'breakPoints',
+        'verticalMode',
+        'initialFirstItem',
+        'focusOnSelect',
+        'isRTL',
+        'enableAutoPlay',
+        'itemPadding',
+        'itemPosition',
+        'easing',
+        'renderArrow',
+        'renderPagination',
+        'onNextStart',
+        'onNextEnd',
+        'onPrevStart',
+        'onPrevEnd',
+        'onResize',
+        'slideNext / slidePrev',
+        'goTo'
+      ]
+    }
+  ],
   description: pkg.description,
   modifyBundlerConfig: config => {
     config.resolve.alias = {
@@ -45,6 +73,7 @@ export default {
     //   width: "50%"
     // },
     mode: 'light',
+    showPlaygroundEditor: true,
     codemirrorTheme: 'dracula',
     styles: {
       body: {

@@ -1,6 +1,5 @@
 ---
 name: breakPoints
-order: 3
 route: /breakPoints
 menu: Examples
 ---
@@ -8,7 +7,6 @@ menu: Examples
 import {Playground, PropsTable } from 'docz';
 import Carousel from 'react-elastic-carousel';
 import Item from '../components/SimpleItem';
-import breakPoints from '../components/breakPoints';
 
 # breakPoints
 _This is the coolest feature and one of the main reasons that `react-elastic-carousel` was written._
@@ -21,24 +19,33 @@ This is due to the fact that `react-elastic-carousel` is listening to the elemen
 ## Example
 (_Drag or use the resize buttons to see the changes..._)
 
-```
-const breakPoints = [
-  { width: 1, itemsToShow: 1 },
-  { width: 550, itemsToShow: 2, itemsToScroll: 2 },
-  { width: 850, itemsToShow: 3 },
-  { width: 1150, itemsToShow: 4, itemsToScroll: 2 },
-  { width: 1450, itemsToShow: 5 },
-  { width: 1750, itemsToShow: 6 }
-];
-```
-
 <Playground >
-  <Carousel breakPoints={breakPoints}>
-    <Item>1</Item>
-    <Item>2</Item>
-    <Item>3</Item>
-    <Item>4</Item>
-    <Item>5</Item>
-    <Item>6</Item>
-  </Carousel>
+  {
+    class App extends React.Component{
+      constructor(props){
+        super(props);
+        this.breakPoints = [
+          { width: 1, itemsToShow: 1 },
+          { width: 550, itemsToShow: 2, itemsToScroll: 2 },
+          { width: 850, itemsToShow: 3 },
+          { width: 1150, itemsToShow: 4, itemsToScroll: 2 },
+          { width: 1450, itemsToShow: 5 },
+          { width: 1750, itemsToShow: 6 }
+        ];
+      }
+
+      render(){
+        return(
+          <Carousel breakPoints={this.breakPoints}>
+            <Item>1</Item>
+            <Item>2</Item>
+            <Item>3</Item>
+            <Item>4</Item>
+            <Item>5</Item>
+            <Item>6</Item>
+          </Carousel>
+        );
+      }
+    }
+  }
 </Playground>

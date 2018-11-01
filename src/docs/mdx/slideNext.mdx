@@ -1,6 +1,5 @@
 ---
 name: slideNext / slidePrev
-order: 994
 route: /slideNext
 menu: Examples
 ---
@@ -18,15 +17,26 @@ this.carousel.slidePrev()
 ```
 
 <Playground >
-    <button onClick={() => this.carousel.slidePrev()}>Prev</button>
-    <button onClick={() => this.carousel.slideNext()}>Next</button>
-    <hr/>
-    <Carousel ref={ref => this.carousel = ref}>
-    <Item>1</Item>
-    <Item>2</Item>
-    <Item>3</Item>
-    <Item>4</Item>
-    <Item>5</Item>
-    <Item>6</Item>
-    </Carousel>
+    {
+        class App extends React.Component{
+            render(){
+                return(
+                    <div>
+                        <button onClick={() => this.carousel.slidePrev()}>Prev</button>
+                        <button onClick={() => this.carousel.slideNext()}>Next</button>
+                        <hr/>
+                        <Carousel ref={ref => this.carousel = ref}>
+                            <Item>1</Item>
+                            <Item>2</Item>
+                            <Item>3</Item>
+                            <Item>4</Item>
+                            <Item>5</Item>
+                            <Item>6</Item>
+                        </Carousel>
+                    </div>
+                );
+            }
+        }
+    }
+
 </Playground>

@@ -1,6 +1,5 @@
 ---
 name: goTo
-order: 989
 route: /goTo
 menu: Examples
 ---
@@ -16,15 +15,31 @@ this.carousel.goTo(someIndex)
 ```
 
 <Playground >
-    <label>Go to </label>
-    <input type="number" defaultValue={0} onChange={({target}) => this.carousel.goTo(Number(target.value))} />
-    <hr/>
-    <Carousel ref={ref => this.carousel = ref}>
-    <Item>1</Item>
-    <Item>2</Item>
-    <Item>3</Item>
-    <Item>4</Item>
-    <Item>5</Item>
-    <Item>6</Item>
-    </Carousel>
+    {
+        class App extends React.Component {
+            constructor(props){
+                super(props);
+                this.goto = this.goto.bind(this);
+            }
+            goto({target}){this.carousel.goTo(Number(target.value))}
+            render() {
+                return(
+                    <div>
+                        <label>Go to </label>
+                        <input type="number" defaultValue={0} onChange={this.goto} />
+                        <hr/>
+                        <Carousel ref={ref => this.carousel = ref}>
+                            <Item>1</Item>
+                            <Item>2</Item>
+                            <Item>3</Item>
+                            <Item>4</Item>
+                            <Item>5</Item>
+                            <Item>6</Item>
+                        </Carousel>
+                    </div>
+                );
+            }
+        }
+    }
+
 </Playground>
