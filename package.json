@@ -76,7 +76,6 @@
     "react-dom": "^16.6.0",
     "react-only-when": "^1.0.2",
     "react-resizable": "^1.7.5",
-    "react-scripts": "^1.1.4",
     "react-swipeable": "4.3.0",
     "react-test-renderer": "^16.5.2",
     "resize-observer-polyfill": "1.5.0",
@@ -106,5 +105,8 @@
     "right-to-left",
     "resize",
     "touch"
-  ]
+  ],
+  "dependencies": {
+    "react-scripts": "^2.1.5"
+  }
 }
