@@ -46,6 +46,7 @@ Arrow.down = "down";
 Arrow.propTypes = {
   direction: PropTypes.oneOf(["left", "right", "up", "down"]).isRequired,
   icons: PropTypes.object,
+  style: PropTypes.object,
   onClick: PropTypes.func
 };
 

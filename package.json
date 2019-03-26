@@ -17,11 +17,11 @@
     "lint:watch": "esw --watch --fix src/**/*.js",
     "test": "cross-env CI=1 react-scripts test --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom",
-    "prebuild": "npm run lint:fix",
+    "prebuild": "yarn run lint:fix",
     "build": "rollup -c",
-    "prepare": "npm run build",
+    "prepare": "yarn run build",
     "deploy": "gh-pages -d demo",
-    "docz:dev": "concurrently -k -r -s all \"npm run test:watch\" \"docz dev\" \"npm run lint:watch\"",
+    "docz:dev": "concurrently -r -k -s all \"yarn run test:watch\" \"docz dev\" \"yarn run lint:watch\"",
     "docz:build": "docz build"
   },
   "peerDependencies": {
@@ -53,12 +53,13 @@
     "@babel/preset-react": "^7.0.0",
     "babel-eslint": "^9.0.0",
     "classnames": "^2.2.6",
-    "concurrently": "^4.0.1",
+    "concurrently": "^4.1.0",
     "cross-env": "^5.1.4",
     "docz": "^0.13.7",
+    "docz-theme-default": "^0.13.7",
     "enzyme": "^3.6.0",
     "enzyme-adapter-react-16": "^1.5.0",
-    "eslint": "^5.14.1",
+    "eslint": "5.12.0",
     "eslint-config-prettier": "^3.0.1",
     "eslint-config-standard": "^12.0.0",
     "eslint-config-standard-react": "^7.0.0",
@@ -76,6 +77,7 @@
     "react-dom": "^16.6.0",
     "react-only-when": "^1.0.2",
     "react-resizable": "^1.7.5",
+    "react-scripts": "^2.1.8",
     "react-swipeable": "4.3.0",
     "react-test-renderer": "^16.5.2",
     "resize-observer-polyfill": "1.5.0",
@@ -106,7 +108,7 @@
     "resize",
     "touch"
   ],
-  "dependencies": {
-    "react-scripts": "^2.1.5"
+  "resolutions": {
+    "ansi-styles": "^3.2.0"
   }
 }

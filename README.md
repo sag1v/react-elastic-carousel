@@ -58,8 +58,8 @@ class App extends Component {
 ```console 
 git clone https://github.com/sag1v/react-elastic-carousel.git
 cd react-elastic-carousel
-npm install
-npm run docz:dev
+yarn
+yarn docz:dev
 ```
 
 The application is running at http://localhost:8888
