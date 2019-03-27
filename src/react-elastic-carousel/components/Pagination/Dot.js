@@ -36,7 +36,9 @@ class DotContainer extends React.Component {
       <Dot
         onClick={this.onClick}
         active={active}
-        className={cssPrefix("dot")}
+        className={`${cssPrefix("dot")} ${
+          active ? cssPrefix("dot_active") : ""
+        }`}
       />
     );
   }
