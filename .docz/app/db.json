@@ -31,7 +31,7 @@
       }
     ],
     "ordering": "ascending",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "repository": "https://github.com/sag1v/react-elastic-carousel",
     "native": false,
     "codeSandbox": true,
@@ -126,6 +126,28 @@
         }
       ]
     },
+    "mdx/enableAutoPlay.mdx": {
+      "name": "enableAutoPlay",
+      "route": "/enableAutoPlay",
+      "menu": "Examples",
+      "id": "29c4ecc66acacd3bf0adba5cf3392524",
+      "filepath": "mdx/enableAutoPlay.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/enableAutoPlay.mdx",
+      "slug": "mdx-enable-auto-play",
+      "order": 0,
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "enableautoplay",
+          "value": "enableAutoPlay"
+        },
+        {
+          "depth": 4,
+          "slug": "toggle-enableautoplay-and-set-autoplayspeed-as-you-wish",
+          "value": "Toggle  enableAutoPlay  and set  autoPlaySpeed  as you wish"
+        }
+      ]
+    },
     "mdx/focusOnSelect.mdx": {
       "name": "focusOnSelect",
       "route": "/focusOnSelect",
@@ -207,25 +229,25 @@
         }
       ]
     },
-    "mdx/enableAutoPlay.mdx": {
-      "name": "enableAutoPlay",
-      "route": "/enableAutoPlay",
+    "mdx/initialFirstItem.mdx": {
+      "name": "initialFirstItem",
+      "route": "/initialFirstItem",
       "menu": "Examples",
-      "id": "29c4ecc66acacd3bf0adba5cf3392524",
-      "filepath": "mdx/enableAutoPlay.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/enableAutoPlay.mdx",
-      "slug": "mdx-enable-auto-play",
+      "id": "76a5739de06d728534049c3762ad9a66",
+      "filepath": "mdx/initialFirstItem.mdx",
+      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/initialFirstItem.mdx",
+      "slug": "mdx-initial-first-item",
       "order": 0,
       "headings": [
         {
           "depth": 1,
-          "slug": "enableautoplay",
-          "value": "enableAutoPlay"
+          "slug": "initialfirstitem",
+          "value": "initialFirstItem"
         },
         {
           "depth": 4,
-          "slug": "toggle-enableautoplay-and-set-autoplayspeed-as-you-wish",
-          "value": "Toggle  enableAutoPlay  and set  autoPlaySpeed  as you wish"
+          "slug": "the-first-active-item-on-mount",
+          "value": "The first active item on mount"
         }
       ]
     },
@@ -248,28 +270,6 @@
           "depth": 4,
           "slug": "support-for-right-to-left-layouts",
           "value": "Support for  right-to-left  layouts"
-        }
-      ]
-    },
-    "mdx/initialFirstItem.mdx": {
-      "name": "initialFirstItem",
-      "route": "/initialFirstItem",
-      "menu": "Examples",
-      "id": "76a5739de06d728534049c3762ad9a66",
-      "filepath": "mdx/initialFirstItem.mdx",
-      "link": "https://github.com/sag1v/react-elastic-carousel\\edit\\master\\src\\docs\\mdx/initialFirstItem.mdx",
-      "slug": "mdx-initial-first-item",
-      "order": 0,
-      "headings": [
-        {
-          "depth": 1,
-          "slug": "initialfirstitem",
-          "value": "initialFirstItem"
-        },
-        {
-          "depth": 4,
-          "slug": "the-first-active-item-on-mount",
-          "value": "The first active item on mount"
         }
       ]
     },
