@@ -37,12 +37,12 @@ class Carousel extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { enableAutoPlay } = this.props;
+    const { enableAutoPlay, infinite } = this.props;
     const { firstItem } = this.state;
     const nextItem = this.getNextItemIndex(firstItem, false);
 
     // autoplay update
-    if (firstItem === nextItem) {
+    if (firstItem === nextItem && !infinite) {
       this.removeAutoPlay();
     } else if (enableAutoPlay && !this.autoPlayIntervalId) {
       this.setAutoPlay();
@@ -228,17 +228,30 @@ class Carousel extends React.Component {
   };
 
   getNextItemIndex = (currentIndex, getPrev) => {
-    const { children } = this.props;
+    const { children, infinite } = this.props;
     const itemsToScroll = this.getItemsToScroll();
     const numOfvisibleItems = this.getNumOfVisibleItems();
     const notEnoughItemsToshow = numOfvisibleItems > children.length;
-    let limit = getPrev ? 0 : children.length - numOfvisibleItems;
-
+    let limit;
+    if (infinite) {
+      if (getPrev && currentIndex !== 0) {
+        limit = 0;
+      } else if (
+        !getPrev &&
+        currentIndex === children.length - numOfvisibleItems
+      ) {
+        limit = 0;
+      } else {
+        limit = children.length - numOfvisibleItems;
+      }
+    } else {
+      limit = getPrev ? 0 : children.length - numOfvisibleItems;
+    }
     if (notEnoughItemsToshow) {
       limit = 0; // basically don't move
     }
     const nextAction = getPrev
-      ? prevItemAction(0, itemsToScroll)
+      ? prevItemAction(limit, itemsToScroll)
       : nextItemAction(limit, itemsToScroll);
     const nextItem = firstItemReducer(currentIndex, nextAction);
     return nextItem;
@@ -272,10 +285,10 @@ class Carousel extends React.Component {
   };
 
   slideNext = () => {
-    const { enableTilt } = this.props;
+    const { enableTilt, infinite } = this.props;
     const { firstItem, sliderPosition } = this.state;
     const nextItem = this.getNextItemIndex(firstItem, false);
-    if (firstItem !== nextItem) {
+    if (infinite || firstItem !== nextItem) {
       this.goTo(nextItem);
     } else if (enableTilt) {
       this.tiltMoveMent(sliderPosition, 20, 150);
@@ -284,9 +297,9 @@ class Carousel extends React.Component {
 
   slidePrev = () => {
     const { firstItem } = this.state;
-    const { enableTilt } = this.props;
+    const { enableTilt, infinite } = this.props;
     const prevItem = this.getNextItemIndex(firstItem, true);
-    if (firstItem !== prevItem) {
+    if (infinite || firstItem !== prevItem) {
       this.goTo(prevItem);
     } else if (enableTilt) {
       this.tiltMoveMent(0, -20, 150);
@@ -546,6 +559,7 @@ Carousel.defaultProps = {
   itemPadding: [0, 0, 0, 0],
   enableAutoPlay: false,
   autoPlaySpeed: 2000,
+  infinite: false,
 
   // callbacks
   onNextEnd: noop,
@@ -586,6 +600,9 @@ Carousel.propTypes = {
   /** The "bump" animation when reaching the last item */
   enableTilt: PropTypes.bool,
 
+  /** Enable infinite scroll */
+  infinite: PropTypes.bool,
+
   /** Number of visible items  */
   itemsToShow: PropTypes.number,
 
@@ -623,7 +640,7 @@ Carousel.propTypes = {
   /** Position the element relative to it's wrapper (use the consts object) - consts.START | consts.CENTER | consts.END */
   itemPosition: PropTypes.oneOf([consts.START, consts.CENTER, consts.END]),
 
-  /** A padding for each element  */
+  /** A padding for each element */
   itemPadding: PropTypes.array,
 
   // swipe
