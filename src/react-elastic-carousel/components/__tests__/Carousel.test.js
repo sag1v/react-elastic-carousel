@@ -50,12 +50,6 @@ describe("Carousel - public API (props)", () => {
     expect(slider.props().isRTL).toEqual(true);
   });
 
-  it("infinite", () => {
-    const wrapper = shallow(<Carousel infinite>{Items}</Carousel>);
-    const slider = wrapper.find(Slider);
-    expect(slider.props().infinite).toEqual(true);
-  });
-
   it("pagination", () => {
     const wrapper = shallow(<Carousel pagination>{Items}</Carousel>);
     const pagination = wrapper.find(Pagination);
