@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
-export default styled.div.attrs({
-  style: ({ padding, width, height }) => ({ padding, width, height })
+export default styled.div.attrs(({ padding, width, height }) => {
+  return {
+    style: { padding, width, height }
+  };
 })`
   box-sizing: border-box;
   display: flex;
