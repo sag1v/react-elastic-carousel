@@ -21,8 +21,7 @@
     "build": "rollup -c",
     "prepare": "yarn run build",
     "deploy": "gh-pages -d demo",
-    "docz:dev_old": "concurrently -r -k -s all \"yarn run test:watch\" \"docz dev\" \"yarn run lint:watch\"",
-    "docz:dev": "docz dev",
+    "docz:dev": "concurrently -r -k -s all \"yarn run test:watch\" \"docz dev\" \"yarn run lint:watch\"",
     "docz:build": "docz build"
   },
   "peerDependencies": {
