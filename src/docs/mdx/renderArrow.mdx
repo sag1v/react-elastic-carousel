@@ -4,7 +4,7 @@ route: /renderArrow
 menu: Examples
 ---
 
-import {Playground, PropsTable } from 'docz';
+import {Playground, Props } from 'docz';
 import Carousel, {consts} from 'react-elastic-carousel';
 import Button from '../components/Button';
 import Item from '../components/SimpleItem';
@@ -36,7 +36,7 @@ type === consts.PREV
 
 <Playground >
     {
-        class App extends React.Component{
+       class App extends React.Component{
             myArrow({type, onClick}){
                 const pointer = type === consts.PREV ? '👈' : '👉';
                 return (
@@ -45,18 +45,17 @@ type === consts.PREV
                     </Button>
                 );
             }
-
             render(){
                 return(
                     <div>
                         <Carousel renderArrow={this.myArrow}>
-                    <Item>1</Item>
-                    <Item>2</Item>
-                    <Item>3</Item>
-                    <Item>4</Item>
-                    <Item>5</Item>
-                    <Item>6</Item>
-                </Carousel>
+                            <Item>1</Item>
+                            <Item>2</Item>
+                            <Item>3</Item>
+                            <Item>4</Item>
+                            <Item>5</Item>
+                            <Item>6</Item>
+                        </Carousel>
                     </div>
                 );
             }

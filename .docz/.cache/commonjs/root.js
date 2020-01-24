@@ -63,7 +63,7 @@ const RouteHandler = props => _react.default.createElement(_router.BaseContext.P
 
 class LocationHandler extends _react.default.Component {
   render() {
-    let {
+    const {
       location
     } = this.props;
 

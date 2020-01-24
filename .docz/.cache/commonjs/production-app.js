@@ -127,7 +127,7 @@ window.___loader = _loader.publicLoader;
       };
     }).pop();
 
-    let NewRoot = () => WrappedRoot;
+    const NewRoot = () => WrappedRoot;
 
     const renderer = (0, _apiRunnerBrowser.apiRunner)(`replaceHydrateFunction`, undefined, _reactDom.default.hydrate)[0];
     (0, _domready.default)(() => {

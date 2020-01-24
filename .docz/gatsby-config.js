@@ -1,4 +1,4 @@
-const { mergeWith } = require('lodash/fp')
+const { mergeWith } = require('docz-utils')
 const fs = require('fs-extra')
 
 let custom = {}
@@ -19,26 +19,16 @@ const config = {
   pathPrefix: '/react-elastic-carousel/',
 
   siteMetadata: {
-    title: 'react-elastic-carousel',
+    title: 'React Elastic Carousel',
     description: 'A flexible and responsive carousel component for react',
   },
   plugins: [
     {
       resolve: 'gatsby-theme-docz',
       options: {
-        themeConfig: {
-          mode: 'light',
-          showPlaygroundEditor: true,
-          codemirrorTheme: 'dracula',
-          styles: {
-            body: {
-              fontFamily: "'Source Sans Pro', Helvetica, sans-serif",
-              fontSize: 16,
-              lineHeight: 1.6,
-            },
-            container: { width: '100%', padding: ['20px 40px'] },
-          },
-        },
+        themeConfig: {},
+        src: './',
+        gatsbyRoot: './',
         themesDir: 'src',
         mdxExtensions: ['.md', '.mdx'],
         docgenConfig: {},
@@ -72,7 +62,13 @@ const config = {
         ],
         mdPlugins: [],
         hastPlugins: [],
-        ignore: [],
+        ignore: [
+          'README.md',
+          'changelog.md',
+          'CODE_OF_CONDUCT.md',
+          'contributing.md',
+          'LICENSE.md',
+        ],
         typescript: false,
         ts: false,
         propsParser: true,
@@ -86,7 +82,7 @@ const config = {
         root: 'C:\\Users\\sagiv\\github clones\\react-elastic-carousel\\.docz',
         base: '/react-elastic-carousel/',
         source: './',
-        src: './src/docs',
+        'gatsby-root': './',
         files: '**/*.{md,markdown,mdx}',
         public: '/public',
         dest: './demo',
@@ -95,7 +91,7 @@ const config = {
         eb: 'master',
         'edit-branch': 'master',
         config: '',
-        title: 'react-elastic-carousel',
+        title: 'React Elastic Carousel',
         description: 'A flexible and responsive carousel component for react',
         host: 'localhost',
         port: 8888,
@@ -113,6 +109,8 @@ const config = {
             'C:\\Users\\sagiv\\github clones\\react-elastic-carousel\\.docz\\app',
           appPackageJson:
             'C:\\Users\\sagiv\\github clones\\react-elastic-carousel\\package.json',
+          appTsConfig:
+            'C:\\Users\\sagiv\\github clones\\react-elastic-carousel\\tsconfig.json',
           gatsbyConfig:
             'C:\\Users\\sagiv\\github clones\\react-elastic-carousel\\gatsby-config.js',
           gatsbyBrowser:
@@ -133,23 +131,6 @@ const config = {
             'C:\\Users\\sagiv\\github clones\\react-elastic-carousel\\.docz\\app\\db.json',
         },
         hashRouter: true,
-        ordering: 'ascending',
-        htmlContext: {
-          head: {
-            scripts: [
-              {
-                async: 'async',
-                src:
-                  'https://www.googletagmanager.com/gtag/js?id=UA-127217040-1',
-              },
-            ],
-            raw:
-              "<script>\n              window.dataLayer = window.dataLayer || [];\n              function gtag(){dataLayer.push(arguments);}\n              gtag('js', new Date());\n              gtag('config', 'UA-127217040-1');\n            </script>",
-            links: [
-              { rel: 'stylesheet', href: '//codemirror.net/theme/dracula.css' },
-            ],
-          },
-        },
       },
     },
   ],
