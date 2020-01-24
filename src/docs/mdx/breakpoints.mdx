@@ -4,7 +4,7 @@ route: /breakPoints
 menu: Examples
 ---
 
-import {Playground, PropsTable } from 'docz';
+import {Playground, Props } from 'docz';
 import Carousel from 'react-elastic-carousel';
 import Item from '../components/SimpleItem';
 
@@ -33,7 +33,6 @@ This is due to the fact that `react-elastic-carousel` is listening to the elemen
           { width: 1750, itemsToShow: 6 }
         ];
       }
-
       render(){
         return(
           <Carousel breakPoints={this.breakPoints}>

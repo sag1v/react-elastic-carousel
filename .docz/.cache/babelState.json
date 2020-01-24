@@ -1,0 +1,120 @@
+{
+  "stages": {
+    "develop": {
+      "plugins": [
+        {
+          "name": "@babel/plugin-proposal-object-rest-spread",
+          "options": {}
+        },
+        {
+          "name": "babel-plugin-export-metadata",
+          "options": {
+            "root": "C:\\Users\\sagiv\\github clones\\react-elastic-carousel"
+          }
+        }
+      ],
+      "presets": [
+        {
+          "name": "C:\\Users\\sagiv\\github clones\\react-elastic-carousel\\node_modules\\@emotion\\babel-preset-css-prop\\dist\\babel-preset-css-prop.cjs.js",
+          "options": {
+            "sourceMap": true,
+            "autoLabel": true,
+            "plugins": []
+          }
+        }
+      ],
+      "options": {
+        "cacheDirectory": true,
+        "sourceType": "unambiguous"
+      }
+    },
+    "develop-html": {
+      "plugins": [
+        {
+          "name": "@babel/plugin-proposal-object-rest-spread",
+          "options": {}
+        },
+        {
+          "name": "babel-plugin-export-metadata",
+          "options": {
+            "root": "C:\\Users\\sagiv\\github clones\\react-elastic-carousel"
+          }
+        }
+      ],
+      "presets": [
+        {
+          "name": "C:\\Users\\sagiv\\github clones\\react-elastic-carousel\\node_modules\\@emotion\\babel-preset-css-prop\\dist\\babel-preset-css-prop.cjs.js",
+          "options": {
+            "sourceMap": true,
+            "autoLabel": true,
+            "plugins": []
+          }
+        }
+      ],
+      "options": {
+        "cacheDirectory": true,
+        "sourceType": "unambiguous"
+      }
+    },
+    "build-html": {
+      "plugins": [
+        {
+          "name": "@babel/plugin-proposal-object-rest-spread",
+          "options": {}
+        },
+        {
+          "name": "babel-plugin-export-metadata",
+          "options": {
+            "root": "C:\\Users\\sagiv\\github clones\\react-elastic-carousel"
+          }
+        }
+      ],
+      "presets": [
+        {
+          "name": "C:\\Users\\sagiv\\github clones\\react-elastic-carousel\\node_modules\\@emotion\\babel-preset-css-prop\\dist\\babel-preset-css-prop.cjs.js",
+          "options": {
+            "sourceMap": true,
+            "autoLabel": true,
+            "plugins": []
+          }
+        }
+      ],
+      "options": {
+        "cacheDirectory": true,
+        "sourceType": "unambiguous"
+      }
+    },
+    "build-javascript": {
+      "plugins": [
+        {
+          "name": "@babel/plugin-proposal-object-rest-spread",
+          "options": {}
+        },
+        {
+          "name": "babel-plugin-export-metadata",
+          "options": {
+            "root": "C:\\Users\\sagiv\\github clones\\react-elastic-carousel"
+          }
+        }
+      ],
+      "presets": [
+        {
+          "name": "C:\\Users\\sagiv\\github clones\\react-elastic-carousel\\node_modules\\@emotion\\babel-preset-css-prop\\dist\\babel-preset-css-prop.cjs.js",
+          "options": {
+            "sourceMap": true,
+            "autoLabel": true,
+            "plugins": []
+          }
+        }
+      ],
+      "options": {
+        "cacheDirectory": true,
+        "sourceType": "unambiguous"
+      }
+    }
+  },
+  "browserslist": [
+    ">0.25%",
+    "not dead"
+  ]
+}
