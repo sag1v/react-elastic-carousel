@@ -17,8 +17,8 @@
         {
           "name": "C:\\Users\\sagiv\\github clones\\react-elastic-carousel\\node_modules\\@emotion\\babel-preset-css-prop\\dist\\babel-preset-css-prop.cjs.js",
           "options": {
-            "sourceMap": true,
-            "autoLabel": true,
+            "sourceMap": false,
+            "autoLabel": false,
             "plugins": []
           }
         }
@@ -45,8 +45,8 @@
         {
           "name": "C:\\Users\\sagiv\\github clones\\react-elastic-carousel\\node_modules\\@emotion\\babel-preset-css-prop\\dist\\babel-preset-css-prop.cjs.js",
           "options": {
-            "sourceMap": true,
-            "autoLabel": true,
+            "sourceMap": false,
+            "autoLabel": false,
             "plugins": []
           }
         }
@@ -73,8 +73,8 @@
         {
           "name": "C:\\Users\\sagiv\\github clones\\react-elastic-carousel\\node_modules\\@emotion\\babel-preset-css-prop\\dist\\babel-preset-css-prop.cjs.js",
           "options": {
-            "sourceMap": true,
-            "autoLabel": true,
+            "sourceMap": false,
+            "autoLabel": false,
             "plugins": []
           }
         }
@@ -101,8 +101,8 @@
         {
           "name": "C:\\Users\\sagiv\\github clones\\react-elastic-carousel\\node_modules\\@emotion\\babel-preset-css-prop\\dist\\babel-preset-css-prop.cjs.js",
           "options": {
-            "sourceMap": true,
-            "autoLabel": true,
+            "sourceMap": false,
+            "autoLabel": false,
             "plugins": []
           }
         }

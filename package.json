@@ -13,6 +13,7 @@
     "npm": ">=5"
   },
   "scripts": {
+    "start": "concurrently -r -k -s all \"yarn run test:watch\" \"docz dev\" \"yarn run lint:watch\"",
     "lint:fix": "eslint src/**/*.js --fix",
     "lint:watch": "esw --watch --fix src/**/*.js",
     "test": "cross-env CI=1 react-scripts test --env=jsdom",
@@ -20,9 +21,8 @@
     "prebuild": "yarn run lint:fix",
     "build": "rollup -c",
     "prepare": "yarn run build",
-    "deploy": "gh-pages -d demo",
-    "docz:dev": "concurrently -r -k -s all \"yarn run test:watch\" \"docz dev\" \"yarn run lint:watch\"",
-    "docz:build": "docz build"
+    "build-doc": "docz build",
+    "deploy-doc": "gh-pages -d demo"
   },
   "peerDependencies": {
     "prop-types": "^15.5.4",
@@ -70,11 +70,11 @@
     "eslint-plugin-standard": "^3.1.0",
     "eslint-watch": "^4.0.2",
     "gatsby-plugin-google-analytics": "^2.1.34",
-    "gh-pages": "^1.2.0",
+    "gh-pages": "^2.2.0",
     "prettier": "1.14.2",
     "prettier-eslint": "^8.8.2",
     "react": "^16.12.0",
-    "react-dom": "^16.6.0",
+    "react-dom": "^16.12.0",
     "react-only-when": "^1.0.2",
     "react-resizable": "^1.7.5",
     "react-scripts": "^2.1.8",

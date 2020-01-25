@@ -59,7 +59,7 @@ class App extends Component {
 git clone https://github.com/sag1v/react-elastic-carousel.git
 cd react-elastic-carousel
 yarn
-yarn docz:dev
+yarn start
 ```
 
 The application is running at http://localhost:8888
