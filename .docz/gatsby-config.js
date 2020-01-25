@@ -79,7 +79,8 @@ const config = {
         o: false,
         open: false,
         'open-browser': false,
-        root: 'C:\\Users\\sagiv\\github clones\\react-elastic-carousel\\.docz',
+        root:
+          '/Users/sagivbengiat/cloned_projects/react-elastic-carousel/.docz',
         base: '/react-elastic-carousel/',
         source: './',
         'gatsby-root': './',
@@ -98,37 +99,37 @@ const config = {
         p: 3000,
         separator: '-',
         paths: {
-          root: 'C:\\Users\\sagiv\\github clones\\react-elastic-carousel',
+          root: '/Users/sagivbengiat/cloned_projects/react-elastic-carousel',
           templates:
-            'C:\\Users\\sagiv\\github clones\\react-elastic-carousel\\node_modules\\docz-core\\dist\\templates',
+            '/Users/sagivbengiat/cloned_projects/react-elastic-carousel/node_modules/docz-core/dist/templates',
           docz:
-            'C:\\Users\\sagiv\\github clones\\react-elastic-carousel\\.docz',
+            '/Users/sagivbengiat/cloned_projects/react-elastic-carousel/.docz',
           cache:
-            'C:\\Users\\sagiv\\github clones\\react-elastic-carousel\\.docz\\.cache',
+            '/Users/sagivbengiat/cloned_projects/react-elastic-carousel/.docz/.cache',
           app:
-            'C:\\Users\\sagiv\\github clones\\react-elastic-carousel\\.docz\\app',
+            '/Users/sagivbengiat/cloned_projects/react-elastic-carousel/.docz/app',
           appPackageJson:
-            'C:\\Users\\sagiv\\github clones\\react-elastic-carousel\\package.json',
+            '/Users/sagivbengiat/cloned_projects/react-elastic-carousel/package.json',
           appTsConfig:
-            'C:\\Users\\sagiv\\github clones\\react-elastic-carousel\\tsconfig.json',
+            '/Users/sagivbengiat/cloned_projects/react-elastic-carousel/tsconfig.json',
           gatsbyConfig:
-            'C:\\Users\\sagiv\\github clones\\react-elastic-carousel\\gatsby-config.js',
+            '/Users/sagivbengiat/cloned_projects/react-elastic-carousel/gatsby-config.js',
           gatsbyBrowser:
-            'C:\\Users\\sagiv\\github clones\\react-elastic-carousel\\gatsby-browser.js',
+            '/Users/sagivbengiat/cloned_projects/react-elastic-carousel/gatsby-browser.js',
           gatsbyNode:
-            'C:\\Users\\sagiv\\github clones\\react-elastic-carousel\\gatsby-node.js',
+            '/Users/sagivbengiat/cloned_projects/react-elastic-carousel/gatsby-node.js',
           gatsbySSR:
-            'C:\\Users\\sagiv\\github clones\\react-elastic-carousel\\gatsby-ssr.js',
+            '/Users/sagivbengiat/cloned_projects/react-elastic-carousel/gatsby-ssr.js',
           importsJs:
-            'C:\\Users\\sagiv\\github clones\\react-elastic-carousel\\.docz\\app\\imports.js',
+            '/Users/sagivbengiat/cloned_projects/react-elastic-carousel/.docz/app/imports.js',
           rootJs:
-            'C:\\Users\\sagiv\\github clones\\react-elastic-carousel\\.docz\\app\\root.jsx',
+            '/Users/sagivbengiat/cloned_projects/react-elastic-carousel/.docz/app/root.jsx',
           indexJs:
-            'C:\\Users\\sagiv\\github clones\\react-elastic-carousel\\.docz\\app\\index.jsx',
+            '/Users/sagivbengiat/cloned_projects/react-elastic-carousel/.docz/app/index.jsx',
           indexHtml:
-            'C:\\Users\\sagiv\\github clones\\react-elastic-carousel\\.docz\\app\\index.html',
+            '/Users/sagivbengiat/cloned_projects/react-elastic-carousel/.docz/app/index.html',
           db:
-            'C:\\Users\\sagiv\\github clones\\react-elastic-carousel\\.docz\\app\\db.json',
+            '/Users/sagivbengiat/cloned_projects/react-elastic-carousel/.docz/app/db.json',
         },
         hashRouter: true,
       },

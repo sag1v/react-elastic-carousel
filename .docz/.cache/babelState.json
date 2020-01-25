@@ -9,13 +9,13 @@
         {
           "name": "babel-plugin-export-metadata",
           "options": {
-            "root": "C:\\Users\\sagiv\\github clones\\react-elastic-carousel"
+            "root": "/Users/sagivbengiat/cloned_projects/react-elastic-carousel"
           }
         }
       ],
       "presets": [
         {
-          "name": "C:\\Users\\sagiv\\github clones\\react-elastic-carousel\\node_modules\\@emotion\\babel-preset-css-prop\\dist\\babel-preset-css-prop.cjs.js",
+          "name": "/Users/sagivbengiat/cloned_projects/react-elastic-carousel/node_modules/@emotion/babel-preset-css-prop/dist/babel-preset-css-prop.cjs.js",
           "options": {
             "sourceMap": false,
             "autoLabel": false,
@@ -37,13 +37,13 @@
         {
           "name": "babel-plugin-export-metadata",
           "options": {
-            "root": "C:\\Users\\sagiv\\github clones\\react-elastic-carousel"
+            "root": "/Users/sagivbengiat/cloned_projects/react-elastic-carousel"
           }
         }
       ],
       "presets": [
         {
-          "name": "C:\\Users\\sagiv\\github clones\\react-elastic-carousel\\node_modules\\@emotion\\babel-preset-css-prop\\dist\\babel-preset-css-prop.cjs.js",
+          "name": "/Users/sagivbengiat/cloned_projects/react-elastic-carousel/node_modules/@emotion/babel-preset-css-prop/dist/babel-preset-css-prop.cjs.js",
           "options": {
             "sourceMap": false,
             "autoLabel": false,
@@ -65,13 +65,13 @@
         {
           "name": "babel-plugin-export-metadata",
           "options": {
-            "root": "C:\\Users\\sagiv\\github clones\\react-elastic-carousel"
+            "root": "/Users/sagivbengiat/cloned_projects/react-elastic-carousel"
           }
         }
       ],
       "presets": [
         {
-          "name": "C:\\Users\\sagiv\\github clones\\react-elastic-carousel\\node_modules\\@emotion\\babel-preset-css-prop\\dist\\babel-preset-css-prop.cjs.js",
+          "name": "/Users/sagivbengiat/cloned_projects/react-elastic-carousel/node_modules/@emotion/babel-preset-css-prop/dist/babel-preset-css-prop.cjs.js",
           "options": {
             "sourceMap": false,
             "autoLabel": false,
@@ -93,13 +93,13 @@
         {
           "name": "babel-plugin-export-metadata",
           "options": {
-            "root": "C:\\Users\\sagiv\\github clones\\react-elastic-carousel"
+            "root": "/Users/sagivbengiat/cloned_projects/react-elastic-carousel"
           }
         }
       ],
       "presets": [
         {
-          "name": "C:\\Users\\sagiv\\github clones\\react-elastic-carousel\\node_modules\\@emotion\\babel-preset-css-prop\\dist\\babel-preset-css-prop.cjs.js",
+          "name": "/Users/sagivbengiat/cloned_projects/react-elastic-carousel/node_modules/@emotion/babel-preset-css-prop/dist/babel-preset-css-prop.cjs.js",
           "options": {
             "sourceMap": false,
             "autoLabel": false,

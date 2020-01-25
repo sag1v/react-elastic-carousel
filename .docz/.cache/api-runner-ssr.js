@@ -1,8 +1,8 @@
 var plugins = [{
-      plugin: require('C:/Users/sagiv/github clones/react-elastic-carousel/node_modules/gatsby-plugin-mdx/gatsby-ssr'),
-      options: {"plugins":[],"extensions":[".md",".mdx"],"remarkPlugins":[[null,{"type":"yaml","marker":"-"}],null],"rehypePlugins":[null,null],"gatsbyRemarkPlugins":[],"defaultLayouts":{"default":"C:\\Users\\sagiv\\github clones\\react-elastic-carousel\\node_modules\\gatsby-theme-docz\\src\\base\\Layout.js"}},
+      plugin: require('/Users/sagivbengiat/cloned_projects/react-elastic-carousel/node_modules/gatsby-plugin-mdx/gatsby-ssr'),
+      options: {"plugins":[],"extensions":[".md",".mdx"],"remarkPlugins":[[null,{"type":"yaml","marker":"-"}],null],"rehypePlugins":[null,null],"gatsbyRemarkPlugins":[],"defaultLayouts":{"default":"/Users/sagivbengiat/cloned_projects/react-elastic-carousel/node_modules/gatsby-theme-docz/src/base/Layout.js"}},
     },{
-      plugin: require('C:/Users/sagiv/github clones/react-elastic-carousel/node_modules/gatsby-plugin-react-helmet-async/gatsby-ssr'),
+      plugin: require('/Users/sagivbengiat/cloned_projects/react-elastic-carousel/node_modules/gatsby-plugin-react-helmet-async/gatsby-ssr'),
       options: {"plugins":[]},
     }]
 // During bootstrap, we write requires at top of this file which looks like:
