@@ -28,6 +28,7 @@ export default {
         'easing',
         'renderArrow',
         'renderPagination',
+        'onChange',
         'onNextStart',
         'onNextEnd',
         'onPrevStart',

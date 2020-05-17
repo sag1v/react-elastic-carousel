@@ -21,8 +21,9 @@ import Item from '../components/SimpleItem';
 ({type, onClick}) => {/* return your element here */}
 ```
 
-- `type` = `PropTypes.oneOf([consts.PREV, consts.NEXT])`
+- `type` will be either `consts.PREV` or `consts.NEXT`, depends on the relevant arrow direction.
 - `onClick` Is the hook to the inner `onClick` of the `Carousel`. You can attach it wherever you want within the returned component.
+- `isEdge` Will be true when there are no more items to show for this direction.
 
 _You should import the `consts` object to check the arrow direction_
 ```
@@ -37,10 +38,10 @@ type === consts.PREV
 <Playground >
     {
        class App extends React.Component{
-            myArrow({type, onClick}){
+            myArrow({type, onClick, isEdge}){
                 const pointer = type === consts.PREV ? '👈' : '👉';
                 return (
-                    <Button onClick={onClick}>
+                    <Button onClick={onClick} disabled={isEdge}>
                         {pointer}
                     </Button>
                 );

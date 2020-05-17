@@ -206,7 +206,7 @@ class Carousel extends React.Component {
     });
   };
 
-  tiltMoveMent = (position, distance = 20, duration = 150) => {
+  tiltMovement = (position, distance = 20, duration = 150) => {
     this.setState(state => {
       return {
         isSwiping: true,
@@ -253,6 +253,8 @@ class Carousel extends React.Component {
     return asObj;
   };
 
+
+
   onNextStart = () => {
     const { onNextStart } = this.props;
     const { firstItem } = this.state;
@@ -278,7 +280,7 @@ class Carousel extends React.Component {
     if (firstItem !== nextItem) {
       this.goTo(nextItem);
     } else if (enableTilt) {
-      this.tiltMoveMent(sliderPosition, 20, 150);
+      this.tiltMovement(sliderPosition, 20, 150);
     }
   };
 
@@ -289,26 +291,28 @@ class Carousel extends React.Component {
     if (firstItem !== prevItem) {
       this.goTo(prevItem);
     } else if (enableTilt) {
-      this.tiltMoveMent(0, -20, 150);
+      this.tiltMovement(0, -20, 150);
     }
   };
 
   onNextEnd = () => {
-    const { onNextEnd } = this.props;
-    const { firstItem } = this.state;
+    const { onNextEnd, onChange } = this.props;
+    const { firstItem, activePage } = this.state;
     const nextItemObj = this.convertChildToCbObj(firstItem);
     this.removeSliderTransitionHook(this.onNextEnd);
     this.setState({ transitioning: false });
-    onNextEnd(nextItemObj);
+    onChange && onChange(nextItemObj, activePage);
+    onNextEnd(nextItemObj, activePage);
   };
 
   onPrevEnd = () => {
-    const { onPrevEnd } = this.props;
-    const { firstItem } = this.state;
+    const { onPrevEnd, onChange } = this.props;
+    const { firstItem, activePage } = this.state;
     const nextItemObj = this.convertChildToCbObj(firstItem);
     this.removeSliderTransitionHook(this.onPrevEnd);
     this.setState({ transitioning: false });
-    onPrevEnd(nextItemObj);
+    onChange && onChange(nextItemObj, activePage);
+    onPrevEnd(nextItemObj, activePage);
   };
 
   generatePositionUpdater = (
@@ -411,7 +415,8 @@ class Carousel extends React.Component {
       isSwiping,
       sliderPosition,
       swipedSliderPosition,
-      rootHeight
+      rootHeight,
+      firstItem
     } = this.state;
     const {
       className,
@@ -429,6 +434,7 @@ class Carousel extends React.Component {
       enableMouseSwipe,
       pagination,
       showArrows,
+      disableArrowsOnEnd,
       renderArrow,
       renderPagination
     } = this.props;
@@ -446,6 +452,12 @@ class Carousel extends React.Component {
     const onSwipedDown = verticalMode ? this.onPrevStart : noop;
     const numOfPages = this.getNumOfPages();
 
+    /** Determine if arrows should be disabled */
+    const canSlidePrev = firstItem !== this.getNextItemIndex(firstItem, true);
+    const canSlideNext = firstItem !== this.getNextItemIndex(firstItem, false);
+    const disabledPrevArrow = !canSlidePrev && disableArrowsOnEnd;
+    const disabledNextArrow = !canSlideNext && disableArrowsOnEnd;
+
     return (
       <CarouselWrapper
         isRTL={isRTL}
@@ -455,13 +467,14 @@ class Carousel extends React.Component {
         <StyledCarousel className={cssPrefix("carousel")} height={rootHeight}>
           <Only when={showArrows}>
             {renderArrow ? (
-              renderArrow({ type: consts.PREV, onClick: this.onPrevStart })
+              renderArrow({ type: consts.PREV, onClick: this.onPrevStart, isEdge: !canSlidePrev })
             ) : (
-              <Arrow
-                onClick={this.onPrevStart}
-                direction={verticalMode ? Arrow.up : Arrow.left}
-              />
-            )}
+                <Arrow
+                  onClick={this.onPrevStart}
+                  direction={verticalMode ? Arrow.up : Arrow.left}
+                  disabled={disabledPrevArrow}
+                />
+              )}
           </Only>
           <SliderContainer
             className={cssPrefix("slider-container")}
@@ -496,13 +509,14 @@ class Carousel extends React.Component {
           </SliderContainer>
           <Only when={showArrows}>
             {renderArrow ? (
-              renderArrow({ type: consts.NEXT, onClick: this.onNextStart })
+              renderArrow({ type: consts.NEXT, onClick: this.onNextStart, isEdge: !canSlideNext })
             ) : (
-              <Arrow
-                onClick={this.onNextStart}
-                direction={verticalMode ? Arrow.down : Arrow.right}
-              />
-            )}
+                <Arrow
+                  onClick={this.onNextStart}
+                  direction={verticalMode ? Arrow.down : Arrow.right}
+                  disabled={disabledNextArrow}
+                />
+              )}
           </Only>
         </StyledCarousel>
         <Only when={pagination}>
@@ -513,12 +527,12 @@ class Carousel extends React.Component {
               onClick: this.onIndicatorClick
             })
           ) : (
-            <Pagination
-              numOfPages={numOfPages}
-              activePage={activePage}
-              onClick={this.onIndicatorClick}
-            />
-          )}
+              <Pagination
+                numOfPages={numOfPages}
+                activePage={activePage}
+                onClick={this.onIndicatorClick}
+              />
+            )}
         </Only>
       </CarouselWrapper>
     );
@@ -532,6 +546,7 @@ Carousel.defaultProps = {
   isRTL: false,
   initialFirstItem: 0,
   showArrows: true,
+  disableArrowsOnEnd: true,
   pagination: true,
   easing: "ease",
   tiltEasing: "ease",
@@ -608,6 +623,9 @@ Carousel.propTypes = {
   /** Show the arrow buttons */
   showArrows: PropTypes.bool,
 
+  /** Disables the arrow button when there are no more items */
+  disableArrowsOnEnd: PropTypes.bool,
+
   /** Go to item on click */
   focusOnSelect: PropTypes.bool,
 
@@ -648,20 +666,24 @@ Carousel.propTypes = {
   autoPlaySpeed: PropTypes.number,
 
   // callbacks
-  /** A callback for the begining of the next transition
-   * - onNextStart(prevItemObj, nextItemObj) => {} */
+  /** A callback for the change of an item 
+   * - onChange(currentItemObject, currentPageIndex) => {} */  
+  onChange: PropTypes.func,
+
+  /** A callback for the beginning of the next transition
+   * - onNextStart(prevItemObject, nextItemObject) => {} */
   onNextStart: PropTypes.func,
 
-  /** A callback for the begining of the prev transition
-   * - onPrevStart(prevItemObj, nextItemObj) => {} */
+  /** A callback for the beginning of the prev transition
+   * - onPrevStart(prevItemObject, nextItemObject) => {} */
   onPrevStart: PropTypes.func,
 
   /** A callback for the end of the next transition
-   * - onNextEnd(nextItemObj) => {} */
+   * - onNextEnd(nextItemObject, currentPageIndex) => {} */
   onNextEnd: PropTypes.func,
 
   /** A callback for the end of the prev transition
-   * - onPrevEnd(nextItemObj) => {} */
+   * - onPrevEnd(nextItemObject, currentPageIndex) => {} */
   onPrevEnd: PropTypes.func,
 
   /** A callback for the "slider-container" resize
