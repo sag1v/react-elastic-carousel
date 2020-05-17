@@ -206,7 +206,7 @@ class Carousel extends React.Component {
     });
   };
 
-  tiltMoveMent = (position, distance = 20, duration = 150) => {
+  tiltMovement = (position, distance = 20, duration = 150) => {
     this.setState(state => {
       return {
         isSwiping: true,
@@ -253,6 +253,8 @@ class Carousel extends React.Component {
     return asObj;
   };
 
+
+
   onNextStart = () => {
     const { onNextStart } = this.props;
     const { firstItem } = this.state;
@@ -278,7 +280,7 @@ class Carousel extends React.Component {
     if (firstItem !== nextItem) {
       this.goTo(nextItem);
     } else if (enableTilt) {
-      this.tiltMoveMent(sliderPosition, 20, 150);
+      this.tiltMovement(sliderPosition, 20, 150);
     }
   };
 
@@ -289,7 +291,7 @@ class Carousel extends React.Component {
     if (firstItem !== prevItem) {
       this.goTo(prevItem);
     } else if (enableTilt) {
-      this.tiltMoveMent(0, -20, 150);
+      this.tiltMovement(0, -20, 150);
     }
   };
 
@@ -411,7 +413,8 @@ class Carousel extends React.Component {
       isSwiping,
       sliderPosition,
       swipedSliderPosition,
-      rootHeight
+      rootHeight,
+      firstItem
     } = this.state;
     const {
       className,
@@ -429,6 +432,7 @@ class Carousel extends React.Component {
       enableMouseSwipe,
       pagination,
       showArrows,
+      disableArrowsOnEdge,
       renderArrow,
       renderPagination
     } = this.props;
@@ -446,6 +450,12 @@ class Carousel extends React.Component {
     const onSwipedDown = verticalMode ? this.onPrevStart : noop;
     const numOfPages = this.getNumOfPages();
 
+    /** Determine if arrows should be disabled */
+    const canSlidePrev = firstItem !== this.getNextItemIndex(firstItem, true);
+    const canSlideNext = firstItem !== this.getNextItemIndex(firstItem, false);
+    const disabledPrevArrow = !canSlidePrev && disableArrowsOnEdge;
+    const disabledNextArrow = !canSlideNext && disableArrowsOnEdge;
+
     return (
       <CarouselWrapper
         isRTL={isRTL}
@@ -455,13 +465,14 @@ class Carousel extends React.Component {
         <StyledCarousel className={cssPrefix("carousel")} height={rootHeight}>
           <Only when={showArrows}>
             {renderArrow ? (
-              renderArrow({ type: consts.PREV, onClick: this.onPrevStart })
+              renderArrow({ type: consts.PREV, onClick: this.onPrevStart, isEdge: !canSlidePrev })
             ) : (
-              <Arrow
-                onClick={this.onPrevStart}
-                direction={verticalMode ? Arrow.up : Arrow.left}
-              />
-            )}
+                <Arrow
+                  onClick={this.onPrevStart}
+                  direction={verticalMode ? Arrow.up : Arrow.left}
+                  disabled={disabledPrevArrow}
+                />
+              )}
           </Only>
           <SliderContainer
             className={cssPrefix("slider-container")}
@@ -496,13 +507,14 @@ class Carousel extends React.Component {
           </SliderContainer>
           <Only when={showArrows}>
             {renderArrow ? (
-              renderArrow({ type: consts.NEXT, onClick: this.onNextStart })
+              renderArrow({ type: consts.NEXT, onClick: this.onNextStart, isEdge: !canSlideNext })
             ) : (
-              <Arrow
-                onClick={this.onNextStart}
-                direction={verticalMode ? Arrow.down : Arrow.right}
-              />
-            )}
+                <Arrow
+                  onClick={this.onNextStart}
+                  direction={verticalMode ? Arrow.down : Arrow.right}
+                  disabled={disabledNextArrow}
+                />
+              )}
           </Only>
         </StyledCarousel>
         <Only when={pagination}>
@@ -513,12 +525,12 @@ class Carousel extends React.Component {
               onClick: this.onIndicatorClick
             })
           ) : (
-            <Pagination
-              numOfPages={numOfPages}
-              activePage={activePage}
-              onClick={this.onIndicatorClick}
-            />
-          )}
+              <Pagination
+                numOfPages={numOfPages}
+                activePage={activePage}
+                onClick={this.onIndicatorClick}
+              />
+            )}
         </Only>
       </CarouselWrapper>
     );
@@ -532,6 +544,7 @@ Carousel.defaultProps = {
   isRTL: false,
   initialFirstItem: 0,
   showArrows: true,
+  disableArrowsOnEdge: true,
   pagination: true,
   easing: "ease",
   tiltEasing: "ease",
@@ -607,6 +620,9 @@ Carousel.propTypes = {
 
   /** Show the arrow buttons */
   showArrows: PropTypes.bool,
+
+  /** Disables the arrow button when there are no more items */
+  disableArrowsOnEdge: PropTypes.bool,
 
   /** Go to item on click */
   focusOnSelect: PropTypes.bool,
