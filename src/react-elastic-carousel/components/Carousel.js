@@ -296,21 +296,23 @@ class Carousel extends React.Component {
   };
 
   onNextEnd = () => {
-    const { onNextEnd } = this.props;
-    const { firstItem } = this.state;
+    const { onNextEnd, onChange } = this.props;
+    const { firstItem, activePage } = this.state;
     const nextItemObj = this.convertChildToCbObj(firstItem);
     this.removeSliderTransitionHook(this.onNextEnd);
     this.setState({ transitioning: false });
-    onNextEnd(nextItemObj);
+    onChange && onChange(nextItemObj, activePage);
+    onNextEnd(nextItemObj, activePage);
   };
 
   onPrevEnd = () => {
-    const { onPrevEnd } = this.props;
-    const { firstItem } = this.state;
+    const { onPrevEnd, onChange } = this.props;
+    const { firstItem, activePage } = this.state;
     const nextItemObj = this.convertChildToCbObj(firstItem);
     this.removeSliderTransitionHook(this.onPrevEnd);
     this.setState({ transitioning: false });
-    onPrevEnd(nextItemObj);
+    onChange && onChange(nextItemObj, activePage);
+    onPrevEnd(nextItemObj, activePage);
   };
 
   generatePositionUpdater = (
@@ -664,20 +666,24 @@ Carousel.propTypes = {
   autoPlaySpeed: PropTypes.number,
 
   // callbacks
-  /** A callback for the begining of the next transition
-   * - onNextStart(prevItemObj, nextItemObj) => {} */
+  /** A callback for the change of an item 
+   * - onChange(currentItemObject, currentPageIndex) => {} */  
+  onChange: PropTypes.func,
+
+  /** A callback for the beginning of the next transition
+   * - onNextStart(prevItemObject, nextItemObject) => {} */
   onNextStart: PropTypes.func,
 
-  /** A callback for the begining of the prev transition
-   * - onPrevStart(prevItemObj, nextItemObj) => {} */
+  /** A callback for the beginning of the prev transition
+   * - onPrevStart(prevItemObject, nextItemObject) => {} */
   onPrevStart: PropTypes.func,
 
   /** A callback for the end of the next transition
-   * - onNextEnd(nextItemObj) => {} */
+   * - onNextEnd(nextItemObject, currentPageIndex) => {} */
   onNextEnd: PropTypes.func,
 
   /** A callback for the end of the prev transition
-   * - onPrevEnd(nextItemObj) => {} */
+   * - onPrevEnd(nextItemObject, currentPageIndex) => {} */
   onPrevEnd: PropTypes.func,
 
   /** A callback for the "slider-container" resize

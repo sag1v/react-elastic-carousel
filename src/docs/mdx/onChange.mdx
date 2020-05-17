@@ -1,6 +1,6 @@
 ---
-name: onNextEnd
-route: /onNextEnd
+name: onChange
+route: /onChange
 menu: Examples
 ---
 
@@ -8,8 +8,8 @@ import {Playground, Props } from 'docz';
 import Carousel from 'react-elastic-carousel';
 import Item from '../components/SimpleItem';
 
-# onNextEnd
-#### `onNextEnd` will pass the new __current__ `item-object` and __current__ `page-index`:  
+# onChange
+#### `onChange` will pass the new __current__ `item-object` and __current__ `page-index`:  
 ```
 (currentItem, pageIndex) => {/*...*/}
 ```
@@ -25,7 +25,7 @@ import Item from '../components/SimpleItem';
 <Playground >
     <Carousel 
         itemsToShow={2}
-        onNextEnd={(currentItem, pageIndex) => alert(JSON.stringify({currentItem, pageIndex}))}
+        onChange={(currentItem, pageIndex) => alert(JSON.stringify({currentItem, pageIndex}))}
     >
     <Item someProp="cool1">1</Item>
     <Item someProp="cool2">2</Item>

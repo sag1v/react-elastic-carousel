@@ -9,9 +9,9 @@ import Carousel from 'react-elastic-carousel';
 import Item from '../components/SimpleItem';
 
 # onPrevEnd
-#### `onPrevEnd` will pass the new __current__ `item-object`:  
+#### `onPrevEnd` will pass the new __current__ `item-object` and __current__ `page-index`:  
 ```
-(currentItem) => {/*...*/}
+(currentItem, pageIndex) => {/*...*/}
 ```
 - The `item-object` has the shape of:
 ```
@@ -26,7 +26,7 @@ import Item from '../components/SimpleItem';
     <Carousel 
         initialFirstItem={3}
         itemsToShow={2}
-        onPrevEnd={(currentItem) => alert(JSON.stringify(currentItem))}
+        onPrevEnd={(currentItem, pageIndex) => alert(JSON.stringify({currentItem, pageIndex}))}
     >
     <Item someProp="cool1">1</Item>
     <Item someProp="cool2">2</Item>
