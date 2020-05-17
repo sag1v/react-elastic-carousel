@@ -78,7 +78,6 @@
     "react-only-when": "^1.0.2",
     "react-resizable": "^1.7.5",
     "react-scripts": "^2.1.8",
-    "react-swipeable": "4.3.0",
     "react-test-renderer": "^16.5.2",
     "resize-observer-polyfill": "1.5.0",
     "rollup": "^0.64.1",
@@ -110,5 +109,8 @@
   ],
   "resolutions": {
     "ansi-styles": "^3.2.0"
+  },
+  "dependencies": {
+    "react-swipeable": "^5.5.1"
   }
 }

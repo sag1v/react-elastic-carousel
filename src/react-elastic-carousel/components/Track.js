@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Swipeable from "react-swipeable";
+import { Swipeable } from "react-swipeable";
 import { cssPrefix } from "../utils/helpers";
 import ItemWrapperContainer from "./ItemWrapperContainer";
 
@@ -9,6 +9,7 @@ const Track = ({
   childWidth,
   enableSwipe,
   enableMouseSwipe,
+  preventDefaultTouchmoveEvent,
   itemPosition,
   itemPadding,
   onSwipedLeft,
@@ -34,7 +35,7 @@ const Track = ({
       return (
         <Swipeable
           stopPropagation
-          preventDefaultTouchmoveEvent
+          preventDefaultTouchmoveEvent={preventDefaultTouchmoveEvent}
           trackMouse={enableMouseSwipe}
           onSwipedLeft={onSwipedLeft}
           onSwipedRight={onSwipedRight}

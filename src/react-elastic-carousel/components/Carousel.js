@@ -539,6 +539,7 @@ Carousel.defaultProps = {
   enableTilt: true,
   enableSwipe: true,
   enableMouseSwipe: true,
+  preventDefaultTouchmoveEvent: false,
   focusOnSelect: false,
   itemsToShow: 1,
   itemsToScroll: 1,
@@ -632,6 +633,12 @@ Carousel.propTypes = {
 
   /** Enable or disable mouse swipe */
   enableMouseSwipe: PropTypes.bool,
+
+  /** Prevent page scroll on touchmove. 
+   * Use this to stop the browser from scrolling while a user swipes.
+   * More details: https://github.com/FormidableLabs/react-swipeable#preventdefaulttouchmoveevent-details
+  */
+  preventDefaultTouchmoveEvent: PropTypes.bool,
 
   // auto play
   /** Enable or disable auto play */
