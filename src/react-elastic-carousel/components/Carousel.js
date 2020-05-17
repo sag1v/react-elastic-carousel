@@ -434,7 +434,7 @@ class Carousel extends React.Component {
       enableMouseSwipe,
       pagination,
       showArrows,
-      disableArrowsOnEdge,
+      disableArrowsOnEnd,
       renderArrow,
       renderPagination
     } = this.props;
@@ -455,8 +455,8 @@ class Carousel extends React.Component {
     /** Determine if arrows should be disabled */
     const canSlidePrev = firstItem !== this.getNextItemIndex(firstItem, true);
     const canSlideNext = firstItem !== this.getNextItemIndex(firstItem, false);
-    const disabledPrevArrow = !canSlidePrev && disableArrowsOnEdge;
-    const disabledNextArrow = !canSlideNext && disableArrowsOnEdge;
+    const disabledPrevArrow = !canSlidePrev && disableArrowsOnEnd;
+    const disabledNextArrow = !canSlideNext && disableArrowsOnEnd;
 
     return (
       <CarouselWrapper
@@ -546,7 +546,7 @@ Carousel.defaultProps = {
   isRTL: false,
   initialFirstItem: 0,
   showArrows: true,
-  disableArrowsOnEdge: true,
+  disableArrowsOnEnd: true,
   pagination: true,
   easing: "ease",
   tiltEasing: "ease",
@@ -624,7 +624,7 @@ Carousel.propTypes = {
   showArrows: PropTypes.bool,
 
   /** Disables the arrow button when there are no more items */
-  disableArrowsOnEdge: PropTypes.bool,
+  disableArrowsOnEnd: PropTypes.bool,
 
   /** Go to item on click */
   focusOnSelect: PropTypes.bool,
