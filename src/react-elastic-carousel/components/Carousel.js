@@ -37,7 +37,7 @@ class Carousel extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { enableAutoPlay } = this.props;
+    const { enableAutoPlay, children, itemsToShow } = this.props;
     const { firstItem } = this.state;
     const nextItem = this.getNextItemIndex(firstItem, false);
 
@@ -48,6 +48,18 @@ class Carousel extends React.Component {
       this.setAutoPlay();
     } else if (!enableAutoPlay && this.autoPlayIntervalId) {
       this.removeAutoPlay();
+    }
+
+    if(prevProps.children.length > children.length){
+      // number of items is reduced (we don't care if number of items is increased)
+      // we need to check if our current index is not out of boundaries
+      // we need to include itemsToShow so we can fill up the slots
+      const lastIndex = children.length - 1;
+      const isOutOfRange = firstItem + itemsToShow > lastIndex;
+      if(isOutOfRange){
+        // we are out of boundaries, go "back" to last item of the list (respect itemsToShow)
+        this.goTo(children.length - itemsToShow)
+      }
     }
   }
 
