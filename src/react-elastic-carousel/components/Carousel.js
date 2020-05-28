@@ -440,6 +440,7 @@ class Carousel extends React.Component {
       transitionMs,
       children,
       focusOnSelect,
+      itemsToShow,
       itemPosition,
       itemPadding,
       enableSwipe,
@@ -507,6 +508,8 @@ class Carousel extends React.Component {
               <Track
                 children={children}
                 childWidth={childWidth}
+                currentItem={firstItem}
+                itemsToShow={itemsToShow}
                 itemPosition={itemPosition}
                 itemPadding={itemPadding}
                 enableSwipe={enableSwipe}
