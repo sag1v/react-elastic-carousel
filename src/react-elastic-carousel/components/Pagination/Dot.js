@@ -7,8 +7,9 @@ const boxShadow = "0 0 1px 2px rgba(0, 0, 0, 0.5)";
 const activeBoxShadow = "0 0 1px 3px rgba(103,58,183,1)";
 const hoveredBoxShadow = "0 0 1px 3px rgba(103,58,183,.5)";
 
-const Dot = styled.div`
+const Dot = styled.button`
   transition: all 250ms ease;
+  border: none;
   margin: 5px;
   background-color: ${({ active }) =>
     active ? "rgba(103,58,183,.5)" : "transparent"};
@@ -18,7 +19,8 @@ const Dot = styled.div`
   width: 10px;
   box-shadow: ${({ active }) => (active ? activeBoxShadow : boxShadow)};
   border-radius: 50%;
-  &:hover {
+  outline: none;
+  &:hover, &:focus {
     cursor: pointer;
     box-shadow: ${({ active }) =>
       active ? activeBoxShadow : hoveredBoxShadow};
@@ -34,6 +36,7 @@ class DotContainer extends React.Component {
     const { active } = this.props;
     return (
       <Dot
+        tabIndex={active ? -1 : 0}
         onClick={this.onClick}
         active={active}
         className={`${cssPrefix("dot")} ${

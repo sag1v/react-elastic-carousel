@@ -10,6 +10,8 @@ const Track = ({
   enableSwipe,
   enableMouseSwipe,
   preventDefaultTouchmoveEvent,
+  itemsToShow,
+  currentItem,
   itemPosition,
   itemPadding,
   onSwipedLeft,
@@ -21,6 +23,9 @@ const Track = ({
   const width = `${childWidth}px`;
   const paddingStyle = `${itemPadding.join("px ")}px`;
   let originalChildren = React.Children.map(children, (child, idx) => {
+    const min = currentItem;
+    const max = currentItem + itemsToShow;
+    const isVisible = idx >= min && idx < max;
     const item = (
       <ItemWrapperContainer
         id={idx}
@@ -31,8 +36,8 @@ const Track = ({
         onClick={onItemClick}
       />
     );
-    if (enableSwipe) {
-      return (
+    const toRender =
+      enableSwipe ? (
         <Swipeable
           stopPropagation
           preventDefaultTouchmoveEvent={preventDefaultTouchmoveEvent}
@@ -44,17 +49,17 @@ const Track = ({
           className={cssPrefix(`swipable-${child.key}`)}
         >
           {item}
-        </Swipeable>
-      );
-    } else {
-      return item;
-    }
-  });
+        </Swipeable>)
+        : item
+    return <div tabIndex={isVisible ? 0 : -1}>{toRender}</div>
+  })
   return <React.Fragment>{originalChildren}</React.Fragment>;
 };
 
 Track.propTypes = {
   children: PropTypes.array.isRequired,
+  itemsToShow: PropTypes.number.isRequired,
+  currentItem: PropTypes.number.isRequired,
   itemPosition: PropTypes.string,
   itemPadding: PropTypes.array,
   childWidth: PropTypes.number,
