@@ -18,7 +18,7 @@ import Item from '../components/SimpleItem';
 - You can pass a function that returns a react element,   
   This function is a [render prop](https://reactjs.org/docs/render-props.html) and its signature is:  
 ```
-({type, onClick}) => {/* return your element here */}
+({type, onClick, isEdge}) => {/* return your element here */}
 ```
 
 - `type` will be either `consts.PREV` or `consts.NEXT`, depends on the relevant arrow direction.
