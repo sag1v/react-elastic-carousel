@@ -50,13 +50,13 @@ class Carousel extends React.Component {
       this.removeAutoPlay();
     }
 
-    if(prevProps.children.length > children.length){
+    if (prevProps.children.length > children.length) {
       // number of items is reduced (we don't care if number of items is increased)
       // we need to check if our current index is not out of boundaries
       // we need to include itemsToShow so we can fill up the slots
       const lastIndex = children.length - 1;
       const isOutOfRange = firstItem + itemsToShow > lastIndex;
-      if(isOutOfRange){
+      if (isOutOfRange) {
         // we are out of boundaries, go "back" to last item of the list (respect itemsToShow)
         this.goTo(children.length - itemsToShow)
       }
@@ -477,7 +477,7 @@ class Carousel extends React.Component {
         className={`${cssPrefix("carousel-wrapper")} ${className}`}
         style={style}
       >
-        <StyledCarousel className={cssPrefix("carousel")} height={rootHeight}>
+        <StyledCarousel className={cssPrefix("carousel")} size={{ height: rootHeight }}>
           <Only when={showArrows}>
             {renderArrow ? (
               renderArrow({ type: consts.PREV, onClick: this.onPrevStart, isEdge: !canSlidePrev })
@@ -682,7 +682,7 @@ Carousel.propTypes = {
 
   // callbacks
   /** A callback for the change of an item 
-   * - onChange(currentItemObject, currentPageIndex) => {} */  
+   * - onChange(currentItemObject, currentPageIndex) => {} */
   onChange: PropTypes.func,
 
   /** A callback for the beginning of the next transition
