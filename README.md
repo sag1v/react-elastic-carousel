@@ -13,13 +13,26 @@
 - **RTL (right-to-left) support**  
   Supporting right-to-left languages requires a full support for right-to-left rendering and animations which is not supported in most of the carousel components out there. also, right-to-left support is [important and should be a standard for most applications](https://www.youtube.com/watch?v=A_3BfONFRUc).
 
-
 ## [Live Demos & Docs](https://sag1v.github.io/react-elastic-carousel/)
 
 ## Install
 
 ```bash
 npm install --save react-elastic-carousel
+```
+
+or
+
+```bash
+yarn add react-elastic-carousel
+```
+
+### Note
+
+`react-elastic-carousel` is using [styled-components](https://github.com/styled-components/styled-components) for styling, this means that you should install it as well:
+
+```bash
+npm install --save styled-components
 ```
 
 ## Usage
