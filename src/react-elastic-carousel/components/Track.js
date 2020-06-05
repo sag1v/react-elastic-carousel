@@ -32,7 +32,7 @@ const Track = ({
         itemPosition={itemPosition}
         child={child}
         style={{ width, padding: paddingStyle }}
-        key={`${child.key}${idx}`}
+        key={idx}
         onClick={onItemClick}
       />
     );
@@ -46,7 +46,7 @@ const Track = ({
           onSwipedRight={onSwipedRight}
           onSwipedUp={onSwipedUp}
           onSwipedDown={onSwipedDown}
-          className={cssPrefix(`swipable-${child.key}`)}
+          className={cssPrefix(`swipable-${idx}`)}
         >
           {item}
         </Swipeable>)
