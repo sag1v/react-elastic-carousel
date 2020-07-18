@@ -36,23 +36,24 @@ const Track = ({
         onClick={onItemClick}
       />
     );
-    const toRender =
-      enableSwipe ? (
-        <Swipeable
-          stopPropagation
-          preventDefaultTouchmoveEvent={preventDefaultTouchmoveEvent}
-          trackMouse={enableMouseSwipe}
-          onSwipedLeft={onSwipedLeft}
-          onSwipedRight={onSwipedRight}
-          onSwipedUp={onSwipedUp}
-          onSwipedDown={onSwipedDown}
-          className={cssPrefix(`swipable-${idx}`)}
-        >
-          {item}
-        </Swipeable>)
-        : item
-    return <div tabIndex={isVisible ? 0 : -1}>{toRender}</div>
-  })
+    const toRender = enableSwipe ? (
+      <Swipeable
+        stopPropagation
+        preventDefaultTouchmoveEvent={preventDefaultTouchmoveEvent}
+        trackMouse={enableMouseSwipe}
+        onSwipedLeft={onSwipedLeft}
+        onSwipedRight={onSwipedRight}
+        onSwipedUp={onSwipedUp}
+        onSwipedDown={onSwipedDown}
+        className={cssPrefix(`swipable-${idx}`)}
+      >
+        {item}
+      </Swipeable>
+    ) : (
+      item
+    );
+    return <div tabIndex={isVisible ? 0 : -1}>{toRender}</div>;
+  });
   return <React.Fragment>{originalChildren}</React.Fragment>;
 };
 

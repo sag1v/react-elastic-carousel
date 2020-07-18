@@ -58,7 +58,7 @@ class Carousel extends React.Component {
       const isOutOfRange = firstItem + itemsToShow > lastIndex;
       if (isOutOfRange) {
         // we are out of boundaries, go "back" to last item of the list (respect itemsToShow)
-        this.goTo(children.length - itemsToShow)
+        this.goTo(children.length - itemsToShow);
       }
     }
   }
@@ -264,8 +264,6 @@ class Carousel extends React.Component {
     const asObj = { item: asElement.props, index: nextItemIndex };
     return asObj;
   };
-
-
 
   onNextStart = () => {
     const { onNextStart } = this.props;
@@ -477,17 +475,24 @@ class Carousel extends React.Component {
         className={`${cssPrefix("carousel-wrapper")} ${className}`}
         style={style}
       >
-        <StyledCarousel className={cssPrefix("carousel")} size={{ height: rootHeight }}>
+        <StyledCarousel
+          className={cssPrefix("carousel")}
+          size={{ height: rootHeight }}
+        >
           <Only when={showArrows}>
             {renderArrow ? (
-              renderArrow({ type: consts.PREV, onClick: this.onPrevStart, isEdge: !canSlidePrev })
+              renderArrow({
+                type: consts.PREV,
+                onClick: this.onPrevStart,
+                isEdge: !canSlidePrev
+              })
             ) : (
-                <Arrow
-                  onClick={this.onPrevStart}
-                  direction={verticalMode ? Arrow.up : Arrow.left}
-                  disabled={disabledPrevArrow}
-                />
-              )}
+              <Arrow
+                onClick={this.onPrevStart}
+                direction={verticalMode ? Arrow.up : Arrow.left}
+                disabled={disabledPrevArrow}
+              />
+            )}
           </Only>
           <SliderContainer
             className={cssPrefix("slider-container")}
@@ -524,14 +529,18 @@ class Carousel extends React.Component {
           </SliderContainer>
           <Only when={showArrows}>
             {renderArrow ? (
-              renderArrow({ type: consts.NEXT, onClick: this.onNextStart, isEdge: !canSlideNext })
+              renderArrow({
+                type: consts.NEXT,
+                onClick: this.onNextStart,
+                isEdge: !canSlideNext
+              })
             ) : (
-                <Arrow
-                  onClick={this.onNextStart}
-                  direction={verticalMode ? Arrow.down : Arrow.right}
-                  disabled={disabledNextArrow}
-                />
-              )}
+              <Arrow
+                onClick={this.onNextStart}
+                direction={verticalMode ? Arrow.down : Arrow.right}
+                disabled={disabledNextArrow}
+              />
+            )}
           </Only>
         </StyledCarousel>
         <Only when={pagination}>
@@ -542,12 +551,12 @@ class Carousel extends React.Component {
               onClick: this.onIndicatorClick
             })
           ) : (
-              <Pagination
-                numOfPages={numOfPages}
-                activePage={activePage}
-                onClick={this.onIndicatorClick}
-              />
-            )}
+            <Pagination
+              numOfPages={numOfPages}
+              activePage={activePage}
+              onClick={this.onIndicatorClick}
+            />
+          )}
         </Only>
       </CarouselWrapper>
     );
@@ -667,10 +676,10 @@ Carousel.propTypes = {
   /** Enable or disable mouse swipe */
   enableMouseSwipe: PropTypes.bool,
 
-  /** Prevent page scroll on touchmove. 
+  /** Prevent page scroll on touchmove.
    * Use this to stop the browser from scrolling while a user swipes.
    * More details: https://github.com/FormidableLabs/react-swipeable#preventdefaulttouchmoveevent-details
-  */
+   */
   preventDefaultTouchmoveEvent: PropTypes.bool,
 
   // auto play
@@ -681,7 +690,7 @@ Carousel.propTypes = {
   autoPlaySpeed: PropTypes.number,
 
   // callbacks
-  /** A callback for the change of an item 
+  /** A callback for the change of an item
    * - onChange(currentItemObject, currentPageIndex) => {} */
   onChange: PropTypes.func,
 
