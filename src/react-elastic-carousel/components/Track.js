@@ -66,6 +66,7 @@ Track.propTypes = {
   childWidth: PropTypes.number,
   enableSwipe: PropTypes.bool,
   enableMouseSwipe: PropTypes.bool,
+  preventDefaultTouchmoveEvent: PropTypes.bool,
   onSwipedLeft: PropTypes.func,
   onSwipedRight: PropTypes.func,
   onSwipedUp: PropTypes.func,

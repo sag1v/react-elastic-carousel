@@ -446,6 +446,7 @@ class Carousel extends React.Component {
       pagination,
       showArrows,
       disableArrowsOnEnd,
+      preventDefaultTouchmoveEvent,
       renderArrow,
       renderPagination
     } = this.props;
@@ -519,6 +520,7 @@ class Carousel extends React.Component {
                 itemPadding={itemPadding}
                 enableSwipe={enableSwipe}
                 enableMouseSwipe={enableMouseSwipe}
+                preventDefaultTouchmoveEvent={preventDefaultTouchmoveEvent}
                 onSwipedLeft={onSwipedLeft}
                 onSwipedRight={onSwipedRight}
                 onSwipedUp={onSwipedUp}
