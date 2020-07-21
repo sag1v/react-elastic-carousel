@@ -27,6 +27,7 @@ class Carousel extends React.Component {
     isSwiping: false,
     transitioning: false,
     firstItem: this.props.initialFirstItem,
+    pages: [],
     activePage: 0,
     sliderContainerWidth: 0
   };
@@ -34,12 +35,29 @@ class Carousel extends React.Component {
   componentDidMount() {
     this.initResizeObserver();
     this.updateActivePage();
+    this.setPages();
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { enableAutoPlay, children, itemsToShow } = this.props;
+    const {
+      enableAutoPlay,
+      children,
+      itemsToShow,
+      itemsToScroll,
+      breakPoints
+    } = this.props;
     const { firstItem } = this.state;
     const nextItem = this.getNextItemIndex(firstItem, false);
+
+    // update pages (for pagination)
+    if (
+      prevProps.children !== children ||
+      prevProps.itemsToShow !== itemsToShow ||
+      prevProps.itemsToScroll !== itemsToScroll ||
+      prevProps.breakPoints !== breakPoints
+    ) {
+      this.setPages();
+    }
 
     // autoplay update
     if (firstItem === nextItem) {
@@ -102,6 +120,12 @@ class Carousel extends React.Component {
       clearInterval(this.autoPlayIntervalId);
       this.autoPlayIntervalId = null;
     }
+  };
+
+  setPages = () => {
+    const numOfPages = this.getNumOfPages();
+    const pages = numberToArray(numOfPages);
+    this.setState({ pages });
   };
 
   onSliderTransitionEnd = fn => {
@@ -426,6 +450,7 @@ class Carousel extends React.Component {
       sliderPosition,
       swipedSliderPosition,
       rootHeight,
+      pages,
       firstItem
     } = this.state;
     const {
@@ -548,7 +573,7 @@ class Carousel extends React.Component {
         <Only when={pagination}>
           {renderPagination ? (
             renderPagination({
-              pages: numberToArray(numOfPages),
+              pages: pages,
               activePage,
               onClick: this.onIndicatorClick
             })
