@@ -20,7 +20,8 @@ const Dot = styled.button`
   box-shadow: ${({ active }) => (active ? activeBoxShadow : boxShadow)};
   border-radius: 50%;
   outline: none;
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     cursor: pointer;
     box-shadow: ${({ active }) =>
       active ? activeBoxShadow : hoveredBoxShadow};
