@@ -37,7 +37,6 @@ class DotContainer extends React.Component {
     const { active } = this.props;
     return (
       <Dot
-        type="button"
         tabIndex={active ? -1 : 0}
         onClick={this.onClick}
         active={active}
