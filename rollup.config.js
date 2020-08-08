@@ -1,5 +1,6 @@
 import babel from 'rollup-plugin-babel';
 import commonjs from 'rollup-plugin-commonjs';
+import copy from "rollup-plugin-copy";
 import external from 'rollup-plugin-peer-deps-external';
 import postcss from 'rollup-plugin-postcss';
 import resolve from 'rollup-plugin-node-resolve';
@@ -44,6 +45,9 @@ export default {
       namedExports: {
         'node_modules/react-is/index.js': ['isValidElementType']
       }
+    }),
+    copy({
+      targets: [{ src: `src/${libName}/index.d.ts`, dest: "dist" }],
     })
   ]
 }
