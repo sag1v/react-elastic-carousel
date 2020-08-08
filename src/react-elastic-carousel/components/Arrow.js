@@ -28,6 +28,7 @@ const Arrow = ({ direction, onClick, icons, style, ...rest }) => {
   };
   return (
     <Button
+      type="button"
       tabIndex={0}
       onClick={onClick}
       className={cx(arrowClassname, `${arrowClassname}-${direction}`)}
