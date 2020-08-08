@@ -52,7 +52,7 @@ class DotContainer extends React.Component {
 DotContainer.propTypes = {
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   active: PropTypes.bool,
-  onClick: PropTypes.func,
+  onClick: PropTypes.func
 };
 
 export default DotContainer;

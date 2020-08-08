@@ -8,12 +8,12 @@ const directionIcons = {
   left: "❮",
   right: "❯",
   up: "❮",
-  down: "❯",
+  down: "❯"
 };
 
 const arrowClassname = cssPrefix("arrow");
 
-const rotateStyle = (direction) => {
+const rotateStyle = direction => {
   let rotate = {};
   if (direction === Arrow.up || direction === Arrow.down) {
     rotate.transform = "rotate(90deg)";
@@ -24,7 +24,7 @@ const Arrow = ({ direction, onClick, icons, style, ...rest }) => {
   const arrows = { ...directionIcons, ...icons };
   const styleObj = {
     ...rotateStyle(direction),
-    ...style,
+    ...style
   };
   return (
     <Button
@@ -48,7 +48,7 @@ Arrow.propTypes = {
   direction: PropTypes.oneOf(["left", "right", "up", "down"]).isRequired,
   icons: PropTypes.object,
   style: PropTypes.object,
-  onClick: PropTypes.func,
+  onClick: PropTypes.func
 };
 
 export default Arrow;
