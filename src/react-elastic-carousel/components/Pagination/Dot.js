@@ -7,7 +7,7 @@ const boxShadow = "0 0 1px 2px rgba(0, 0, 0, 0.5)";
 const activeBoxShadow = "0 0 1px 3px rgba(103,58,183,1)";
 const hoveredBoxShadow = "0 0 1px 3px rgba(103,58,183,.5)";
 
-const Dot = styled.button`
+const Dot = styled.button.attrs(({ type = "button" }) => ({ type }))`
   transition: all 250ms ease;
   border: none;
   margin: 5px;
@@ -37,6 +37,7 @@ class DotContainer extends React.Component {
     const { active } = this.props;
     return (
       <Dot
+        type="button"
         tabIndex={active ? -1 : 0}
         onClick={this.onClick}
         active={active}

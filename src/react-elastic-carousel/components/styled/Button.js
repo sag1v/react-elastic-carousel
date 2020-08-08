@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export default styled.button`
+export default styled.button.attrs(({ type = "button" }) => ({ type }))`
   transition: all 0.3s ease;
   font-size: 1.6em;
   background-color: rgba(103, 58, 183, 0.1);
