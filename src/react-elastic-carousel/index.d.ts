@@ -1,3 +1,5 @@
+import React from "react";
+
 type RenderArrowProps = {
   type: "PREV" | "NEXT";
   onClick: () => void;
