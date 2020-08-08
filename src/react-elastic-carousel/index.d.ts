@@ -38,7 +38,6 @@ export interface ReactElasticCarouselProps {
   // Defaults to true.
   enableTilt?: boolean;
   // Defaults to 1
-  // Defaults to 1
   itemsToScroll?: number;
   breakpoints?: {
     width: number;
