@@ -51,7 +51,7 @@ export default styled.div`
   position: absolute;
   display: flex;
   flex-direction: ${({ verticalMode }) => (verticalMode ? "column" : "row")};
-  min-height: 100%;
+  ${({ verticalMode }) => (verticalMode ? "min-height: 100%;" : "")}
   transition: ${calcTransition};
   left: ${calcLeft};
   right: ${calcRight};
