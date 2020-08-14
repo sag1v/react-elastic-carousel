@@ -1,11 +1,12 @@
 
 # react-elastic-carousel
 
-> A flexible and responsive carousel component for react 
+> A flexible and responsive carousel component for react
 
-[![NPM](https://img.shields.io/npm/v/react-elastic-carousel.svg)](https://www.npmjs.com/package/react-elastic-carousel) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/react-elastic-carousel.svg?style=flat-square)](https://www.npmjs.com/package/react-elastic-carousel) ![npm](https://img.shields.io/npm/dw/react-elastic-carousel?style=flat-square) ![npm bundle size](https://img.shields.io/bundlephobia/min/react-elastic-carousel?style=flat-square)
 
-### Why do we need yet another carousel component?
+## Why do we need yet another carousel component
+
 - **Element resize support (true responsiveness)**  
   Most of the carousel components are responsive to the viewport size, but this is not a real responsive support as we can have an element with a `width:500px` on a `1200px` screen, most carousel component will "think" we are on a `1200px` mode because they "watch" the view-port's size and not the wrapping element's size.
   This is the reason why `react-eleastic-carousel` is using the [resize-observer](https://developers.google.com/web/updates/2016/10/resizeobserver) which gives us a true responsive support, not matter on what screen size we are.
@@ -64,6 +65,7 @@ class App extends Component {
 ```
 
 ## Playground
+
 [![Edit react-elastic-carousel](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/21o46mkwnr)
 
 ## Development
