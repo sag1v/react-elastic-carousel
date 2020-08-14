@@ -41,7 +41,7 @@ export interface ReactElasticCarouselProps {
   enableTilt?: boolean;
   // Defaults to 1
   itemsToScroll?: number;
-  breakpoints?: {
+  breakPoints?: {
     width: number;
     itemsToShow: number;
     itemsToScroll: number;
@@ -51,7 +51,7 @@ export interface ReactElasticCarouselProps {
   // Defaults to true
   showArrows?: boolean;
   // Defaults to true
-  disableArrosOnEnd?: boolean;
+  disableArrowsOnEnd?: boolean;
   // Defaults to boolean
   focusOnSelect?: boolean;
   // Function to generate your own navigation arrows.
