@@ -1,6 +1,9 @@
 ---
 name: Bug report
 about: Create a report to help us improve
+title: ''
+labels: ''
+assignees: ''
 
 ---
 
@@ -16,6 +19,9 @@ Steps to reproduce the behavior:
 
 **Expected behavior**
 A clear and concise description of what you expected to happen.
+
+**Sandbox link**
+Please provide a link to a [codesandbox](https://codesandbox.io/) with the reproduced bug
 
 **Screenshots**
 If applicable, add screenshots to help explain your problem.
