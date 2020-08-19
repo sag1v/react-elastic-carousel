@@ -46,7 +46,7 @@ class Carousel extends React.Component {
       itemsToScroll,
       breakPoints
     } = this.props;
-    const { firstItem } = this.state;
+    const { firstItem, sliderContainerWidth } = this.state;
     const nextItem = this.getNextItemIndex(firstItem, false);
 
     // update pages (for pagination)
@@ -54,7 +54,8 @@ class Carousel extends React.Component {
       prevProps.children !== children ||
       prevProps.itemsToShow !== itemsToShow ||
       prevProps.itemsToScroll !== itemsToScroll ||
-      prevProps.breakPoints !== breakPoints
+      prevProps.breakPoints !== breakPoints ||
+      sliderContainerWidth !== prevState.sliderContainerWidth
     ) {
       this.setPages();
     }
