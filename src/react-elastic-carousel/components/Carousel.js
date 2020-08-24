@@ -260,8 +260,10 @@ class Carousel extends React.Component {
 
   convertChildToCbObj = index => {
     const { children } = this.props;
-    const child = children[index];
-    return { item: child.props, index };
+    // support decimal itemsToShow
+    const roundedIdx = Math.round(index);
+    const child = children[roundedIdx];
+    return { item: child.props, index: roundedIdx };
   };
 
   getNextItemIndex = (currentIndex, getPrev) => {
@@ -285,8 +287,10 @@ class Carousel extends React.Component {
     const { children } = this.props;
     const { firstItem } = this.state;
     const nextItemIndex = this.getNextItemIndex(firstItem, getPrev);
-    const asElement = children[nextItemIndex];
-    const asObj = { item: asElement.props, index: nextItemIndex };
+    // support decimal itemsToShow
+    const roundedIdx = Math.round(nextItemIndex);
+    const asElement = children[roundedIdx];
+    const asObj = { item: asElement.props, index: roundedIdx };
     return asObj;
   };
 
