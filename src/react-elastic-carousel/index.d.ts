@@ -8,7 +8,7 @@ type RenderArrowProps = {
 
 type RenderPaginationProps = {
   pages: number;
-  activatePage: number;
+  activePage: number;
   // The onClick event that sets the state of the carousel and sends
   // it to a specific page.
   onClick: (indicatorId: string) => void;
