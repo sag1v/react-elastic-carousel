@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 
 type RenderArrowProps = {
   type: "PREV" | "NEXT";
@@ -27,6 +27,7 @@ type Breakpoint = {
 
 export interface ReactElasticCarouselProps {
   className?: string;
+  // Defaults to 1
   itemsToShow?: number;
   // Defaults to false
   verticalMode?: boolean;
@@ -42,10 +43,11 @@ export interface ReactElasticCarouselProps {
   enableTilt?: boolean;
   // Defaults to 1
   itemsToScroll?: number;
+  // Collection of objects with a width, itemsToShow and itemsToScroll
   breakPoints?: {
     width: number;
-    itemsToShow: number;
-    itemsToScroll: number;
+    itemsToShow?: number;
+    itemsToScroll?: number;
   }[];
   // Defaults to 0
   initialFirstItem?: number;
@@ -62,7 +64,7 @@ export interface ReactElasticCarouselProps {
   // Defaults to "CENTER"
   itemPosition?: "START" | "CENTER" | "END";
   // A padding for each element - Defaults to [0,0,0,0]
-  itemPadding: number[];
+  itemPadding?: number[];
   // Enable or disable swipe - Defaults to true
   enableSwipe?: boolean;
   /** Enable or disable mouse swipe */
@@ -76,6 +78,7 @@ export interface ReactElasticCarouselProps {
   enableAutoPlay?: boolean;
   /** Set auto play speed (ms) - Defaults to 2000 */
   autoPlaySpeed?: number;
+  // A callback for the change of an item
   onChange?: (currentItemObject: ItemObject, currentPageIndex: number) => void;
   //  A callback for the beginning of the next transition
   onNextStart?: (
