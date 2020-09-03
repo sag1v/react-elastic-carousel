@@ -667,7 +667,7 @@ Carousel.propTypes = {
   /** Collection of objects with a width, itemsToShow and itemsToScroll  */
   breakPoints: PropTypes.arrayOf(
     PropTypes.shape({
-      width: PropTypes.number,
+      width: PropTypes.number.isRequired,
       itemsToShow: PropTypes.number,
       itemsToScroll: PropTypes.number
     })
