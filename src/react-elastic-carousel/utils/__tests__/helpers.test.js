@@ -13,6 +13,11 @@ describe("helpers", () => {
     expect(css).toEqual("rec rec-test");
   });
 
+  it("cssPrefix multi keys", () => {
+    const css = helpers.cssPrefix("test", "test2");
+    expect(css).toEqual("rec rec-test rec-test2");
+  });
+
   it("pipe", () => {
     const inc = num => num + 1;
     const double = num => num * 2;

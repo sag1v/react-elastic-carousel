@@ -26,15 +26,18 @@ const Track = ({
     const min = currentItem;
     const max = currentItem + itemsToShow;
     const isVisible = idx >= min && idx < max;
+    // we can't fix the typo (swipable -> swipeable) without a major bump
+    const swipeableClassName = cssPrefix("swipable", `swipable-${idx}`);
     const item = (
       <ItemWrapperContainer
         id={idx}
         itemPosition={itemPosition}
-        child={child}
         style={{ width, padding: paddingStyle }}
         key={idx}
         onClick={onItemClick}
-      />
+      >
+        {child}
+      </ItemWrapperContainer>
     );
     const toRender = enableSwipe ? (
       <Swipeable
@@ -45,14 +48,21 @@ const Track = ({
         onSwipedRight={onSwipedRight}
         onSwipedUp={onSwipedUp}
         onSwipedDown={onSwipedDown}
-        className={cssPrefix(`swipable-${idx}`)}
+        className={swipeableClassName}
       >
         {item}
       </Swipeable>
     ) : (
       item
     );
-    return <div tabIndex={isVisible ? 0 : -1}>{toRender}</div>;
+    return (
+      <div
+        className={cssPrefix("carousel-item", `carousel-item-${idx}`)}
+        tabIndex={isVisible ? 0 : -1}
+      >
+        {toRender}
+      </div>
+    );
   });
   return <React.Fragment>{originalChildren}</React.Fragment>;
 };
