@@ -48,7 +48,7 @@ const Track = ({
         onSwipedRight={onSwipedRight}
         onSwipedUp={onSwipedUp}
         onSwipedDown={onSwipedDown}
-        className={swipebleClassName}
+        className={swipeableClassName}
       >
         {item}
       </Swipeable>
