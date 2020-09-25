@@ -35,7 +35,8 @@ export default {
         'onPrevEnd',
         'onResize',
         'slideNext / slidePrev',
-        'goTo'
+        'goTo',
+        'Styling'
       ]
     }
   ],

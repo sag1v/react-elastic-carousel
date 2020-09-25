@@ -10,16 +10,14 @@ class ItemWrapperContainer extends React.Component {
     onClick(id);
   };
   render() {
-    const { child, style, itemPosition } = this.props;
+    const { itemPosition, ...restOfProps } = this.props;
     return (
       <ItemWrapper
         onClick={this.onClick}
         className={cssPrefix("item-wrapper")}
         itemPosition={itemPosition}
-        style={style}
-      >
-        {child}
-      </ItemWrapper>
+        {...restOfProps}
+      />
     );
   }
 }
@@ -31,10 +29,9 @@ ItemWrapperContainer.defaultProps = {
 };
 
 ItemWrapperContainer.propTypes = {
-  child: PropTypes.element.isRequired,
+  children: PropTypes.element.isRequired,
   itemPosition: PropTypes.oneOf([consts.START, consts.CENTER, consts.END]),
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  style: PropTypes.object,
   onClick: PropTypes.func
 };
 
