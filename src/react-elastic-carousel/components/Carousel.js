@@ -474,7 +474,6 @@ class Carousel extends React.Component {
       transitionMs,
       children,
       focusOnSelect,
-      itemsToShow,
       itemPosition,
       itemPadding,
       enableSwipe,
