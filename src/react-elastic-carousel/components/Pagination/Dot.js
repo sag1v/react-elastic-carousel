@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useCallback } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { cssPrefix } from "../../utils/helpers";
+import { cssPrefix, noop } from "../../utils/helpers";
 
 const boxShadow = "0 0 1px 2px rgba(0, 0, 0, 0.5)";
 const activeBoxShadow = "0 0 1px 3px rgba(103,58,183,1)";
 const hoveredBoxShadow = "0 0 1px 3px rgba(103,58,183,.5)";
 
-const Dot = styled.button.attrs(({ type = "button" }) => ({ type }))`
+const Dot = styled.button.attrs(({ type, active }) => ({
+  type,
+  tabIndex: active ? -1 : 0,
+  className: cssPrefix("dot", active ? "dot_active" : "")
+}))`
   transition: all 250ms ease;
   border: none;
   margin: 5px;
@@ -28,29 +32,34 @@ const Dot = styled.button.attrs(({ type = "button" }) => ({ type }))`
   }
 `;
 
-class DotContainer extends React.Component {
-  onClick = () => {
-    const { onClick, id } = this.props;
-    onClick(id);
-  };
-  render() {
-    const { active } = this.props;
-    return (
-      <Dot
-        tabIndex={active ? -1 : 0}
-        onClick={this.onClick}
-        active={active}
-        className={`${cssPrefix("dot")} ${
-          active ? cssPrefix("dot_active") : ""
-        }`}
-      />
-    );
-  }
+Dot.defaultProps = {
+  type: "button"
+};
+
+Dot.propTypes = {
+  type: PropTypes.string,
+  active: PropTypes.bool
+};
+
+function DotContainer(props) {
+  const { onClick, id, ...restOfProps } = props;
+
+  const _onClick = useCallback(
+    () => {
+      onClick(id);
+    },
+    [onClick, id]
+  );
+
+  return <Dot {...restOfProps} onClick={_onClick} />;
 }
+
+DotContainer.defaultProps = {
+  onClick: noop
+};
 
 DotContainer.propTypes = {
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  active: PropTypes.bool,
   onClick: PropTypes.func
 };
 

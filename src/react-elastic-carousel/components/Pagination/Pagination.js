@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Dot from "./Dot";
@@ -10,18 +10,16 @@ const Indicators = styled.div`
   margin-top: 15px;
 `;
 
-class Pagination extends React.Component {
-  render() {
-    const { numOfPages, activePage, onClick } = this.props;
-    const pages = numberToArray(numOfPages);
-    return (
-      <Indicators className={cssPrefix("pagination")}>
-        {pages.map((item, i) => (
-          <Dot key={i} id={i} active={i === activePage} onClick={onClick} />
-        ))}
-      </Indicators>
-    );
-  }
+function Pagination(props) {
+  const { numOfPages, activePage, onClick } = props;
+  const pages = useMemo(() => numberToArray(numOfPages), [numOfPages]);
+  return (
+    <Indicators className={cssPrefix("pagination")}>
+      {pages.map((_, i) => (
+        <Dot key={i} id={i} active={i === activePage} onClick={onClick} />
+      ))}
+    </Indicators>
+  );
 }
 
 Pagination.defaultProps = {

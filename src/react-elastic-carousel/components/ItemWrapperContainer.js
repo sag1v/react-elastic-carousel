@@ -1,16 +1,17 @@
-import React from "react";
+import React, { useCallback } from "react";
 import PropTypes from "prop-types";
 import { ItemWrapper } from "./styled";
 import { noop } from "../utils/helpers";
 
-class ItemWrapperContainer extends React.Component {
-  onClick = () => {
-    const { onClick, id } = this.props;
-    onClick(id);
-  };
-  render() {
-    return <ItemWrapper {...this.props} onClick={this.onClick} />;
-  }
+function ItemWrapperContainer(props) {
+  const { onClick, id, ...restOfProps } = props;
+  const _onClick = useCallback(
+    () => {
+      onClick(id);
+    },
+    [onClick, id]
+  );
+  return <ItemWrapper {...restOfProps} onClick={_onClick} />;
 }
 
 ItemWrapperContainer.defaultProps = {
