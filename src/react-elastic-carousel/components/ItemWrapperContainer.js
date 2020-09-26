@@ -15,8 +15,6 @@ class ItemWrapperContainer extends React.Component {
 }
 
 ItemWrapperContainer.defaultProps = {
-  style: {},
-  itemPosition: consts.CENTER,
   onClick: noop
 };
 
