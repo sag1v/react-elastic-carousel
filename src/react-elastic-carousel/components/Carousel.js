@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useReducer, useRef } from "react";
 import PropTypes from "prop-types";
 import ResizeObserver from "resize-observer-polyfill";
 import Only from "react-only-when";
@@ -15,6 +15,206 @@ import {
 } from "./styled";
 import { pipe, noop, cssPrefix, numberToArray } from "../utils/helpers";
 import { Pagination } from "./Pagination";
+import carouselReducer from "../reducers/carouselReducer";
+
+const getInitialState = props => ({
+  rootHeight: 0,
+  rootWidth: 0,
+  childWidth: 0,
+  childHeight: 0,
+  sliderPosition: 0,
+  swipedSliderPosition: 0,
+  isSwiping: false,
+  transitioning: false,
+  firstItem: props.initialFirstItem,
+  pages: [],
+  activePage: 0,
+  sliderContainerWidth: 0
+});
+
+function Carousel2(props) {
+  const {
+    children,
+    itemsToShow,
+    itemsToScroll,
+    breakPoints,
+    verticalMode,
+    onResize
+  } = props;
+
+  const [state, dispatch] = useReducer(carouselReducer, getInitialState(props));
+  const ro = useRef();
+  const sliderContainer = useRef();
+  const slider = useRef();
+
+  const {
+    rootHeight,
+    rootWidth,
+    childWidth,
+    childHeight,
+    sliderPosition,
+    swipedSliderPosition,
+    isSwiping,
+    transitioning,
+    firstItem,
+    pages,
+    activePage,
+    sliderContainerWidth
+  } = state;
+
+  useEffect(
+    () => {
+      //   /* based on slider container's width, get num of items to show
+      //   * and calculate child's width (and update it in state)
+      //   */
+      const visibleItems = getCalculatedItemsToShow();
+      const childWidth = verticalMode
+        ? sliderContainerWidth
+        : sliderContainerWidth / visibleItems;
+      dispatch({ type: "set_child_width", payload: { childWidth } });
+    },
+    [sliderContainerWidth, verticalMode]
+  );
+
+  useEffect(
+    () => {
+      /* Based on all of the above new data:
+    * update slider position
+    * get the new current breakpoint
+    * pass the current breakpoint to the consumer's callback
+    */
+      updateSliderPosition();
+      currentBreakPoint = getCurrentBreakpoint();
+      onResize(currentBreakPoint);
+    },
+    [childWidth, sliderContainerWidth]
+  );
+
+  getCurrentBreakpoint = () => {
+    // default breakpoint from individual props
+    let currentBreakPoint = { itemsToScroll, itemsToShow };
+
+    // if breakpoints were added as props override the individual props
+    if (breakPoints && breakPoints.length > 0) {
+      currentBreakPoint = breakPoints
+        .slice() // no mutations
+        .reverse() // so we can find last match
+        .find(bp => bp.width <= sliderContainerWidth);
+      if (!currentBreakPoint) {
+        /* in case we don't have a lower width than sliderContainerWidth
+        * this mostly happens in initilization when sliderContainerWidth is 0
+        */
+        currentBreakPoint = breakPoints[0];
+      }
+    }
+    return currentBreakPoint;
+  };
+
+  /** We might get itemsToShow as a direct prop
+   ** Or we might get it as a prop inside a selected breakpoint.
+   ***/
+  getCalculatedItemsToShow = () => {
+    let effectiveItemsToShow = itemsToShow;
+
+    const currentBreakPoint = getCurrentBreakpoint();
+    if (currentBreakPoint) {
+      effectiveItemsToShow = currentBreakPoint.itemsToShow;
+    }
+    return effectiveItemsToShow;
+  };
+
+  /** We might get itemsToScroll as a direct prop
+   ** Or we might get it as a prop inside a selected breakpoint.
+   ***/
+  getItemsToScroll = () => {
+    const currentBreakPoint = getCurrentBreakpoint();
+    let effectiveItemsToScroll = itemsToScroll;
+    if (currentBreakPoint && currentBreakPoint.itemsToScroll) {
+      effectiveItemsToScroll = currentBreakPoint.itemsToScroll;
+    }
+    return effectiveItemsToScroll;
+  };
+
+  const onSliderResize = sliderNode => {
+    const { height } = sliderNode.contentRect;
+    const nextState = {};
+    if (verticalMode) {
+      const numOfVisibleItems = getCalculatedItemsToShow();
+      const childHeight = height / children.length;
+      nextState.rootHeight = childHeight * numOfVisibleItems;
+      nextState.childHeight = childHeight;
+    } else {
+      nextState.rootHeight = height;
+    }
+    // this.setState(nextState);
+    dispatch({ type: "slider_resize", payload: nextState });
+  };
+
+  const onContainerResize = sliderContainerNode => {
+    const { width } = sliderContainerNode.contentRect;
+    // update slider container width
+    // this.setState({ sliderContainerWidth: width }, () => {
+    //   /* based on slider container's width, get num of items to show
+    //   * and calculate child's width (and update it in state)
+    //   */
+    //   const visibleItems = this.getCalculatedItemsToShow();
+    //   const childWidth = verticalMode ? width : width / visibleItems;
+    //   this.setState(
+    //     state => ({ childWidth }),
+    //     () => {
+    //       /* Based on all of the above new data:
+    //       * update slider position
+    //       * get the new current breakpoint
+    //       * pass the current breakpoint to the consumer's callback
+    //       */
+    //       this.updateSliderPosition();
+    //       const currentBreakPoint = this.getCurrentBreakpoint();
+    //       onResize(currentBreakPoint);
+    //     }
+    //   );
+    // });
+
+    dispatch({
+      type: "container_resize",
+      payload: { sliderContainerWidth: width }
+    });
+  };
+
+  const updateSliderPosition = () => {
+    const totalItems = children.length;
+    const numOfVisibleItems = getCalculatedItemsToShow();
+    const hiddenSlots = totalItems - numOfVisibleItems;
+    let moveBy = firstItem * -1;
+    const emptySlots = numOfVisibleItems - (totalItems - firstItem);
+    if (emptySlots > 0 && hiddenSlots > 0) {
+      moveBy = emptySlots + firstItem * -1;
+    }
+    let sliderPosition = (verticalMode ? childHeight : childWidth) * moveBy;
+    const newFirstItem = emptySlots > 0 ? firstItem - emptySlots : firstItem;
+    const nextState = {
+      sliderPosition,
+      firstItem: newFirstItem < 0 ? 0 : newFirstItem
+    };
+
+    dispatch({ type: "update_slider_position", payload: nextState });
+  };
+
+  const initResizeObserver = () => {
+    ro.current = new ResizeObserver((entries, observer) => {
+      for (const entry of entries) {
+        if (entry.target === sliderContainer.current) {
+          onContainerResize(entry);
+        }
+        if (entry.target === slider.current) {
+          onSliderResize(entry);
+        }
+      }
+    });
+
+    ro.current.observe(sliderContainer.current);
+    ro.current.observe(slider.current);
+  };
+}
 
 class Carousel extends React.Component {
   state = {
