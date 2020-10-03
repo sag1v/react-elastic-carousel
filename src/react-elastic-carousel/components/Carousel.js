@@ -424,45 +424,50 @@ class Carousel extends React.Component {
         }
       }
     }
-    func();
+    // we are not "tilting" on edges, so we need to reset isSwiping and transitioning.
+    // otherwise we wont slide back to edge
+    this.setState({ isSwiping: false, transitioning: false });
+    func({ skipTilt: true });
   };
 
-  onNextStart = () => {
+  onNextStart = options => {
     const { onNextStart } = this.props;
     const { activeIndex } = this.state;
     const nextItemObj = this.getNextItemObj();
     const prevItemObj = this.convertChildToCbObj(activeIndex);
     onNextStart(prevItemObj, nextItemObj);
-    this.slideNext();
+    this.slideNext(options);
   };
 
-  onPrevStart = () => {
+  onPrevStart = options => {
     const { onPrevStart } = this.props;
     const { activeIndex } = this.state;
     const nextItemObj = this.getNextItemObj(true);
     const prevItemObj = this.convertChildToCbObj(activeIndex);
     onPrevStart(prevItemObj, nextItemObj);
-    this.slidePrev();
+    this.slidePrev(options);
   };
 
-  slideNext = () => {
+  slideNext = (options = {}) => {
+    const { skipTilt } = options;
     const { enableTilt } = this.props;
     const { activeIndex, sliderPosition } = this.state;
     const nextItem = this.getNextItemIndex(activeIndex, false);
     if (activeIndex !== nextItem) {
       this.goTo(nextItem);
-    } else if (enableTilt) {
+    } else if (enableTilt && !skipTilt) {
       this.tiltMovement(sliderPosition, 20, 150);
     }
   };
 
-  slidePrev = () => {
+  slidePrev = (options = {}) => {
+    const { skipTilt } = options;
     const { activeIndex } = this.state;
     const { enableTilt } = this.props;
     const prevItem = this.getNextItemIndex(activeIndex, true);
     if (activeIndex !== prevItem) {
       this.goTo(prevItem);
-    } else if (enableTilt) {
+    } else if (enableTilt && !skipTilt) {
       this.tiltMovement(0, -20, 150);
     }
   };
