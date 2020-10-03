@@ -19,7 +19,7 @@ export default {
         'itemsToShow',
         'breakPoints',
         'verticalMode',
-        'initialFirstItem',
+        'initialActiveIndex',
         'focusOnSelect',
         'isRTL',
         'enableAutoPlay',

@@ -14,57 +14,46 @@ const Track = ({
   currentItem,
   itemPosition,
   itemPadding,
-  onSwipedLeft,
-  onSwipedRight,
-  onSwipedUp,
-  onSwipedDown,
+  onSwiped,
+  onSwiping,
   onItemClick
 }) => {
   const width = `${childWidth}px`;
   const paddingStyle = `${itemPadding.join("px ")}px`;
-  let originalChildren = React.Children.map(children, (child, idx) => {
+  const originalChildren = React.Children.map(children, (child, idx) => {
     const min = currentItem;
     const max = currentItem + itemsToShow;
     const isVisible = idx >= min && idx < max;
-    // we can't fix the typo (swipable -> swipeable) without a major bump
-    const swipeableClassName = cssPrefix("swipable", `swipable-${idx}`);
-    const item = (
-      <ItemWrapperContainer
-        id={idx}
-        itemPosition={itemPosition}
-        style={{ width, padding: paddingStyle }}
-        key={idx}
-        onClick={onItemClick}
-      >
-        {child}
-      </ItemWrapperContainer>
-    );
-    const toRender = enableSwipe ? (
-      <Swipeable
-        stopPropagation
-        preventDefaultTouchmoveEvent={preventDefaultTouchmoveEvent}
-        trackMouse={enableMouseSwipe}
-        onSwipedLeft={onSwipedLeft}
-        onSwipedRight={onSwipedRight}
-        onSwipedUp={onSwipedUp}
-        onSwipedDown={onSwipedDown}
-        className={swipeableClassName}
-      >
-        {item}
-      </Swipeable>
-    ) : (
-      item
-    );
     return (
       <div
         className={cssPrefix("carousel-item", `carousel-item-${idx}`)}
         tabIndex={isVisible ? 0 : -1}
       >
-        {toRender}
+        <ItemWrapperContainer
+          id={idx}
+          itemPosition={itemPosition}
+          style={{ width, padding: paddingStyle }}
+          key={idx}
+          onClick={onItemClick}
+        >
+          {child}
+        </ItemWrapperContainer>
       </div>
     );
   });
-  return <React.Fragment>{originalChildren}</React.Fragment>;
+  return (
+    <Swipeable
+      style={{ display: "flex" }}
+      stopPropagation
+      preventDefaultTouchmoveEvent={preventDefaultTouchmoveEvent}
+      trackMouse={enableMouseSwipe}
+      onSwiped={onSwiped}
+      onSwiping={onSwiping}
+      className={cssPrefix("swipable")}
+    >
+      {originalChildren}
+    </Swipeable>
+  );
 };
 
 Track.propTypes = {
@@ -77,10 +66,8 @@ Track.propTypes = {
   enableSwipe: PropTypes.bool,
   enableMouseSwipe: PropTypes.bool,
   preventDefaultTouchmoveEvent: PropTypes.bool,
-  onSwipedLeft: PropTypes.func,
-  onSwipedRight: PropTypes.func,
-  onSwipedUp: PropTypes.func,
-  onSwipedDown: PropTypes.func,
+  onSwiped: PropTypes.func,
+  onSwiping: PropTypes.func,
   onItemClick: PropTypes.func
 };
 

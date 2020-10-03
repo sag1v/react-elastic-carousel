@@ -50,6 +50,8 @@ export interface ReactElasticCarouselProps {
     itemsToScroll?: number;
   }[];
   // Defaults to 0
+  initialActiveIndex?: number;
+  // Defaults to 0
   initialFirstItem?: number;
   // Defaults to true
   showArrows?: boolean;
@@ -100,6 +102,6 @@ export interface ReactElasticCarouselProps {
 
 declare class ReactElasticCarousel extends React.Component<
   ReactElasticCarouselProps
-> {}
+  > { }
 
 export default ReactElasticCarousel;

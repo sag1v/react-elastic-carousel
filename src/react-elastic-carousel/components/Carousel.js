@@ -5,7 +5,7 @@ import Only from "react-only-when";
 import Track from "./Track";
 import Arrow from "./Arrow";
 import consts from "../consts";
-import { firstItemReducer } from "../reducers/items";
+import { activeIndexReducer } from "../reducers/items";
 import { nextItemAction, prevItemAction } from "../actions/itemsActions";
 import {
   SliderContainer,
@@ -26,7 +26,7 @@ class Carousel extends React.Component {
     swipedSliderPosition: 0,
     isSwiping: false,
     transitioning: false,
-    firstItem: this.props.initialFirstItem,
+    activeIndex: this.props.initialActiveIndex || this.props.initialFirstItem, // support deprecated  initialFirstItem
     pages: [],
     activePage: 0,
     sliderContainerWidth: 0
@@ -46,8 +46,8 @@ class Carousel extends React.Component {
       itemsToScroll,
       breakPoints
     } = this.props;
-    const { firstItem, sliderContainerWidth } = this.state;
-    const nextItem = this.getNextItemIndex(firstItem, false);
+    const { activeIndex, sliderContainerWidth } = this.state;
+    const nextItem = this.getNextItemIndex(activeIndex, false);
 
     // update pages (for pagination)
     if (
@@ -61,7 +61,7 @@ class Carousel extends React.Component {
     }
 
     // autoplay update
-    if (firstItem === nextItem) {
+    if (activeIndex === nextItem) {
       this.removeAutoPlay();
     } else if (enableAutoPlay && !this.autoPlayIntervalId) {
       this.setAutoPlay();
@@ -74,7 +74,7 @@ class Carousel extends React.Component {
       // we need to check if our current index is not out of boundaries
       // we need to include itemsToShow so we can fill up the slots
       const lastIndex = children.length - 1;
-      const isOutOfRange = firstItem + itemsToShow > lastIndex;
+      const isOutOfRange = activeIndex + itemsToShow > lastIndex;
       if (isOutOfRange) {
         // we are out of boundaries, go "back" to last item of the list (respect itemsToShow)
         this.goTo(children.length - itemsToShow);
@@ -190,20 +190,21 @@ class Carousel extends React.Component {
   updateSliderPosition = () => {
     this.setState((state, props) => {
       const { children, verticalMode } = props;
-      const { childWidth, childHeight, firstItem } = state;
+      const { childWidth, childHeight, activeIndex } = state;
       const totalItems = children.length;
       const numOfVisibleItems = this.getCalculatedItemsToShow();
       const hiddenSlots = totalItems - numOfVisibleItems;
-      let moveBy = firstItem * -1;
-      const emptySlots = numOfVisibleItems - (totalItems - firstItem);
+      let moveBy = activeIndex * -1;
+      const emptySlots = numOfVisibleItems - (totalItems - activeIndex);
       if (emptySlots > 0 && hiddenSlots > 0) {
-        moveBy = emptySlots + firstItem * -1;
+        moveBy = emptySlots + activeIndex * -1;
       }
       let sliderPosition = (verticalMode ? childHeight : childWidth) * moveBy;
-      const newFirstItem = emptySlots > 0 ? firstItem - emptySlots : firstItem;
+      const newActiveIndex =
+        emptySlots > 0 ? activeIndex - emptySlots : activeIndex;
       return {
         sliderPosition,
-        firstItem: newFirstItem < 0 ? 0 : newFirstItem
+        activeIndex: newActiveIndex < 0 ? 0 : newActiveIndex
       };
     });
   };
@@ -285,14 +286,14 @@ class Carousel extends React.Component {
     const nextAction = getPrev
       ? prevItemAction(0, itemsToScroll)
       : nextItemAction(limit, itemsToScroll);
-    const nextItem = firstItemReducer(currentIndex, nextAction);
+    const nextItem = activeIndexReducer(currentIndex, nextAction);
     return nextItem;
   };
 
   getNextItemObj = getPrev => {
     const { children } = this.props;
-    const { firstItem } = this.state;
-    const nextItemIndex = this.getNextItemIndex(firstItem, getPrev);
+    const { activeIndex } = this.state;
+    const nextItemIndex = this.getNextItemIndex(activeIndex, getPrev);
     // support decimal itemsToShow
     const roundedIdx = Math.round(nextItemIndex);
     const asElement = children[roundedIdx];
@@ -300,29 +301,155 @@ class Carousel extends React.Component {
     return asObj;
   };
 
+  resetSwipe = () => {
+    this.setState({
+      swipedSliderPosition: 0,
+      transitioning: false,
+      isSwiping: false
+    });
+  };
+
+  onSwiping = data => {
+    const { deltaX, absX, deltaY, absY, dir, event } = data;
+
+    this.setState((state, props) => {
+      const {
+        rootHeight,
+        activeIndex,
+        sliderPosition,
+        sliderContainerWidth
+      } = state;
+      const { verticalMode, children, isRTL } = props;
+      const itemsToShow = this.getCalculatedItemsToShow();
+
+      // determine how far can user swipe
+      const isOnStart = activeIndex === 0;
+      const isOnEnd = activeIndex === children.length - itemsToShow;
+      const defaultDivider = 1.5;
+      const largeDivider = itemsToShow * 2;
+      let divider = defaultDivider;
+      const goingNext =
+        (!verticalMode && dir === "Left" && !isRTL) ||
+        (!verticalMode && dir === "Right" && isRTL) ||
+        (verticalMode && dir === "Up");
+      const goingBack =
+        (!verticalMode && dir === "Right" && !isRTL) ||
+        (!verticalMode && dir === "Left" && isRTL) ||
+        (verticalMode && dir === "Down");
+
+      if ((isOnStart && goingBack) || (isOnEnd && goingNext)) {
+        divider = largeDivider;
+      }
+
+      let distanceSwipe = verticalMode
+        ? rootHeight / divider
+        : sliderContainerWidth / divider;
+
+      const isHorizontalSwipe = dir === "Left" || dir === "Right";
+
+      const shouldHorizontalSkipUpdate =
+        isHorizontalSwipe && (!verticalMode && absX > distanceSwipe);
+      const shouldVerticalSkipUpdate =
+        !isHorizontalSwipe && (verticalMode && absY > distanceSwipe);
+
+      if (shouldHorizontalSkipUpdate || shouldVerticalSkipUpdate) {
+        // bail out of state update
+        return;
+      }
+      return {
+        swipedSliderPosition: isHorizontalSwipe
+          ? sliderPosition - deltaX
+          : sliderPosition - deltaY,
+        isSwiping: true,
+        transitioning: true
+      };
+    });
+  };
+
+  onSwiped = data => {
+    // we need to handle all scenarios:
+    // 1. Horizontal mode - swipe left or right
+    // 2. Horizontal mode with RTL - swipe left or right
+    // 3. vertical mode - swipe up or down
+
+    const { absX, absY, dir } = data;
+    const { childWidth } = this.state;
+    const { verticalMode, isRTL } = this.props;
+    let func = this.resetSwipe;
+    const minSwipeDistance = childWidth / 3;
+    const swipedLeft = dir === "Left";
+    const swipedRight = dir === "Right";
+    const swipedUp = dir === "Up";
+    const swipedDown = dir === "Down";
+    const verticalGoSwipe =
+      verticalMode && (swipedUp || swipedDown) && absY > minSwipeDistance;
+
+    const horizontalGoSwipe =
+      !verticalMode && (swipedRight || swipedLeft) && absX > minSwipeDistance;
+
+    let goodToGo = false;
+    if (verticalGoSwipe || horizontalGoSwipe) {
+      goodToGo = true;
+    }
+
+    if (goodToGo) {
+      // we should go to a different item
+      // determine what method we need to invoke
+      if (verticalMode) {
+        // up or down
+        if (swipedDown) {
+          func = this.onPrevStart;
+        }
+        if (swipedUp) {
+          func = this.onNextStart;
+        }
+      } else {
+        // horizontal mode
+        if (isRTL) {
+          // flip sides
+          if (swipedLeft) {
+            func = this.onPrevStart;
+          }
+          if (swipedRight) {
+            func = this.onNextStart;
+          }
+        } else {
+          // normal behavior
+          if (swipedLeft) {
+            func = this.onNextStart;
+          }
+          if (swipedRight) {
+            func = this.onPrevStart;
+          }
+        }
+      }
+    }
+    func();
+  };
+
   onNextStart = () => {
     const { onNextStart } = this.props;
-    const { firstItem } = this.state;
+    const { activeIndex } = this.state;
     const nextItemObj = this.getNextItemObj();
-    const prevItemObj = this.convertChildToCbObj(firstItem);
+    const prevItemObj = this.convertChildToCbObj(activeIndex);
     onNextStart(prevItemObj, nextItemObj);
     this.slideNext();
   };
 
   onPrevStart = () => {
     const { onPrevStart } = this.props;
-    const { firstItem } = this.state;
+    const { activeIndex } = this.state;
     const nextItemObj = this.getNextItemObj(true);
-    const prevItemObj = this.convertChildToCbObj(firstItem);
+    const prevItemObj = this.convertChildToCbObj(activeIndex);
     onPrevStart(prevItemObj, nextItemObj);
     this.slidePrev();
   };
 
   slideNext = () => {
     const { enableTilt } = this.props;
-    const { firstItem, sliderPosition } = this.state;
-    const nextItem = this.getNextItemIndex(firstItem, false);
-    if (firstItem !== nextItem) {
+    const { activeIndex, sliderPosition } = this.state;
+    const nextItem = this.getNextItemIndex(activeIndex, false);
+    if (activeIndex !== nextItem) {
       this.goTo(nextItem);
     } else if (enableTilt) {
       this.tiltMovement(sliderPosition, 20, 150);
@@ -330,10 +457,10 @@ class Carousel extends React.Component {
   };
 
   slidePrev = () => {
-    const { firstItem } = this.state;
+    const { activeIndex } = this.state;
     const { enableTilt } = this.props;
-    const prevItem = this.getNextItemIndex(firstItem, true);
-    if (firstItem !== prevItem) {
+    const prevItem = this.getNextItemIndex(activeIndex, true);
+    if (activeIndex !== prevItem) {
       this.goTo(prevItem);
     } else if (enableTilt) {
       this.tiltMovement(0, -20, 150);
@@ -342,8 +469,8 @@ class Carousel extends React.Component {
 
   onNextEnd = () => {
     const { onNextEnd, onChange } = this.props;
-    const { firstItem, activePage } = this.state;
-    const nextItemObj = this.convertChildToCbObj(firstItem);
+    const { activeIndex, activePage } = this.state;
+    const nextItemObj = this.convertChildToCbObj(activeIndex);
     this.removeSliderTransitionHook(this.onNextEnd);
     this.setState({ transitioning: false });
     onChange && onChange(nextItemObj, activePage);
@@ -352,8 +479,8 @@ class Carousel extends React.Component {
 
   onPrevEnd = () => {
     const { onPrevEnd, onChange } = this.props;
-    const { firstItem, activePage } = this.state;
-    const nextItemObj = this.convertChildToCbObj(firstItem);
+    const { activeIndex, activePage } = this.state;
+    const nextItemObj = this.convertChildToCbObj(activeIndex);
     this.removeSliderTransitionHook(this.onPrevEnd);
     this.setState({ transitioning: false });
     onChange && onChange(nextItemObj, activePage);
@@ -366,18 +493,20 @@ class Carousel extends React.Component {
     verticalMode,
     rest
   ) => state => {
-    const { sliderPosition, childWidth, childHeight, firstItem } = state;
+    const { sliderPosition, childWidth, childHeight, activeIndex } = state;
     let newSliderPosition = 0;
     const childSize = verticalMode ? childHeight : childWidth;
     if (direction === consts.NEXT) {
-      newSliderPosition = sliderPosition - childSize * (nextItemId - firstItem);
+      newSliderPosition =
+        sliderPosition - childSize * (nextItemId - activeIndex);
     } else {
-      newSliderPosition = sliderPosition + childSize * (firstItem - nextItemId);
+      newSliderPosition =
+        sliderPosition + childSize * (activeIndex - nextItemId);
     }
 
     return {
       sliderPosition: newSliderPosition,
-      firstItem: nextItemId,
+      activeIndex: nextItemId,
       swipedSliderPosition: 0,
       isSwiping: false,
       ...rest
@@ -386,11 +515,11 @@ class Carousel extends React.Component {
 
   goTo = nextItemId => {
     const { children, verticalMode } = this.props;
-    const { firstItem } = this.state;
-    const isPrev = firstItem > nextItemId;
-    const nextAvailbaleItem = this.getNextItemIndex(firstItem, isPrev);
+    const { activeIndex } = this.state;
+    const isPrev = activeIndex > nextItemId;
+    const nextAvailbaleItem = this.getNextItemIndex(activeIndex, isPrev);
     const itemsToshow = this.getCalculatedItemsToShow();
-    const noChange = nextAvailbaleItem === firstItem;
+    const noChange = nextAvailbaleItem === activeIndex;
     const outOfBoundry = nextItemId + itemsToshow >= children.length;
     if (noChange) {
       return;
@@ -437,9 +566,9 @@ class Carousel extends React.Component {
 
   updateActivePage = () => {
     this.setState(state => {
-      const { firstItem, activePage } = state;
+      const { activeIndex, activePage } = state;
       const numOfVisibleItems = this.getCalculatedItemsToShow();
-      const newActivePage = Math.ceil(firstItem / numOfVisibleItems);
+      const newActivePage = Math.ceil(activeIndex / numOfVisibleItems);
       if (activePage !== newActivePage) {
         return { activePage: newActivePage };
       }
@@ -462,7 +591,7 @@ class Carousel extends React.Component {
       swipedSliderPosition,
       rootHeight,
       pages,
-      firstItem
+      activeIndex
     } = this.state;
     const {
       className,
@@ -485,23 +614,14 @@ class Carousel extends React.Component {
       renderArrow,
       renderPagination
     } = this.props;
-    const onSwipedLeft = verticalMode
-      ? noop
-      : isRTL
-        ? this.onPrevStart
-        : this.onNextStart;
-    const onSwipedRight = verticalMode
-      ? noop
-      : isRTL
-        ? this.onNextStart
-        : this.onPrevStart;
-    const onSwipedUp = verticalMode ? this.onNextStart : noop;
-    const onSwipedDown = verticalMode ? this.onPrevStart : noop;
+
     const numOfPages = this.getNumOfPages();
 
     /** Determine if arrows should be disabled */
-    const canSlidePrev = firstItem !== this.getNextItemIndex(firstItem, true);
-    const canSlideNext = firstItem !== this.getNextItemIndex(firstItem, false);
+    const canSlidePrev =
+      activeIndex !== this.getNextItemIndex(activeIndex, true);
+    const canSlideNext =
+      activeIndex !== this.getNextItemIndex(activeIndex, false);
     const disabledPrevArrow = !canSlidePrev && disableArrowsOnEnd;
     const disabledNextArrow = !canSlideNext && disableArrowsOnEnd;
 
@@ -549,17 +669,15 @@ class Carousel extends React.Component {
               <Track
                 children={children}
                 childWidth={childWidth}
-                currentItem={firstItem}
+                currentItem={activeIndex}
                 itemsToShow={this.getCalculatedItemsToShow()}
                 itemPosition={itemPosition}
                 itemPadding={itemPadding}
                 enableSwipe={enableSwipe}
                 enableMouseSwipe={enableMouseSwipe}
                 preventDefaultTouchmoveEvent={preventDefaultTouchmoveEvent}
-                onSwipedLeft={onSwipedLeft}
-                onSwipedRight={onSwipedRight}
-                onSwipedUp={onSwipedUp}
-                onSwipedDown={onSwipedDown}
+                onSwiped={this.onSwiped}
+                onSwiping={this.onSwiping}
                 onItemClick={focusOnSelect ? this.goTo : undefined}
               />
             </Slider>
@@ -606,6 +724,7 @@ Carousel.defaultProps = {
   verticalMode: false,
   isRTL: false,
   initialFirstItem: 0,
+  initialActiveIndex: 0,
   showArrows: true,
   disableArrowsOnEnd: true,
   pagination: true,
@@ -678,7 +797,10 @@ Carousel.propTypes = {
     })
   ),
 
-  /** The first items when the component mounts */
+  /** The initial active index when the component mounts */
+  initialActiveIndex: PropTypes.number,
+
+  /** **DEPRECATED - use initialActiveIndex instead** The first items when the component mounts */
   initialFirstItem: PropTypes.number,
 
   /** Show the arrow buttons */

@@ -24,7 +24,7 @@ import Item from '../components/SimpleItem';
 
 <Playground >
     <Carousel
-        initialFirstItem={3}
+        initialActiveIndex={3}
         itemsToShow={2}
         onPrevStart={(currentItem,nextItem) => alert(JSON.stringify(currentItem) + `\n` + JSON.stringify(nextItem))}
     >

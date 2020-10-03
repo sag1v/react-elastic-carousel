@@ -1,6 +1,6 @@
 ---
-name: initialFirstItem
-route: /initialFirstItem
+name: initialActiveIndex
+route: /initialActiveIndex
 menu: Examples
 ---
 
@@ -8,12 +8,12 @@ import {Playground, Props } from 'docz';
 import Carousel from 'react-elastic-carousel';
 import Item from '../components/SimpleItem';
 
-# initialFirstItem
+# initialActiveIndex
 
 #### The first active item on mount
 
 <Playground >
-    <Carousel initialFirstItem={2}>
+    <Carousel initialActiveIndex={2}>
         <Item>1</Item>
         <Item>2</Item>
         <Item>3</Item>
@@ -22,3 +22,6 @@ import Item from '../components/SimpleItem';
         <Item>6</Item>
     </Carousel>
 </Playground>
+
+---
+> If you are using the old prop `initialFirstItem`, then note that its deprecated and you should use `initialActiveIndex`.

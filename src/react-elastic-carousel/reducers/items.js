@@ -1,6 +1,6 @@
 import { NEXT_ITEM, PREV_ITEM } from "../actions/consts";
 
-export const firstItemReducer = (state, action) => {
+export const activeIndexReducer = (state, action) => {
   const { limit, itemsToScroll, type } = action;
   switch (type) {
     case NEXT_ITEM: {
