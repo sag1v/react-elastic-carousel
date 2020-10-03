@@ -28,6 +28,7 @@ export default {
         'easing',
         'renderArrow',
         'renderPagination',
+        'autoTabIndexVisibleItems',
         'onChange',
         'onNextStart',
         'onNextEnd',

@@ -310,7 +310,7 @@ class Carousel extends React.Component {
   };
 
   onSwiping = data => {
-    const { deltaX, absX, deltaY, absY, dir, event } = data;
+    const { deltaX, absX, deltaY, absY, dir } = data;
 
     this.setState((state, props) => {
       const {
@@ -603,6 +603,7 @@ class Carousel extends React.Component {
       transitionMs,
       children,
       focusOnSelect,
+      autoTabIndexVisibleItems,
       itemPosition,
       itemPadding,
       enableSwipe,
@@ -670,6 +671,7 @@ class Carousel extends React.Component {
                 children={children}
                 childWidth={childWidth}
                 currentItem={activeIndex}
+                autoTabIndexVisibleItems={autoTabIndexVisibleItems}
                 itemsToShow={this.getCalculatedItemsToShow()}
                 itemPosition={itemPosition}
                 itemPadding={itemPadding}
@@ -736,6 +738,7 @@ Carousel.defaultProps = {
   enableMouseSwipe: true,
   preventDefaultTouchmoveEvent: false,
   focusOnSelect: false,
+  autoTabIndexVisibleItems: true,
   itemsToShow: 1,
   itemsToScroll: 1,
   itemPosition: consts.CENTER,
@@ -811,6 +814,9 @@ Carousel.propTypes = {
 
   /** Go to item on click */
   focusOnSelect: PropTypes.bool,
+
+  /** Automatically inject `tabIndex:0` to visible items */
+  autoTabIndexVisibleItems: PropTypes.bool,
 
   /** A render prop for the arrow component
    * - ({type, onClick}) => <div onClick={onClick}>{type === 'prev' ? '<-' : '->'}</div>
