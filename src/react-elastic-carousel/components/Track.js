@@ -7,6 +7,7 @@ import ItemWrapperContainer from "./ItemWrapperContainer";
 const Track = ({
   children,
   childWidth,
+  autoTabIndexVisibleItems,
   enableSwipe,
   enableMouseSwipe,
   preventDefaultTouchmoveEvent,
@@ -24,10 +25,13 @@ const Track = ({
     const min = currentItem;
     const max = currentItem + itemsToShow;
     const isVisible = idx >= min && idx < max;
+    const childToRender = autoTabIndexVisibleItems
+      ? React.cloneElement(child, { tabIndex: isVisible ? 0 : -1 })
+      : child;
     return (
       <div
         className={cssPrefix("carousel-item", `carousel-item-${idx}`)}
-        tabIndex={isVisible ? 0 : -1}
+        // tabIndex={isVisible ? 0 : -1}
       >
         <ItemWrapperContainer
           id={idx}
@@ -36,12 +40,12 @@ const Track = ({
           key={idx}
           onClick={onItemClick}
         >
-          {child}
+          {childToRender}
         </ItemWrapperContainer>
       </div>
     );
   });
-  return (
+  const toRender = enableSwipe ? (
     <Swipeable
       style={{ display: "flex" }}
       stopPropagation
@@ -53,12 +57,16 @@ const Track = ({
     >
       {originalChildren}
     </Swipeable>
+  ) : (
+    originalChildren
   );
+  return toRender;
 };
 
 Track.propTypes = {
   children: PropTypes.array.isRequired,
   itemsToShow: PropTypes.number.isRequired,
+  noAutoTabbedItems: PropTypes.bool,
   currentItem: PropTypes.number.isRequired,
   itemPosition: PropTypes.string,
   itemPadding: PropTypes.array,
