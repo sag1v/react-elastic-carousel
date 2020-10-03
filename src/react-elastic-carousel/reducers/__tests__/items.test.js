@@ -1,10 +1,10 @@
-import { firstItemReducer } from "../items";
+import { activeIndexReducer } from "../items";
 import { nextItemAction, prevItemAction } from "../../actions/itemsActions";
 
-describe("firstItemReducer", () => {
+describe("activeIndexReducer", () => {
   it("returns default state", () => {
     const currentIndex = 5;
-    const nextIndex = firstItemReducer(currentIndex, {});
+    const nextIndex = activeIndexReducer(currentIndex, {});
     expect(nextIndex).toEqual(currentIndex);
   });
 
@@ -13,7 +13,7 @@ describe("firstItemReducer", () => {
     const limit = 5;
     const itemsToScroll = 1;
     const action = nextItemAction(limit, itemsToScroll);
-    const nextIndex = firstItemReducer(currentIndex, action);
+    const nextIndex = activeIndexReducer(currentIndex, action);
     expect(nextIndex).toEqual(currentIndex + 1);
   });
 
@@ -22,7 +22,7 @@ describe("firstItemReducer", () => {
     const limit = 0;
     const itemsToScroll = 1;
     const action = prevItemAction(limit, itemsToScroll);
-    const nextIndex = firstItemReducer(currentIndex, action);
+    const nextIndex = activeIndexReducer(currentIndex, action);
     expect(nextIndex).toEqual(currentIndex - 1);
   });
 
@@ -31,7 +31,7 @@ describe("firstItemReducer", () => {
     const limit = 5;
     const itemsToScroll = 2;
     const action = nextItemAction(limit, itemsToScroll);
-    const nextIndex = firstItemReducer(currentIndex, action);
+    const nextIndex = activeIndexReducer(currentIndex, action);
     expect(nextIndex).toEqual(limit);
   });
 
@@ -42,12 +42,12 @@ describe("firstItemReducer", () => {
     // next
     const topLimit = 5;
     const nextAction = nextItemAction(topLimit, itemsToScroll);
-    const nextIndex = firstItemReducer(currentIndex, nextAction);
+    const nextIndex = activeIndexReducer(currentIndex, nextAction);
 
     // prev
     const startLimit = 0;
     const prevAction = prevItemAction(startLimit, itemsToScroll);
-    const prevIndex = firstItemReducer(currentIndex, prevAction);
+    const prevIndex = activeIndexReducer(currentIndex, prevAction);
 
     // assert
     expect(nextIndex).toEqual(topLimit);

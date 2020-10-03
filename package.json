@@ -13,7 +13,7 @@
     "npm": ">=5"
   },
   "scripts": {
-    "start": "concurrently -r -k -s all \"yarn run test:watch\" \"docz dev\" \"yarn run lint:watch\"",
+    "start": "concurrently -r -k -s all \"docz dev\" \"yarn run lint:watch\"",
     "lint:fix": "eslint src/. --fix",
     "lint:watch": "esw --watch --fix src/.",
     "test": "cross-env CI=1 react-scripts test --env=jsdom",

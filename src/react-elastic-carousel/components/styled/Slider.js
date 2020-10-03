@@ -42,7 +42,7 @@ const calcTop = ({
 };
 
 const calcTransition = ({ isSwiping, transitionMs, easing, tiltEasing }) => {
-  const duration = isSwiping ? 250 : transitionMs;
+  const duration = isSwiping ? 0 : transitionMs;
   const effectiveEasing = isSwiping ? tiltEasing : easing;
   return `all ${duration}ms ${effectiveEasing}`;
 };
