@@ -137,13 +137,12 @@ class Carousel extends React.Component {
     this.slider.removeEventListener("transitionend", fn);
   };
 
-  getCurrentBreakpoint = () => {
-    const { breakPoints, itemsToShow, itemsToScroll } = this.props;
+  getDerivedPropsFromBreakPoint = () => {
+    const { breakPoints, ...restOfProps } = this.props;
     const { sliderContainerWidth } = this.state;
 
     // default breakpoint from individual props
-    let currentBreakPoint = { itemsToScroll, itemsToShow };
-
+    let currentBreakPoint;
     // if breakpoints were added as props override the individual props
     if (breakPoints && breakPoints.length > 0) {
       currentBreakPoint = breakPoints
@@ -157,45 +156,22 @@ class Carousel extends React.Component {
         currentBreakPoint = breakPoints[0];
       }
     }
-    return currentBreakPoint;
-  };
-
-  /** We might get itemsToShow as a direct prop
-   ** Or we might get it as a prop inside a selected breakpoint.
-   ***/
-  getCalculatedItemsToShow = () => {
-    const { itemsToShow } = this.props;
-    let visibleItems = itemsToShow;
-
-    const currentBreakPoint = this.getCurrentBreakpoint();
-    if (currentBreakPoint) {
-      visibleItems = currentBreakPoint.itemsToShow;
-    }
-    return visibleItems;
-  };
-
-  /** We might get itemsToScroll as a direct prop
-   ** Or we might get it as a prop inside a selected breakpoint.
-   ***/
-  getItemsToScroll = () => {
-    const { itemsToScroll } = this.props;
-    const currentBreakPoint = this.getCurrentBreakpoint();
-    let effectiveItemsToScroll = itemsToScroll;
-    if (currentBreakPoint && currentBreakPoint.itemsToScroll) {
-      effectiveItemsToScroll = currentBreakPoint.itemsToScroll;
-    }
-    return effectiveItemsToScroll;
+    // merge direct props with current breakpoint Props
+    return { ...restOfProps, ...currentBreakPoint };
   };
 
   updateSliderPosition = () => {
-    this.setState((state, props) => {
-      const { children, verticalMode } = props;
+    this.setState(state => {
+      const {
+        children,
+        verticalMode,
+        itemsToShow
+      } = this.getDerivedPropsFromBreakPoint();
       const { childWidth, childHeight, activeIndex } = state;
       const totalItems = children.length;
-      const numOfVisibleItems = this.getCalculatedItemsToShow();
-      const hiddenSlots = totalItems - numOfVisibleItems;
+      const hiddenSlots = totalItems - itemsToShow;
       let moveBy = activeIndex * -1;
-      const emptySlots = numOfVisibleItems - (totalItems - activeIndex);
+      const emptySlots = itemsToShow - (totalItems - activeIndex);
       if (emptySlots > 0 && hiddenSlots > 0) {
         moveBy = emptySlots + activeIndex * -1;
       }
@@ -210,13 +186,16 @@ class Carousel extends React.Component {
   };
 
   onSliderResize = sliderNode => {
-    const { verticalMode, children } = this.props;
+    const {
+      verticalMode,
+      children,
+      itemsToShow
+    } = this.getDerivedPropsFromBreakPoint();
     const { height } = sliderNode.contentRect;
     const nextState = {};
     if (verticalMode) {
-      const numOfVisibleItems = this.getCalculatedItemsToShow();
       const childHeight = height / children.length;
-      nextState.rootHeight = childHeight * numOfVisibleItems;
+      nextState.rootHeight = childHeight * itemsToShow;
       nextState.childHeight = childHeight;
     } else {
       nextState.rootHeight = height;
@@ -225,15 +204,18 @@ class Carousel extends React.Component {
   };
 
   onContainerResize = sliderContainerNode => {
-    const { onResize, verticalMode } = this.props;
+    const {
+      onResize,
+      verticalMode,
+      itemsToShow
+    } = this.getDerivedPropsFromBreakPoint();
     const { width } = sliderContainerNode.contentRect;
     // update slider container width
     this.setState({ sliderContainerWidth: width }, () => {
       /* based on slider container's width, get num of items to show
       * and calculate child's width (and update it in state)
       */
-      const visibleItems = this.getCalculatedItemsToShow();
-      const childWidth = verticalMode ? width : width / visibleItems;
+      const childWidth = verticalMode ? width : width / itemsToShow;
       this.setState(
         state => ({ childWidth }),
         () => {
@@ -243,7 +225,7 @@ class Carousel extends React.Component {
           * pass the current breakpoint to the consumer's callback
           */
           this.updateSliderPosition();
-          const currentBreakPoint = this.getCurrentBreakpoint();
+          const currentBreakPoint = this.getDerivedPropsFromBreakPoint();
           onResize(currentBreakPoint);
         }
       );
@@ -274,13 +256,15 @@ class Carousel extends React.Component {
   };
 
   getNextItemIndex = (currentIndex, getPrev) => {
-    const { children } = this.props;
-    const itemsToScroll = this.getItemsToScroll();
-    const numOfvisibleItems = this.getCalculatedItemsToShow();
-    const notEnoughItemsToshow = numOfvisibleItems > children.length;
-    let limit = getPrev ? 0 : children.length - numOfvisibleItems;
+    const {
+      children,
+      itemsToShow,
+      itemsToScroll
+    } = this.getDerivedPropsFromBreakPoint();
+    const notEnoughItemsToShow = itemsToShow > children.length;
+    let limit = getPrev ? 0 : children.length - itemsToShow;
 
-    if (notEnoughItemsToshow) {
+    if (notEnoughItemsToShow) {
       limit = 0; // basically don't move
     }
     const nextAction = getPrev
@@ -312,15 +296,19 @@ class Carousel extends React.Component {
   onSwiping = data => {
     const { deltaX, absX, deltaY, absY, dir } = data;
 
-    this.setState((state, props) => {
+    this.setState(state => {
       const {
         rootHeight,
         activeIndex,
         sliderPosition,
         sliderContainerWidth
       } = state;
-      const { verticalMode, children, isRTL } = props;
-      const itemsToShow = this.getCalculatedItemsToShow();
+      const {
+        itemsToShow,
+        verticalMode,
+        children,
+        isRTL
+      } = this.getDerivedPropsFromBreakPoint();
 
       // determine how far can user swipe
       const isOnStart = activeIndex === 0;
@@ -519,23 +507,26 @@ class Carousel extends React.Component {
   };
 
   goTo = nextItemId => {
-    const { children, verticalMode } = this.props;
+    const {
+      children,
+      verticalMode,
+      itemsToShow
+    } = this.getDerivedPropsFromBreakPoint();
     const { activeIndex } = this.state;
     const isPrev = activeIndex > nextItemId;
     const nextAvailbaleItem = this.getNextItemIndex(activeIndex, isPrev);
-    const itemsToshow = this.getCalculatedItemsToShow();
     const noChange = nextAvailbaleItem === activeIndex;
-    const outOfBoundry = nextItemId + itemsToshow >= children.length;
+    const outOfBoundry = nextItemId + itemsToShow >= children.length;
     if (noChange) {
       return;
     }
     if (outOfBoundry) {
-      if (children.length - itemsToshow > 0) {
-        nextItemId = children.length - itemsToshow;
+      if (children.length - itemsToShow > 0) {
+        nextItemId = children.length - itemsToShow;
       } else {
         nextItemId = Math.max(
           children.length - 1,
-          children.length - itemsToshow
+          children.length - itemsToShow
         );
       }
     }
@@ -563,17 +554,16 @@ class Carousel extends React.Component {
   };
 
   getNumOfPages = () => {
-    const { children } = this.props;
-    const numOfVisibleItems = this.getCalculatedItemsToShow();
-    const numOfPages = Math.ceil(children.length / numOfVisibleItems);
+    const { children, itemsToShow } = this.getDerivedPropsFromBreakPoint();
+    const numOfPages = Math.ceil(children.length / itemsToShow);
     return numOfPages || 1;
   };
 
   updateActivePage = () => {
     this.setState(state => {
+      const { itemsToShow } = this.getDerivedPropsFromBreakPoint();
       const { activeIndex, activePage } = state;
-      const numOfVisibleItems = this.getCalculatedItemsToShow();
-      const newActivePage = Math.ceil(activeIndex / numOfVisibleItems);
+      const newActivePage = Math.ceil(activeIndex / itemsToShow);
       if (activePage !== newActivePage) {
         return { activePage: newActivePage };
       }
@@ -581,8 +571,8 @@ class Carousel extends React.Component {
   };
 
   onIndicatorClick = indicatorId => {
-    const numOfVisibleItems = this.getCalculatedItemsToShow();
-    const gotoIndex = indicatorId * numOfVisibleItems;
+    const { itemsToShow } = this.getDerivedPropsFromBreakPoint();
+    const gotoIndex = indicatorId * itemsToShow;
     this.setState({ activePage: indicatorId });
     this.goTo(gotoIndex);
   };
@@ -601,6 +591,7 @@ class Carousel extends React.Component {
     const {
       className,
       style,
+      itemsToShow,
       verticalMode,
       isRTL,
       easing,
@@ -619,7 +610,7 @@ class Carousel extends React.Component {
       preventDefaultTouchmoveEvent,
       renderArrow,
       renderPagination
-    } = this.props;
+    } = this.getDerivedPropsFromBreakPoint();
 
     const numOfPages = this.getNumOfPages();
 
@@ -677,7 +668,7 @@ class Carousel extends React.Component {
                 childWidth={childWidth}
                 currentItem={activeIndex}
                 autoTabIndexVisibleItems={autoTabIndexVisibleItems}
-                itemsToShow={this.getCalculatedItemsToShow()}
+                itemsToShow={itemsToShow}
                 itemPosition={itemPosition}
                 itemPadding={itemPadding}
                 enableSwipe={enableSwipe}
