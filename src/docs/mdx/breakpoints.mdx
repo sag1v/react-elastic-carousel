@@ -16,8 +16,10 @@ This is due to the fact that `react-elastic-carousel` is listening to the elemen
 
 #### You can pass an array of objects that will signal `react-elastic-carousel` to change props like `itemsToShow` and `itemsToScroll` (and others) on different `width` values.
 
+**ANY** prop can be passed directly to React Elastic Carousel or via a the breakpoint object. Keep in mind that a prop passed via a breakpoint will override a direct prop. 
+
 ## Example
-(_Drag or use the resize buttons to see the changes..._)
+(_Resize the container to see the changes..._)
 
 <Playground >
   {
@@ -26,7 +28,7 @@ This is due to the fact that `react-elastic-carousel` is listening to the elemen
         super(props);
         this.breakPoints = [
           { width: 1, itemsToShow: 1 },
-          { width: 550, itemsToShow: 2, itemsToScroll: 2 },
+          { width: 550, itemsToShow: 2, itemsToScroll: 2, pagination: false },
           { width: 850, itemsToShow: 3 },
           { width: 1150, itemsToShow: 4, itemsToScroll: 2 },
           { width: 1450, itemsToShow: 5 },
