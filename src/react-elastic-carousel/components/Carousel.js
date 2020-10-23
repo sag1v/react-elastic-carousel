@@ -70,14 +70,17 @@ class Carousel extends React.Component {
     }
 
     if (prevProps.children.length > children.length) {
+      const {
+        itemsToShow: calculatedItemsToShow
+      } = this.getDerivedPropsFromBreakPoint();
       // number of items is reduced (we don't care if number of items is increased)
       // we need to check if our current index is not out of boundaries
       // we need to include itemsToShow so we can fill up the slots
       const lastIndex = children.length - 1;
-      const isOutOfRange = activeIndex + itemsToShow > lastIndex;
+      const isOutOfRange = activeIndex + calculatedItemsToShow > lastIndex;
       if (isOutOfRange) {
         // we are out of boundaries, go "back" to last item of the list (respect itemsToShow)
-        this.goTo(children.length - itemsToShow);
+        this.goTo(Math.max(0, children.length - calculatedItemsToShow));
       }
     }
   }
@@ -204,14 +207,16 @@ class Carousel extends React.Component {
   };
 
   onContainerResize = sliderContainerNode => {
-    const {
-      onResize,
-      verticalMode,
-      itemsToShow
-    } = this.getDerivedPropsFromBreakPoint();
     const { width } = sliderContainerNode.contentRect;
     // update slider container width
     this.setState({ sliderContainerWidth: width }, () => {
+      // we must get these props inside setState (get future props because its async)
+      const {
+        onResize,
+        verticalMode,
+        itemsToShow
+      } = this.getDerivedPropsFromBreakPoint();
+
       /* based on slider container's width, get num of items to show
       * and calculate child's width (and update it in state)
       */
@@ -521,14 +526,8 @@ class Carousel extends React.Component {
       return;
     }
     if (outOfBoundry) {
-      if (children.length - itemsToShow > 0) {
-        nextItemId = children.length - itemsToShow;
-      } else {
-        nextItemId = Math.max(
-          children.length - 1,
-          children.length - itemsToShow
-        );
-      }
+      // Either go to last index (respect itemsToShow) or 0 index if we can't fill the slider
+      nextItemId = Math.max(0, children.length - itemsToShow);
     }
     let direction = consts.NEXT;
     let positionEndCb = this.onNextEnd;
