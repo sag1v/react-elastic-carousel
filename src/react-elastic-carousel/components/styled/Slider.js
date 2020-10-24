@@ -47,13 +47,17 @@ const calcTransition = ({ isSwiping, transitionMs, easing, tiltEasing }) => {
   return `all ${duration}ms ${effectiveEasing}`;
 };
 
-export default styled.div`
+// We use attributes (style) to bypass multiple creation of classes (dynamic styling)
+export default styled.div.attrs(props => ({
+  style: {
+    transition: calcTransition(props),
+    left: calcLeft(props),
+    right: calcRight(props),
+    top: calcTop(props)
+  }
+}))`
   position: absolute;
   display: flex;
   flex-direction: ${({ verticalMode }) => (verticalMode ? "column" : "row")};
-  ${({ verticalMode }) => (verticalMode ? "min-height: 100%;" : "")}
-  transition: ${calcTransition};
-  left: ${calcLeft};
-  right: ${calcRight};
-  top: ${calcTop};
+  ${({ verticalMode }) => (verticalMode ? "min-height: 100%;" : "")};
 `;

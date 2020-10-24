@@ -26,6 +26,7 @@ class Carousel extends React.Component {
     swipedSliderPosition: 0,
     isSwiping: false,
     transitioning: false,
+    transitionMs: this.props.transitionMs,
     activeIndex: this.props.initialActiveIndex || this.props.initialFirstItem, // support deprecated  initialFirstItem
     pages: [],
     activePage: 0,
@@ -168,7 +169,8 @@ class Carousel extends React.Component {
       const {
         children,
         verticalMode,
-        itemsToShow
+        itemsToShow,
+        transitionMs
       } = this.getDerivedPropsFromBreakPoint();
       const { childWidth, childHeight, activeIndex } = state;
       const totalItems = children.length;
@@ -181,6 +183,10 @@ class Carousel extends React.Component {
       let sliderPosition = (verticalMode ? childHeight : childWidth) * moveBy;
       const newActiveIndex =
         emptySlots > 0 ? activeIndex - emptySlots : activeIndex;
+      // go back from 0ms to whatever set by the user
+      // We were at 0ms because we wanted to disable animation on resize
+      // see https://github.com/sag1v/react-elastic-carousel/issues/94
+      window.requestAnimationFrame(() => this.setState({ transitionMs }));
       return {
         sliderPosition,
         activeIndex: newActiveIndex < 0 ? 0 : newActiveIndex
@@ -209,7 +215,8 @@ class Carousel extends React.Component {
   onContainerResize = sliderContainerNode => {
     const { width } = sliderContainerNode.contentRect;
     // update slider container width
-    this.setState({ sliderContainerWidth: width }, () => {
+    // disable animation on resize see https://github.com/sag1v/react-elastic-carousel/issues/94
+    this.setState({ sliderContainerWidth: width, transitionMs: 0 }, () => {
       // we must get these props inside setState (get future props because its async)
       const {
         onResize,
@@ -585,7 +592,8 @@ class Carousel extends React.Component {
       swipedSliderPosition,
       rootHeight,
       pages,
-      activeIndex
+      activeIndex,
+      transitionMs
     } = this.state;
     const {
       className,
@@ -595,7 +603,6 @@ class Carousel extends React.Component {
       isRTL,
       easing,
       tiltEasing,
-      transitionMs,
       children,
       focusOnSelect,
       autoTabIndexVisibleItems,
