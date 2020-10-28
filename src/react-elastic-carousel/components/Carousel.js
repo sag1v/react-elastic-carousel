@@ -341,23 +341,28 @@ class Carousel extends React.Component {
         divider = largeDivider;
       }
 
-      let distanceSwipe = verticalMode
+      const distanceSwipe = verticalMode
         ? rootHeight / divider
         : sliderContainerWidth / divider;
 
-      const isHorizontalSwipe = dir === "Left" || dir === "Right";
+      const horizontalSwipe = dir === "Left" || dir === "Right";
+      const verticalSwipe = dir === "Up" || dir === "Down";
+      const horizontalMode = !verticalMode;
 
       const shouldHorizontalSkipUpdate =
-        isHorizontalSwipe && (!verticalMode && absX > distanceSwipe);
+        (horizontalMode && verticalSwipe) ||
+        (horizontalMode && horizontalSwipe && absX > distanceSwipe);
+
       const shouldVerticalSkipUpdate =
-        !isHorizontalSwipe && (verticalMode && absY > distanceSwipe);
+        (verticalMode && horizontalSwipe) ||
+        (verticalMode && verticalSwipe && absY > distanceSwipe);
 
       if (shouldHorizontalSkipUpdate || shouldVerticalSkipUpdate) {
         // bail out of state update
         return;
       }
       return {
-        swipedSliderPosition: isHorizontalSwipe
+        swipedSliderPosition: horizontalSwipe
           ? sliderPosition - deltaX
           : sliderPosition - deltaY,
         isSwiping: true,
@@ -373,19 +378,24 @@ class Carousel extends React.Component {
     // 3. vertical mode - swipe up or down
 
     const { absX, absY, dir } = data;
-    const { childWidth } = this.state;
+    const { childWidth, childHeight } = this.state;
     const { verticalMode, isRTL } = this.props;
     let func = this.resetSwipe;
-    const minSwipeDistance = childWidth / 3;
+    const minSwipeDistanceHorizontal = childWidth / 3;
+    const minSwipeDistanceVertical = childHeight / 3;
     const swipedLeft = dir === "Left";
     const swipedRight = dir === "Right";
     const swipedUp = dir === "Up";
     const swipedDown = dir === "Down";
     const verticalGoSwipe =
-      verticalMode && (swipedUp || swipedDown) && absY > minSwipeDistance;
+      verticalMode &&
+      (swipedUp || swipedDown) &&
+      absY > minSwipeDistanceVertical;
 
     const horizontalGoSwipe =
-      !verticalMode && (swipedRight || swipedLeft) && absX > minSwipeDistance;
+      !verticalMode &&
+      (swipedRight || swipedLeft) &&
+      absX > minSwipeDistanceHorizontal;
 
     let goodToGo = false;
     if (verticalGoSwipe || horizontalGoSwipe) {
@@ -670,6 +680,7 @@ class Carousel extends React.Component {
               ref={this.setRef("slider")}
             >
               <Track
+                verticalMode={verticalMode}
                 children={children}
                 childWidth={childWidth}
                 currentItem={activeIndex}
