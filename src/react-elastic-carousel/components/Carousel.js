@@ -760,6 +760,7 @@ Carousel.defaultProps = {
   autoPlaySpeed: 2000,
 
   // callbacks
+  onChange: noop,
   onNextEnd: noop,
   onPrevEnd: noop,
   onNextStart: noop,
