@@ -17,6 +17,7 @@ const Track = ({
   itemPadding,
   onSwiped,
   onSwiping,
+  verticalMode,
   onItemClick
 }) => {
   const width = `${childWidth}px`;
@@ -47,7 +48,10 @@ const Track = ({
   });
   const toRender = enableSwipe ? (
     <Swipeable
-      style={{ display: "flex" }}
+      style={{
+        display: "flex",
+        flexDirection: verticalMode ? "column" : "row"
+      }}
       stopPropagation
       preventDefaultTouchmoveEvent={preventDefaultTouchmoveEvent}
       trackMouse={enableMouseSwipe}
@@ -71,6 +75,7 @@ Track.propTypes = {
   itemPosition: PropTypes.string,
   itemPadding: PropTypes.array,
   childWidth: PropTypes.number,
+  verticalMode: PropTypes.bool,
   enableSwipe: PropTypes.bool,
   enableMouseSwipe: PropTypes.bool,
   preventDefaultTouchmoveEvent: PropTypes.bool,

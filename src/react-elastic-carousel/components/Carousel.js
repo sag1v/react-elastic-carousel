@@ -26,6 +26,7 @@ class Carousel extends React.Component {
     swipedSliderPosition: 0,
     isSwiping: false,
     transitioning: false,
+    transitionMs: this.props.transitionMs,
     activeIndex: this.props.initialActiveIndex || this.props.initialFirstItem, // support deprecated  initialFirstItem
     pages: [],
     activePage: 0,
@@ -168,7 +169,8 @@ class Carousel extends React.Component {
       const {
         children,
         verticalMode,
-        itemsToShow
+        itemsToShow,
+        transitionMs
       } = this.getDerivedPropsFromBreakPoint();
       const { childWidth, childHeight, activeIndex } = state;
       const totalItems = children.length;
@@ -181,6 +183,10 @@ class Carousel extends React.Component {
       let sliderPosition = (verticalMode ? childHeight : childWidth) * moveBy;
       const newActiveIndex =
         emptySlots > 0 ? activeIndex - emptySlots : activeIndex;
+      // go back from 0ms to whatever set by the user
+      // We were at 0ms because we wanted to disable animation on resize
+      // see https://github.com/sag1v/react-elastic-carousel/issues/94
+      window.requestAnimationFrame(() => this.setState({ transitionMs }));
       return {
         sliderPosition,
         activeIndex: newActiveIndex < 0 ? 0 : newActiveIndex
@@ -209,7 +215,8 @@ class Carousel extends React.Component {
   onContainerResize = sliderContainerNode => {
     const { width } = sliderContainerNode.contentRect;
     // update slider container width
-    this.setState({ sliderContainerWidth: width }, () => {
+    // disable animation on resize see https://github.com/sag1v/react-elastic-carousel/issues/94
+    this.setState({ sliderContainerWidth: width, transitionMs: 0 }, () => {
       // we must get these props inside setState (get future props because its async)
       const {
         onResize,
@@ -334,23 +341,28 @@ class Carousel extends React.Component {
         divider = largeDivider;
       }
 
-      let distanceSwipe = verticalMode
+      const distanceSwipe = verticalMode
         ? rootHeight / divider
         : sliderContainerWidth / divider;
 
-      const isHorizontalSwipe = dir === "Left" || dir === "Right";
+      const horizontalSwipe = dir === "Left" || dir === "Right";
+      const verticalSwipe = dir === "Up" || dir === "Down";
+      const horizontalMode = !verticalMode;
 
       const shouldHorizontalSkipUpdate =
-        isHorizontalSwipe && (!verticalMode && absX > distanceSwipe);
+        (horizontalMode && verticalSwipe) ||
+        (horizontalMode && horizontalSwipe && absX > distanceSwipe);
+
       const shouldVerticalSkipUpdate =
-        !isHorizontalSwipe && (verticalMode && absY > distanceSwipe);
+        (verticalMode && horizontalSwipe) ||
+        (verticalMode && verticalSwipe && absY > distanceSwipe);
 
       if (shouldHorizontalSkipUpdate || shouldVerticalSkipUpdate) {
         // bail out of state update
         return;
       }
       return {
-        swipedSliderPosition: isHorizontalSwipe
+        swipedSliderPosition: horizontalSwipe
           ? sliderPosition - deltaX
           : sliderPosition - deltaY,
         isSwiping: true,
@@ -366,19 +378,24 @@ class Carousel extends React.Component {
     // 3. vertical mode - swipe up or down
 
     const { absX, absY, dir } = data;
-    const { childWidth } = this.state;
+    const { childWidth, childHeight } = this.state;
     const { verticalMode, isRTL } = this.props;
     let func = this.resetSwipe;
-    const minSwipeDistance = childWidth / 3;
+    const minSwipeDistanceHorizontal = childWidth / 3;
+    const minSwipeDistanceVertical = childHeight / 3;
     const swipedLeft = dir === "Left";
     const swipedRight = dir === "Right";
     const swipedUp = dir === "Up";
     const swipedDown = dir === "Down";
     const verticalGoSwipe =
-      verticalMode && (swipedUp || swipedDown) && absY > minSwipeDistance;
+      verticalMode &&
+      (swipedUp || swipedDown) &&
+      absY > minSwipeDistanceVertical;
 
     const horizontalGoSwipe =
-      !verticalMode && (swipedRight || swipedLeft) && absX > minSwipeDistance;
+      !verticalMode &&
+      (swipedRight || swipedLeft) &&
+      absX > minSwipeDistanceHorizontal;
 
     let goodToGo = false;
     if (verticalGoSwipe || horizontalGoSwipe) {
@@ -585,7 +602,8 @@ class Carousel extends React.Component {
       swipedSliderPosition,
       rootHeight,
       pages,
-      activeIndex
+      activeIndex,
+      transitionMs
     } = this.state;
     const {
       className,
@@ -595,7 +613,6 @@ class Carousel extends React.Component {
       isRTL,
       easing,
       tiltEasing,
-      transitionMs,
       children,
       focusOnSelect,
       autoTabIndexVisibleItems,
@@ -663,6 +680,7 @@ class Carousel extends React.Component {
               ref={this.setRef("slider")}
             >
               <Track
+                verticalMode={verticalMode}
                 children={children}
                 childWidth={childWidth}
                 currentItem={activeIndex}
@@ -742,6 +760,7 @@ Carousel.defaultProps = {
   autoPlaySpeed: 2000,
 
   // callbacks
+  onChange: noop,
   onNextEnd: noop,
   onPrevEnd: noop,
   onNextStart: noop,
