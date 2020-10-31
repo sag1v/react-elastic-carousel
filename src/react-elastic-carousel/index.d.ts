@@ -1,12 +1,12 @@
 import * as React from "react";
 
-type RenderArrowProps = {
+export type RenderArrowProps = {
   type: "PREV" | "NEXT";
   onClick: () => void;
   isEdge: boolean;
 };
 
-type RenderPaginationProps = {
+export type RenderPaginationProps = {
   pages: number[];
   activePage: number;
   // The onClick event that sets the state of the carousel and sends
@@ -14,13 +14,13 @@ type RenderPaginationProps = {
   onClick: (indicatorId: string) => void;
 };
 
-type ItemObject = {
+export type ItemObject = {
   // Children's props
   object: any;
   index: number;
 };
 
-type Breakpoint = {
+export type Breakpoint = {
   itemsToScroll: number;
   itemsToShow: number;
 };
