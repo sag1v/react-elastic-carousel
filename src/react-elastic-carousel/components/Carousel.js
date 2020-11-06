@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Children } from "react";
 import PropTypes from "prop-types";
 import ResizeObserver from "resize-observer-polyfill";
 import Only from "react-only-when";
@@ -49,10 +49,11 @@ class Carousel extends React.Component {
     } = this.props;
     const { activeIndex, sliderContainerWidth } = this.state;
     const nextItem = this.getNextItemIndex(activeIndex, false);
-
+    const currentChildrenLength = Children.toArray(children).length;
+    const prevChildrenLength = Children.toArray(prevProps.children).length;
     // update pages (for pagination)
     if (
-      prevProps.children !== children ||
+      prevChildrenLength !== currentChildrenLength ||
       prevProps.itemsToShow !== itemsToShow ||
       prevProps.itemsToScroll !== itemsToScroll ||
       prevProps.breakPoints !== breakPoints ||
@@ -70,18 +71,18 @@ class Carousel extends React.Component {
       this.removeAutoPlay();
     }
 
-    if (prevProps.children.length > children.length) {
+    if (prevChildrenLength !== currentChildrenLength) {
       const {
         itemsToShow: calculatedItemsToShow
       } = this.getDerivedPropsFromBreakPoint();
       // number of items is reduced (we don't care if number of items is increased)
       // we need to check if our current index is not out of boundaries
       // we need to include itemsToShow so we can fill up the slots
-      const lastIndex = children.length - 1;
+      const lastIndex = currentChildrenLength - 1;
       const isOutOfRange = activeIndex + calculatedItemsToShow > lastIndex;
       if (isOutOfRange) {
         // we are out of boundaries, go "back" to last item of the list (respect itemsToShow)
-        this.goTo(Math.max(0, children.length - calculatedItemsToShow));
+        this.goTo(Math.max(0, currentChildrenLength - calculatedItemsToShow));
       }
     }
   }
@@ -173,7 +174,7 @@ class Carousel extends React.Component {
         transitionMs
       } = this.getDerivedPropsFromBreakPoint();
       const { childWidth, childHeight, activeIndex } = state;
-      const totalItems = children.length;
+      const totalItems = Children.toArray(children).length;
       const hiddenSlots = totalItems - itemsToShow;
       let moveBy = activeIndex * -1;
       const emptySlots = itemsToShow - (totalItems - activeIndex);
@@ -203,7 +204,7 @@ class Carousel extends React.Component {
     const { height } = sliderNode.contentRect;
     const nextState = {};
     if (verticalMode) {
-      const childHeight = height / children.length;
+      const childHeight = height / Children.toArray(children).length;
       nextState.rootHeight = childHeight * itemsToShow;
       nextState.childHeight = childHeight;
     } else {
@@ -263,7 +264,7 @@ class Carousel extends React.Component {
     const { children } = this.props;
     // support decimal itemsToShow
     const roundedIdx = Math.round(index);
-    const child = children[roundedIdx];
+    const child = Children.toArray(children)[roundedIdx];
     return { item: child.props, index: roundedIdx };
   };
 
@@ -273,8 +274,9 @@ class Carousel extends React.Component {
       itemsToShow,
       itemsToScroll
     } = this.getDerivedPropsFromBreakPoint();
-    const notEnoughItemsToShow = itemsToShow > children.length;
-    let limit = getPrev ? 0 : children.length - itemsToShow;
+    const childrenLength = Children.toArray(children).length;
+    const notEnoughItemsToShow = itemsToShow > childrenLength;
+    let limit = getPrev ? 0 : childrenLength - itemsToShow;
 
     if (notEnoughItemsToShow) {
       limit = 0; // basically don't move
@@ -292,7 +294,7 @@ class Carousel extends React.Component {
     const nextItemIndex = this.getNextItemIndex(activeIndex, getPrev);
     // support decimal itemsToShow
     const roundedIdx = Math.round(nextItemIndex);
-    const asElement = children[roundedIdx];
+    const asElement = Children.toArray(children)[roundedIdx];
     const asObj = { item: asElement.props, index: roundedIdx };
     return asObj;
   };
@@ -323,8 +325,9 @@ class Carousel extends React.Component {
       } = this.getDerivedPropsFromBreakPoint();
 
       // determine how far can user swipe
+      const childrenLength = Children.toArray(children).length;
       const isOnStart = activeIndex === 0;
-      const isOnEnd = activeIndex === children.length - itemsToShow;
+      const isOnEnd = activeIndex === childrenLength - itemsToShow;
       const defaultDivider = 1.5;
       const largeDivider = itemsToShow * 2;
       let divider = defaultDivider;
@@ -535,16 +538,17 @@ class Carousel extends React.Component {
       itemsToShow
     } = this.getDerivedPropsFromBreakPoint();
     const { activeIndex } = this.state;
+    const childrenLength = Children.toArray(children).length;
     const isPrev = activeIndex > nextItemId;
     const nextAvailbaleItem = this.getNextItemIndex(activeIndex, isPrev);
     const noChange = nextAvailbaleItem === activeIndex;
-    const outOfBoundry = nextItemId + itemsToShow >= children.length;
+    const outOfBoundry = nextItemId + itemsToShow >= childrenLength;
     if (noChange) {
       return;
     }
     if (outOfBoundry) {
       // Either go to last index (respect itemsToShow) or 0 index if we can't fill the slider
-      nextItemId = Math.max(0, children.length - itemsToShow);
+      nextItemId = Math.max(0, childrenLength - itemsToShow);
     }
     let direction = consts.NEXT;
     let positionEndCb = this.onNextEnd;
@@ -571,7 +575,8 @@ class Carousel extends React.Component {
 
   getNumOfPages = () => {
     const { children, itemsToShow } = this.getDerivedPropsFromBreakPoint();
-    const numOfPages = Math.ceil(children.length / itemsToShow);
+    const childrenLength = Children.toArray(children).length;
+    const numOfPages = Math.ceil(childrenLength / itemsToShow);
     return numOfPages || 1;
   };
 
@@ -681,7 +686,7 @@ class Carousel extends React.Component {
             >
               <Track
                 verticalMode={verticalMode}
-                children={children}
+                children={Children.toArray(children)}
                 childWidth={childWidth}
                 currentItem={activeIndex}
                 autoTabIndexVisibleItems={autoTabIndexVisibleItems}
