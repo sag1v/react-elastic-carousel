@@ -22,6 +22,12 @@ describe("Carousel - public API (props)", () => {
     expect(children.length).toEqual(Items.length);
   });
 
+  it("one child wont break on next", () => {
+    const wrapper = mount(<Carousel>{Items[0]}</Carousel>);
+    const nextButton = wrapper.find(Carousel).find("button.rec-arrow-right");
+    nextButton.simulate("click");
+  });
+
   it("renders with className in root", () => {
     const testClassName = "test-root";
     const wrapper = mount(
