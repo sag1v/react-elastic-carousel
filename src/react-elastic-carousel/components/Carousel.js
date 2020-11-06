@@ -201,34 +201,51 @@ class Carousel extends React.Component {
       children,
       itemsToShow
     } = this.getDerivedPropsFromBreakPoint();
-    const { height } = sliderNode.contentRect;
+    const { height: sliderHeight } = sliderNode.contentRect;
     const nextState = {};
+    const childrenLength = Children.toArray(children).length;
     if (verticalMode) {
-      const childHeight = height / Children.toArray(children).length;
-      nextState.rootHeight = childHeight * itemsToShow;
+      const childHeight = sliderHeight / childrenLength;
+      // We use Math.min because don't want to make the child smaller
+      // if number of children is smaller than itemsToShow.
+      // Because we will have "empty slots"
+      nextState.rootHeight =
+        childHeight * Math.min(childrenLength, itemsToShow);
       nextState.childHeight = childHeight;
     } else {
-      nextState.rootHeight = height;
+      nextState.rootHeight = sliderHeight;
     }
     this.setState(nextState);
   };
 
   onContainerResize = sliderContainerNode => {
-    const { width } = sliderContainerNode.contentRect;
+    const { width: sliderContainerWidth } = sliderContainerNode.contentRect;
     // update slider container width
     // disable animation on resize see https://github.com/sag1v/react-elastic-carousel/issues/94
-    this.setState({ sliderContainerWidth: width, transitionMs: 0 }, () => {
+    this.setState({ sliderContainerWidth, transitionMs: 0 }, () => {
       // we must get these props inside setState (get future props because its async)
       const {
         onResize,
         verticalMode,
-        itemsToShow
+        itemsToShow,
+        children
       } = this.getDerivedPropsFromBreakPoint();
 
       /* based on slider container's width, get num of items to show
       * and calculate child's width (and update it in state)
       */
-      const childWidth = verticalMode ? width : width / itemsToShow;
+      const childrenLength = Children.toArray(children).length;
+      let childWidth = 0;
+      if (verticalMode) {
+        childWidth = sliderContainerWidth;
+      } else {
+        // We use Math.min because don't want to make the child smaller
+        // if number of children is smaller than itemsToShow.
+        // Because we will have "empty slots"
+        childWidth =
+          sliderContainerWidth / Math.min(childrenLength, itemsToShow);
+      }
+
       this.setState(
         state => ({ childWidth }),
         () => {
