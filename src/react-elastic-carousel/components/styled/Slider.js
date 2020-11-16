@@ -60,4 +60,5 @@ export default styled.div.attrs(props => ({
   display: flex;
   flex-direction: ${({ verticalMode }) => (verticalMode ? "column" : "row")};
   ${({ verticalMode }) => (verticalMode ? "min-height: 100%;" : "")};
+  margin: 0 ${({ sidePadding }) => sidePadding}px;
 `;

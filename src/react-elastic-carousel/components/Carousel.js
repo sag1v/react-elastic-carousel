@@ -640,6 +640,7 @@ class Carousel extends React.Component {
       autoTabIndexVisibleItems,
       itemPosition,
       itemPadding,
+      sidePadding,
       enableSwipe,
       enableMouseSwipe,
       pagination,
@@ -678,12 +679,12 @@ class Carousel extends React.Component {
                 isEdge: !canSlidePrev
               })
             ) : (
-              <Arrow
-                onClick={this.onPrevStart}
-                direction={verticalMode ? Arrow.up : Arrow.left}
-                disabled={disabledPrevArrow}
-              />
-            )}
+                <Arrow
+                  onClick={this.onPrevStart}
+                  direction={verticalMode ? Arrow.up : Arrow.left}
+                  disabled={disabledPrevArrow}
+                />
+              )}
           </Only>
           <SliderContainer
             className={cssPrefix("slider-container")}
@@ -700,6 +701,7 @@ class Carousel extends React.Component {
               tiltEasing={tiltEasing}
               className={cssPrefix("slider")}
               ref={this.setRef("slider")}
+              sidePadding={sidePadding}
             >
               <Track
                 verticalMode={verticalMode}
@@ -727,12 +729,12 @@ class Carousel extends React.Component {
                 isEdge: !canSlideNext
               })
             ) : (
-              <Arrow
-                onClick={this.onNextStart}
-                direction={verticalMode ? Arrow.down : Arrow.right}
-                disabled={disabledNextArrow}
-              />
-            )}
+                <Arrow
+                  onClick={this.onNextStart}
+                  direction={verticalMode ? Arrow.down : Arrow.right}
+                  disabled={disabledNextArrow}
+                />
+              )}
           </Only>
         </StyledCarousel>
         <Only when={pagination}>
@@ -743,12 +745,12 @@ class Carousel extends React.Component {
               onClick: this.onIndicatorClick
             })
           ) : (
-            <Pagination
-              numOfPages={numOfPages}
-              activePage={activePage}
-              onClick={this.onIndicatorClick}
-            />
-          )}
+              <Pagination
+                numOfPages={numOfPages}
+                activePage={activePage}
+                onClick={this.onIndicatorClick}
+              />
+            )}
         </Only>
       </CarouselWrapper>
     );
@@ -778,6 +780,7 @@ Carousel.defaultProps = {
   itemsToScroll: 1,
   itemPosition: consts.CENTER,
   itemPadding: [0, 0, 0, 0],
+  sidePadding: 0,
   enableAutoPlay: false,
   autoPlaySpeed: 2000,
 
@@ -869,6 +872,9 @@ Carousel.propTypes = {
 
   /** A padding for each element  */
   itemPadding: PropTypes.array,
+
+  /** A side padding at each side of the carousel */
+  sidePadding: PropTypes.number,
 
   // swipe
   /** Enable or disable swipe */
