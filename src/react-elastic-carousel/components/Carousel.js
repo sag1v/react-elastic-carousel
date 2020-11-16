@@ -19,7 +19,6 @@ import { Pagination } from "./Pagination";
 class Carousel extends React.Component {
   state = {
     rootHeight: 0,
-    rootWidth: 0,
     childWidth: 0,
     childHeight: 0,
     sliderPosition: 0,
@@ -97,10 +96,20 @@ class Carousel extends React.Component {
     this.ro = new ResizeObserver((entries, observer) => {
       for (const entry of entries) {
         if (entry.target === this.sliderContainer) {
-          this.onContainerResize(entry);
+          // we are using rAF because it fixes the infinite refresh with gatsby (ssr?).
+          // TBH, I'm not sure i fully understand why.
+          // see https://github.com/sag1v/react-elastic-carousel/issues/107
+          window.requestAnimationFrame(() => {
+            this.onContainerResize(entry);
+          });
         }
         if (entry.target === this.slider) {
-          this.onSliderResize(entry);
+          // we are using rAF because it fixes the infinite refresh with gatsby (ssr?).
+          // TBH, I'm not sure i fully understand why
+          // see https://github.com/sag1v/react-elastic-carousel/issues/107
+          window.requestAnimationFrame(() => {
+            this.onSliderResize(entry);
+          });
         }
       }
     });
@@ -156,8 +165,8 @@ class Carousel extends React.Component {
         .find(bp => bp.width <= sliderContainerWidth);
       if (!currentBreakPoint) {
         /* in case we don't have a lower width than sliderContainerWidth
-        * this mostly happens in initilization when sliderContainerWidth is 0
-        */
+         * this mostly happens in initilization when sliderContainerWidth is 0
+         */
         currentBreakPoint = breakPoints[0];
       }
     }
@@ -232,8 +241,8 @@ class Carousel extends React.Component {
       } = this.getDerivedPropsFromBreakPoint();
 
       /* based on slider container's width, get num of items to show
-      * and calculate child's width (and update it in state)
-      */
+       * and calculate child's width (and update it in state)
+       */
       const childrenLength = Children.toArray(children).length;
       let childWidth = 0;
       if (verticalMode) {
@@ -250,10 +259,10 @@ class Carousel extends React.Component {
         state => ({ childWidth }),
         () => {
           /* Based on all of the above new data:
-          * update slider position
-          * get the new current breakpoint
-          * pass the current breakpoint to the consumer's callback
-          */
+           * update slider position
+           * get the new current breakpoint
+           * pass the current breakpoint to the consumer's callback
+           */
           this.updateSliderPosition();
           const currentBreakPoint = this.getDerivedPropsFromBreakPoint();
           onResize(currentBreakPoint);
@@ -381,10 +390,18 @@ class Carousel extends React.Component {
         // bail out of state update
         return;
       }
+      let swipedSliderPosition;
+      if (horizontalSwipe) {
+        if (isRTL) {
+          swipedSliderPosition = sliderPosition + deltaX;
+        } else {
+          swipedSliderPosition = sliderPosition - deltaX;
+        }
+      } else {
+        swipedSliderPosition = sliderPosition - deltaY;
+      }
       return {
-        swipedSliderPosition: horizontalSwipe
-          ? sliderPosition - deltaX
-          : sliderPosition - deltaY,
+        swipedSliderPosition,
         isSwiping: true,
         transitioning: true
       };
