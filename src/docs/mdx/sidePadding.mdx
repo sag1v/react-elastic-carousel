@@ -1,0 +1,31 @@
+---
+name: sidePadding
+route: /sidePadding
+menu: Examples
+---
+
+import {Playground, Props } from 'docz';
+import Carousel from 'react-elastic-carousel';
+import Item from '../components/SimpleItem';
+
+# sidePadding
+#### Sets a `padding` to the beginning and the end of the slider; the first left padding and the last right padding set with the `itemPadding` prop will be overridden
+
+<Playground>
+    <Carousel itemPadding={[0, 20]} itemsToShow={3} sidePadding={100}>
+        <Item>1</Item>
+        <Item>2</Item>
+        <Item>3</Item>
+        <Item>4</Item>
+        <Item>5</Item>
+        <Item>6</Item>
+    </Carousel>
+    <Carousel itemPadding={[0, 20]} itemsToShow={3}>
+        <Item>1</Item>
+        <Item>2</Item>
+        <Item>3</Item>
+        <Item>4</Item>
+        <Item>5</Item>
+        <Item>6</Item>
+    </Carousel>
+</Playground>

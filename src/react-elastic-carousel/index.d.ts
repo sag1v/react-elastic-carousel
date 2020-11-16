@@ -67,6 +67,8 @@ export interface ReactElasticCarouselProps {
   itemPosition?: "START" | "CENTER" | "END";
   // A padding for each element - Defaults to [0,0,0,0]
   itemPadding?: number[];
+  // A side padding for each side of the carousel - Defaults to 0
+  sidePadding?: number;
   // Enable or disable swipe - Defaults to true
   enableSwipe?: boolean;
   /** Enable or disable mouse swipe */

@@ -231,44 +231,48 @@ class Carousel extends React.Component {
     const { width: sliderContainerWidth } = sliderContainerNode.contentRect;
     // update slider container width
     // disable animation on resize see https://github.com/sag1v/react-elastic-carousel/issues/94
-    this.setState({ sliderContainerWidth, transitionMs: 0 }, () => {
-      // we must get these props inside setState (get future props because its async)
-      const {
-        onResize,
-        verticalMode,
-        itemsToShow,
-        children
-      } = this.getDerivedPropsFromBreakPoint();
+    const { sidePadding } = this.getDerivedPropsFromBreakPoint();
+    const containerWidth = sliderContainerWidth - sidePadding * 2;
+    this.setState(
+      { sliderContainerWidth: containerWidth, transitionMs: 0 },
+      () => {
+        // we must get these props inside setState (get future props because its async)
+        const {
+          onResize,
+          verticalMode,
+          itemsToShow,
+          children
+        } = this.getDerivedPropsFromBreakPoint();
 
-      /* based on slider container's width, get num of items to show
-       * and calculate child's width (and update it in state)
-       */
-      const childrenLength = Children.toArray(children).length;
-      let childWidth = 0;
-      if (verticalMode) {
-        childWidth = sliderContainerWidth;
-      } else {
-        // We use Math.min because don't want to make the child smaller
-        // if number of children is smaller than itemsToShow.
-        // Because we will have "empty slots"
-        childWidth =
-          sliderContainerWidth / Math.min(childrenLength, itemsToShow);
-      }
-
-      this.setState(
-        state => ({ childWidth }),
-        () => {
-          /* Based on all of the above new data:
-           * update slider position
-           * get the new current breakpoint
-           * pass the current breakpoint to the consumer's callback
-           */
-          this.updateSliderPosition();
-          const currentBreakPoint = this.getDerivedPropsFromBreakPoint();
-          onResize(currentBreakPoint);
+        /* based on slider container's width, get num of items to show
+        * and calculate child's width (and update it in state)
+        */
+        const childrenLength = Children.toArray(children).length;
+        let childWidth = 0;
+        if (verticalMode) {
+          childWidth = containerWidth;
+        } else {
+          // We use Math.min because don't want to make the child smaller
+          // if number of children is smaller than itemsToShow.
+          // Because we will have "empty slots"
+          childWidth = containerWidth / Math.min(childrenLength, itemsToShow);
         }
-      );
-    });
+
+        this.setState(
+          state => ({ childWidth }),
+          () => {
+            /* Based on all of the above new data:
+            * update slider position
+            * get the new current breakpoint
+            * pass the current breakpoint to the consumer's callback
+            */
+            this.updateSliderPosition();
+            const currentBreakPoint = this.getDerivedPropsFromBreakPoint();
+            onResize(currentBreakPoint);
+          }
+        );
+      }
+    );
   };
 
   tiltMovement = (position, distance = 20, duration = 150) => {
@@ -657,6 +661,7 @@ class Carousel extends React.Component {
       autoTabIndexVisibleItems,
       itemPosition,
       itemPadding,
+      sidePadding,
       enableSwipe,
       enableMouseSwipe,
       pagination,
@@ -717,6 +722,7 @@ class Carousel extends React.Component {
               tiltEasing={tiltEasing}
               className={cssPrefix("slider")}
               ref={this.setRef("slider")}
+              sidePadding={sidePadding}
             >
               <Track
                 verticalMode={verticalMode}
@@ -795,6 +801,7 @@ Carousel.defaultProps = {
   itemsToScroll: 1,
   itemPosition: consts.CENTER,
   itemPadding: [0, 0, 0, 0],
+  sidePadding: 0,
   enableAutoPlay: false,
   autoPlaySpeed: 2000,
 
@@ -886,6 +893,9 @@ Carousel.propTypes = {
 
   /** A padding for each element  */
   itemPadding: PropTypes.array,
+
+  /** A side padding at each side of the carousel */
+  sidePadding: PropTypes.number,
 
   // swipe
   /** Enable or disable swipe */

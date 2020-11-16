@@ -24,6 +24,7 @@ export default {
         'isRTL',
         'enableAutoPlay',
         'itemPadding',
+        'sidePadding',
         'itemPosition',
         'easing',
         'renderArrow',
