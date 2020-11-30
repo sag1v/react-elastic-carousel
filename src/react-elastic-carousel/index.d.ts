@@ -55,6 +55,8 @@ export interface ReactElasticCarouselProps {
   initialFirstItem?: number;
   // Defaults to true
   showArrows?: boolean;
+  // Defaults to false (not compatible with verticalMode yet !)
+  showEmptySlots?: boolean;
   // Defaults to true
   disableArrowsOnEnd?: boolean;
   // Defaults to boolean
@@ -67,6 +69,8 @@ export interface ReactElasticCarouselProps {
   itemPosition?: "START" | "CENTER" | "END";
   // A padding for each element - Defaults to [0,0,0,0]
   itemPadding?: number[];
+  // A margin at the beginning and at the end of the carousel - Defaults to 0 (not compatible with verticalMode yet !)
+  outerSpacing?: number;
   // Enable or disable swipe - Defaults to true
   enableSwipe?: boolean;
   /** Enable or disable mouse swipe */
