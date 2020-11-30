@@ -1,0 +1,20 @@
+---
+name: showEmptySlots
+route: /showEmptySlots
+menu: Examples
+---
+
+import {Playground, Props } from 'docz';
+import Carousel from 'react-elastic-carousel';
+import Item from '../components/SimpleItem';
+
+# showEmptySlots
+#### Shows empty slots when there are less children than items to show (`children.length` < `itemsToShow`)
+#### (not compatible with `verticalMode` yet !)
+
+<Playground>
+    <Carousel itemsToShow={5} showEmptySlots>
+        <Item>1</Item>
+        <Item>2</Item>
+    </Carousel>
+</Playground>
