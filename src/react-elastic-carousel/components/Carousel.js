@@ -215,9 +215,9 @@ class Carousel extends React.Component {
     const childrenLength = Children.toArray(children).length;
     if (verticalMode) {
       const childHeight = sliderHeight / childrenLength;
-      // We use Math.min because don't want to make the child smaller
-      // if number of children is smaller than itemsToShow.
-      // Because we will have "empty slots"
+      // We use Math.min because we don't want to make the child smaller
+      // if the number of children is smaller than itemsToShow.
+      // (Because we do not want "empty slots")
       nextState.rootHeight =
         childHeight * Math.min(childrenLength, itemsToShow);
       nextState.childHeight = childHeight;
@@ -231,44 +231,58 @@ class Carousel extends React.Component {
     const { width: sliderContainerWidth } = sliderContainerNode.contentRect;
     // update slider container width
     // disable animation on resize see https://github.com/sag1v/react-elastic-carousel/issues/94
-    this.setState({ sliderContainerWidth, transitionMs: 0 }, () => {
-      // we must get these props inside setState (get future props because its async)
-      const {
-        onResize,
-        verticalMode,
-        itemsToShow,
-        children
-      } = this.getDerivedPropsFromBreakPoint();
+    const {
+      outerSpacing,
+      verticalMode: initialVerticalMode
+    } = this.getDerivedPropsFromBreakPoint();
+    const containerWidth =
+      sliderContainerWidth - (initialVerticalMode ? 0 : outerSpacing * 2);
+    this.setState(
+      { sliderContainerWidth: containerWidth, transitionMs: 0 },
+      () => {
+        // we must get these props inside setState (get future props because its async)
+        const {
+          onResize,
+          verticalMode,
+          itemsToShow,
+          showEmptySlots,
+          children
+        } = this.getDerivedPropsFromBreakPoint();
 
-      /* based on slider container's width, get num of items to show
-       * and calculate child's width (and update it in state)
-       */
-      const childrenLength = Children.toArray(children).length;
-      let childWidth = 0;
-      if (verticalMode) {
-        childWidth = sliderContainerWidth;
-      } else {
-        // We use Math.min because don't want to make the child smaller
-        // if number of children is smaller than itemsToShow.
-        // Because we will have "empty slots"
-        childWidth =
-          sliderContainerWidth / Math.min(childrenLength, itemsToShow);
-      }
-
-      this.setState(
-        state => ({ childWidth }),
-        () => {
-          /* Based on all of the above new data:
-           * update slider position
-           * get the new current breakpoint
-           * pass the current breakpoint to the consumer's callback
-           */
-          this.updateSliderPosition();
-          const currentBreakPoint = this.getDerivedPropsFromBreakPoint();
-          onResize(currentBreakPoint);
+        /* based on slider container's width, get num of items to show
+        * and calculate child's width (and update it in state)
+        */
+        const childrenLength = Children.toArray(children).length;
+        let childWidth = 0;
+        if (verticalMode) {
+          childWidth = containerWidth;
+        } else {
+          // When "showEmptySlots" is false
+          // We use Math.min because we don't want to make the child smaller
+          // if the number of children is smaller than itemsToShow.
+          // (Because we do not want "empty slots")
+          childWidth =
+            containerWidth /
+            (showEmptySlots
+              ? itemsToShow
+              : Math.min(childrenLength, itemsToShow));
         }
-      );
-    });
+
+        this.setState(
+          state => ({ childWidth }),
+          () => {
+            /* Based on all of the above new data:
+            * update slider position
+            * get the new current breakpoint
+            * pass the current breakpoint to the consumer's callback
+            */
+            this.updateSliderPosition();
+            const currentBreakPoint = this.getDerivedPropsFromBreakPoint();
+            onResize(currentBreakPoint);
+          }
+        );
+      }
+    );
   };
 
   tiltMovement = (position, distance = 20, duration = 150) => {
@@ -657,6 +671,7 @@ class Carousel extends React.Component {
       autoTabIndexVisibleItems,
       itemPosition,
       itemPadding,
+      outerSpacing,
       enableSwipe,
       enableMouseSwipe,
       pagination,
@@ -717,6 +732,7 @@ class Carousel extends React.Component {
               tiltEasing={tiltEasing}
               className={cssPrefix("slider")}
               ref={this.setRef("slider")}
+              outerSpacing={outerSpacing}
             >
               <Track
                 verticalMode={verticalMode}
@@ -780,6 +796,7 @@ Carousel.defaultProps = {
   initialFirstItem: 0,
   initialActiveIndex: 0,
   showArrows: true,
+  showEmptySlots: false,
   disableArrowsOnEnd: true,
   pagination: true,
   easing: "ease",
@@ -795,6 +812,7 @@ Carousel.defaultProps = {
   itemsToScroll: 1,
   itemPosition: consts.CENTER,
   itemPadding: [0, 0, 0, 0],
+  outerSpacing: 0,
   enableAutoPlay: false,
   autoPlaySpeed: 2000,
 
@@ -862,6 +880,9 @@ Carousel.propTypes = {
   /** Show the arrow buttons */
   showArrows: PropTypes.bool,
 
+  /** Show empty slots when children.length < itemsToShow (not compatible with verticalMode yet !) */
+  showEmptySlots: PropTypes.bool,
+
   /** Disables the arrow button when there are no more items */
   disableArrowsOnEnd: PropTypes.bool,
 
@@ -886,6 +907,9 @@ Carousel.propTypes = {
 
   /** A padding for each element  */
   itemPadding: PropTypes.array,
+
+  /** A margin at the beginning and at the end of the carousel (not compatible with verticalMode yet !) */
+  outerSpacing: PropTypes.number,
 
   // swipe
   /** Enable or disable swipe */
