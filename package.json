@@ -26,7 +26,7 @@
     "deploy-doc": "gh-pages -d demo"
   },
   "lint-staged": {
-    "*.js": "yarn lint:fix"
+    "*.js": "eslint src/. --fix"
   },
   "dependencies": {
     "classnames": "^2.2.6",
