@@ -8,6 +8,8 @@ const activeBoxShadow = "0 0 1px 3px rgba(103,58,183,1)";
 const hoveredBoxShadow = "0 0 1px 3px rgba(103,58,183,.5)";
 
 const Dot = styled.button.attrs(({ type = "button" }) => ({ type }))`
+  box-sizing: border-box;
+  padding: 0;
   transition: all 250ms ease;
   border: none;
   margin: 5px;
