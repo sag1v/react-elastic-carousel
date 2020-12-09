@@ -274,7 +274,9 @@ class Carousel extends React.Component {
             // we are making sure the selected index is not out of boundaries and respecting itemsToShow
             // This usually happens with breakpoints. see https://github.com/sag1v/react-elastic-carousel/issues/122
             let activeIndex = currentState.activeIndex;
-            const endLimit = childrenLength - itemsToShow;
+            // we take the lowest, in case itemsToShow is greater than childrenLength
+            const maxItemsToShow = Math.min(childrenLength, itemsToShow)
+            const endLimit = childrenLength - maxItemsToShow;
             if (activeIndex > endLimit) {
               activeIndex = endLimit;
             }
