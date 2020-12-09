@@ -58,7 +58,10 @@ class Carousel extends React.Component {
       prevProps.breakPoints !== breakPoints ||
       sliderContainerWidth !== prevState.sliderContainerWidth
     ) {
+      // we mimic a container resize to recalculate item width when itemsToShow are updated
+      this.onContainerResize({ contentRect: { width: sliderContainerWidth } });
       this.setPages();
+      this.updateActivePage();
     }
 
     // autoplay update
@@ -275,7 +278,7 @@ class Carousel extends React.Component {
             // This usually happens with breakpoints. see https://github.com/sag1v/react-elastic-carousel/issues/122
             let activeIndex = currentState.activeIndex;
             // we take the lowest, in case itemsToShow is greater than childrenLength
-            const maxItemsToShow = Math.min(childrenLength, itemsToShow)
+            const maxItemsToShow = Math.min(childrenLength, itemsToShow);
             const endLimit = childrenLength - maxItemsToShow;
             if (activeIndex > endLimit) {
               activeIndex = endLimit;
@@ -637,17 +640,24 @@ class Carousel extends React.Component {
   getNumOfPages = () => {
     const { children, itemsToShow } = this.getDerivedPropsFromBreakPoint();
     const childrenLength = Children.toArray(children).length;
-    const numOfPages = Math.ceil(childrenLength / itemsToShow);
+    const safeItemsToShow = Math.max(itemsToShow, 1);
+    const numOfPages = Math.ceil(childrenLength / safeItemsToShow);
     return numOfPages || 1;
   };
 
   updateActivePage = () => {
     this.setState(state => {
-      const { itemsToShow } = this.getDerivedPropsFromBreakPoint();
+      const { itemsToShow, children } = this.getDerivedPropsFromBreakPoint();
       const { activeIndex, activePage } = state;
-      const newActivePage = Math.ceil(activeIndex / itemsToShow);
-      if (activePage !== newActivePage) {
-        return { activePage: newActivePage };
+      const numOfPages = this.getNumOfPages();
+      const childrenLength = Children.toArray(children).length;
+      const inRangeItemsToShow = Math.min(childrenLength, itemsToShow);
+      // watch out from 0 (so we wont divide by zero)
+      const safeItemsToShow = Math.max(inRangeItemsToShow, 1);
+      const newActivePage = Math.ceil(activeIndex / safeItemsToShow);
+      const inRangeActivePageIndex = Math.min(numOfPages - 1, newActivePage);
+      if (activePage !== inRangeActivePageIndex) {
+        return { activePage: inRangeActivePageIndex };
       }
     });
   };
