@@ -15,7 +15,7 @@
   },
   "scripts": {
     "start": "concurrently -r -k -s all \"docz dev\" \"yarn run lint:watch\"",
-    "demo": "rollup --config rollup.config.demo.js --watch",
+    "demo": "concurrently -r -k -s all \"rollup --config rollup.config.demo.js --watch\" \"yarn run lint:watch\"",
     "lint:fix": "eslint src/. --fix",
     "lint:watch": "esw --watch --fix src/.",
     "test": "cross-env CI=1 react-scripts test --env=jsdom",

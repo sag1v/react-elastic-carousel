@@ -124,7 +124,7 @@ class Carousel extends React.Component {
   unSubscribeObserver = () => this.ro.disconnect();
 
   setAutoPlay = () => {
-    const { autoPlaySpeed } = this.props;
+    const { autoPlaySpeed } = this.getDerivedPropsFromBreakPoint();
     this.autoPlayIntervalId = setInterval(() => {
       const { transitioning } = this.state;
       if (!transitioning) {
@@ -317,7 +317,7 @@ class Carousel extends React.Component {
   };
 
   convertChildToCbObj = index => {
-    const { children } = this.props;
+    const { children } = this.getDerivedPropsFromBreakPoint();
     // support decimal itemsToShow
     const roundedIdx = Math.round(index);
     const child = Children.toArray(children)[roundedIdx];
@@ -345,7 +345,7 @@ class Carousel extends React.Component {
   };
 
   getNextItemObj = getPrev => {
-    const { children } = this.props;
+    const { children } = this.getDerivedPropsFromBreakPoint();
     const { activeIndex } = this.state;
     const nextItemIndex = this.getNextItemIndex(activeIndex, getPrev);
     // support decimal itemsToShow
@@ -367,12 +367,7 @@ class Carousel extends React.Component {
     const { deltaX, absX, deltaY, absY, dir } = data;
 
     this.setState(state => {
-      const {
-        rootHeight,
-        activeIndex,
-        sliderPosition,
-        sliderContainerWidth
-      } = state;
+      const { childWidth, childHeight, activeIndex, sliderPosition } = state;
       const {
         itemsToShow,
         verticalMode,
@@ -382,11 +377,6 @@ class Carousel extends React.Component {
 
       // determine how far can user swipe
       const childrenLength = Children.toArray(children).length;
-      const isOnStart = activeIndex === 0;
-      const isOnEnd = activeIndex === childrenLength - itemsToShow;
-      const defaultDivider = 1.5;
-      const largeDivider = itemsToShow * 2;
-      let divider = defaultDivider;
       const goingNext =
         (!verticalMode && dir === "Left" && !isRTL) ||
         (!verticalMode && dir === "Right" && isRTL) ||
@@ -396,17 +386,41 @@ class Carousel extends React.Component {
         (!verticalMode && dir === "Left" && isRTL) ||
         (verticalMode && dir === "Down");
 
-      if ((isOnStart && goingBack) || (isOnEnd && goingNext)) {
-        divider = largeDivider;
-      }
-
-      const distanceSwipe = verticalMode
-        ? rootHeight / divider
-        : sliderContainerWidth / divider;
-
       const horizontalSwipe = dir === "Left" || dir === "Right";
       const verticalSwipe = dir === "Up" || dir === "Down";
       const horizontalMode = !verticalMode;
+
+      let distanceSwipe = 0;
+      const horizontalEdgeStoppage = childWidth / 2;
+      const verticalEdgeStoppage = childHeight / 2;
+
+      if (verticalMode) {
+        if (verticalSwipe) {
+          const trackSize = childrenLength * childHeight;
+          if (goingNext) {
+            distanceSwipe =
+              trackSize -
+              childHeight * activeIndex -
+              itemsToShow * childHeight +
+              verticalEdgeStoppage;
+          } else if (goingBack) {
+            distanceSwipe = childHeight * activeIndex + verticalEdgeStoppage;
+          }
+        }
+      } else {
+        if (horizontalSwipe) {
+          const trackSize = childrenLength * childWidth;
+          if (goingNext) {
+            distanceSwipe =
+              trackSize -
+              childWidth * activeIndex -
+              itemsToShow * childWidth +
+              horizontalEdgeStoppage;
+          } else if (goingBack) {
+            distanceSwipe = childWidth * activeIndex + horizontalEdgeStoppage;
+          }
+        }
+      }
 
       const shouldHorizontalSkipUpdate =
         (horizontalMode && verticalSwipe) ||
@@ -445,11 +459,15 @@ class Carousel extends React.Component {
     // 3. vertical mode - swipe up or down
 
     const { absX, absY, dir } = data;
-    const { childWidth, childHeight } = this.state;
-    const { verticalMode, isRTL } = this.props;
+    const { childWidth, childHeight, activeIndex } = this.state;
+    const {
+      verticalMode,
+      isRTL,
+      itemsToScroll
+    } = this.getDerivedPropsFromBreakPoint();
     let func = this.resetSwipe;
-    const minSwipeDistanceHorizontal = childWidth / 3;
-    const minSwipeDistanceVertical = childHeight / 3;
+    const minSwipeDistanceHorizontal = childWidth / 5;
+    const minSwipeDistanceVertical = childHeight / 5;
     const swipedLeft = dir === "Left";
     const swipedRight = dir === "Right";
     const swipedUp = dir === "Up";
@@ -472,31 +490,64 @@ class Carousel extends React.Component {
     if (goodToGo) {
       // we should go to a different item
       // determine what method we need to invoke
+
       if (verticalMode) {
+        // get number of slides from user's swiping
+        const numberOfSlidesViaSwipe = Math.ceil(
+          (absY - minSwipeDistanceVertical) / childHeight
+        );
+        // if user swipes more than itemsToScroll then we want to bypass itemsToScroll for a smoother scroll
+        const numberOfSlidesTogo = Math.max(
+          itemsToScroll,
+          numberOfSlidesViaSwipe
+        );
+
+        const backSlidesToGo = activeIndex - numberOfSlidesTogo;
+        const forwardSlideTtoGo = activeIndex + numberOfSlidesTogo;
+
         // up or down
         if (swipedDown) {
-          func = this.onPrevStart;
+          // func = this.onPrevStart;
+          func = () => this.goTo(backSlidesToGo);
         }
         if (swipedUp) {
-          func = this.onNextStart;
+          // func = this.onNextStart;
+          func = () => this.goTo(forwardSlideTtoGo);
         }
       } else {
+        // get number of slides from user's swiping
+        const numberOfSlidesViaSwipe = Math.ceil(
+          (absX - minSwipeDistanceHorizontal) / childWidth
+        );
+        // if user swipes more than itemsToScroll then we want to bypass itemsToScroll for a smoother scroll
+        const numberOfSlidesTogo = Math.max(
+          itemsToScroll,
+          numberOfSlidesViaSwipe
+        );
+
+        const backSlidesToGo = activeIndex - numberOfSlidesTogo;
+        const forwardSlideTtoGo = activeIndex + numberOfSlidesTogo;
+
         // horizontal mode
         if (isRTL) {
           // flip sides
           if (swipedLeft) {
-            func = this.onPrevStart;
+            // func = this.onPrevStart;
+            func = () => this.goTo(backSlidesToGo);
           }
           if (swipedRight) {
-            func = this.onNextStart;
+            // func = this.onNextStart;
+            func = () => this.goTo(forwardSlideTtoGo);
           }
         } else {
           // normal behavior
           if (swipedLeft) {
-            func = this.onNextStart;
+            // func = this.onNextStart;
+            func = () => this.goTo(forwardSlideTtoGo);
           }
           if (swipedRight) {
-            func = this.onPrevStart;
+            // func = this.onPrevStart;
+            func = () => this.goTo(backSlidesToGo);
           }
         }
       }
@@ -508,7 +559,7 @@ class Carousel extends React.Component {
   };
 
   onNextStart = options => {
-    const { onNextStart } = this.props;
+    const { onNextStart } = this.getDerivedPropsFromBreakPoint();
     const { activeIndex } = this.state;
     const nextItemObj = this.getNextItemObj();
     const prevItemObj = this.convertChildToCbObj(activeIndex);
@@ -517,7 +568,7 @@ class Carousel extends React.Component {
   };
 
   onPrevStart = options => {
-    const { onPrevStart } = this.props;
+    const { onPrevStart } = this.getDerivedPropsFromBreakPoint();
     const { activeIndex } = this.state;
     const nextItemObj = this.getNextItemObj(true);
     const prevItemObj = this.convertChildToCbObj(activeIndex);
@@ -527,7 +578,7 @@ class Carousel extends React.Component {
 
   slideNext = (options = {}) => {
     const { skipTilt } = options;
-    const { enableTilt } = this.props;
+    const { enableTilt } = this.getDerivedPropsFromBreakPoint();
     const { activeIndex, sliderPosition } = this.state;
     const nextItem = this.getNextItemIndex(activeIndex, false);
     if (activeIndex !== nextItem) {
@@ -540,7 +591,7 @@ class Carousel extends React.Component {
   slidePrev = (options = {}) => {
     const { skipTilt } = options;
     const { activeIndex } = this.state;
-    const { enableTilt } = this.props;
+    const { enableTilt } = this.getDerivedPropsFromBreakPoint();
     const prevItem = this.getNextItemIndex(activeIndex, true);
     if (activeIndex !== prevItem) {
       this.goTo(prevItem);
@@ -550,7 +601,7 @@ class Carousel extends React.Component {
   };
 
   onNextEnd = () => {
-    const { onNextEnd, onChange } = this.props;
+    const { onNextEnd, onChange } = this.getDerivedPropsFromBreakPoint();
     const { activeIndex, activePage } = this.state;
     const nextItemObj = this.convertChildToCbObj(activeIndex);
     this.removeSliderTransitionHook(this.onNextEnd);
@@ -560,7 +611,7 @@ class Carousel extends React.Component {
   };
 
   onPrevEnd = () => {
-    const { onPrevEnd, onChange } = this.props;
+    const { onPrevEnd, onChange } = this.getDerivedPropsFromBreakPoint();
     const { activeIndex, activePage } = this.state;
     const nextItemObj = this.convertChildToCbObj(activeIndex);
     this.removeSliderTransitionHook(this.onPrevEnd);
@@ -603,16 +654,17 @@ class Carousel extends React.Component {
     } = this.getDerivedPropsFromBreakPoint();
     const { activeIndex } = this.state;
     const childrenLength = Children.toArray(children).length;
-    const isPrev = activeIndex > nextItemId;
-    const nextAvailbaleItem = this.getNextItemIndex(activeIndex, isPrev);
-    const noChange = nextAvailbaleItem === activeIndex;
-    const outOfBoundry = nextItemId + itemsToShow >= childrenLength;
+    let safeNextItemId = Math.max(0, nextItemId); // don't allow negative numbers
+    const isPrev = activeIndex > safeNextItemId;
+    const nextAvailableItem = this.getNextItemIndex(activeIndex, isPrev);
+    const noChange = nextAvailableItem === activeIndex;
+    const outOfBoundary = safeNextItemId + itemsToShow >= childrenLength;
     if (noChange) {
       return;
     }
-    if (outOfBoundry) {
+    if (outOfBoundary) {
       // Either go to last index (respect itemsToShow) or 0 index if we can't fill the slider
-      nextItemId = Math.max(0, childrenLength - itemsToShow);
+      safeNextItemId = Math.max(0, childrenLength - itemsToShow);
     }
     let direction = consts.NEXT;
     let positionEndCb = this.onNextEnd;
@@ -622,7 +674,7 @@ class Carousel extends React.Component {
     }
     const stateUpdater = this.generatePositionUpdater(
       direction,
-      nextItemId,
+      safeNextItemId,
       verticalMode,
       {
         transitioning: true
