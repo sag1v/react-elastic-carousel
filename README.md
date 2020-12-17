@@ -70,11 +70,22 @@ class App extends Component {
 
 ## Development
 
-```console 
+```console
 git clone https://github.com/sag1v/react-elastic-carousel.git
 cd react-elastic-carousel
 yarn
+```
+
+### To run the docs site run
+
+```console
 yarn start
+```
+
+### to run a demo Application run
+
+```console
+yarn demo
 ```
 
 The application is running at http://localhost:8888
@@ -82,4 +93,3 @@ The application is running at http://localhost:8888
 ## License
 
 MIT © [sag1v](https://github.com/sag1v)
-
