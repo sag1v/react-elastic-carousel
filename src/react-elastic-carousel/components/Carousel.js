@@ -737,6 +737,7 @@ class Carousel extends React.Component {
       className,
       style,
       itemsToShow,
+      itemsToScroll,
       verticalMode,
       isRTL,
       easing,
@@ -816,6 +817,7 @@ class Carousel extends React.Component {
                 currentItem={activeIndex}
                 autoTabIndexVisibleItems={autoTabIndexVisibleItems}
                 itemsToShow={itemsToShow}
+                itemsToScroll={itemsToScroll}
                 itemPosition={itemPosition}
                 itemPadding={itemPadding}
                 enableSwipe={enableSwipe}

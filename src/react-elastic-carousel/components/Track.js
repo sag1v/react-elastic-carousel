@@ -12,6 +12,7 @@ const Track = ({
   enableMouseSwipe,
   preventDefaultTouchmoveEvent,
   itemsToShow,
+  itemsToScroll,
   currentItem,
   itemPosition,
   itemPadding,
@@ -22,17 +23,31 @@ const Track = ({
 }) => {
   const width = `${childWidth}px`;
   const paddingStyle = `${itemPadding.join("px ")}px`;
+  const minVisibleItem = currentItem;
+  const maxVisibleItem = currentItem + itemsToShow;
+  const prevItem = minVisibleItem - itemsToScroll;
+  const nextItem = maxVisibleItem + itemsToScroll;
+
   const originalChildren = React.Children.map(children, (child, idx) => {
-    const min = currentItem;
-    const max = currentItem + itemsToShow;
-    const isVisible = idx >= min && idx < max;
+    const isVisible = idx >= minVisibleItem && idx < maxVisibleItem;
+    const isPrevItem = !isVisible && idx >= prevItem && idx < currentItem;
+    const isNextItem = !isVisible && idx < nextItem && idx > currentItem;
+    const itemClass = "carousel-item";
+
     const childToRender = autoTabIndexVisibleItems
-      ? React.cloneElement(child, { tabIndex: isVisible ? 0 : -1 })
+      ? React.cloneElement(child, {
+          tabIndex: isVisible ? 0 : -1
+        })
       : child;
     return (
       <div
-        className={cssPrefix("carousel-item", `carousel-item-${idx}`)}
-        // tabIndex={isVisible ? 0 : -1}
+        className={cssPrefix(
+          itemClass,
+          `${itemClass}-${idx}`,
+          `${itemClass}-${isVisible ? "visible" : "hidden"}`,
+          isPrevItem && `${itemClass}-prev`,
+          isNextItem && `${itemClass}-next`
+        )}
       >
         <ItemWrapperContainer
           id={idx}
