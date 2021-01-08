@@ -31,6 +31,8 @@ export interface ReactElasticCarouselProps {
   itemsToShow?: number;
   // Defaults to false
   verticalMode?: boolean;
+  // Defaults to false
+  isRTL: boolean,
   // Defaults to true
   pagination?: boolean;
   // Defaults to 500
