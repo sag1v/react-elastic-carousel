@@ -9,7 +9,9 @@ export const cssPrefix = (...classNames) => {
 
   // in case of an array we add the class prefix per item;
   const chainedClasses = classNames.reduce((acc, current) => {
-    acc += `${space}${prefix}-${current}`; // we must keep spaces between class names
+    if (current) {
+      acc += `${space}${prefix}-${current}`; // we must keep spaces between class names
+    }
     return acc;
   }, "");
   result += chainedClasses;
