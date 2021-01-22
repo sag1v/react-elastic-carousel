@@ -143,7 +143,7 @@ class Carousel extends React.Component {
   resetAutoPlay = () => {
     this.removeAutoPlay();
     this.setAutoPlay();
-  }
+  };
 
   setPages = () => {
     const numOfPages = this.getNumOfPages();
@@ -591,9 +591,6 @@ class Carousel extends React.Component {
     } else if (enableTilt && !skipTilt) {
       this.tiltMovement(sliderPosition, 20, 150);
     }
-    if(enableAutoPlay){
-      this.resetAutoPlay();
-    }
   };
 
   slidePrev = (options = {}) => {
@@ -605,9 +602,6 @@ class Carousel extends React.Component {
       this.goTo(prevItem);
     } else if (enableTilt && !skipTilt) {
       this.tiltMovement(0, -20, 150);
-    }
-    if(enableAutoPlay){
-      this.resetAutoPlay();
     }
   };
 
@@ -629,6 +623,20 @@ class Carousel extends React.Component {
     this.setState({ transitioning: false });
     onChange && onChange(nextItemObj, activePage);
     onPrevEnd(nextItemObj, activePage);
+  };
+
+  onNextClick = () => {
+    if (this.autoPlayIntervalId) {
+      this.resetAutoPlay();
+    }
+    this.onNextStart();
+  };
+
+  onPrevClick = () => {
+    if (this.autoPlayIntervalId) {
+      this.resetAutoPlay();
+    }
+    this.onPrevStart();
   };
 
   generatePositionUpdater = (
@@ -793,12 +801,12 @@ class Carousel extends React.Component {
             {renderArrow ? (
               renderArrow({
                 type: consts.PREV,
-                onClick: this.onPrevStart,
+                onClick: this.onPrevClick,
                 isEdge: !canSlidePrev
               })
             ) : (
               <Arrow
-                onClick={this.onPrevStart}
+                onClick={this.onPrevClick}
                 direction={verticalMode ? Arrow.up : Arrow.left}
                 disabled={disabledPrevArrow}
               />
@@ -844,12 +852,12 @@ class Carousel extends React.Component {
             {renderArrow ? (
               renderArrow({
                 type: consts.NEXT,
-                onClick: this.onNextStart,
+                onClick: this.onNextClick,
                 isEdge: !canSlideNext
               })
             ) : (
               <Arrow
-                onClick={this.onNextStart}
+                onClick={this.onNextClick}
                 direction={verticalMode ? Arrow.down : Arrow.right}
                 disabled={disabledNextArrow}
               />
