@@ -140,6 +140,11 @@ class Carousel extends React.Component {
     }
   };
 
+  resetAutoPlay = () => {
+    this.removeAutoPlay();
+    this.setAutoPlay();
+  }
+
   setPages = () => {
     const numOfPages = this.getNumOfPages();
     const pages = numberToArray(numOfPages);
@@ -586,6 +591,9 @@ class Carousel extends React.Component {
     } else if (enableTilt && !skipTilt) {
       this.tiltMovement(sliderPosition, 20, 150);
     }
+    if(enableAutoPlay){
+      this.resetAutoPlay();
+    }
   };
 
   slidePrev = (options = {}) => {
@@ -597,6 +605,9 @@ class Carousel extends React.Component {
       this.goTo(prevItem);
     } else if (enableTilt && !skipTilt) {
       this.tiltMovement(0, -20, 150);
+    }
+    if(enableAutoPlay){
+      this.resetAutoPlay();
     }
   };
 
