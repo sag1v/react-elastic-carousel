@@ -613,6 +613,9 @@ class Carousel extends React.Component {
     this.setState({ transitioning: false });
     onChange && onChange(nextItemObj, activePage);
     onNextEnd(nextItemObj, activePage);
+    if (this.autoPlayIntervalId) {
+      this.resetAutoPlay();
+    }
   };
 
   onPrevEnd = () => {
@@ -623,20 +626,9 @@ class Carousel extends React.Component {
     this.setState({ transitioning: false });
     onChange && onChange(nextItemObj, activePage);
     onPrevEnd(nextItemObj, activePage);
-  };
-
-  onNextClick = () => {
     if (this.autoPlayIntervalId) {
       this.resetAutoPlay();
     }
-    this.onNextStart();
-  };
-
-  onPrevClick = () => {
-    if (this.autoPlayIntervalId) {
-      this.resetAutoPlay();
-    }
-    this.onPrevStart();
   };
 
   generatePositionUpdater = (
@@ -801,12 +793,12 @@ class Carousel extends React.Component {
             {renderArrow ? (
               renderArrow({
                 type: consts.PREV,
-                onClick: this.onPrevClick,
+                onClick: this.onPrevStart,
                 isEdge: !canSlidePrev
               })
             ) : (
               <Arrow
-                onClick={this.onPrevClick}
+                onClick={this.onPrevStart}
                 direction={verticalMode ? Arrow.up : Arrow.left}
                 disabled={disabledPrevArrow}
               />
@@ -852,12 +844,12 @@ class Carousel extends React.Component {
             {renderArrow ? (
               renderArrow({
                 type: consts.NEXT,
-                onClick: this.onNextClick,
+                onClick: this.onNextStart,
                 isEdge: !canSlideNext
               })
             ) : (
               <Arrow
-                onClick={this.onNextClick}
+                onClick={this.onNextStart}
                 direction={verticalMode ? Arrow.down : Arrow.right}
                 disabled={disabledNextArrow}
               />
