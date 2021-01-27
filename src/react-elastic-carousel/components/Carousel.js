@@ -339,8 +339,6 @@ class Carousel extends React.Component {
     const notEnoughItemsToShow = itemsToShow > childrenLength;
     let limit = getPrev ? 0 : childrenLength - itemsToShow;
 
-    console.log(childrenLength);
-
     if (notEnoughItemsToShow) {
       limit = 0; // basically don't move
     }
@@ -348,7 +346,6 @@ class Carousel extends React.Component {
       ? prevItemAction(0, itemsToScroll)
       : nextItemAction(limit, itemsToScroll);
 
-    console.log(nextAction);
     const nextItem = activeIndexReducer(
       currentIndex,
       nextAction,

@@ -6,7 +6,6 @@ export const activeIndexReducer = (state, action, childrenLength) => {
     case NEXT_ITEM: {
       let optimisticNextItem = state + itemsToScroll;
       const nextItem = limit >= optimisticNextItem ? optimisticNextItem : 0;
-      console.log(nextItem);
       return nextItem;
     }
 
