@@ -339,13 +339,21 @@ class Carousel extends React.Component {
     const notEnoughItemsToShow = itemsToShow > childrenLength;
     let limit = getPrev ? 0 : childrenLength - itemsToShow;
 
+    console.log(childrenLength);
+
     if (notEnoughItemsToShow) {
       limit = 0; // basically don't move
     }
     const nextAction = getPrev
       ? prevItemAction(0, itemsToScroll)
       : nextItemAction(limit, itemsToScroll);
-    const nextItem = activeIndexReducer(currentIndex, nextAction);
+
+    console.log(nextAction);
+    const nextItem = activeIndexReducer(
+      currentIndex,
+      nextAction,
+      childrenLength
+    );
     return nextItem;
   };
 
@@ -353,6 +361,7 @@ class Carousel extends React.Component {
     const { children } = this.getDerivedPropsFromBreakPoint();
     const { activeIndex } = this.state;
     const nextItemIndex = this.getNextItemIndex(activeIndex, getPrev);
+    console.log(nextItemIndex);
     // support decimal itemsToShow
     const roundedIdx = Math.round(nextItemIndex);
     const asElement = Children.toArray(children)[roundedIdx];
@@ -776,8 +785,6 @@ class Carousel extends React.Component {
       activeIndex !== this.getNextItemIndex(activeIndex, true);
     const canSlideNext =
       activeIndex !== this.getNextItemIndex(activeIndex, false);
-    const disabledPrevArrow = !canSlidePrev && disableArrowsOnEnd;
-    const disabledNextArrow = !canSlideNext && disableArrowsOnEnd;
 
     return (
       <CarouselWrapper
@@ -800,7 +807,6 @@ class Carousel extends React.Component {
               <Arrow
                 onClick={this.onPrevStart}
                 direction={verticalMode ? Arrow.up : Arrow.left}
-                disabled={disabledPrevArrow}
               />
             )}
           </Only>
@@ -851,7 +857,6 @@ class Carousel extends React.Component {
               <Arrow
                 onClick={this.onNextStart}
                 direction={verticalMode ? Arrow.down : Arrow.right}
-                disabled={disabledNextArrow}
               />
             )}
           </Only>
