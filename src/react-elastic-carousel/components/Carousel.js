@@ -772,7 +772,7 @@ class Carousel extends React.Component {
       enableMouseSwipe,
       pagination,
       showArrows,
-      disableArrowsOnEnd,
+
       preventDefaultTouchmoveEvent,
       renderArrow,
       renderPagination
@@ -890,7 +890,7 @@ Carousel.defaultProps = {
   initialActiveIndex: 0,
   showArrows: true,
   showEmptySlots: false,
-  disableArrowsOnEnd: true,
+
   pagination: true,
   easing: "ease",
   tiltEasing: "ease",
@@ -975,9 +975,6 @@ Carousel.propTypes = {
 
   /** Show empty slots when children.length < itemsToShow (not compatible with verticalMode yet !) */
   showEmptySlots: PropTypes.bool,
-
-  /** Disables the arrow button when there are no more items */
-  disableArrowsOnEnd: PropTypes.bool,
 
   /** Go to item on click */
   focusOnSelect: PropTypes.bool,
