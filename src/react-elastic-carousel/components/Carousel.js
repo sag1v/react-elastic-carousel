@@ -231,7 +231,7 @@ class Carousel extends React.Component {
   };
 
   onContainerResize = sliderContainerNode => {
-    const { width: sliderContainerWidth } = sliderContainerNode.contentRect;
+    const { width: newSliderContainerWidth } = sliderContainerNode.contentRect;
     // update slider container width
     // disable animation on resize see https://github.com/sag1v/react-elastic-carousel/issues/94
     const {
@@ -239,7 +239,12 @@ class Carousel extends React.Component {
       verticalMode: initialVerticalMode
     } = this.getDerivedPropsFromBreakPoint();
     const containerWidth =
-      sliderContainerWidth - (initialVerticalMode ? 0 : outerSpacing * 2);
+      newSliderContainerWidth - (initialVerticalMode ? 0 : outerSpacing * 2);
+
+    if (this.state.sliderContainerWidth === newSliderContainerWidth) {
+      // prevent infinite loop
+      return;
+    }
     this.setState(
       { sliderContainerWidth: containerWidth, transitionMs: 0 },
       () => {
