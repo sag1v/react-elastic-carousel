@@ -6,7 +6,7 @@ import Pagination from "../Pagination/Pagination";
 import { numberToArray } from "../../utils/helpers";
 
 describe("Carousel - public API (props)", () => {
-  const Items = numberToArray(5).map((i) => (
+  const Items = numberToArray(5).map(i => (
     <div className="test-child" key={i}>
       {i}
     </div>
@@ -97,10 +97,10 @@ describe("Carousel - public CSS classnames", () => {
     "dot_active",
     "pagination",
     "item-wrapper",
-    "arrow",
+    "arrow"
   ];
   const prefix = "rec";
-  const Items = numberToArray(5).map((i) => (
+  const Items = numberToArray(5).map(i => (
     <div className="test-child" key={i}>
       {i}
     </div>
@@ -110,7 +110,7 @@ describe("Carousel - public CSS classnames", () => {
       {Items}
     </Carousel>
   );
-  publicClasses.forEach((className) => {
+  publicClasses.forEach(className => {
     const withPrefix = `${prefix}-${className}`;
     it(`renders ${withPrefix}`, () => {
       const withClass = carousel.find(`.${withPrefix}`);

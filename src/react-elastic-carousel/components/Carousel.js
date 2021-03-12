@@ -19,7 +19,6 @@ import { Pagination } from "./Pagination";
 class Carousel extends React.Component {
   state = {
     rootHeight: 0,
-    childWidth: 0,
     childHeight: 0,
     sliderPosition: 0,
     swipedSliderPosition: 0,
@@ -185,7 +184,9 @@ class Carousel extends React.Component {
         itemsToShow,
         transitionMs
       } = this.getDerivedPropsFromBreakPoint();
-      const { childWidth, childHeight, activeIndex } = state;
+      const { childHeight, activeIndex } = state;
+
+      const childWidth = this.calculateChildWidth();
       const totalItems = Children.toArray(children).length;
       const hiddenSlots = totalItems - itemsToShow;
       let moveBy = activeIndex * -1;
@@ -230,6 +231,34 @@ class Carousel extends React.Component {
     this.setState(nextState);
   };
 
+  calculateChildWidth = () => {
+    const { sliderContainerWidth } = this.state;
+    const {
+      verticalMode,
+      itemsToShow,
+      showEmptySlots,
+      children
+    } = this.getDerivedPropsFromBreakPoint();
+
+    /* based on slider container's width, get num of items to show
+        * and calculate child's width (and update it in state)
+        */
+    const childrenLength = Children.toArray(children).length;
+    let childWidth = 0;
+    if (verticalMode) {
+      childWidth = sliderContainerWidth;
+    } else {
+      // When "showEmptySlots" is false
+      // We use Math.min because we don't want to make the child smaller
+      // if the number of children is smaller than itemsToShow.
+      // (Because we do not want "empty slots")
+      childWidth =
+        sliderContainerWidth /
+        (showEmptySlots ? itemsToShow : Math.min(childrenLength, itemsToShow));
+    }
+    return childWidth;
+  };
+
   onContainerResize = sliderContainerNode => {
     const { width: newSliderContainerWidth } = sliderContainerNode.contentRect;
     // update slider container width
@@ -251,30 +280,11 @@ class Carousel extends React.Component {
         // we must get these props inside setState (get future props because its async)
         const {
           onResize,
-          verticalMode,
           itemsToShow,
-          showEmptySlots,
           children
         } = this.getDerivedPropsFromBreakPoint();
 
-        /* based on slider container's width, get num of items to show
-        * and calculate child's width (and update it in state)
-        */
         const childrenLength = Children.toArray(children).length;
-        let childWidth = 0;
-        if (verticalMode) {
-          childWidth = containerWidth;
-        } else {
-          // When "showEmptySlots" is false
-          // We use Math.min because we don't want to make the child smaller
-          // if the number of children is smaller than itemsToShow.
-          // (Because we do not want "empty slots")
-          childWidth =
-            containerWidth /
-            (showEmptySlots
-              ? itemsToShow
-              : Math.min(childrenLength, itemsToShow));
-        }
 
         this.setState(
           currentState => {
@@ -289,7 +299,7 @@ class Carousel extends React.Component {
               activeIndex = endLimit;
             }
 
-            return { childWidth, activeIndex };
+            return { activeIndex };
           },
           () => {
             /* Based on all of the above new data:
@@ -372,13 +382,15 @@ class Carousel extends React.Component {
     const { deltaX, absX, deltaY, absY, dir } = data;
 
     this.setState(state => {
-      const { childWidth, childHeight, activeIndex, sliderPosition } = state;
+      const { childHeight, activeIndex, sliderPosition } = state;
       const {
         itemsToShow,
         verticalMode,
         children,
         isRTL
       } = this.getDerivedPropsFromBreakPoint();
+
+      const childWidth = this.calculateChildWidth();
 
       // determine how far can user swipe
       const childrenLength = Children.toArray(children).length;
@@ -464,12 +476,14 @@ class Carousel extends React.Component {
     // 3. vertical mode - swipe up or down
 
     const { absX, absY, dir } = data;
-    const { childWidth, childHeight, activeIndex } = this.state;
+    const { childHeight, activeIndex } = this.state;
     const {
       verticalMode,
       isRTL,
       itemsToScroll
     } = this.getDerivedPropsFromBreakPoint();
+    const childWidth = this.calculateChildWidth();
+
     let func = this.resetSwipe;
     const minSwipeDistanceHorizontal = childWidth / 5;
     const minSwipeDistanceVertical = childHeight / 5;
@@ -631,7 +645,9 @@ class Carousel extends React.Component {
     verticalMode,
     rest
   ) => state => {
-    const { sliderPosition, childWidth, childHeight, activeIndex } = state;
+    const { sliderPosition, childHeight, activeIndex } = state;
+    const childWidth = this.calculateChildWidth();
+
     let newSliderPosition = 0;
     const childSize = verticalMode ? childHeight : childWidth;
     if (direction === consts.NEXT) {
@@ -728,7 +744,6 @@ class Carousel extends React.Component {
 
   render() {
     const {
-      childWidth,
       activePage,
       isSwiping,
       sliderPosition,
@@ -762,6 +777,8 @@ class Carousel extends React.Component {
       renderArrow,
       renderPagination
     } = this.getDerivedPropsFromBreakPoint();
+
+    const childWidth = this.calculateChildWidth();
 
     const numOfPages = this.getNumOfPages();
 
