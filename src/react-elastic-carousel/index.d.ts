@@ -1,3 +1,5 @@
+/* eslint no-unused-vars: 0 */ // --> OFF
+/* eslint no-undef: 0 */ // --> OFF
 import * as React from "react";
 
 export type RenderArrowProps = {
@@ -32,7 +34,7 @@ export interface ReactElasticCarouselProps {
   // Defaults to false
   verticalMode?: boolean;
   // Defaults to false
-  isRTL: boolean,
+  isRTL: boolean;
   // Defaults to true
   pagination?: boolean;
   // Defaults to 500
@@ -108,6 +110,6 @@ export interface ReactElasticCarouselProps {
 
 declare class ReactElasticCarousel extends React.Component<
   ReactElasticCarouselProps
-  > { }
+> {}
 
 export default ReactElasticCarousel;

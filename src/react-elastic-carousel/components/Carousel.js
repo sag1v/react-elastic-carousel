@@ -243,7 +243,8 @@ class Carousel extends React.Component {
     /* based on slider container's width, get num of items to show
         * and calculate child's width (and update it in state)
         */
-    const childrenLength = Children.toArray(children).length;
+    const childrenLength = Children.toArray(children).length || 1;
+
     let childWidth = 0;
     if (verticalMode) {
       childWidth = sliderContainerWidth;
@@ -284,7 +285,7 @@ class Carousel extends React.Component {
           children
         } = this.getDerivedPropsFromBreakPoint();
 
-        const childrenLength = Children.toArray(children).length;
+        const childrenLength = Children.toArray(children).length || 1;
 
         this.setState(
           currentState => {
@@ -345,7 +346,7 @@ class Carousel extends React.Component {
       itemsToShow,
       itemsToScroll
     } = this.getDerivedPropsFromBreakPoint();
-    const childrenLength = Children.toArray(children).length;
+    const childrenLength = Children.toArray(children).length || 1;
     const notEnoughItemsToShow = itemsToShow > childrenLength;
     let limit = getPrev ? 0 : childrenLength - itemsToShow;
 
@@ -393,7 +394,7 @@ class Carousel extends React.Component {
       const childWidth = this.calculateChildWidth();
 
       // determine how far can user swipe
-      const childrenLength = Children.toArray(children).length;
+      const childrenLength = Children.toArray(children).length || 1;
       const goingNext =
         (!verticalMode && dir === "Left" && !isRTL) ||
         (!verticalMode && dir === "Right" && isRTL) ||
