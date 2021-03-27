@@ -1,6 +1,6 @@
 {
   "name": "react-elastic-carousel",
-  "version": "0.11.2",
+  "version": "0.11.3",
   "description": "A flexible and responsive carousel component for react",
   "author": "sag1v (Sagiv Ben Giat)",
   "license": "MIT",
@@ -19,8 +19,8 @@
   "scripts": {
     "start": "concurrently -r -k -s all \"docz dev\" \"yarn run lint:watch\"",
     "demo": "concurrently -r -k -s all \"rollup --config rollup.config.demo.js --watch\" \"yarn run lint:watch\"",
-    "lint:fix": "eslint src/. --fix",
-    "lint:watch": "esw --watch --fix src/.",
+    "lint:fix": "eslint src/* --fix",
+    "lint:watch": "esw --watch --fix src/*",
     "test": "cross-env CI=1 react-scripts test --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom",
     "prebuild": "yarn run lint:fix",
