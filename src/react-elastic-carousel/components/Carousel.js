@@ -17,6 +17,7 @@ import { pipe, noop, cssPrefix, numberToArray } from "../utils/helpers";
 import { Pagination } from "./Pagination";
 
 class Carousel extends React.Component {
+  isComponentMounted = false;
   state = {
     rootHeight: 0,
     childHeight: 0,
@@ -32,6 +33,7 @@ class Carousel extends React.Component {
   };
 
   componentDidMount() {
+    this.isComponentMounted = true;
     this.initResizeObserver();
     this.updateActivePage();
     this.setPages();
@@ -89,6 +91,8 @@ class Carousel extends React.Component {
   }
 
   componentWillUnmount() {
+    this.isComponentMounted = false;
+    this.removeAutoPlay();
     this.unSubscribeObserver();
   }
 
@@ -125,9 +129,11 @@ class Carousel extends React.Component {
   setAutoPlay = () => {
     const { autoPlaySpeed } = this.getDerivedPropsFromBreakPoint();
     this.autoPlayIntervalId = setInterval(() => {
-      const { transitioning } = this.state;
-      if (!transitioning) {
-        this.slideNext();
+      if (this.isComponentMounted) {
+        const { transitioning } = this.state;
+        if (!transitioning) {
+          this.slideNext();
+        }
       }
     }, autoPlaySpeed);
   };
