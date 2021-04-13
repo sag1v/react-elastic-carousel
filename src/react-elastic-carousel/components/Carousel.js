@@ -215,6 +215,10 @@ class Carousel extends React.Component {
   };
 
   onSliderResize = sliderNode => {
+    if (!this.isComponentMounted) {
+      return;
+    }
+
     const {
       verticalMode,
       children,
@@ -277,7 +281,10 @@ class Carousel extends React.Component {
     const containerWidth =
       newSliderContainerWidth - (initialVerticalMode ? 0 : outerSpacing * 2);
 
-    if (this.state.sliderContainerWidth === newSliderContainerWidth) {
+    if (
+      !this.isComponentMounted ||
+      this.state.sliderContainerWidth === newSliderContainerWidth
+    ) {
       // prevent infinite loop
       return;
     }
