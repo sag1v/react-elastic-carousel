@@ -25,7 +25,6 @@
     "test:watch": "react-scripts test --env=jsdom",
     "prebuild": "yarn run lint:fix",
     "build": "rollup -c",
-    "prepare": "yarn run build",
     "build-doc": "docz build",
     "deploy-doc": "gh-pages -d demo"
   },

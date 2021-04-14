@@ -206,7 +206,11 @@ class Carousel extends React.Component {
       // go back from 0ms to whatever set by the user
       // We were at 0ms because we wanted to disable animation on resize
       // see https://github.com/sag1v/react-elastic-carousel/issues/94
-      window.requestAnimationFrame(() => this.setState({ transitionMs }));
+      window.requestAnimationFrame(() => {
+        if (this.isComponentMounted) {
+          this.setState({ transitionMs });
+        }
+      });
       return {
         sliderPosition,
         activeIndex: newActiveIndex < 0 ? 0 : newActiveIndex
