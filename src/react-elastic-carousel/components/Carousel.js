@@ -17,6 +17,7 @@ import { pipe, noop, cssPrefix, numberToArray } from "../utils/helpers";
 import { Pagination } from "./Pagination";
 
 class Carousel extends React.Component {
+  isComponentMounted = false;
   state = {
     rootHeight: 0,
     childHeight: 0,
@@ -32,6 +33,7 @@ class Carousel extends React.Component {
   };
 
   componentDidMount() {
+    this.isComponentMounted = true;
     this.initResizeObserver();
     this.updateActivePage();
     this.setPages();
@@ -89,6 +91,8 @@ class Carousel extends React.Component {
   }
 
   componentWillUnmount() {
+    this.isComponentMounted = false;
+    this.removeAutoPlay();
     this.unSubscribeObserver();
   }
 
@@ -125,9 +129,11 @@ class Carousel extends React.Component {
   setAutoPlay = () => {
     const { autoPlaySpeed } = this.getDerivedPropsFromBreakPoint();
     this.autoPlayIntervalId = setInterval(() => {
-      const { transitioning } = this.state;
-      if (!transitioning) {
-        this.slideNext();
+      if (this.isComponentMounted) {
+        const { transitioning } = this.state;
+        if (!transitioning) {
+          this.slideNext();
+        }
       }
     }, autoPlaySpeed);
   };
@@ -200,7 +206,11 @@ class Carousel extends React.Component {
       // go back from 0ms to whatever set by the user
       // We were at 0ms because we wanted to disable animation on resize
       // see https://github.com/sag1v/react-elastic-carousel/issues/94
-      window.requestAnimationFrame(() => this.setState({ transitionMs }));
+      window.requestAnimationFrame(() => {
+        if (this.isComponentMounted) {
+          this.setState({ transitionMs });
+        }
+      });
       return {
         sliderPosition,
         activeIndex: newActiveIndex < 0 ? 0 : newActiveIndex
@@ -209,6 +219,10 @@ class Carousel extends React.Component {
   };
 
   onSliderResize = sliderNode => {
+    if (!this.isComponentMounted) {
+      return;
+    }
+
     const {
       verticalMode,
       children,
@@ -271,7 +285,10 @@ class Carousel extends React.Component {
     const containerWidth =
       newSliderContainerWidth - (initialVerticalMode ? 0 : outerSpacing * 2);
 
-    if (this.state.sliderContainerWidth === newSliderContainerWidth) {
+    if (
+      !this.isComponentMounted ||
+      this.state.sliderContainerWidth === newSliderContainerWidth
+    ) {
       // prevent infinite loop
       return;
     }

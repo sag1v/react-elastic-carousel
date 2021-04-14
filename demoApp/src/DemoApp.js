@@ -1,5 +1,5 @@
-import React, { useState, useRef } from "react";
-import Carousel from "react-elastic-carousel";
+import React, { useState, useRef, useEffect } from "react";
+import Carousel from "../../src/react-elastic-carousel/components/Carousel";
 import styled from "styled-components";
 
 const Item = styled.div`
@@ -16,7 +16,6 @@ const Item = styled.div`
 const Layout = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   height: 100vh;
 `;
@@ -47,8 +46,12 @@ const CheckBox = ({ label, onToggle, ...rest }) => {
   );
 };
 
+const serverItems = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
 const DemoApp = () => {
-  const [items, setItems] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+  const [show, setShow] = useState(true);
+  const [enableAutoPlay, setEnableAutoPlay] = useState(false);
+  const [items, setItems] = useState([]);
   const [itemsToShow, setItemsToShow] = useState(3);
   const [showArrows, setShowArrows] = useState(true);
   const [pagination, setPagination] = useState(true);
@@ -68,9 +71,20 @@ const DemoApp = () => {
 
   const goTo = ({ target }) => carouselRef.current.goTo(Number(target.value));
 
+  useEffect(() => {
+    setTimeout(() => {
+      setItems(serverItems);
+    }, 2500);
+  }, []);
+
   return (
     <Layout>
       <ControlsLayout>
+        <StyledControlFields>
+          <button onClick={() => setShow((o) => !o)}>
+            {`${show ? "Hide" : "Show"} Carousel`}
+          </button>
+        </StyledControlFields>
         <StyledControlFields>
           <button onClick={addItem}>Add Item</button>
           <button onClick={removeItem}>Remove Item</button>
@@ -102,18 +116,26 @@ const DemoApp = () => {
           checked={verticalMode}
           onToggle={setVerticalMode}
         />
+        <CheckBox
+          label="Auto Play"
+          checked={enableAutoPlay}
+          onToggle={setEnableAutoPlay}
+        />
       </ControlsLayout>
-      <Carousel
-        ref={carouselRef}
-        verticalMode={verticalMode}
-        itemsToShow={itemsToShow}
-        showArrows={showArrows}
-        pagination={pagination}
-      >
-        {items.map((item) => (
-          <Item key={item}>{item}</Item>
-        ))}
-      </Carousel>
+      {show && (
+        <Carousel
+          enableAutoPlay={enableAutoPlay}
+          ref={carouselRef}
+          verticalMode={verticalMode}
+          itemsToShow={itemsToShow}
+          showArrows={showArrows}
+          pagination={pagination}
+        >
+          {items.map((item) => (
+            <Item key={item}>{item}</Item>
+          ))}
+        </Carousel>
+      )}
     </Layout>
   );
 };
