@@ -2,8 +2,19 @@
 /* eslint no-undef: 0 */ // --> OFF
 import * as React from "react";
 
+export enum RenderArrowTypeEnum {
+  PREV="PREV",
+  NEXT="NEXT"
+}
+
+export enum ReactElasticCarouselItemPositionEnum{
+  START="flex-start",
+  CENTER="center",
+  END="flex-end"
+}
+
 export type RenderArrowProps = {
-  type: "PREV" | "NEXT";
+  type: RenderArrowTypeEnum.PREV | RenderArrowTypeEnum.NEXT
   onClick: () => void;
   isEdge: boolean;
 };
@@ -70,7 +81,7 @@ export interface ReactElasticCarouselProps {
   // Function to generate your own pagination component.
   renderPagination?: (props: RenderPaginationProps) => JSX.Element;
   // Defaults to "CENTER"
-  itemPosition?: "START" | "CENTER" | "END";
+  itemPosition?: ReactElasticCarouselItemPositionEnum.START | ReactElasticCarouselItemPositionEnum.CENTER | ReactElasticCarouselItemPositionEnum.END;
   // A padding for each element - Defaults to [0,0,0,0]
   itemPadding?: number[];
   // A margin at the beginning and at the end of the carousel - Defaults to 0 (not compatible with verticalMode yet !)
