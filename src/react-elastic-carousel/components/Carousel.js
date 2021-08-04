@@ -1,7 +1,6 @@
-import React, { Children } from "react";
+import React, { Children, Fragment } from "react";
 import PropTypes from "prop-types";
 import ResizeObserver from "resize-observer-polyfill";
-import Only from "react-only-when";
 import Track from "./Track";
 import Arrow from "./Arrow";
 import consts from "../consts";
@@ -11,7 +10,7 @@ import {
   SliderContainer,
   Slider,
   StyledCarousel,
-  CarouselWrapper
+  CarouselWrapper,
 } from "./styled";
 import { pipe, noop, cssPrefix, numberToArray } from "../utils/helpers";
 import { Pagination } from "./Pagination";
@@ -29,7 +28,7 @@ class Carousel extends React.Component {
     activeIndex: this.props.initialActiveIndex || this.props.initialFirstItem, // support deprecated  initialFirstItem
     pages: [],
     activePage: 0,
-    sliderContainerWidth: 0
+    sliderContainerWidth: 0,
   };
 
   componentDidMount() {
@@ -45,7 +44,7 @@ class Carousel extends React.Component {
       children,
       itemsToShow,
       itemsToScroll,
-      breakPoints
+      breakPoints,
     } = this.props;
     const { activeIndex, sliderContainerWidth } = this.state;
     const nextItem = this.getNextItemIndex(activeIndex, false);
@@ -76,7 +75,7 @@ class Carousel extends React.Component {
 
     if (prevChildrenLength !== currentChildrenLength) {
       const {
-        itemsToShow: calculatedItemsToShow
+        itemsToShow: calculatedItemsToShow,
       } = this.getDerivedPropsFromBreakPoint();
       // number of items is reduced (we don't care if number of items is increased)
       // we need to check if our current index is not out of boundaries
@@ -96,7 +95,7 @@ class Carousel extends React.Component {
     this.unSubscribeObserver();
   }
 
-  setRef = name => ref => (this[name] = ref);
+  setRef = (name) => (ref) => (this[name] = ref);
 
   initResizeObserver = () => {
     this.ro = new ResizeObserver((entries, observer) => {
@@ -151,11 +150,11 @@ class Carousel extends React.Component {
     this.setState({ pages });
   };
 
-  onSliderTransitionEnd = fn => {
+  onSliderTransitionEnd = (fn) => {
     this.slider.addEventListener("transitionend", fn);
   };
 
-  removeSliderTransitionHook = fn => {
+  removeSliderTransitionHook = (fn) => {
     this.slider.removeEventListener("transitionend", fn);
   };
 
@@ -170,7 +169,7 @@ class Carousel extends React.Component {
       currentBreakPoint = breakPoints
         .slice() // no mutations
         .reverse() // so we can find last match
-        .find(bp => bp.width <= sliderContainerWidth);
+        .find((bp) => bp.width <= sliderContainerWidth);
       if (!currentBreakPoint) {
         /* in case we don't have a lower width than sliderContainerWidth
          * this mostly happens in initilization when sliderContainerWidth is 0
@@ -183,12 +182,12 @@ class Carousel extends React.Component {
   };
 
   updateSliderPosition = () => {
-    this.setState(state => {
+    this.setState((state) => {
       const {
         children,
         verticalMode,
         itemsToShow,
-        transitionMs
+        transitionMs,
       } = this.getDerivedPropsFromBreakPoint();
       const { childHeight, activeIndex } = state;
 
@@ -213,12 +212,12 @@ class Carousel extends React.Component {
       });
       return {
         sliderPosition,
-        activeIndex: newActiveIndex < 0 ? 0 : newActiveIndex
+        activeIndex: newActiveIndex < 0 ? 0 : newActiveIndex,
       };
     });
   };
 
-  onSliderResize = sliderNode => {
+  onSliderResize = (sliderNode) => {
     if (!this.isComponentMounted) {
       return;
     }
@@ -226,7 +225,7 @@ class Carousel extends React.Component {
     const {
       verticalMode,
       children,
-      itemsToShow
+      itemsToShow,
     } = this.getDerivedPropsFromBreakPoint();
     const { height: sliderHeight } = sliderNode.contentRect;
     const nextState = {};
@@ -251,7 +250,7 @@ class Carousel extends React.Component {
       verticalMode,
       itemsToShow,
       showEmptySlots,
-      children
+      children,
     } = this.getDerivedPropsFromBreakPoint();
 
     /* based on slider container's width, get num of items to show
@@ -274,13 +273,13 @@ class Carousel extends React.Component {
     return childWidth;
   };
 
-  onContainerResize = sliderContainerNode => {
+  onContainerResize = (sliderContainerNode) => {
     const { width: newSliderContainerWidth } = sliderContainerNode.contentRect;
     // update slider container width
     // disable animation on resize see https://github.com/sag1v/react-elastic-carousel/issues/94
     const {
       outerSpacing,
-      verticalMode: initialVerticalMode
+      verticalMode: initialVerticalMode,
     } = this.getDerivedPropsFromBreakPoint();
     const containerWidth =
       newSliderContainerWidth - (initialVerticalMode ? 0 : outerSpacing * 2);
@@ -299,13 +298,13 @@ class Carousel extends React.Component {
         const {
           onResize,
           itemsToShow,
-          children
+          children,
         } = this.getDerivedPropsFromBreakPoint();
 
         const childrenLength = Children.toArray(children).length || 1;
 
         this.setState(
-          currentState => {
+          (currentState) => {
             // We might need to change the selected index when the size of the container changes
             // we are making sure the selected index is not out of boundaries and respecting itemsToShow
             // This usually happens with breakpoints. see https://github.com/sag1v/react-elastic-carousel/issues/122
@@ -335,21 +334,21 @@ class Carousel extends React.Component {
   };
 
   tiltMovement = (position, distance = 20, duration = 150) => {
-    this.setState(state => {
+    this.setState((state) => {
       return {
         isSwiping: true,
-        swipedSliderPosition: position - distance
+        swipedSliderPosition: position - distance,
       };
     });
     setTimeout(() => {
       this.setState({
         isSwiping: false,
-        swipedSliderPosition: 0
+        swipedSliderPosition: 0,
       });
     }, duration);
   };
 
-  convertChildToCbObj = index => {
+  convertChildToCbObj = (index) => {
     const { children } = this.getDerivedPropsFromBreakPoint();
     // support decimal itemsToShow
     const roundedIdx = Math.round(index);
@@ -361,7 +360,7 @@ class Carousel extends React.Component {
     const {
       children,
       itemsToShow,
-      itemsToScroll
+      itemsToScroll,
     } = this.getDerivedPropsFromBreakPoint();
     const childrenLength = Children.toArray(children).length || 1;
     const notEnoughItemsToShow = itemsToShow > childrenLength;
@@ -377,7 +376,7 @@ class Carousel extends React.Component {
     return nextItem;
   };
 
-  getNextItemObj = getPrev => {
+  getNextItemObj = (getPrev) => {
     const { children } = this.getDerivedPropsFromBreakPoint();
     const { activeIndex } = this.state;
     const nextItemIndex = this.getNextItemIndex(activeIndex, getPrev);
@@ -392,20 +391,20 @@ class Carousel extends React.Component {
     this.setState({
       swipedSliderPosition: 0,
       transitioning: false,
-      isSwiping: false
+      isSwiping: false,
     });
   };
 
-  onSwiping = data => {
+  onSwiping = (data) => {
     const { deltaX, absX, deltaY, absY, dir } = data;
 
-    this.setState(state => {
+    this.setState((state) => {
       const { childHeight, activeIndex, sliderPosition } = state;
       const {
         itemsToShow,
         verticalMode,
         children,
-        isRTL
+        isRTL,
       } = this.getDerivedPropsFromBreakPoint();
 
       const childWidth = this.calculateChildWidth();
@@ -482,12 +481,12 @@ class Carousel extends React.Component {
       return {
         swipedSliderPosition,
         isSwiping: true,
-        transitioning: true
+        transitioning: true,
       };
     });
   };
 
-  onSwiped = data => {
+  onSwiped = (data) => {
     // we need to handle all scenarios:
     // 1. Horizontal mode - swipe left or right
     // 2. Horizontal mode with RTL - swipe left or right
@@ -498,7 +497,7 @@ class Carousel extends React.Component {
     const {
       verticalMode,
       isRTL,
-      itemsToScroll
+      itemsToScroll,
     } = this.getDerivedPropsFromBreakPoint();
     const childWidth = this.calculateChildWidth();
 
@@ -595,7 +594,7 @@ class Carousel extends React.Component {
     func({ skipTilt: true });
   };
 
-  onNextStart = options => {
+  onNextStart = (options) => {
     const { onNextStart } = this.getDerivedPropsFromBreakPoint();
     const { activeIndex } = this.state;
     const nextItemObj = this.getNextItemObj();
@@ -604,7 +603,7 @@ class Carousel extends React.Component {
     this.slideNext(options);
   };
 
-  onPrevStart = options => {
+  onPrevStart = (options) => {
     const { onPrevStart } = this.getDerivedPropsFromBreakPoint();
     const { activeIndex } = this.state;
     const nextItemObj = this.getNextItemObj(true);
@@ -657,12 +656,9 @@ class Carousel extends React.Component {
     onPrevEnd(nextItemObj, activePage);
   };
 
-  generatePositionUpdater = (
-    direction,
-    nextItemId,
-    verticalMode,
-    rest
-  ) => state => {
+  generatePositionUpdater = (direction, nextItemId, verticalMode, rest) => (
+    state
+  ) => {
     const { sliderPosition, childHeight, activeIndex } = state;
     const childWidth = this.calculateChildWidth();
 
@@ -681,15 +677,15 @@ class Carousel extends React.Component {
       activeIndex: nextItemId,
       swipedSliderPosition: 0,
       isSwiping: false,
-      ...rest
+      ...rest,
     };
   };
 
-  goTo = nextItemId => {
+  goTo = (nextItemId) => {
     const {
       children,
       verticalMode,
-      itemsToShow
+      itemsToShow,
     } = this.getDerivedPropsFromBreakPoint();
     const { activeIndex } = this.state;
     const childrenLength = Children.toArray(children).length;
@@ -716,7 +712,7 @@ class Carousel extends React.Component {
       safeNextItemId,
       verticalMode,
       {
-        transitioning: true
+        transitioning: true,
       }
     );
     this.setState(stateUpdater, () => {
@@ -737,7 +733,7 @@ class Carousel extends React.Component {
   };
 
   updateActivePage = () => {
-    this.setState(state => {
+    this.setState((state) => {
       const { itemsToShow, children } = this.getDerivedPropsFromBreakPoint();
       const { activeIndex, activePage } = state;
       const numOfPages = this.getNumOfPages();
@@ -753,7 +749,7 @@ class Carousel extends React.Component {
     });
   };
 
-  onIndicatorClick = indicatorId => {
+  onIndicatorClick = (indicatorId) => {
     const { itemsToShow } = this.getDerivedPropsFromBreakPoint();
     const gotoIndex = indicatorId * itemsToShow;
     this.setState({ activePage: indicatorId });
@@ -769,7 +765,7 @@ class Carousel extends React.Component {
       rootHeight,
       pages,
       activeIndex,
-      transitionMs
+      transitionMs,
     } = this.state;
     const {
       className,
@@ -793,7 +789,7 @@ class Carousel extends React.Component {
       disableArrowsOnEnd,
       preventDefaultTouchmoveEvent,
       renderArrow,
-      renderPagination
+      renderPagination,
     } = this.getDerivedPropsFromBreakPoint();
 
     const childWidth = this.calculateChildWidth();
@@ -818,21 +814,23 @@ class Carousel extends React.Component {
           className={cssPrefix("carousel")}
           size={{ height: rootHeight }}
         >
-          <Only when={showArrows}>
-            {renderArrow ? (
-              renderArrow({
-                type: consts.PREV,
-                onClick: this.onPrevStart,
-                isEdge: !canSlidePrev
-              })
-            ) : (
-              <Arrow
-                onClick={this.onPrevStart}
-                direction={verticalMode ? Arrow.up : Arrow.left}
-                disabled={disabledPrevArrow}
-              />
-            )}
-          </Only>
+          {showArrows && (
+            <Fragment>
+              {renderArrow ? (
+                renderArrow({
+                  type: consts.PREV,
+                  onClick: this.onPrevStart,
+                  isEdge: !canSlidePrev,
+                })
+              ) : (
+                <Arrow
+                  onClick={this.onPrevStart}
+                  direction={verticalMode ? Arrow.up : Arrow.left}
+                  disabled={disabledPrevArrow}
+                />
+              )}
+            </Fragment>
+          )}
           <SliderContainer
             className={cssPrefix("slider-container")}
             ref={this.setRef("sliderContainer")}
@@ -869,37 +867,43 @@ class Carousel extends React.Component {
               />
             </Slider>
           </SliderContainer>
-          <Only when={showArrows}>
-            {renderArrow ? (
-              renderArrow({
-                type: consts.NEXT,
-                onClick: this.onNextStart,
-                isEdge: !canSlideNext
+          {showArrows && (
+            <Fragment>
+              {" "}
+              {renderArrow ? (
+                renderArrow({
+                  type: consts.NEXT,
+                  onClick: this.onNextStart,
+                  isEdge: !canSlideNext,
+                })
+              ) : (
+                <Arrow
+                  onClick={this.onNextStart}
+                  direction={verticalMode ? Arrow.down : Arrow.right}
+                  disabled={disabledNextArrow}
+                />
+              )}
+            </Fragment>
+          )}
+        </StyledCarousel>
+        {pagination && (
+          <Fragment>
+            {" "}
+            {renderPagination ? (
+              renderPagination({
+                pages: pages,
+                activePage,
+                onClick: this.onIndicatorClick,
               })
             ) : (
-              <Arrow
-                onClick={this.onNextStart}
-                direction={verticalMode ? Arrow.down : Arrow.right}
-                disabled={disabledNextArrow}
+              <Pagination
+                numOfPages={numOfPages}
+                activePage={activePage}
+                onClick={this.onIndicatorClick}
               />
             )}
-          </Only>
-        </StyledCarousel>
-        <Only when={pagination}>
-          {renderPagination ? (
-            renderPagination({
-              pages: pages,
-              activePage,
-              onClick: this.onIndicatorClick
-            })
-          ) : (
-            <Pagination
-              numOfPages={numOfPages}
-              activePage={activePage}
-              onClick={this.onIndicatorClick}
-            />
-          )}
-        </Only>
+          </Fragment>
+        )}
       </CarouselWrapper>
     );
   }
@@ -939,7 +943,7 @@ Carousel.defaultProps = {
   onPrevEnd: noop,
   onNextStart: noop,
   onPrevStart: noop,
-  onResize: noop
+  onResize: noop,
 };
 
 Carousel.propTypes = {
@@ -984,7 +988,7 @@ Carousel.propTypes = {
     PropTypes.shape({
       width: PropTypes.number.isRequired,
       itemsToShow: PropTypes.number,
-      itemsToScroll: PropTypes.number
+      itemsToScroll: PropTypes.number,
     })
   ),
 
@@ -1071,7 +1075,7 @@ Carousel.propTypes = {
 
   /** A callback for the "slider-container" resize
    * - onResize(currentBreakPoint) => {} */
-  onResize: PropTypes.func
+  onResize: PropTypes.func,
 };
 
 export default Carousel;

@@ -33,7 +33,6 @@
   },
   "dependencies": {
     "classnames": "^2.2.6",
-    "react-only-when": "^1.0.2",
     "react-swipeable": "^5.5.1",
     "resize-observer-polyfill": "1.5.0"
   },
