@@ -14,7 +14,11 @@
 - **RTL (right-to-left) support**  
   Supporting right-to-left languages requires a full support for right-to-left rendering and animations which is not supported in most of the carousel components out there. also, right-to-left support is [important and should be a standard for most applications](https://www.youtube.com/watch?v=A_3BfONFRUc).
 
-## [Live Demos & Docs](https://sag1v.github.io/react-elastic-carousel/)
+## Docs
+
+https://sag1v.github.io/react-elastic-carousel/
+
+## Live Demos 
 
 ## Install
 
