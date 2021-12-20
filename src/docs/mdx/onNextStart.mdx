@@ -9,14 +9,23 @@ import Carousel from 'react-elastic-carousel';
 import Item from '../components/SimpleItem';
 
 # onNextStart
-#### `onNextStart` will pass both the __current__ and __next__ `item-object`:  
+
+`onNextStart` will be called at the beginning of slide transition.
+
+`onNextStart` receive a callback with 2 arguments: `currentItem, nextItem`.
+
+
 ```
 (currentItem, nextItem) => {/*...*/}
 ```
-- The `item-object` has the shape of:
+
+`currentItem, nextItem` is objects with these properties:
+
 ```
 {
-    item: {/* your item */},
+    item: {
+        /* your item */
+    },
     index: // the item's index number 
 }
 ```
@@ -24,8 +33,7 @@ import Item from '../components/SimpleItem';
 
 <Playground >
     <Carousel 
-        itemsToShow={2}
-        onNextStart={(currentItem,nextItem) => alert(JSON.stringify(currentItem) + `\n` + JSON.stringify(nextItem))}
+        onNextStart={(currentItem, nextItem) => console.log(currentItem, nextItem)}
     >
     <Item someProp="cool1">1</Item>
     <Item someProp="cool2">2</Item>
