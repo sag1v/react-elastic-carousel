@@ -9,36 +9,37 @@ import Carousel from 'react-elastic-carousel';
 import Item from '../components/SimpleItem';
 
 # goTo
-#### You can trigger the `goTo` method via a `ref` to the `Carousel`:  
-```
-this.carousel.goTo(someIndex)
-```
 
-<Playground >
+You can trigger the `goTo` method via a `ref` to the `Carousel`.
+
+<Playground>
     {
-        class App extends React.Component {
-            constructor(props){
-                super(props);
-                this.goto = this.goto.bind(this);
+        function App() {
+            const carouselRef = React.useRef(null);
+    
+            function handleGoto({target: {value}){
+                carouselRef.current.goTo(Number(value))
             }
-            goto({target}){this.carousel.goTo(Number(target.value))}
-            render() {
-                return(
-                    <div>
-                        <label>Go to </label>
-                        <input type="number" defaultValue={0} onChange={this.goto} />
-                        <hr/>
-                        <Carousel ref={ref => this.carousel = ref}>
-                            <Item>1</Item>
-                            <Item>2</Item>
-                            <Item>3</Item>
-                            <Item>4</Item>
-                            <Item>5</Item>
-                            <Item>6</Item>
-                        </Carousel>
-                    </div>
-                );
-            }
+    
+            return(
+                <div>
+                    <label>
+                        Go to 
+                        <input type="number" defaultValue={0} onChange={handleGoto} />
+                    </label>
+                    
+                    <hr/>
+                    
+                    <Carousel ref={carouselRef}>
+                        <Item>1</Item>
+                        <Item>2</Item>
+                        <Item>3</Item>
+                        <Item>4</Item>
+                        <Item>5</Item>
+                        <Item>6</Item>
+                    </Carousel>
+                </div>
+            );
         }
     }
 
