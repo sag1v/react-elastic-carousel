@@ -1086,7 +1086,7 @@ Carousel.propTypes = {
    * - onResize(currentBreakPoint) => {} */
   onResize: PropTypes.func,
 
-  /** Hides the arrow buttons when both are disabled */
+  /** Hide the arrow buttons when both are disabled */
   hideArrowWhenBothDisabled: PropTypes.bool,
 };
 
