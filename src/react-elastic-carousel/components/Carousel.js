@@ -793,7 +793,8 @@ class Carousel extends React.Component {
       disableArrowsOnEnd,
       preventDefaultTouchmoveEvent,
       renderArrow,
-      renderPagination
+      renderPagination,
+      hideArrowWhenBothDisabled
     } = this.getDerivedPropsFromBreakPoint();
 
     const childWidth = this.calculateChildWidth();
@@ -830,6 +831,11 @@ class Carousel extends React.Component {
                 onClick={this.onPrevStart}
                 direction={verticalMode ? Arrow.up : Arrow.left}
                 disabled={disabledPrevArrow}
+                style={
+                  hideArrowWhenBothDisabled &&
+                  disabledPrevArrow &&
+                  disabledNextArrow && { visibility: "hidden" }
+                }
               />
             )}
           </Only>
@@ -881,6 +887,11 @@ class Carousel extends React.Component {
                 onClick={this.onNextStart}
                 direction={verticalMode ? Arrow.down : Arrow.right}
                 disabled={disabledNextArrow}
+                style={
+                  hideArrowWhenBothDisabled &&
+                  disabledPrevArrow &&
+                  disabledNextArrow && { visibility: "hidden" }
+                }
               />
             )}
           </Only>
@@ -939,7 +950,9 @@ Carousel.defaultProps = {
   onPrevEnd: noop,
   onNextStart: noop,
   onPrevStart: noop,
-  onResize: noop
+  onResize: noop,
+
+  hideArrowWhenBothDisabled: false
 };
 
 Carousel.propTypes = {
@@ -1071,7 +1084,10 @@ Carousel.propTypes = {
 
   /** A callback for the "slider-container" resize
    * - onResize(currentBreakPoint) => {} */
-  onResize: PropTypes.func
+  onResize: PropTypes.func,
+
+  /** Hides the arrow buttons when both are disabled */
+  hideArrowWhenBothDisabled: PropTypes.bool,
 };
 
 export default Carousel;
