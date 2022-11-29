@@ -50,7 +50,6 @@ const Track = ({
         )}
       >
         <ItemWrapperContainer
-          id={idx}
           itemPosition={itemPosition}
           style={{ width, padding: paddingStyle }}
           key={idx}

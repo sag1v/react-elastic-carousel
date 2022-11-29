@@ -5,8 +5,8 @@ import { noop } from "../utils/helpers";
 
 class ItemWrapperContainer extends React.Component {
   onClick = () => {
-    const { onClick, id } = this.props;
-    onClick(id);
+    const { onClick, key } = this.props;
+    onClick(key);
   };
   render() {
     return <ItemWrapper {...this.props} onClick={this.onClick} />;
@@ -18,7 +18,7 @@ ItemWrapperContainer.defaultProps = {
 };
 
 ItemWrapperContainer.propTypes = {
-  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  key: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onClick: PropTypes.func
 };
 
