@@ -22,17 +22,12 @@ export type ItemObject = {
   index: number;
 };
 
-export type Children = {
-  array: any;
-  index:number
-};
-
 export type Breakpoint = {
   itemsToScroll: number;
   itemsToShow: number;
 };
 
-export i ReactElasticCarouselProps {
+export interface ReactElasticCarouselProps {
   className?: string;
   // Defaults to 1
   itemsToShow?: number;
