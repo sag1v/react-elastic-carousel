@@ -1,6 +1,6 @@
 /* eslint no-unused-vars: 0 */ // --> OFF
 /* eslint no-undef: 0 */ // --> OFF
-import * as React from "react";
+import React, {ReactNode} from "react";
 
 export type RenderArrowProps = {
   type: "PREV" | "NEXT";
@@ -32,7 +32,7 @@ export type Breakpoint = {
   itemsToShow: number;
 };
 
-export interface ReactElasticCarouselProps {
+export i ReactElasticCarouselProps {
   className?: string;
   // Defaults to 1
   itemsToShow?: number;
