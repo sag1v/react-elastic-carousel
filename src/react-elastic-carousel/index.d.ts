@@ -22,6 +22,11 @@ export type ItemObject = {
   index: number;
 };
 
+export type Children = {
+  array: any;
+  index:number
+};
+
 export type Breakpoint = {
   itemsToScroll: number;
   itemsToShow: number;
@@ -106,6 +111,8 @@ export interface ReactElasticCarouselProps {
   onPrevEnd?: (nextItemObject: ItemObject, currentPageIndex: number) => void;
   // A callback for the "slider-container" resize
   onResize?: (currentBreakpoint: Breakpoint) => void;
+  // A prop for carousel items
+  children: React.ReactNode
 }
 
 declare class ReactElasticCarousel extends React.Component<
