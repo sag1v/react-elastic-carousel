@@ -28,13 +28,15 @@ export type Breakpoint = {
 };
 
 export interface ReactElasticCarouselProps {
+  children? : JSX.Element[];
   className?: string;
+  style?: React.CSSProperties;
   // Defaults to 1
   itemsToShow?: number;
   // Defaults to false
   verticalMode?: boolean;
   // Defaults to false
-  isRTL: boolean;
+  isRTL?: boolean;
   // Defaults to true
   pagination?: boolean;
   // Defaults to 500
