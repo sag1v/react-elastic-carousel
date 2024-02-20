@@ -39,8 +39,8 @@
   },
   "peerDependencies": {
     "prop-types": "^15.5.4",
-    "react": "15 - 17",
-    "react-dom": "15 - 17",
+    "react": "15 - 18",
+    "react-dom": "15 - 18",
     "styled-components": "^5.1.0"
   },
   "devDependencies": {
