@@ -34,7 +34,9 @@ export interface ReactElasticCarouselProps {
   // Defaults to false
   verticalMode?: boolean;
   // Defaults to false
-  isRTL: boolean;
+  isRTL?: boolean;
+  // adding ReactNode type to the children prop
+  children: React.ReactNode;
   // Defaults to true
   pagination?: boolean;
   // Defaults to 500
