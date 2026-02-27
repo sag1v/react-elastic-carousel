@@ -93,7 +93,7 @@
     "react-resizable": "^1.7.5",
     "react-scripts": "^2.1.8",
     "react-test-renderer": "^16.5.2",
-    "rollup": "^0.64.1",
+    "rollup": "^2.80.0",
     "rollup-plugin-alias": "^1.4.0",
     "rollup-plugin-auto-external": "^2.0.0",
     "rollup-plugin-babel": "^4.3.2",
